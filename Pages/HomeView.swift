@@ -54,7 +54,7 @@ struct HomeView: View {
                 itemsView(show: $showDetail,detailName: NewHomeName)
                     .background(.ultraThinMaterial)
                     .opacity(showDetail ? 1 : 0)
-                    
+                   
             }
             
 

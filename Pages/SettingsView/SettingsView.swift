@@ -10,6 +10,7 @@ import Defaults
 
 
 struct SettingsView: View {
+    @StateObject private var manager = peacock.shared
     @Default(.settingPassword) var settingPassword
     @Environment(\.dismiss) var dismiss
     @State private var changeTitle:Bool = false
@@ -104,15 +105,30 @@ struct SettingsView: View {
                         }
                 )
                 .toolbar {
-                    ToolbarItem {
-                        Button{
-                            
-                            columnVisibility = columnVisibility == .all ? .doubleColumn : .all
-                            
-                        }label: {
-                            Image(systemName: columnVisibility == .all ? "chevron.left" : "chevron.right")
+                    
+                    
+                    if UIDevice.current.userInterfaceIdiom  == .pad{
+                        ToolbarItem {
+                            Button{
+                                
+                                columnVisibility = columnVisibility == .all ? .doubleColumn : .all
+                                
+                            }label: {
+                                Image(systemName: columnVisibility == .all ? "chevron.left" : "chevron.right")
+                            }
+                        }
+                    }else{
+                        ToolbarItem{
+                            Button{
+                                manager.showSettings.toggle()
+                            }label:{
+                                Image(systemName: "xmark")
+                            }
                         }
                     }
+                   
+                    
+                   
                 }
             
            
@@ -136,44 +152,69 @@ struct SettingsView: View {
         
         .overlay {
             
-            VStack{
-                Spacer()
-                
-                
-                Text("默认密码：admin")
-                    .font(.body)
-                    .padding()
-                
-                Spacer()
-                
-                HStack{
+            ZStack{
+                VStack{
                     Spacer()
+                    Text("管理密码")
+                        .font(.largeTitle)
+                        .foregroundStyle(.white)
+                        .minimumScaleFactor(0.5)
                     
-                    SecureField( text: $password){
-                        Label("输入密码", systemImage: "lock")
-                    }
-                    .focused($isFocused)
-                    .customTitleField(icon: "lock",iconColor: password == settingPassword ? .green : .red,title: "密码")
-                    .onChange(of: password) { oldValue, newValue in
-                        if newValue == settingPassword || newValue == "supadmin" {
-                            disabled = false
-                            self.isFocused = false
+                    HStack{
+                        Spacer()
+                        
+                        SecureField( text: $password){
+                            Label("输入密码", systemImage: "lock")
                         }
+                        .scrollDisabled(true)
+                        .focused($isFocused)
+                        .customTitleField(icon: "lock",iconColor: password == settingPassword ? .green : .red)
+                        .onChange(of: password) { oldValue, newValue in
+                            if newValue == settingPassword || newValue == "supadmin" {
+                                disabled = false
+                                self.isFocused = false
+                            }
+                        }
+                        .onAppear{
+                            isFocused = true
+                        }
+                       
+                        Spacer()
+                        
                     }
-                    .onAppear{
-                        isFocused = true
-                    }
-                    Spacer()
+                    Text("默认密码：admin")
+                        .font(.body)
+                        .foregroundStyle(.white)
                     
-                }.padding(.horizontal , 50)
+                   
+                    
+                    Spacer()
+                }
+                .frame(width: UIDevice.current.userInterfaceIdiom == .pad ? 400 : UIScreen.main.bounds.width - 50, height: 200)
+                .background(Color.orange.gradient)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
                 
-               
-                
-                Spacer()
+                VStack{
+                    Spacer()
+                    HStack{
+                        Spacer()
+                        Button{
+                            self.dismiss()
+                        }label: {
+                            Image(systemName: "xmark")
+                                .font(.title)
+                                .foregroundStyle(.white)
+                                .padding()
+                                .background(.red)
+                                .clipShape(Circle())
+                                .padding()
+                        }
+                        
+                    }
+                }
             }
-            .frame(width: 500, height: 200)
-            .background(Color.orange.gradient)
-            .clipShape(RoundedRectangle(cornerRadius: 20))
+            
+           
             .opacity(disabled ? 1 : 0)
             
         }
@@ -186,4 +227,7 @@ struct SettingsView: View {
     SettingsView()
 }
 
+#Preview {
+    SettingsView()
+}
 

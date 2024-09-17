@@ -109,7 +109,7 @@ struct VipCardView:View {
             }
            
         }
-        .padding()
+       
     }
 
 

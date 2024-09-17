@@ -252,6 +252,10 @@ struct itemCardView: View {
                         .font(.system(size: 15))
                         .foregroundStyle(.gray)
                         .minimumScaleFactor(0.6)
+                        
+                        
+                        
+                        
                 }
                 .opacity(Double(data.price1.money))
                 Spacer()

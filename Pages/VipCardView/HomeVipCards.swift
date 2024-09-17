@@ -38,6 +38,7 @@ struct HomeVipCards: View {
                    HStack(alignment: .center, spacing: 30) {
                      ForEach($cards) { item in
                          VipCardView(item: item,size: CGSize(width: 300, height: 200), show: $showDetail)
+                             .padding()
                      }
                       
                   }

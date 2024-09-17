@@ -224,7 +224,7 @@ struct PickerOfCardView: View {
         }, set: { value in
             manager.selectCard = value
         })) {
-            Text("\(nonmember.title)\(nonmember.name)").tag(nonmember)
+            Text("\(nonmember.name)").tag(nonmember)
                
             ForEach(cards, id: \.id){card in
                 Text("\(card.title)\(card.name)").tag(card)

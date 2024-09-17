@@ -10,15 +10,17 @@ import Defaults
 import Pow
 
 struct ContentView: View {
-
-    @State private var showSetting:Bool = false
     
     var body: some View {
         
 
-        
         NavigationStack{
-            HomeView()
+            if UIDevice.current.userInterfaceIdiom == .phone{
+                HomeIphoneView()
+            }else{
+                HomeView()
+            }
+           
         
         }
 
@@ -76,6 +78,6 @@ struct PriceSlide: View {
 
 
 #Preview {
-   PriceSlide()
+    ContentView()
 }
   
