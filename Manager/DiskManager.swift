@@ -20,7 +20,7 @@ extension Defaults.Keys{
     static let homeCardSubTitle = Key<String>("HomeCardSubTitle",default: "Peacock-Cards")
     static let homeItemsTitle = Key<String>("HomeItemsTitle",default: "项目分类")
     static let homeItemsSubTitle = Key<String>("HomeItemsSubTitle",default: "Peacock-Items")
-    static let settingPassword = Key<String>("SettingPassword",default: "admin")
+    static let settingPassword = Key<String>("SettingPassword",default: "123456")
 
     
     static let cards = Key<[VipCardData]>("VipCards",default: VIPCARDDATAS)

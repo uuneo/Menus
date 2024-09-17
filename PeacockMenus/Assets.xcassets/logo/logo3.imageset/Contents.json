@@ -1,7 +1,6 @@
 {
   "images" : [
     {
-      "filename" : "Logo.pdf",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -10,6 +9,7 @@
       "scale" : "2x"
     },
     {
+      "filename" : "calv1n.17_fantasy-logo_performance_festivals_luck_MINIMALIST_an_fa406679-c09d-4ef9-a9d1-4f03f30e61e2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

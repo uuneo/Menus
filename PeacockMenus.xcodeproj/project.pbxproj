@@ -13,6 +13,7 @@
 		1977689B2C987CFE00F40521 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 1977689A2C987CFE00F40521 /* Pow */; };
 		197768A42C98A8A200F40521 /* HomeIphoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197768A32C98A8A200F40521 /* HomeIphoneView.swift */; };
 		197768A62C9944A700F40521 /* ItemsIphoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197768A52C9944A700F40521 /* ItemsIphoneView.swift */; };
+		197768A82C99C9FB00F40521 /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197768A72C99C9FB00F40521 /* AppIconView.swift */; };
 		19818B722C8DCFAF001A2964 /* ExportDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19818B712C8DCFAF001A2964 /* ExportDataView.swift */; };
 		198706EB2C94114800F59CE9 /* shape+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198706EA2C94114800F59CE9 /* shape+.swift */; };
 		198706ED2C94117600F59CE9 /* button+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198706EC2C94117600F59CE9 /* button+.swift */; };
@@ -74,6 +75,7 @@
 		197768882C9863F000F40521 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
 		197768A32C98A8A200F40521 /* HomeIphoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeIphoneView.swift; sourceTree = "<group>"; };
 		197768A52C9944A700F40521 /* ItemsIphoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsIphoneView.swift; sourceTree = "<group>"; };
+		197768A72C99C9FB00F40521 /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
 		19818B712C8DCFAF001A2964 /* ExportDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportDataView.swift; sourceTree = "<group>"; };
 		198706EA2C94114800F59CE9 /* shape+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "shape+.swift"; sourceTree = "<group>"; };
 		198706EC2C94117600F59CE9 /* button+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "button+.swift"; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				198706F12C941D8F00F59CE9 /* ItemsView */,
 				198706F02C941D7900F59CE9 /* VipCardView */,
 				198706F82C9420BE00F59CE9 /* HomeView.swift */,
+				197768A72C99C9FB00F40521 /* AppIconView.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				19D231D72C93FCDC001044BB /* itemsView.swift in Sources */,
 				198706ED2C94117600F59CE9 /* button+.swift in Sources */,
 				197768A42C98A8A200F40521 /* HomeIphoneView.swift in Sources */,
+				197768A82C99C9FB00F40521 /* AppIconView.swift in Sources */,
 				194BBAA72C8DD04F002EAA09 /* ImportDataView.swift in Sources */,
 				19DDEC212C96CA8800C86EC5 /* vipCardSettingView.swift in Sources */,
 				19CD68A62C9829D500AF6CF8 /* BasicSettingsView.swift in Sources */,

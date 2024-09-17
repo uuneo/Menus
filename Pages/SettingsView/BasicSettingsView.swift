@@ -13,6 +13,7 @@ struct BasicSettingsView: View {
     @State private var selectedTab:Int? = 0
     @Binding var columnVisibility: NavigationSplitViewVisibility
     @State private var showAlert:Bool = false
+    @State private var showIconPicker:Bool = false
     var body: some View {
         NavigationStack{
             List(selection: $selectedTab){
@@ -46,6 +47,19 @@ struct BasicSettingsView: View {
                 
                 .tag(3)
                 
+                Button{
+                    self.showIconPicker.toggle()
+                }label:{
+                   
+                   Label("切换图标", systemImage: "photo.circle")
+                }
+                .sheet(isPresented: $showIconPicker) {
+                    NavigationStack{
+                        AppIconView()
+                    }.presentationDetents([.medium])
+                }
+        
+                
                 
                 
             }.navigationTitle("通用设置")
@@ -66,6 +80,7 @@ struct BasicSettingsView: View {
                         }
                     }
                 }
+            
         }
     }
 }
