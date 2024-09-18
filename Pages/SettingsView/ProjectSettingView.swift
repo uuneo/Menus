@@ -14,12 +14,21 @@ struct ProjectSettingView: View {
     @Default(.Subcategorys) var subcategoryItems
     @Default(.Categorys) var categoryItems
     @Binding var columnVisibility: NavigationSplitViewVisibility
+    @State private var searchText:String = ""
+    
+    var filterItems:[ItemData]{
+        let itemsData = items.filter({$0.title.contains(searchText)})
+        return itemsData.count == 0 ?  items : itemsData
+    }
+    
+    
     var body: some View {
         List {
-           
-            ForEach($items,id: \.id){item in
-                
-                Section {
+            if filterItems.count == 0{
+                ForEach($items,id: \.id){item in
+                    
+                 
+                    
                     NavigationLink{
                         ChangeItemView(item: item)
                     }label: {
@@ -30,15 +39,35 @@ struct ProjectSettingView: View {
                         }
                     }
                 }
-                
+                .onDelete(perform: manager.removeItems)
                
-                
+            
+            }else{
+                ForEach(filterItems,id: \.id){item in
+                    NavigationLink{
+                        ChangeItemView(item: Binding(get: { item }, set: { value in
+                            Defaults[.Items].firstIndex(where: {$0.id == item.id}).map{
+                                Defaults[.Items][$0] = value
+                            }
+                        }))
+                    }label: {
+                        HStack{
+                            Text("\(item.title)")
+                            Spacer()
+                            Text(subcategoryTitle(item: item))
+                        }
+                    }
+                } .onDelete(perform: manager.removeItems)
+                   
             }
-            .onDelete(perform: manager.removeItems)
-            .onMove(perform: { indices, newOffset in
-                items.move(fromOffsets: indices, toOffset: newOffset)
-            })
+            
+           
+               
+          
+           
+          
         }
+        .searchable(text: $searchText,prompt: "搜索数据")
         .toolbar{
             ToolbarItem {
                 Button{
@@ -47,6 +76,8 @@ struct ProjectSettingView: View {
                     Image(systemName: "plus")
                 }
             }
+            
+           
         }
     }
     func subcategoryTitle(item:ItemData)->String{
@@ -57,6 +88,8 @@ struct ProjectSettingView: View {
         }
         return "\(category.title)-\(subcategory.title)"
     }
+    
+    
 }
 
 struct ChangeItemView:View {

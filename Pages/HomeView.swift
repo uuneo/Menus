@@ -155,9 +155,6 @@ struct HomeSettingView: View {
                                 self.password = settingPassword
                             }
                         }
-                        .onAppear{
-                            isFocused = true
-                        }
                         
                         Spacer()
                         
