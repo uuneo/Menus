@@ -17,7 +17,7 @@ struct HomeItemsView: View {
     var NewHomeName:Namespace.ID
     @Binding var showDetail:Bool
     
-    @Default(.categoryItems) var items
+    @Default(.Categorys) var items
     @Default(.homeItemsTitle) var title
     @Default(.homeItemsSubTitle) var subTitle
     
@@ -40,7 +40,7 @@ struct HomeItemsView: View {
               
                 
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 30.0) {
+                    HStack(spacing: 20.0) {
                         ForEach($items) { item in
                             Button(action: {
                                 withAnimation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0.8)){
@@ -49,8 +49,21 @@ struct HomeItemsView: View {
                                 }
                                
                             }) {
-                                categoryCardView(item: item, NewHomeName: NewHomeName, show: showDetail)
                                 
+                                if ISPAD{
+                                    categoryCardView(item: item, NewHomeName: NewHomeName, show: showDetail)
+                                    
+                                }else{
+                                    GeometryReader { geometry in
+                                        HStack{
+                                            categoryCardView(item: item, NewHomeName: NewHomeName, show: showDetail)
+                                        }
+                                        .rotation3DEffect(Angle(degrees: Double(geometry.frame(in: .global).minX - 40) / -40), axis: (x: 0, y: 10, z: 0))
+                                    }.frame(width: 260, height: 350)
+                                }
+                                
+                                
+                              
                             }
                         }
                     }
@@ -68,7 +81,7 @@ struct HomeItemsView: View {
 }
 
 struct categoryCardView: View {
-    @Binding var item: categoryData
+    @Binding var item: CategoryData
     var NewHomeName:Namespace.ID
     var show:Bool
     

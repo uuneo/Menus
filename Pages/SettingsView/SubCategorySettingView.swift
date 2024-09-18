@@ -10,8 +10,8 @@ import SwiftUI
 
 struct SubCategorySettingView: View {
     @StateObject var manager = peacock.shared
-    @Default(.subcategoryItems) var items
-    @Default(.categoryItems) var categoryItems
+    @Default(.Subcategorys) var items
+    @Default(.Categorys) var categoryItems
     @Binding var columnVisibility: NavigationSplitViewVisibility
     var body: some View {
         List {
@@ -38,7 +38,7 @@ struct SubCategorySettingView: View {
         .toolbar{
             ToolbarItem {
                 Button{
-                    items.append(subcategoryData.space())
+                    items.append(SubCategoryData.space())
                 }label: {
                     Image(systemName: "plus")
                 }
@@ -59,8 +59,8 @@ struct SubCategorySettingView: View {
 }
 
 struct ChangeSubcategoryView:View {
-    @Binding var item:subcategoryData
-    @Default(.categoryItems) var categoryItems
+    @Binding var item:SubCategoryData
+    @Default(.Categorys) var categoryItems
 
     var body: some View {
         
@@ -76,15 +76,21 @@ struct ChangeSubcategoryView:View {
             
             Section{
                 TextField("项目小类", text: $item.title)
-                    .customTitleField(icon: "pencil", title: "项目小类")
+                    .customTitleField(icon: "pencil")
+            }header:{
+                Text("项目小类")
             }
             Section{
                 TextField("项目小类副标题", text: $item.subTitle)
-                    .customTitleField(icon: "pencil", title: "项目小类副标题")
+                    .customTitleField(icon: "pencil")
+            }header: {
+                Text("项目小类副标题")
             }
             Section{
                 TextField("项目小类底部", text: $item.footer)
-                    .customTitleField(icon: "pencil", title: "项目小类底部")
+                    .customTitleField(icon: "pencil")
+            }header: {
+                Text("项目小类底部")
             }
         }
     }

@@ -17,60 +17,41 @@ struct AppSettings: View {
     
     var body: some View {
         List {
-            Section {
-                HStack{
-                    Label("会员卡标题", systemImage: "person.text.rectangle")
-                        
-              
-                   TextField("会员卡标题", text: $homeCardTitle)
-                        .customField(icon: "pencil")
-                    
-                    Spacer()
-                    Spacer()
-                }
-                
-                HStack{
-                    Label("会员卡副标题", systemImage: "person.text.rectangle")
-                       
             
-                   TextField("会员卡副标题", text: $homeCardSubTitle)
-                        .customField(icon: "pencil")
-                  
-                    Spacer()
-                    Spacer()
-                }
-                
-               
+            Section {
+                TextField("会员卡标题", text: $homeCardTitle)
+                    .customField(icon: "pencil")
+            }header: {
+                Label("会员卡标题", systemImage: "person.text.rectangle")
             }
             
             Section {
-                HStack{
-                    Label("项目标题", systemImage: "doc.text")
-                        
-                   TextField("项目标题", text: $homeItemsTitle)
-                        .customField(icon: "pencil")
-                    Spacer()
-                    Spacer()
-                }
-                
-                HStack{
-                    Label("项目副标题", systemImage: "doc.text")
-                       
-
-                   TextField("项目副标题", text: $homeItemsSubTitle)
-                        .customField(icon: "pencil")
-                  
-                    Spacer()
-                    Spacer()
-                }
-                
-               
+                TextField("会员卡副标题", text: $homeCardSubTitle)
+                    .customField(icon: "pencil")
+            }header: {
+                Label("会员卡副标题", systemImage: "person.text.rectangle")
+            }
+            
+            
+            Section {
+                TextField("项目标题", text: $homeItemsTitle)
+                    .customField(icon: "pencil")
+            }header: {
+                Label("项目标题", systemImage: "doc.text")
             }
             
             Section {
-                
+                TextField("项目副标题", text: $homeItemsSubTitle)
+                    .customField(icon: "pencil")
+            } header: {
+                Label("项目副标题", systemImage: "doc.text")
+            }
+            
+            Section {
                 SecureField("输入密码", text: $settingPassword)
-                    .customTitleField(icon: "lock", title: "设置密码")
+                    .customTitleField(icon: "lock")
+            }header: {
+                Label("设置密码", systemImage: "lock")
             }
         }
     }

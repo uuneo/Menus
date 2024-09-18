@@ -10,8 +10,8 @@ import Defaults
 import Pow
 
 struct itemView: View {
-    var subcategory:subcategoryData = subcategoryData.example
-    @Default(.items) var items
+    var subcategory:SubCategoryData = SubCategoryData.example
+    @Default(.Items) var items
     
     @State private var showCardDetail:Bool = false
     var body: some View {
@@ -68,7 +68,7 @@ struct itemView: View {
 struct itemCardView: View {
     @StateObject var manager = peacock.shared
     
-    var data:itemData
+    var data:ItemData
     
     @Binding var show:Bool
     @State private var animate = false
@@ -150,8 +150,6 @@ struct itemCardView: View {
                         Text(data.subTitle)
                             .minimumScaleFactor(0.5)
                     }
-                    
-                    .foregroundStyle(.black)
                     Spacer()
                 }.padding(.top, 10)
                     .padding(.leading, 10)
@@ -199,7 +197,7 @@ struct itemCardView: View {
                 .offset(y: show ? 0 : -size.height)
                 .opacity(Double(data.price3.money))
                 Divider()
-                    .background(.white)
+                        .background(Color.background)
                 HStack{
                     Spacer()
                     
@@ -279,7 +277,6 @@ struct itemCardView: View {
                     .foregroundStyle(.gray)
                     .minimumScaleFactor(0.6)
             }
-            .foregroundStyle(.black)
             .padding(.vertical, 10)
             .padding(.horizontal)
             .opacity(Double(data.price2.money))

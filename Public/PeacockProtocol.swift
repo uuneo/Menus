@@ -9,12 +9,9 @@ import Foundation
 import Defaults
 
 
-protocol PeacockProtocol: Hashable,Equatable, Identifiable, Codable, Defaults.Serializable{
-    
-}
+protocol PeacockProtocol: Hashable,Equatable, Identifiable, Codable, Defaults.Serializable{ }
 
 extension PeacockProtocol{
-    
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
@@ -23,4 +20,5 @@ extension PeacockProtocol{
     static func == (lhs:  Self, rhs:  Self) -> Bool {
         return lhs.id == rhs.id
     }
+    
 }

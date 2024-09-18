@@ -15,22 +15,17 @@ import SwiftUI
 
 
 
-extension Defaults.Keys{
-    static let homeCardTitle = Key<String>("HomeCardTitle",default: "会员卡")
-    static let homeCardSubTitle = Key<String>("HomeCardSubTitle",default: "Peacock-Cards")
-    static let homeItemsTitle = Key<String>("HomeItemsTitle",default: "项目分类")
-    static let homeItemsSubTitle = Key<String>("HomeItemsSubTitle",default: "Peacock-Items")
-    static let settingPassword = Key<String>("SettingPassword",default: "123456")
-
-    
-    static let cards = Key<[VipCardData]>("VipCards",default: VIPCARDDATAS)
-    static let categoryItems = Key<[categoryData]>("CategoryItems",default: CATEGORYDATAS)
-    static let subcategoryItems = Key<[subcategoryData]>("SubcategoryItems",default: SUBCATEGORYdATAS)
-    static let items = Key<[itemData]>("Items",default: ITEMDATAS)
-    
-
-}
-
+//extension Defaults.Keys{
+//   
+//
+//    static let cards = Key<[MemberCardData]>("VipCards",default: MemberCardDataS)
+//    static let categoryItems = Key<[CategoryData]>("CategoryItems",default: CategoryDataS)
+//    static let subcategoryItems = Key<[SubCategoryData]>("SubcategoryItems",default: SubCategoryDataS)
+//    static let items = Key<[ItemData]>("Items",default: ItemDataS)
+//    
+//
+//}
+//
 
 
 final class peacock:ObservableObject {
@@ -40,14 +35,17 @@ final class peacock:ObservableObject {
     
     private init() { }
     
-    @Published var selectedItem: categoryData = categoryData.example
+    @Published var selectedItem: CategoryData = CategoryData.example
     
-    @Published var selectCard:VipCardData = VipCardData.nonmember
+    @Published var selectCard:MemberCardData = MemberCardData.nonmember
     
     @Published var showSettings:Bool = false
     
      func exportTotalData() -> TotalData{
-        TotalData(vipCards: Defaults[.cards], categoryItems: Defaults[.categoryItems], subcategoryItems: Defaults[.subcategoryItems], items: Defaults[.items])
+         
+         TotalData(Cards: Defaults[.Cards], Categorys: Defaults[.Categorys], Subcategorys: Defaults[.Subcategorys], Items: Defaults[.Items])
+         
+         
     }
     
     func exportData() -> String{
@@ -87,11 +85,21 @@ final class peacock:ObservableObject {
         let data = text.data(using: .utf8)!
         do{
             let totalData = try decoder.decode(TotalData.self, from: data)
-            Defaults[.cards] = totalData.vipCards
-            Defaults[.categoryItems] = totalData.categoryItems
-            Defaults[.subcategoryItems] = totalData.subcategoryItems
-            Defaults[.items] = totalData.items
+            Defaults[.Cards] = totalData.Cards
+            Defaults[.Categorys] = totalData.Categorys
+            Defaults[.Subcategorys] = totalData.Subcategorys
+            Defaults[.Items] = totalData.Items
             return true
+        }catch{
+            return false
+        }
+    }
+    
+    func importData(url:URL) -> Bool{
+        do{
+            let data = try Data(contentsOf: url)
+            let text = String(data: data, encoding: .utf8)!
+            return importData(text: text)
         }catch{
             return false
         }
@@ -103,26 +111,25 @@ extension peacock{
     func removeCategoryItems(indexSet:IndexSet){
         
         for index in indexSet{
-            let item = Defaults[.categoryItems][index]
-            Defaults[.categoryItems].remove(at: index)
-            Defaults[.subcategoryItems] = Defaults[.subcategoryItems].filter{$0.categoryId != item.id}
-            Defaults[.items] = Defaults[.items].filter{$0.subcategoryId != item.id}
+            let item = Defaults[.Categorys][index]
+            Defaults[.Categorys].remove(at: index)
+            Defaults[.Items] = Defaults[.Items].filter({$0.categoryId == item.id})
         }
     }
     
     func removeSubcategoryItems(indexSet:IndexSet){
         
         for index in indexSet{
-            let item = Defaults[.subcategoryItems][index]
-            Defaults[.subcategoryItems].remove(at: index)
-            Defaults[.items] = Defaults[.items].filter{$0.subcategoryId != item.id}
+            let item = Defaults[.Subcategorys][index]
+            Defaults[.Subcategorys].remove(at: index)
+            Defaults[.Items] = Defaults[.Items].filter{$0.subcategoryId != item.id}
         }
     }
     
     func removeItems(indexSet:IndexSet){
         
         for index in indexSet{
-            Defaults[.items].remove(at: index)
+            Defaults[.Items].remove(at: index)
         }
     }
     

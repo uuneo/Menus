@@ -68,7 +68,7 @@ struct BasicSettingsView: View {
                 }
                 .alert(isPresented: $showAlert) {
                     Alert(title: Text("恢复初始化"), message: Text("是否确定恢复初始化"), primaryButton: .destructive(Text("确定"), action: {
-                        Defaults.reset(.cards,.categoryItems,.subcategoryItems,.items, .settingPassword)
+                        Defaults.reset(.Cards,.Categorys,.Subcategorys,.Items, .settingPassword)
                     }), secondaryButton: .cancel())
                 }
                 .toolbar{

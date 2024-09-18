@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import SwiftUI
+
+let ISPAD = UIDevice.current.userInterfaceIdiom == .pad
 
 
 enum VipCardImage:String, CaseIterable{

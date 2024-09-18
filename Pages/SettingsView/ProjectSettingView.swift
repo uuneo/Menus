@@ -10,9 +10,9 @@ import Defaults
 
 struct ProjectSettingView: View {
     @StateObject var manager = peacock.shared
-    @Default(.items) var items
-    @Default(.subcategoryItems) var subcategoryItems
-    @Default(.categoryItems) var categoryItems
+    @Default(.Items) var items
+    @Default(.Subcategorys) var subcategoryItems
+    @Default(.Categorys) var categoryItems
     @Binding var columnVisibility: NavigationSplitViewVisibility
     var body: some View {
         List {
@@ -26,7 +26,7 @@ struct ProjectSettingView: View {
                         HStack{
                             Text("\(item.title.wrappedValue)")
                             Spacer()
-                            Text(subcategoryTitle(id: item.subcategoryId.wrappedValue))
+                            Text(subcategoryTitle(item: item.wrappedValue))
                         }
                     }
                 }
@@ -42,16 +42,16 @@ struct ProjectSettingView: View {
         .toolbar{
             ToolbarItem {
                 Button{
-                    items.append(itemData.space())
+                    items.append(ItemData.space())
                 }label: {
                     Image(systemName: "plus")
                 }
             }
         }
     }
-    func subcategoryTitle(id:String)->String{
-        guard let subcategory = subcategoryItems.first(where: {$0.id == id}),
-              let category = categoryItems.first(where: {$0.id == subcategory.categoryId})
+    func subcategoryTitle(item:ItemData)->String{
+        guard let subcategory = subcategoryItems.first(where: {$0.id == item.subcategoryId}),
+              let category = categoryItems.first(where: {$0.id == item.categoryId})
         else{
             return "未知"
         }
@@ -60,39 +60,81 @@ struct ProjectSettingView: View {
 }
 
 struct ChangeItemView:View {
-    @Binding var item:itemData
-    @Default(.subcategoryItems) var subcategoryItems
-    @Default(.categoryItems) var categoryItems
+    @Binding var item:ItemData
+    @Default(.Subcategorys) var subcategoryItems
+    @Default(.Categorys) var categoryItems
    
     var body: some View {
 
         Form{
+            
+            
             Section{
-                Picker(selection: $item.subcategoryId) {
-                    ForEach($subcategoryItems , id: \.id){ data in
-                        Text(subcategoryTitle(id: data.id))
+                Picker(selection: $item.categoryId) {
+                    ForEach($categoryItems , id: \.id){ data in
+                        Text(data.title.wrappedValue)
                             .tag(data.id)
                         
                     }
                 } label: {
-                    Text("选择项目分类")
+                    Text("选择项目大类")
+                }
+
+            }.onChange(of: item.categoryId) { oldValue, newValue in
+                let subcategory = subcategoryItems.first(where: {$0.categoryId == item.categoryId})
+                item.subcategoryId = subcategory?.id ?? UUID().uuidString
+            }
+            
+            
+            
+            Section{
+                Picker(selection: $item.subcategoryId) {
+                   
+                    ForEach( subcategoryItems.filter({$0.categoryId == item.categoryId}) , id: \.id){ data in
+                        Text(data.title)
+                            .tag(data.id)
+                        
+                    }
+                } label: {
+                    Text("选择项目小类")
                 }
 
             }
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             Section{
                 TextField("项目名称", text: $item.title)
-                    .customTitleField(icon: "pencil",title: "项目名称")
-                TextField("项目副标题", text: $item.subTitle)
-                    .customTitleField(icon: "pencil",title: "项目副标题")
-                
+                    .customTitleField(icon: "pencil")
+               
+            }header: {
+                Text("项目名称")
             }
             
             Section{
+                TextField("项目副标题", text: $item.subTitle)
+                    .customTitleField(icon: "pencil")
+            }header: {
+                Text("项目副标题")
+            }
+            
+            
+            
+            
+            Section{
                 
-                TextField("价格1", value: $item.price1.money, formatter: NumberFormatter())
-                    .customTitleField(icon: "pencil",title: "价格1")
+                TextField("价格", value: $item.price1.money, formatter: NumberFormatter())
+                    .customTitleField(icon: "pencil",title: "价格")
                 
                 TextField("前缀", text: $item.price1.prefix)
                     .customTitleField(icon: "pencil",title: "前缀")
@@ -103,11 +145,13 @@ struct ChangeItemView:View {
                 
                 Toggle("是否打折", isOn: $item.price1.discount)
                 
+            }header: {
+                Text("价格1")
             }
             
             Section{
-                TextField("价格2", value: $item.price2.money, formatter: NumberFormatter())
-                    .customTitleField(icon: "pencil",title: "价格1")
+                TextField("价格", value: $item.price2.money, formatter: NumberFormatter())
+                    .customTitleField(icon: "pencil",title: "价格")
                 
                 TextField("前缀", text: $item.price2.prefix)
                     .customTitleField(icon: "pencil",title: "前缀")
@@ -118,12 +162,14 @@ struct ChangeItemView:View {
                 
                 Toggle("是否打折", isOn: $item.price2.discount)
                 
+            }header: {
+                Text("价格2")
             }
             
             Section{
                 
-                TextField("价格3", value: $item.price3.money, formatter: NumberFormatter())
-                    .customTitleField(icon: "pencil",title: "价格1")
+                TextField("价格", value: $item.price3.money, formatter: NumberFormatter())
+                    .customTitleField(icon: "pencil",title: "价格")
                 
                 TextField("前缀", text: $item.price3.prefix)
                     .customTitleField(icon: "pencil",title: "前缀")
@@ -133,12 +179,14 @@ struct ChangeItemView:View {
                 
                 Toggle("是否打折", isOn: $item.price3.discount)
                 
+            }header: {
+                Text("价格3")
             }
             
             Section{
                 
-                TextField("价格4", value: $item.price4.money, formatter: NumberFormatter())
-                    .customTitleField(icon: "pencil",title: "价格1")
+                TextField("价格", value: $item.price4.money, formatter: NumberFormatter())
+                    .customTitleField(icon: "pencil",title: "价格")
                 
                 TextField("前缀", text: $item.price4.prefix)
                     .customTitleField(icon: "pencil",title: "前缀")
@@ -148,16 +196,10 @@ struct ChangeItemView:View {
                 
                 Toggle("是否打折", isOn: $item.price4.discount)
                 
+            }header: {
+                Text("价格4")
             }
         }
-    }
-    func subcategoryTitle(id:String)->String{
-        guard let subcategory = subcategoryItems.first(where: {$0.id == id}),
-              let category = categoryItems.first(where: {$0.id == subcategory.categoryId})
-        else{
-            return "未知"
-        }
-        return "\(category.title)-\(subcategory.title)"
     }
 }
 

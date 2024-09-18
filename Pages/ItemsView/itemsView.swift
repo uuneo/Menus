@@ -13,8 +13,8 @@ struct itemsView: View {
     @StateObject var manager = peacock.shared
     @Binding var show:Bool
     var detailName:Namespace.ID
-    @State private var showList:Bool = true
-    @State private var topLength:CGFloat = 0
+  
+    @State private var progress:CGFloat = 0
     @State private var isScrolling:Bool = false
     @Namespace var ItemDataSpace
     
@@ -22,11 +22,11 @@ struct itemsView: View {
     
     var columns = Array(repeating: GridItem(.flexible(),spacing: 30), count: 3)
     
-    @Default(.subcategoryItems) var subcategoryItems
+    @Default(.Subcategorys) var subcategoryItems
     
-    @Default(.items) var items
+    @Default(.Items) var items
     
-    var selectItems:[subcategoryData]{
+    var selectItems:[SubCategoryData]{
        return subcategoryItems.filter({$0.categoryId  == manager.selectedItem.id})
     }
     
@@ -36,16 +36,17 @@ struct itemsView: View {
             ZStack {
                 Color(from: manager.selectedItem.color)
                     .edgesIgnoringSafeArea(.all)
-                    .clipShape(RoundedRectangle(cornerRadius:  showList ? 0 : 100))
+                    .clipShape(RoundedRectangle(cornerRadius:  show ? 0 : 100))
                     .matchedGeometryEffect(id: "\(manager.selectedItem.id)-background", in: detailName,properties: [.frame], isSource: show)
                 
-                
-                
-                largeHeader(progress: topLength)
+                if ISPAD{
+                    ipadHeader()
+                } else{
+                    iphoneHeader()
+                }
                 
                 
             }
-            .frame(width: UIScreen.main.bounds.width, height: 260)
         } content: {
             ZStack{
                 
@@ -64,7 +65,6 @@ struct itemsView: View {
                 if newValue{
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1){
                         withAnimation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0.8)) {
-                            self.showList = true
                             self.isScrolling = true
                         }
                     }
@@ -80,32 +80,30 @@ struct itemsView: View {
         .initialSnapPosition(initialSnapPosition: 1)
         .allowsHeaderGrowth()
         .height(min: 100.0, max: 250.0)
-        .collapseProgress( $topLength)
+        .collapseProgress( $progress)
         .setHeaderSnapMode(.immediately)
         .hideScrollIndicators()
         .scrollToTop(resetScroll: $isScrolling)
         .background(
-            Color.white
+            Color.background
         )
         .ignoresSafeArea()
-        .opacity(show ? 1 : 0)
-        .offset(y: showList ? 0 : UIScreen.main.bounds.height)
+       
   
         
         
         
     }
     
-    private func largeHeader(progress: CGFloat) -> some View{
+    private func ipadHeader() -> some View{
         ZStack{
             HStack{
                 VStack{
                     Spacer()
                     Button{
                         withAnimation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0.8)) {
-                            self.showList.toggle()
                             self.show.toggle()
-                            manager.selectedItem = categoryData.example
+                            manager.selectedItem = CategoryData.example
                             
                         }
                         
@@ -161,15 +159,8 @@ struct itemsView: View {
                 HStack{
                     Button{
                         withAnimation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0.8)) {
-                            self.showList.toggle()
-                            
-                        }
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){
-                            withAnimation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0.8)) {
-                                self.show.toggle()
-                                manager.selectedItem = categoryData.example
-                            }
+                            self.show.toggle()
+                            manager.selectedItem = CategoryData.example
                         }
                         
                     }label:{
@@ -215,13 +206,127 @@ struct itemsView: View {
         }
        
     }
+    
+    private func  iphoneHeader() -> some View{
+        
+        ZStack{
+            ZStack{
+                VStack{
+                    Spacer()
+                    HStack(alignment: .bottom){
+                        Button{
+                            withAnimation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0.8)) {
+                                self.show.toggle()
+                                manager.selectedItem = CategoryData.example
+                                
+                            }
+                            
+                        }label:{
+                            Image(systemName: "chevron.left.2")
+                                .font(.title)
+                                .foregroundColor(.white)
+                        }
+                        
+                        VStack(alignment: .leading){
+                            
+                            
+                            Text(manager.selectedItem.title )
+                                .font(.title)
+                                .bold()
+                                .minimumScaleFactor(0.5)
+                            
+                            Text(manager.selectedItem.subTitle)
+                                .minimumScaleFactor(0.5)
+                            
+                        }
+                        .foregroundColor(.white)
+                        .matchedGeometryEffect(id: "\(manager.selectedItem.id)-title", in: detailName,properties: [.position,.size,.frame], isSource: show)
+                        
+                        
+                       
+                        Spacer()
+                    }
+                }
+                
+                VStack{
+                    HStack{
+                        Spacer()
+                         PickerOfCardView()
+                            .padding(.top, 30)
+                    }
+                    Spacer()
+                }
+                
+                
+              
+                
+                HStack{
+                    Spacer()
+                    VStack{
+                        Spacer()
+                        AsyncImageView(imageUrl: manager.selectedItem.image)
+                        
+                            .scaledToFit()
+                            .frame(width: 100)
+                            .padding(.trailing, 10)
+                            .matchedGeometryEffect(id: "\(manager.selectedItem.id)-image", in: detailName,properties: [.position,.size,.frame], isSource: show)
+                    }
+                }
+            }
+            .padding(10)
+            .opacity( 1 - progress)
+            
+            VStack{
+                Spacer()
+                HStack{
+                    Button{
+                        withAnimation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0.8)) {
+                            self.show.toggle()
+                            manager.selectedItem = CategoryData.example
+                        }
+                        
+                    }label:{
+                        Image(systemName: "chevron.left.2")
+                            .font(.title2)
+                            .foregroundColor(.white)
+                    }
+                    
+                    
+                    VStack(alignment: .leading){
+                        
+                        Text(manager.selectedItem.title )
+                            .font(.title3)
+                            .bold()
+                            .foregroundColor(.white)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
+                        
+                        
+                        Text(manager.selectedItem.subTitle)
+                            .lineLimit(1)
+                            .font(.subheadline)
+                            .foregroundColor(.white)
+                            .minimumScaleFactor(0.5)
+                    }
+                    Spacer()
+                    
+                    PickerOfCardView()
+                        
+                        
+                }.padding(.horizontal,10)
+            }
+            .opacity(progress)
+            .opacity(max(0, min(1, (progress - 0.75) * 4.0)))
+        
+        }
+    }
 }
 
 
 struct PickerOfCardView: View {
     @StateObject var manager = peacock.shared
-    @Default(.cards) var cards
-    let nonmember = VipCardData.nonmember
+    @Default(.Cards) var cards
+    let nonmember = MemberCardData.nonmember
     var body: some View {
         Picker(selection: Binding(get: {
             manager.selectCard

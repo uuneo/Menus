@@ -11,13 +11,10 @@
 		194BBAA92C8DD0E1002EAA09 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194BBAA82C8DD0E1002EAA09 /* AppSettings.swift */; };
 		1977686E2C984E3300F40521 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1977686D2C984E3300F40521 /* AppDelegate.swift */; };
 		1977689B2C987CFE00F40521 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 1977689A2C987CFE00F40521 /* Pow */; };
-		197768A42C98A8A200F40521 /* HomeIphoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197768A32C98A8A200F40521 /* HomeIphoneView.swift */; };
-		197768A62C9944A700F40521 /* ItemsIphoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197768A52C9944A700F40521 /* ItemsIphoneView.swift */; };
 		197768A82C99C9FB00F40521 /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197768A72C99C9FB00F40521 /* AppIconView.swift */; };
 		19818B722C8DCFAF001A2964 /* ExportDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19818B712C8DCFAF001A2964 /* ExportDataView.swift */; };
 		198706EB2C94114800F59CE9 /* shape+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198706EA2C94114800F59CE9 /* shape+.swift */; };
 		198706ED2C94117600F59CE9 /* button+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198706EC2C94117600F59CE9 /* button+.swift */; };
-		198706EF2C94119800F59CE9 /* VipCardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198706EE2C94119800F59CE9 /* VipCardData.swift */; };
 		198706F32C941E5000F59CE9 /* HomeItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198706F22C941E5000F59CE9 /* HomeItemsView.swift */; };
 		198706F52C941F5400F59CE9 /* HomeVipCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198706F42C941F5400F59CE9 /* HomeVipCards.swift */; };
 		198706F92C9420BE00F59CE9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198706F82C9420BE00F59CE9 /* HomeView.swift */; };
@@ -38,7 +35,7 @@
 		199075BB2C8B0D9A00E23FD7 /* PeacockProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199075BA2C8B0D9A00E23FD7 /* PeacockProtocol.swift */; };
 		199075C52C8B3E0800E23FD7 /* DropDelegate+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199075C42C8B3E0800E23FD7 /* DropDelegate+.swift */; };
 		199075C82C8B545D00E23FD7 /* animation+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199075C72C8B545D00E23FD7 /* animation+.swift */; };
-		19CD68A42C97DC7900AF6CF8 /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD68A32C97DC7900AF6CF8 /* Example.swift */; };
+		19CD68A42C97DC7900AF6CF8 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD68A32C97DC7900AF6CF8 /* Mock.swift */; };
 		19CD68A62C9829D500AF6CF8 /* BasicSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD68A52C9829D500AF6CF8 /* BasicSettingsView.swift */; };
 		19D231D72C93FCDC001044BB /* itemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D231D62C93FCDC001044BB /* itemsView.swift */; };
 		19D231DD2C93FE91001044BB /* ItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D231DC2C93FE91001044BB /* ItemData.swift */; };
@@ -47,7 +44,7 @@
 		19DDEC232C96CAC200C86EC5 /* CategorySettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DDEC222C96CAC200C86EC5 /* CategorySettingView.swift */; };
 		19DDEC252C96CAE000C86EC5 /* SubCategorySettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DDEC242C96CAE000C86EC5 /* SubCategorySettingView.swift */; };
 		19DDEC272C96CAFD00C86EC5 /* ProjectSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DDEC262C96CAFD00C86EC5 /* ProjectSettingView.swift */; };
-		19DDEC292C971A2800C86EC5 /* TotalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DDEC282C971A2800C86EC5 /* TotalData.swift */; };
+		19E40CCC2C9AF6360077F71F /* DataModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E40CCB2C9AF6360077F71F /* DataModal.swift */; };
 		19E5B8BA2C8D605500EC77F7 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 19E5B8B92C8D605500EC77F7 /* Defaults */; };
 		19E5B8BF2C8DC04500EC77F7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E5B8BE2C8DC04500EC77F7 /* SettingsView.swift */; };
 		19F835B02C8F09130083A66D /* BlurView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F835AF2C8F09130083A66D /* BlurView+.swift */; };
@@ -73,13 +70,10 @@
 		1977686C2C984C7700F40521 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1977686D2C984E3300F40521 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		197768882C9863F000F40521 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
-		197768A32C98A8A200F40521 /* HomeIphoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeIphoneView.swift; sourceTree = "<group>"; };
-		197768A52C9944A700F40521 /* ItemsIphoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsIphoneView.swift; sourceTree = "<group>"; };
 		197768A72C99C9FB00F40521 /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
 		19818B712C8DCFAF001A2964 /* ExportDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportDataView.swift; sourceTree = "<group>"; };
 		198706EA2C94114800F59CE9 /* shape+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "shape+.swift"; sourceTree = "<group>"; };
 		198706EC2C94117600F59CE9 /* button+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "button+.swift"; sourceTree = "<group>"; };
-		198706EE2C94119800F59CE9 /* VipCardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VipCardData.swift; sourceTree = "<group>"; };
 		198706F22C941E5000F59CE9 /* HomeItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeItemsView.swift; sourceTree = "<group>"; };
 		198706F42C941F5400F59CE9 /* HomeVipCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVipCards.swift; sourceTree = "<group>"; };
 		198706F82C9420BE00F59CE9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -99,7 +93,7 @@
 		199075BA2C8B0D9A00E23FD7 /* PeacockProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeacockProtocol.swift; sourceTree = "<group>"; };
 		199075C42C8B3E0800E23FD7 /* DropDelegate+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DropDelegate+.swift"; sourceTree = "<group>"; };
 		199075C72C8B545D00E23FD7 /* animation+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "animation+.swift"; sourceTree = "<group>"; };
-		19CD68A32C97DC7900AF6CF8 /* Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example.swift; sourceTree = "<group>"; };
+		19CD68A32C97DC7900AF6CF8 /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
 		19CD68A52C9829D500AF6CF8 /* BasicSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicSettingsView.swift; sourceTree = "<group>"; };
 		19D231D62C93FCDC001044BB /* itemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemsView.swift; sourceTree = "<group>"; };
 		19D231DC2C93FE91001044BB /* ItemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemData.swift; sourceTree = "<group>"; };
@@ -108,7 +102,7 @@
 		19DDEC222C96CAC200C86EC5 /* CategorySettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySettingView.swift; sourceTree = "<group>"; };
 		19DDEC242C96CAE000C86EC5 /* SubCategorySettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategorySettingView.swift; sourceTree = "<group>"; };
 		19DDEC262C96CAFD00C86EC5 /* ProjectSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSettingView.swift; sourceTree = "<group>"; };
-		19DDEC282C971A2800C86EC5 /* TotalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalData.swift; sourceTree = "<group>"; };
+		19E40CCB2C9AF6360077F71F /* DataModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModal.swift; sourceTree = "<group>"; };
 		19E5B8BE2C8DC04500EC77F7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		19F835AF2C8F09130083A66D /* BlurView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BlurView+.swift"; sourceTree = "<group>"; };
 		19F835B52C8F0A000083A66D /* VipCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VipCardView.swift; sourceTree = "<group>"; };
@@ -137,15 +131,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		197768A22C98A87100F40521 /* IphonePages */ = {
-			isa = PBXGroup;
-			children = (
-				197768A32C98A8A200F40521 /* HomeIphoneView.swift */,
-				197768A52C9944A700F40521 /* ItemsIphoneView.swift */,
-			);
-			path = IphonePages;
-			sourceTree = "<group>";
-		};
 		198706F02C941D7900F59CE9 /* VipCardView */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,7 +153,6 @@
 		1990756F2C86100100E23FD7 = {
 			isa = PBXGroup;
 			children = (
-				197768A22C98A87100F40521 /* IphonePages */,
 				19D231D52C93FCBF001044BB /* Pages */,
 				199075C62C8B544800E23FD7 /* Public */,
 				1990759A2C87F19100E23FD7 /* Modal */,
@@ -231,9 +215,8 @@
 			isa = PBXGroup;
 			children = (
 				19D231DC2C93FE91001044BB /* ItemData.swift */,
-				198706EE2C94119800F59CE9 /* VipCardData.swift */,
-				19DDEC282C971A2800C86EC5 /* TotalData.swift */,
-				19CD68A32C97DC7900AF6CF8 /* Example.swift */,
+				19CD68A32C97DC7900AF6CF8 /* Mock.swift */,
+				19E40CCB2C9AF6360077F71F /* DataModal.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -373,12 +356,10 @@
 				199075B42C8AC8CB00E23FD7 /* ButtonView+.swift in Sources */,
 				19D231D72C93FCDC001044BB /* itemsView.swift in Sources */,
 				198706ED2C94117600F59CE9 /* button+.swift in Sources */,
-				197768A42C98A8A200F40521 /* HomeIphoneView.swift in Sources */,
 				197768A82C99C9FB00F40521 /* AppIconView.swift in Sources */,
 				194BBAA72C8DD04F002EAA09 /* ImportDataView.swift in Sources */,
 				19DDEC212C96CA8800C86EC5 /* vipCardSettingView.swift in Sources */,
 				19CD68A62C9829D500AF6CF8 /* BasicSettingsView.swift in Sources */,
-				19DDEC292C971A2800C86EC5 /* TotalData.swift in Sources */,
 				1990759C2C87F1AB00E23FD7 /* Array+.swift in Sources */,
 				199075AB2C89D75500E23FD7 /* Enums+.swift in Sources */,
 				1990758E2C87E9DF00E23FD7 /* ImageManager.swift in Sources */,
@@ -388,17 +369,16 @@
 				198706EB2C94114800F59CE9 /* shape+.swift in Sources */,
 				19D231DD2C93FE91001044BB /* ItemData.swift in Sources */,
 				1977686E2C984E3300F40521 /* AppDelegate.swift in Sources */,
-				19CD68A42C97DC7900AF6CF8 /* Example.swift in Sources */,
+				19CD68A42C97DC7900AF6CF8 /* Mock.swift in Sources */,
 				1990757E2C86100100E23FD7 /* ContentView.swift in Sources */,
 				1990757C2C86100100E23FD7 /* PeacockMenusApp.swift in Sources */,
-				198706EF2C94119800F59CE9 /* VipCardData.swift in Sources */,
 				19DDEC272C96CAFD00C86EC5 /* ProjectSettingView.swift in Sources */,
 				198706F52C941F5400F59CE9 /* HomeVipCards.swift in Sources */,
 				198707042C956D3500F59CE9 /* itemView.swift in Sources */,
 				19F835B62C8F0A000083A66D /* VipCardView.swift in Sources */,
-				197768A62C9944A700F40521 /* ItemsIphoneView.swift in Sources */,
 				19DDEC252C96CAE000C86EC5 /* SubCategorySettingView.swift in Sources */,
 				199075C52C8B3E0800E23FD7 /* DropDelegate+.swift in Sources */,
+				19E40CCC2C9AF6360077F71F /* DataModal.swift in Sources */,
 				199075A92C89C73F00E23FD7 /* DiskManager.swift in Sources */,
 				199075BB2C8B0D9A00E23FD7 /* PeacockProtocol.swift in Sources */,
 				19F835B02C8F09130083A66D /* BlurView+.swift in Sources */,

@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct VipCardView:View {
-    @Binding var item:VipCardData
+    @Binding var item:MemberCardData
     var size:CGSize = CGSize(width: 340, height: 220)
     @Binding var show:Bool
+    
     var body: some View {
         
         ZStack {
@@ -19,10 +20,11 @@ struct VipCardView:View {
                 HStack {
                     VStack(alignment: .leading) {
                         Text(item.title)
-                            .font(.headline)
+                            .font(.title3)
                             .fontWeight(.bold)
                             .foregroundColor(Color("accent"))
                             .padding(.top)
+                            .minimumScaleFactor(0.5)
                         
                         Text(item.subTitle)
                             .font(.caption.bold())
@@ -31,9 +33,9 @@ struct VipCardView:View {
                         
                     }
                     Spacer()
-                    
+                
                     Text(item.name)
-                        .font(.headline)
+                        .font(.title3)
                         .fontWeight(.bold)
                         .foregroundColor(Color("accent"))
                 }
@@ -52,7 +54,7 @@ struct VipCardView:View {
                             .font(.caption)
                         
                         Text("\(item.money)")
-                            .font(.headline)
+                            .font(.title2)
                             .fontWeight(.bold)
                         
                         
@@ -99,7 +101,7 @@ struct VipCardView:View {
             
         }
         .frame(width: size.width, height: size.height)
-        .background(Color.black)
+        .background(Color.background0)
         .clipped()
         .cornerRadius(10)
         .shadow(radius: 10)
@@ -117,5 +119,5 @@ struct VipCardView:View {
 
 
 #Preview {
-    VipCardView(item: .constant(VipCardData.example), show: .constant(true))
+    VipCardView(item: .constant(MemberCardData.space()), show: .constant(true))
 }

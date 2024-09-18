@@ -15,13 +15,7 @@ struct ContentView: View {
         
 
         NavigationStack{
-            if UIDevice.current.userInterfaceIdiom == .phone{
-                HomeIphoneView()
-            }else{
-                HomeView()
-            }
-           
-        
+            HomeView()
         }
 
     }

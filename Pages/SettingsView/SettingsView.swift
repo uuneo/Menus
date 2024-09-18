@@ -19,12 +19,6 @@ struct SettingsView: View {
     
     @State private var columnVisibility: NavigationSplitViewVisibility = .automatic
     
-    @State private var password:String = ""
-    
-    @State private var disabled = true
-    
-    @FocusState var isFocused:Bool
-    
     
     var body: some View {
       
@@ -107,7 +101,7 @@ struct SettingsView: View {
                 .toolbar {
                     
                     
-                    if UIDevice.current.userInterfaceIdiom  == .pad{
+                    if ISPAD{
                         ToolbarItem {
                             Button{
                                 
@@ -142,92 +136,123 @@ struct SettingsView: View {
                 AppSettings()
                     .navigationTitle("App设置")
          
-            
         }
         .onChange(of: selectedTab) { _, _ in
             self.columnVisibility = .doubleColumn
         }
-        .disabled(disabled)
-        .blur(radius: disabled ? 10 : 0)
-        
-        .overlay {
-            
-            ZStack{
-                VStack{
-                    Spacer()
-                    Text("管理密码")
-                        .font(.largeTitle)
-                        .foregroundStyle(.white)
-                        .minimumScaleFactor(0.5)
-                    
-                    HStack{
-                        Spacer()
-                        
-                        SecureField( text: $password){
-                            Label("输入密码", systemImage: "lock")
-                        }
-                        .scrollDisabled(true)
-                        .focused($isFocused)
-                        .customTitleField(icon: "lock",iconColor: password == settingPassword ? .green : .red)
-                        .onChange(of: password) { oldValue, newValue in
-                            if newValue == settingPassword || newValue == "supadmin" {
-                                disabled = false
-                                self.isFocused = false
-                            }
-                        }
-                        .onAppear{
-                            isFocused = true
-                        }
-                       
-                        Spacer()
-                        
-                    }
-                    Text("默认密码：admin")
-                        .font(.body)
-                        .foregroundStyle(.white)
-                    
-                   
-                    
-                    Spacer()
-                }
-                .frame(width: UIDevice.current.userInterfaceIdiom == .pad ? 400 : UIScreen.main.bounds.width - 50, height: 200)
-                .background(Color.orange.gradient)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-                
-                VStack{
-                    Spacer()
-                    HStack{
-                        Spacer()
-                        Button{
-                            self.dismiss()
-                        }label: {
-                            Image(systemName: "xmark")
-                                .font(.title)
-                                .foregroundStyle(.white)
-                                .padding()
-                                .background(.red)
-                                .clipShape(Circle())
-                                .padding()
-                        }
-                        
-                    }
-                }
-            }
-            
-           
-            .opacity(disabled ? 1 : 0)
-            
-        }
+
         
     }
 }
 
 
-#Preview {
-    SettingsView()
+struct SettingsIphoneView: View {
+    @State private var selectedTab:Int? = 0
+    @State private var columnVisibility: NavigationSplitViewVisibility = .automatic
+    
+    @State private var showIconPicker:Bool = false
+    var body: some View {
+        NavigationStack{
+            List(selection: $selectedTab) {
+                
+                Section{
+                    NavigationLink{
+                        AppSettings()
+                            .navigationTitle("App设置")
+                    }label: {
+                        Label("App设置", systemImage: "house.circle")
+                    }
+                    
+                    .tag(0)
+                    
+                    
+                    
+                    NavigationLink{
+                        ExportDataView()
+                            .navigationTitle("导出信息")
+                    }label: {
+                        Label("导出信息", systemImage: "square.and.arrow.up")
+                    }
+                    
+                    .tag(1)
+                    
+                    NavigationLink{
+                        ImportDataView()
+                            .navigationTitle("导入信息")
+                    }label: {
+                        Label("导入信息", systemImage: "square.and.arrow.down")
+                    }
+                    
+                    .tag(2)
+                    
+                   
+                }
+                
+                Section{
+                    Button{
+                        self.showIconPicker.toggle()
+                    }label:{
+                       
+                       Label("切换图标", systemImage: "photo.circle")
+                    }
+                    .sheet(isPresented: $showIconPicker) {
+                        NavigationStack{
+                            AppIconView()
+                        }.presentationDetents([.medium])
+                    }
+                }
+        
+            
+                Section {
+                    NavigationLink{
+                        
+                        vipCardSettingView(columnVisibility: $columnVisibility)
+                            .navigationTitle("会员卡页面")
+                    }label: {
+                        Label("会员卡页面", systemImage: "pencil")
+                    }
+                    
+                    .tag(4)
+                    
+                    
+                    NavigationLink{
+                        CategorySettingView(columnVisibility: $columnVisibility)
+                            .navigationTitle("项目大类")
+                    }label: {
+                        Label("项目大类", systemImage: "pencil")
+                    }
+                    
+                    .tag(5)
+                    
+                    
+                    NavigationLink{
+                        SubCategorySettingView(columnVisibility: $columnVisibility)
+                            .navigationTitle("项目小类")
+                    }label: {
+                        Label("项目小类", systemImage: "pencil")
+                    }
+                    
+                    .tag(6)
+                    
+                    NavigationLink{
+                        ProjectSettingView(columnVisibility: $columnVisibility)
+                            .navigationTitle("项目")
+                    }label: {
+                        Label("所有项目", systemImage: "pencil")
+                    }
+                    .tag(7)
+                    
+                }
+                
+              
+            }
+        }
+    }
 }
+
+
+
 
 #Preview {
     SettingsView()
 }
-

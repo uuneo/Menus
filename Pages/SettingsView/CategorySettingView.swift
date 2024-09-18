@@ -10,7 +10,7 @@ import Defaults
 
 struct CategorySettingView: View {
     @StateObject var manager = peacock.shared
-    @Default(.categoryItems) var items
+    @Default(.Categorys) var items
     @Binding var columnVisibility: NavigationSplitViewVisibility
     var body: some View {
         List {
@@ -46,7 +46,7 @@ struct CategorySettingView: View {
             }
     }
     func createNewCategory(){
-        items.append(categoryData.space())
+        items.append(CategoryData.space())
     }
 }
 
@@ -54,25 +54,34 @@ struct CategorySettingView: View {
 
 
 struct ChangeCategoryView: View {
-    @Binding var item:categoryData
+    @Binding var item:CategoryData
     @Environment(\.dismiss) var dismiss
     var body: some View {
         Form {
-            Section {
+            
+            Section{
                 TextField("项目大类", text: $item.title)
-                    .customTitleField(icon: "pencil",title: "分类标题")
+                    .customTitleField(icon: "pencil")
+            }header: {
+                Text("分类标题")
             }
             Section {
                 TextField("项目副标题", text: $item.subTitle)
-                    .customTitleField(icon: "pencil",title: "项目副标题")
+                    .customTitleField(icon: "pencil")
+            }header: {
+                Text("项目副标题")
             }
             Section {
                 TextField("项目图片", text: $item.image)
-                    .customTitleField(icon: "pencil",title: "项目图片")
+                    .customTitleField(icon: "pencil")
+            }header: {
+                Text("项目图片")
             }
             Section {
                 TextField("项目颜色", text: $item.color)
-                    .customTitleField(icon: "pencil",title: "背景颜色")
+                    .customTitleField(icon: "pencil")
+            }header: {
+                Text("背景颜色")
             }
         }
         
@@ -86,7 +95,7 @@ struct ChangeCategoryView: View {
 #Preview {
     NavigationStack {
                 CategorySettingView(columnVisibility: .constant(.all))
-//        ChangeCategoryView(item: .constant(categoryData.example))
+//        ChangeCategoryView(item: .constant(CategoryData.example))
     }
     
 }
