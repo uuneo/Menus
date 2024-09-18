@@ -137,13 +137,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		197768A22C98A87100F40521 /*  IphonePages */ = {
+		197768A22C98A87100F40521 /* IphonePages */ = {
 			isa = PBXGroup;
 			children = (
 				197768A32C98A8A200F40521 /* HomeIphoneView.swift */,
 				197768A52C9944A700F40521 /* ItemsIphoneView.swift */,
 			);
-			path = " IphonePages";
+			path = IphonePages;
 			sourceTree = "<group>";
 		};
 		198706F02C941D7900F59CE9 /* VipCardView */ = {
@@ -168,7 +168,7 @@
 		1990756F2C86100100E23FD7 = {
 			isa = PBXGroup;
 			children = (
-				197768A22C98A87100F40521 /*  IphonePages */,
+				197768A22C98A87100F40521 /* IphonePages */,
 				19D231D52C93FCBF001044BB /* Pages */,
 				199075C62C8B544800E23FD7 /* Public */,
 				1990759A2C87F19100E23FD7 /* Modal */,
@@ -543,7 +543,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PeacockMenus/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "御膳房";
+				INFOPLIST_KEY_CFBundleDisplayName = "美丽宫略";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -580,7 +580,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PeacockMenus/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "御膳房";
+				INFOPLIST_KEY_CFBundleDisplayName = "美丽宫略";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -9,6 +9,28 @@ import Foundation
 import Combine
 import SwiftUI
 
+struct RawRepresentableArray<Element>: RawRepresentable where Element: Codable {
+    var array: [Element]
+
+    // 从原始值（例如 JSON 字符串）初始化
+    init?(rawValue: String) {
+        guard let data = rawValue.data(using: .utf8),
+              let decodedArray = try? JSONDecoder().decode([Element].self, from: data) else {
+            return nil
+        }
+        self.array = decodedArray
+    }
+
+    // 将数组转换为原始值（例如 JSON 字符串）
+    var rawValue: String {
+        guard let data = try? JSONEncoder().encode(array),
+              let jsonString = String(data: data, encoding: .utf8) else {
+            return "[]"
+        }
+        return jsonString
+    }
+}
+
 
 extension Array: RawRepresentable where Element: Codable {
     public init?(rawValue: String) {

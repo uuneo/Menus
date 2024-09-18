@@ -54,7 +54,11 @@ struct itemsView: View {
                     ForEach(selectItems, id: \.id){item in
                         itemView(subcategory: item)
                     }
+                    
+                    Spacer(minLength: 200)
                 }
+                
+               
             }
             .onChange(of: show) { oldValue, newValue in
                 if newValue{

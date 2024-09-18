@@ -20,20 +20,30 @@ struct HomeView: View {
     @Namespace var NewHomeName
     @State var showDetail:Bool = false
     @StateObject var manager = peacock.shared
+    
     var body: some View {
         ZStack(alignment: .top){
             
             
             ScrollView(.vertical, showsIndicators: false) {
-       
-                HomeVipCards(Namespace: NewHomeName)
-                    .padding(.top, 50)
-                    
-                HomeItemsView(NewHomeName: NewHomeName, showDetail: $showDetail)
-                    
+                
+                HStack(alignment: .bottom){
+                    HomeVipCards(Namespace: NewHomeName)
+                        .padding(.top, 50)
+                }
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2)
+                
+                
+                HStack(alignment: .bottom){
+                    HomeItemsView(NewHomeName: NewHomeName, showDetail: $showDetail)
+                }
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2)
+                
+                
+                
+               
+                
             }
-           
-            
             .blur(radius: manager.showSettings ? 20 : 0)
             .disabled(manager.showSettings)
             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
