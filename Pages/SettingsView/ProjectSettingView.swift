@@ -24,7 +24,7 @@ struct ProjectSettingView: View {
     
     var body: some View {
         List {
-            if filterItems.count == 0{
+            if items.filter({$0.title.contains(searchText)}).count == 0{
                 ForEach($items,id: \.id){item in
                     
                  
@@ -40,7 +40,9 @@ struct ProjectSettingView: View {
                     }
                 }
                 .onDelete(perform: manager.removeItems)
-               
+                .onMove { indexSet, number in
+                    items.move(fromOffsets: indexSet, toOffset: number)
+                }
             
             }else{
                 ForEach(filterItems,id: \.id){item in
@@ -159,6 +161,14 @@ struct ChangeItemView:View {
                     .customTitleField(icon: "pencil")
             }header: {
                 Text("项目副标题")
+            }
+            
+            
+            Section{
+                TextField("项目小类别", text: $item.header)
+                    .customTitleField(icon: "pencil")
+            }header: {
+                Text("项目小类别")
             }
             
             

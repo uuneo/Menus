@@ -81,15 +81,16 @@ struct ItemData: PeacockProtocol{
     var subcategoryId: String
     var title: String
     var subTitle: String
+    var header:String = ""
     var price1:PriceData
     var price2:PriceData
     var price3:PriceData
     var price4:PriceData
     
-    static let example = ItemData(categoryId: UUID().uuidString, subcategoryId: UUID().uuidString, title: "示例项目", subTitle: "Example Item", price1: PriceData(prefix: "¥", money: 0, suffix: "", discount: false), price2: PriceData(prefix: "¥", money: 0, suffix: "", discount: false), price3: PriceData(prefix: "¥", money: 0, suffix: "", discount: false), price4: PriceData(prefix: "¥", money: 0, suffix: "", discount: false))
+    static let example = ItemData(categoryId: UUID().uuidString, subcategoryId: UUID().uuidString, title: "示例项目", subTitle: "Example Item", price1: PriceData(prefix: "¥", money: 0, suffix: "元/次", discount: false), price2: PriceData(prefix: "¥", money: 0, suffix: "元/次", discount: false), price3: PriceData(prefix: "¥", money: 0, suffix: "元/6次", discount: false), price4: PriceData(prefix: "¥", money: 0, suffix: "元/12次", discount: false))
     
     static func space() -> ItemData {
-        return ItemData(categoryId: Defaults[.Categorys].first?.id ?? UUID().uuidString, subcategoryId: Defaults[.Subcategorys].first?.id ?? UUID().uuidString, title: "新项目", subTitle: "NewItem", price1: PriceData(prefix: "¥", money: 0, suffix: "", discount: false), price2: PriceData(prefix: "¥", money: 0, suffix: "", discount: false), price3: PriceData(prefix: "¥", money: 0, suffix: "", discount: false), price4: PriceData(prefix: "¥", money: 0, suffix: "", discount: false))
+        return ItemData(categoryId: Defaults[.Categorys].first?.id ?? UUID().uuidString, subcategoryId: Defaults[.Subcategorys].first?.id ?? UUID().uuidString, title: "新项目", subTitle: "NewItem", price1: PriceData(prefix: "¥", money: 0, suffix: "元/次", discount: false), price2: PriceData(prefix: "¥", money: 0, suffix: "元/次", discount: false), price3: PriceData(prefix: "¥", money: 0, suffix: "元/6次", discount: false), price4: PriceData(prefix: "¥", money: 0, suffix: "元/12次", discount: false))
     }
 }
 

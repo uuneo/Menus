@@ -13,7 +13,7 @@ struct itemsView: View {
     @StateObject var manager = peacock.shared
     @Binding var show:Bool
     var detailName:Namespace.ID
-  
+    
     @State private var progress:CGFloat = 0
     @State private var isScrolling:Bool = false
     @Namespace var ItemDataSpace
@@ -27,7 +27,7 @@ struct itemsView: View {
     @Default(.Items) var items
     
     var selectItems:[SubCategoryData]{
-       return subcategoryItems.filter({$0.categoryId  == manager.selectedItem.id})
+        return subcategoryItems.filter({$0.categoryId  == manager.selectedItem.id})
     }
     
     var body: some View {
@@ -50,16 +50,21 @@ struct itemsView: View {
         } content: {
             ZStack{
                 
-                VStack{
+                LazyVStack{
                     
                     ForEach(selectItems, id: \.id){item in
-                        itemView(subcategory: item)
+                        if items.filter({$0.subcategoryId == item.id}).count > 0{
+                            itemView(subcategory: item)
+                        }
                     }
                     
-                    Spacer(minLength: 200)
+                    if selectItems.count > 1{
+                        Spacer(minLength: 200)
+                    }
+                    
                 }
                 
-               
+                
             }
             .onChange(of: show) { oldValue, newValue in
                 if newValue{
@@ -88,8 +93,8 @@ struct itemsView: View {
             Color.background
         )
         .ignoresSafeArea()
-       
-  
+        
+        
         
         
         
@@ -122,7 +127,7 @@ struct itemsView: View {
                     Text(manager.selectedItem.title )
                         .font(.largeTitle)
                         .bold()
-                        
+                    
                     
                     Text(manager.selectedItem.subTitle)
                     
@@ -202,9 +207,9 @@ struct itemsView: View {
             }
             .opacity(progress)
             .opacity(max(0, min(1, (progress - 0.75) * 4.0)))
-        
+            
         }
-       
+        
     }
     
     private func  iphoneHeader() -> some View{
@@ -243,7 +248,7 @@ struct itemsView: View {
                         .matchedGeometryEffect(id: "\(manager.selectedItem.id)-title", in: detailName,properties: [.position,.size,.frame], isSource: show)
                         
                         
-                       
+                        
                         Spacer()
                     }
                 }
@@ -251,14 +256,14 @@ struct itemsView: View {
                 VStack{
                     HStack{
                         Spacer()
-                         PickerOfCardView()
+                        PickerOfCardView()
                             .padding(.top, 30)
                     }
                     Spacer()
                 }
                 
                 
-              
+                
                 
                 HStack{
                     Spacer()
@@ -311,13 +316,13 @@ struct itemsView: View {
                     Spacer()
                     
                     PickerOfCardView()
-                        
-                        
+                    
+                    
                 }.padding(.horizontal,10)
             }
             .opacity(progress)
             .opacity(max(0, min(1, (progress - 0.75) * 4.0)))
-        
+            
         }
     }
 }
@@ -334,10 +339,10 @@ struct PickerOfCardView: View {
             manager.selectCard = value
         })) {
             Text("\(nonmember.name)").tag(nonmember)
-               
+            
             ForEach(cards, id: \.id){card in
                 Text("\(card.title)\(card.name)").tag(card)
-                  
+                
             }
         } label: {
             Text("选择卡片")

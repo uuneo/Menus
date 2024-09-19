@@ -44,6 +44,7 @@
 		19DDEC252C96CAE000C86EC5 /* SubCategorySettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DDEC242C96CAE000C86EC5 /* SubCategorySettingView.swift */; };
 		19DDEC272C96CAFD00C86EC5 /* ProjectSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DDEC262C96CAFD00C86EC5 /* ProjectSettingView.swift */; };
 		19E40CCC2C9AF6360077F71F /* DataModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E40CCB2C9AF6360077F71F /* DataModal.swift */; };
+		19E40CCF2C9C70F60077F71F /* shadow+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E40CCE2C9C70F60077F71F /* shadow+.swift */; };
 		19E5B8BA2C8D605500EC77F7 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 19E5B8B92C8D605500EC77F7 /* Defaults */; };
 		19E5B8BF2C8DC04500EC77F7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E5B8BE2C8DC04500EC77F7 /* SettingsView.swift */; };
 		19F835B02C8F09130083A66D /* BlurView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F835AF2C8F09130083A66D /* BlurView+.swift */; };
@@ -76,7 +77,7 @@
 		198706F22C941E5000F59CE9 /* HomeItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeItemsView.swift; sourceTree = "<group>"; };
 		198706F42C941F5400F59CE9 /* HomeVipCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVipCards.swift; sourceTree = "<group>"; };
 		198706F82C9420BE00F59CE9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		198707032C956D3500F59CE9 /* itemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemView.swift; sourceTree = "<group>"; };
+		198707032C956D3500F59CE9 /* itemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		198707082C95B4C500F59CE9 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		199075782C86100100E23FD7 /* PeacockMenus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeacockMenus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1990757B2C86100100E23FD7 /* PeacockMenusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeacockMenusApp.swift; sourceTree = "<group>"; };
@@ -101,6 +102,8 @@
 		19DDEC242C96CAE000C86EC5 /* SubCategorySettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategorySettingView.swift; sourceTree = "<group>"; };
 		19DDEC262C96CAFD00C86EC5 /* ProjectSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSettingView.swift; sourceTree = "<group>"; };
 		19E40CCB2C9AF6360077F71F /* DataModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModal.swift; sourceTree = "<group>"; };
+		19E40CCD2C9C504C0077F71F /* PeacockMenus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PeacockMenus.entitlements; sourceTree = "<group>"; };
+		19E40CCE2C9C70F60077F71F /* shadow+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "shadow+.swift"; sourceTree = "<group>"; };
 		19E5B8BE2C8DC04500EC77F7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		19F835AF2C8F09130083A66D /* BlurView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BlurView+.swift"; sourceTree = "<group>"; };
 		19F835B52C8F0A000083A66D /* VipCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VipCardView.swift; sourceTree = "<group>"; };
@@ -172,6 +175,7 @@
 		1990757A2C86100100E23FD7 /* PeacockMenus */ = {
 			isa = PBXGroup;
 			children = (
+				19E40CCD2C9C504C0077F71F /* PeacockMenus.entitlements */,
 				1977686C2C984C7700F40521 /* Info.plist */,
 				1990757B2C86100100E23FD7 /* PeacockMenusApp.swift */,
 				1990757D2C86100100E23FD7 /* ContentView.swift */,
@@ -231,6 +235,7 @@
 				19D231DE2C940C29001044BB /* Color+.swift */,
 				198706EA2C94114800F59CE9 /* shape+.swift */,
 				198706EC2C94117600F59CE9 /* button+.swift */,
+				19E40CCE2C9C70F60077F71F /* shadow+.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -380,6 +385,7 @@
 				19F835B02C8F09130083A66D /* BlurView+.swift in Sources */,
 				1990758C2C87E93400E23FD7 /* AsyncImageView.swift in Sources */,
 				19818B722C8DCFAF001A2964 /* ExportDataView.swift in Sources */,
+				19E40CCF2C9C70F60077F71F /* shadow+.swift in Sources */,
 				19E5B8BF2C8DC04500EC77F7 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,6 +518,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = PeacockMenus/PeacockMenus.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PeacockMenus/Preview Content\"";
@@ -549,6 +556,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = PeacockMenus/PeacockMenus.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PeacockMenus/Preview Content\"";

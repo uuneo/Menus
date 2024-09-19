@@ -18,11 +18,15 @@ struct ImportDataView: View {
     @State private var importFile:Bool = false
     
     @State private var fileUrl:URL?
+    @State private var totaldata:TotalData?
     var body: some View {
         List{
             
             Section{
                 HStack{
+                   
+                    
+                    
                     Spacer()
                     Button{
                         if !importData.isEmpty{
@@ -30,15 +34,17 @@ struct ImportDataView: View {
                              if success{
                                  alertTitle = "导入成功"
                                  alertMessage = "数据导入成功"
+                                 self.showAlert.toggle()
                              }else{
                                  alertTitle = "导入失败"
                                  alertMessage = "数据导入失败"
+                                 
                              }
                         }
                         
                         
-                        if let url = fileUrl{
-                            let success =  manager.importData(url: url)
+                        if let totaldata = totaldata{
+                            let success =  manager.importData(totaldata: totaldata)
                             if success{
                                 alertTitle = "导入成功"
                                 alertMessage = "数据导入成功"
@@ -54,6 +60,10 @@ struct ImportDataView: View {
                         Text("导入数据")
                     }.buttonStyle(BorderedProminentButtonStyle())
                     .disabled(importData.isEmpty && fileUrl == nil)
+                    
+                    
+                    
+                    
                     
                 }
             }header: {
@@ -100,10 +110,29 @@ struct ImportDataView: View {
                 
                 .fileImporter(isPresented: $importFile, allowedContentTypes: [UTType.json]) { result in
                     switch result {
-                    case .success(let success):
-                        self.fileUrl = success
+                    case .success(let fileUrl):
+                        // 检查文件是否位于沙盒之外，如果是，处理安全作用域
+                                if fileUrl.startAccessingSecurityScopedResource() {
+                                    do {
+                                        // 读取文件数据
+                                        let data = try Data(contentsOf: fileUrl)
+                                        // 在此处理读取的数据，例如将其解析为 JSON
+                                        self.totaldata =  try? JSONDecoder().decode(TotalData.self, from: data)
+                                        // 处理完文件后停止访问安全作用域
+                                        fileUrl.stopAccessingSecurityScopedResource()
+                                    } catch {
+                                        // 处理读取文件错误
+                                        alertTitle = "文件读取失败"
+                                        self.showAlert.toggle()
+                                    }
+                                } else {
+                                    alertTitle = "无法访问文件"
+                                    self.showAlert.toggle()
+                                }
+                        self.fileUrl = fileUrl
                     case .failure(_):
                         alertTitle = "文件选择失败"
+                        self.showAlert.toggle()
                     }
                 }
             }header: {

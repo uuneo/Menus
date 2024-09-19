@@ -95,14 +95,12 @@ final class peacock:ObservableObject {
         }
     }
     
-    func importData(url:URL) -> Bool{
-        do{
-            let data = try Data(contentsOf: url)
-            let text = String(data: data, encoding: .utf8)!
-            return importData(text: text)
-        }catch{
-            return false
-        }
+    func importData(totaldata:TotalData) -> Bool{
+        Defaults[.Cards] = totaldata.Cards
+        Defaults[.Categorys] = totaldata.Categorys
+        Defaults[.Subcategorys] = totaldata.Subcategorys
+        Defaults[.Items] = totaldata.Items
+        return true
     }
   
 }

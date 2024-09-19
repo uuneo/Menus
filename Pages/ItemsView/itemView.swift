@@ -14,51 +14,111 @@ struct itemView: View {
     @Default(.Items) var items
     
     @State private var showCardDetail:Bool = false
+
     var body: some View {
         ZStack{
             
             VStack(alignment: .leading){
                 
                 HStack{
-                    VStack(alignment: .leading){
+                    
+                    ZStack(alignment: .bottomTrailing) {
+                        VStack(alignment: .leading){
+                            
+                            Text(subcategory.title)
+                                .font( ISPAD ?.title :.title2)
+                                .bold()
+                                .padding(.top)
+                                .lineLimit(1)
+                                .layoutPriority(1)
+                                .fixedSize(horizontal: true, vertical: false)
+                                
+                            Text(subcategory.subTitle)
+                                .font( .title3)
+                                .foregroundStyle(Color.gray)
+                                .minimumScaleFactor(0.8)
+                                .lineLimit(1)
+                                .fixedSize(horizontal: true, vertical: false)
+                            
+                            
+                            if !ISPAD{
+                                Text(subcategory.footer)
+                                    .minimumScaleFactor(0.3)
+                                    .lineLimit(1)
+                                    
+                            }
+                            
+                               
+                        }
                         
-                        Text(subcategory.title)
-                            .font(.title)
-                            .bold()
-                            .padding(.top)
-                        Text(subcategory.subTitle)
-                    }.padding(.horizontal, 50)
+                        Text("\(items.filter({$0.subcategoryId == subcategory.id}).count)")
+                            .padding(5)
+                            .foregroundStyle(.gray)
+                            .offset(x: 20)
+                        
+                            
+                    }
+                    
+                    .padding(.leading, ISPAD ? 50 : 30)
+                    
+                    
+                    if ISPAD{
+                        Text(subcategory.footer)
+                            .padding(.leading, 10)
+                            .minimumScaleFactor(0.3)
+                            .lineLimit(1)
+                            .padding(.leading)
+                    }
+                    
+                    
+                   
+               
+                    
                     Spacer()
                     
                     HStack{
-                        Text(subcategory.footer)
-                    }
-                    
-                    HStack{
+                      
                         Toggle(isOn: $showCardDetail){
-                            Label("显示课程", systemImage: "list.bullet.rectangle")
+                            
+                            if ISPAD{
+                                Label("显示课程", systemImage: "list.bullet.rectangle")
+                                    .minimumScaleFactor(0.3)
+                            }
+                            
                         }
+                        
+                        
                         Spacer()
                     }
-                    
-                    .frame(maxWidth: 200)
-                    .padding(.horizontal, 10)
+                    .frame(maxWidth: ISPAD ? 200 : 40)
+                    .padding(.trailing, 10)
                     
                 }
                 ScrollView(.horizontal, showsIndicators: false){
-                    LazyHStack{
+                    HStack{
                         ForEach(items.filter({$0.subcategoryId == subcategory.id}),id: \.id){ item in
                             itemCardView(data: item, show: $showCardDetail)
                                 .padding()
+                                .padding(.bottom)
+                               
                             
                         }
                     }.padding(.horizontal, 30)
-                    
+                      
                 }
+                
             }
             
             
         }
+        .onAppear{
+            self.showCardDetail =  items.filter({$0.subcategoryId == subcategory.id}).allSatisfy { item in
+               return  item.price1.money == 0 && item.price2.money == 0
+            }
+            
+            
+        }
+    
         
         
     }
@@ -76,7 +136,20 @@ struct itemCardView: View {
     
     var colors2:[Color] = [.red, .yellow, .orange, .pink]
     
-    @State var size:CGSize = CGSize(width: 300, height: 150)
+    @State var size:CGSize = CGSize(width: 330, height: 160)
+    @State  private var   showDetail:Bool = false
+    
+    let color1: Color
+    let color2: Color
+    
+    init(data: ItemData, show: Binding<Bool>) {
+        self.data = data
+        self._show = show
+        self.showDetail = show.wrappedValue
+        // 只在初始化时生成随机颜色
+        self.color1 = [.blue, .green, .teal, .cyan, .mint].randomElement() ?? .blue
+        self.color2 = [.red, .yellow, .orange, .pink].randomElement() ?? .red
+    }
     
     
     var price1:Double{
@@ -110,34 +183,32 @@ struct itemCardView: View {
     var body: some View {
         ZStack{
             
-            
-            ZStack{
-                colors.randomElement()
-                    .clipShape(Circle())
-                    .frame(width: 80, height: 80)
-                    .offset(y: animate ? -20 : 20)
-                    .offset(x: animate ? -150 : 150)
-                    .rotationEffect(.degrees(animate ? 0 : 365),anchor: .bottomLeading)
-                    .blendMode(.hardLight)
-                
-                colors2.randomElement()
-                    .clipShape(Circle())
-                    .frame(width: 50, height: 50)
-                    .offset(y: animate ? -100 : 100)
-                    .offset(x: animate ? -100 : 100)
-                    .rotationEffect(.degrees(animate ? 0 : -365),anchor: .bottomLeading)
-                    .blendMode(.hardLight)
-                    .onAppear{
-                        withAnimation(.linear(duration: 30).repeatForever(autoreverses: true)){
-                            animate.toggle()
-                        }
-                    }
+            TimelineView(.animation) { timeline in
+                let time = timeline.date.timeIntervalSinceReferenceDate
+                let progress = sin(time * .pi / 50) // 使用 sin() 函数来平滑动画
+
+                ZStack {
+                    // 第一个圆的动画
+                    color1
+                        .clipShape(Circle())
+                        .frame(width: 80, height: 80)
+                        .offset(y: progress * 20) // 使用 sin() 函数来平滑变化
+                        .offset(x: progress * 150)
+                        .rotationEffect(.degrees(progress * 365), anchor: .bottomLeading)
+                        .blendMode(.hardLight)
+                    
+                    // 第二个圆的动画
+                    color2
+                        .clipShape(Circle())
+                        .frame(width: 50, height: 50)
+                        .offset(y: -progress * 100)
+                        .offset(x: -progress * 100)
+                        .rotationEffect(.degrees(-progress * 365), anchor: .bottomLeading)
+                        .blendMode(.hardLight)
+                }
+                .frame(width: size.width, height: size.height)
+                .clipShape(RoundedRectangle(cornerRadius: 30))
             }
-            .frame(width: size.width , height: size.height)
-            .clipShape(RoundedRectangle(cornerRadius: 30))
-            .clipped()
-            
-            
             
             VStack{
                 
@@ -147,23 +218,27 @@ struct itemCardView: View {
                             .font(.title)
                             .bold()
                             .minimumScaleFactor(0.5)
+                            
                         Text(data.subTitle)
+                            .font(.callout)
+                            .foregroundStyle(Color.gray)
                             .minimumScaleFactor(0.5)
                     }
+                    .foregroundStyle(Color.accent1)
                     Spacer()
+                    
                 }.padding(.top, 10)
                     .padding(.leading, 10)
                     .padding(10)
                 
                     .onTapGesture {
                         withAnimation(.spring()){
-                            show.toggle()
-                            
+                            showDetail.toggle()
                         }
                     }
                 
                 
-                if !isShow(show: show, [data.price3.money,data.price4.money]) {
+                if !isShow(show: showDetail, [data.price3.money,data.price4.money]) {
                     Spacer()
                 }
                 
@@ -173,8 +248,8 @@ struct itemCardView: View {
                     HStack{
                         Spacer()
                         Text(data.price3.prefix)
-                            .foregroundStyle(.black)
-                            .font(.system(size: 18))
+                            .foregroundStyle(.gray)
+                            .font(.system(size: 15))
                             .bold()
                             .minimumScaleFactor(0.6)
                         
@@ -183,123 +258,161 @@ struct itemCardView: View {
                             .bold()
                             .font(.system(size: 25))
                             .minimumScaleFactor(0.6)
-                            .animation(.spring(duration: 0.5, bounce: 0.5, blendDuration: 0.6), value: price3)
-                        
+                           
+                            .foregroundStyle(color2)
                         
                         
                         Text(data.price3.suffix)
-                            .foregroundStyle(.black)
-                            .font(.system(size: 18))
+                            .foregroundStyle(.gray)
+                            .font(.system(size: 15))
                             .bold()
                             .minimumScaleFactor(0.6)
                         Spacer()
                     }
-                .offset(y: show ? 0 : -size.height)
-                .opacity(Double(data.price3.money))
-                Divider()
-                        .background(Color.background)
+                    .offset(y: showDetail ? 0 : -size.height)
+                    .opacity(Double(data.price3.money))
+                    
+                    if data.price4.money != 0{
+                        Divider()
+                            .background(Color.background)
+                        
+                        HStack{
+                            Spacer()
+                            
+                            Text(data.price4.prefix)
+                                .foregroundStyle(.gray)
+                                .font(.system(size: 15))
+                                .bold()
+                                .minimumScaleFactor(0.6)
+                            Text(String(format: "%.0f", price4))
+                                .bold()
+                                .font(.system(size: 25))
+                                .minimumScaleFactor(0.6)
+                               
+                                .foregroundStyle(color1)
+                            Text(data.price4.suffix)
+                                .foregroundStyle(.gray)
+                                .font(.system(size: 15))
+                                .bold()
+                                .minimumScaleFactor(0.6)
+                            Spacer()
+                        }
+                        .offset(y: showDetail ? 0 : size.height)
+                        .opacity(Double(data.price4.money))
+                    }
+                    
+                   
+                    
+                }
+                
+                .padding(.vertical,10)
+                .background(.ultraThinMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .shadow(color: Color.shadow1, radius:isShow(show: showDetail, [data.price3.money,data.price4.money]) ? 10 : 0, x: 10, y: 10)
+                .shadow(color: Color.shadow2, radius: isShow(show: showDetail, [data.price3.money,data.price4.money]) ? 10 : 0, x: -10, y: -10)
+                .opacity(isShow(show: showDetail, [data.price3.money,data.price4.money]) ? 1 : 0)
+//                .offset(x: isShow(show: show, [data.price3.money,data.price4.money]) ? 0 : -size.width)
+                .frame(height: isShow(show: showDetail, [data.price3.money,data.price4.money]) ? 60 : 0)
+                
+            
+                
+                
+                
                 HStack{
+                    
+                    HStack{
+                        Text(data.price1.prefix)
+                            .font(.system(size: 15))
+                            .foregroundStyle(.gray)
+                            .minimumScaleFactor(0.6)
+                        Text(String(format: "%.0f", price1))
+                            .bold()
+                            .font(.system(size: 25))
+                            .minimumScaleFactor(0.6)
+                           
+                        
+                        Text(data.price1.suffix)
+                            .font(.system(size: 15))
+                            .foregroundStyle(.gray)
+                            .minimumScaleFactor(0.6)
+                        
+                        
+                        
+                        
+                    }
+                    .opacity(Double(data.price1.money))
                     Spacer()
                     
-                    Text(data.price4.prefix)
-                        .foregroundStyle(.black)
-                        .font(.system(size: 18))
-                        .bold()
-                        .minimumScaleFactor(0.6)
-                    Text(String(format: "%.0f", price4))
-                        .font(.system(size: 25))
-                        .minimumScaleFactor(0.6)
-                        .animation(.spring(duration: 0.5, bounce: 0.5, blendDuration: 0.6), value: price4)
-                    Text(data.price4.suffix)
-                        .foregroundStyle(.black)
-                        .font(.system(size: 18))
-                        .bold()
-                        .minimumScaleFactor(0.6)
-                    Spacer()
-                }
-                .offset(y: show ? 0 : size.height)
-                .opacity(Double(data.price4.money))
-                
-            }
-            .foregroundStyle(.white)
-            .padding(.vertical,10)
-            .background(.pink.gradient)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .opacity(isShow(show: show, [data.price3.money,data.price4.money]) ? 1 : 0)
-            .offset(x: isShow(show: show, [data.price3.money,data.price4.money]) ? 0 : -size.width)
-            .frame(height: isShow(show: show, [data.price3.money,data.price4.money]) ? 50 : 0)
-            
-            
-            
-            
-            
-            
-            HStack{
-                
-                HStack{
-                    Text(data.price1.prefix)
+                    
+                    Text(data.price2.prefix)
                         .font(.system(size: 15))
                         .foregroundStyle(.gray)
                         .minimumScaleFactor(0.6)
-                    Text(String(format: "%.0f", price1))
+                    Text(String(format: "%.0f",  price2))
                         .bold()
                         .font(.system(size: 25))
                         .minimumScaleFactor(0.6)
-                        .animation(.spring(duration: 0.5, bounce: 0.5, blendDuration: 0.6), value: price1)
-                    Text(data.price1.suffix)
+                       
+                        .foregroundStyle(Color.cyan)
+                    
+                    
+                    Text(data.price2.suffix)
                         .font(.system(size: 15))
                         .foregroundStyle(.gray)
                         .minimumScaleFactor(0.6)
-                        
-                        
-                        
-                        
                 }
-                .opacity(Double(data.price1.money))
-                Spacer()
-                
-                
-                Text(data.price2.prefix)
-                    .font(.system(size: 15))
-                    .foregroundStyle(.gray)
-                    .minimumScaleFactor(0.6)
-                Text(String(format: "%.0f",  price2))
-                    .bold()
-                    .font(.system(size: 25))
-                    .minimumScaleFactor(0.6)
-                    .animation(.spring(duration: 0.5, bounce: 0.5, blendDuration: 0.6), value:  price2)
+                .padding(.vertical, 10)
+                .padding(.horizontal)
+                .opacity(Double(data.price2.money))
+                .shadow(color: Color.gray.opacity(0.3), radius: 3, x: 3, y: 3)
                 
                 
                 
-                
-                Text(data.price2.suffix)
-                    .font(.system(size: 15))
-                    .foregroundStyle(.gray)
-                    .minimumScaleFactor(0.6)
             }
-            .padding(.vertical, 10)
-            .padding(.horizontal)
-            .opacity(Double(data.price2.money))
+            .frame(width: size.width , height: size.height)
+            .background(.ultraThinMaterial)
+            
+            .overlay{
+                if data.header  != ""{
+                    VStack{
+                        HStack{
+                            Spacer()
+                            Text(data.header)
+                                .padding(5)
+                                .background(.ultraThinMaterial)
+                                .foregroundStyle(Color.gray)
+                                .clipShape(Capsule())
+                                .shadow(color: Color.shadow1, radius: 10, x: 10, y: 10)
+                                .shadow(color: Color.shadow2, radius: 10, x: -10, y: -10)
+                                .padding(.trailing)
+                                .padding(.top, 10)
+                        }
+                        Spacer()
+                    }
+                }
+               
+               
+                
+            }
+            .clipShape(RoundedRectangle(cornerRadius: 30))
+            .clipped()
+            .shadow(color: Color.shadow1, radius: 10, x: 10, y: 10)
+            .shadow(color: Color.shadow2, radius: 10, x: -10, y: -10)
             
             
-            
-            
-        }
-        
-        .frame(width: size.width , height: size.height)
-        .background(.ultraThinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 30))
-        .clipped()
-        .shadow(radius: 10.0)
-        
-        
     }
     
     
-        .animation(.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.6), value: show)
+        .animation(.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.6), value: showDetail)
         .onChange(of: show) { oldValue, newValue in
+            
             withAnimation {
-                self.size =  CGSize(width: 300, height: isShow(show: show, [data.price3.money,data.price4.money]) ? 200 : 150)
+                showDetail = newValue
+            }
+            
+        }.onChange(of: showDetail) { oldValue, newValue in
+            withAnimation {
+                self.size =  CGSize(width: 330, height: isShow(show: showDetail, [data.price3.money,data.price4.money]) ? 230 : 160)
             }
             
         }
@@ -342,3 +455,5 @@ enum priceType {
 #Preview {
     itemView()
 }
+
+
