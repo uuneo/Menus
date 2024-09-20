@@ -16,7 +16,6 @@ struct AppSettings: View {
     @Default(.homeItemsSubTitle) var homeItemsSubTitle
     @Default(.settingPassword) var settingPassword
     @Default(.autoSetting) var autoSetting
-    @State private var message:DemoMessage?
     @StateObject private var manager = peacock.shared
     var body: some View {
         List {
@@ -65,11 +64,11 @@ struct AppSettings: View {
                         if let success  =  try? await manager.updateItem(url: autoSetting.url){
                             
                             DispatchQueue.main.async {
-                                self.message = DemoMessage(title: "提示", body: success ? "更新成功"  : "更新失败")
+                                manager.message = DemoMessage(title: "提示", body: success ? "更新成功"  : "更新失败")
                             }
                         }else{
                             DispatchQueue.main.async {
-                                self.message = DemoMessage(title: "提示", body: "地址/网络/格式错误")
+                                manager.message = DemoMessage(title: "提示", body: "地址/网络/格式错误")
                                 self.autoSetting.enable = false
                             }
                         }
@@ -84,7 +83,7 @@ struct AppSettings: View {
                 Label("设置密码", systemImage: "lock")
             }
         }
-        .swiftMessage(message: $message)
+       
     }
 }
 

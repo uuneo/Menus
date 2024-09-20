@@ -186,7 +186,7 @@ struct DemoMessageView: View {
         .multilineTextAlignment(.leading)
         .padding(30)
         // This makes the message width greedy
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: 500)
         .background(.ultraThinMaterial)
         // This makes a tab-style view where the bottom corners are rounded and
         // the view's background extends to the top edge.

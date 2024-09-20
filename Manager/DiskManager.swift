@@ -41,6 +41,8 @@ final class peacock:ObservableObject {
     
     @Published var showSettings:Bool = false
     
+    @Published  var message: DemoMessage?
+    
     private let session = URLSession(configuration: .default)
     
     

@@ -16,8 +16,6 @@ struct PeacockMenusApp: App {
     @Default(.autoSetting) var autoSetting
     @Environment(\.scenePhase) var scenePhase
     @StateObject var manager = peacock.shared
-    
-    @State private var message: DemoMessage?
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -29,18 +27,18 @@ struct PeacockMenusApp: App {
                                let success  =  try? await manager.updateItem(url: autoSetting.url){
                                
                                 DispatchQueue.main.async {
-                                    self.message = DemoMessage(title: "提示", body: success ? "更新成功"  : "更新失败")
+                                    manager.message = .init(title: "提示", body: success ? "更新成功"  : "更新失败")
                                 }
                             }else{
                                 DispatchQueue.main.async {
-                                    self.message = DemoMessage(title: "提示", body: "自动更新未启用或者地址错误")
+                                    manager.message = .init(title: "提示", body: "自动更新未启用或者地址错误")
                                 }
                             }
                         }
                     }
                    
                 }
-                .swiftMessage(message: $message)
+                .swiftMessage(message: $manager.message)
             
         }
     }
