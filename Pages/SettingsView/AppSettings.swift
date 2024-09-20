@@ -65,6 +65,7 @@ struct AppSettings: View {
                             
                             DispatchQueue.main.async {
                                 manager.message = DemoMessage(title: "提示", body: success ? "更新成功"  : "更新失败")
+                                self.autoSetting.enable = true
                             }
                         }else{
                             DispatchQueue.main.async {
