@@ -46,7 +46,7 @@ struct CategorySettingView: View {
             }
     }
     func createNewCategory(){
-        items.append(CategoryData.space())
+        items.insert(CategoryData.space(), at: 0)
     }
 }
 

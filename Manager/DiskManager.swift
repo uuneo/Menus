@@ -16,20 +16,20 @@ import SwiftUI
 
 
 //extension Defaults.Keys{
-//   
+//
 //
 //    static let cards = Key<[MemberCardData]>("VipCards",default: MemberCardDataS)
 //    static let categoryItems = Key<[CategoryData]>("CategoryItems",default: CategoryDataS)
 //    static let subcategoryItems = Key<[SubCategoryData]>("SubcategoryItems",default: SubCategoryDataS)
 //    static let items = Key<[ItemData]>("Items",default: ItemDataS)
-//    
+//
 //
 //}
 //
 
 
 final class peacock:ObservableObject {
-  
+    
     
     static let shared = peacock()
     
@@ -41,11 +41,41 @@ final class peacock:ObservableObject {
     
     @Published var showSettings:Bool = false
     
-     func exportTotalData() -> TotalData{
-         
-         TotalData(Cards: Defaults[.Cards], Categorys: Defaults[.Categorys], Subcategorys: Defaults[.Subcategorys], Items: Defaults[.Items])
-         
-         
+    private let session = URLSession(configuration: .default)
+    
+    
+    func fetch<T:Codable>(url:String) async throws -> T?{
+        guard let requestUrl = URL(string: url) else {return  nil}
+        let data = try await session.data(for: URLRequest(url: requestUrl))
+        let result = try JSONDecoder().decode(T.self, from: data)
+        return result
+    }
+    
+    func updateItem(url:String) async throws ->  Bool{
+        
+        if !startsWithHttpOrHttps(url){
+            return false
+        }
+        
+        if  let result:TotalData = try await self.fetch(url: url){
+            return await self.importData(totaldata: result)
+        }
+        
+        return false
+    }
+    
+    func startsWithHttpOrHttps(_ urlString: String) -> Bool {
+        let pattern = "^(http|https)://.*"
+        let test = NSPredicate(format:"SELF MATCHES %@", pattern)
+        return test.evaluate(with: urlString)
+    }
+    
+}
+
+extension peacock{
+    func exportTotalData() -> TotalData{
+        
+        TotalData(Cards: Defaults[.Cards], Categorys: Defaults[.Categorys], Subcategorys: Defaults[.Subcategorys], Items: Defaults[.Items], homeCardTitle: Defaults[.homeCardTitle], homeCardSubTitle: Defaults[.homeCardSubTitle], homeItemsTitle: Defaults[.homeItemsTitle], homeItemsSubTitle: Defaults[.homeCardSubTitle], settingPassword: Defaults[.settingPassword], autoSetting: Defaults[.autoSetting])
     }
     
     func exportData() -> String{
@@ -80,32 +110,84 @@ final class peacock:ObservableObject {
         }
     }
     
-    func importData(text:String) -> Bool{
+    @MainActor func importData(text:String) -> Bool{
         let decoder = JSONDecoder()
         let data = text.data(using: .utf8)!
         do{
             let totalData = try decoder.decode(TotalData.self, from: data)
-            Defaults[.Cards] = totalData.Cards
-            Defaults[.Categorys] = totalData.Categorys
-            Defaults[.Subcategorys] = totalData.Subcategorys
-            Defaults[.Items] = totalData.Items
-            return true
+            
+            return importData(totaldata: totalData)
         }catch{
             return false
         }
     }
     
-    func importData(totaldata:TotalData) -> Bool{
-        Defaults[.Cards] = totaldata.Cards
-        Defaults[.Categorys] = totaldata.Categorys
-        Defaults[.Subcategorys] = totaldata.Subcategorys
-        Defaults[.Items] = totaldata.Items
+    @MainActor func importData(totaldata:TotalData) -> Bool{
+        let cards = totaldata.Cards
+        let categorys = totaldata.Categorys
+        let subcategorys = totaldata.Subcategorys
+        let items = totaldata.Items
+        let title =   totaldata.homeCardTitle
+        let subTitle =  totaldata.homeCardSubTitle
+        let itemTitle =  totaldata.homeItemsTitle
+        let itemSubtitle =  totaldata.homeItemsSubTitle
+        let setting =  totaldata.autoSetting
+        let password =  totaldata.settingPassword
+        
+        
+        if !cards.isEmpty{
+            Defaults[.Cards] = cards
+        }
+        
+        if !categorys.isEmpty{
+            Defaults[.Categorys] = categorys
+        }
+        
+        if !subcategorys.isEmpty{
+            Defaults[.Subcategorys] = subcategorys
+        }
+        
+        if !items.isEmpty{
+            Defaults[.Items] = items
+        }
+        
+        if let title = title{
+            Defaults[.homeCardTitle] = title
+        }
+        
+        if let subTitle = subTitle{
+            Defaults[.homeCardSubTitle] = subTitle
+        }
+        
+        if let itemTitle = itemTitle{
+            Defaults[.homeItemsTitle] = itemTitle
+        }
+        
+        if let itemSubtitle = itemSubtitle{
+            Defaults[.homeItemsSubTitle] = itemSubtitle
+        }
+        
+        if let setting = setting{
+            Defaults[.autoSetting] = setting
+        }
+        
+        if let password = password{
+            Defaults[.settingPassword] = password
+            
+        }
+        
+        
         return true
     }
-  
 }
 
 extension peacock{
+    
+    
+    
+    
+    
+    
     func removeCategoryItems(indexSet:IndexSet){
         
         for index in indexSet{

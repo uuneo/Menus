@@ -38,7 +38,7 @@ struct SubCategorySettingView: View {
         .toolbar{
             ToolbarItem {
                 Button{
-                    items.append(SubCategoryData.space())
+                    items.insert(SubCategoryData.space(), at: 0)
                 }label: {
                     Image(systemName: "plus")
                 }

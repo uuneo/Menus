@@ -76,7 +76,7 @@ struct BasicSettingsView: View {
                         Button{
                             showAlert = true
                         }label: {
-                            Label("恢复初始化", systemImage: "point.forward.to.point.capsulepath")
+                            Label("恢复初始化", systemImage: "lasso.badge.sparkles")
                         }
                     }
                 }

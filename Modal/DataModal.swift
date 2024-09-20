@@ -15,12 +15,16 @@ extension Defaults.Keys{
     static let homeItemsTitle = Key<String>("HomeItemsTitle",default: "项目分类")
     static let homeItemsSubTitle = Key<String>("HomeItemsSubTitle",default: "Peacock-Items")
     static let settingPassword = Key<String>("SettingPassword",default: "")
+    static let autoSetting = Key<AutoAsyncSetting>("AutoSetting",default: AutoAsyncSetting(url: "https://example.com", enable: false))
     
     static let Cards = Key<[MemberCardData]>("MemberCards",default:MemberCardDataS)
     static let Categorys = Key<[CategoryData]>("Categorys",default:CategoryDataS)
     static let Subcategorys = Key<[SubCategoryData]>("Subcategorys",default: SubCategoryDataS)
     static let Items = Key<[ItemData]>("Items",default: ItemDataS)
 }
+
+
+
 
 
 
@@ -109,10 +113,24 @@ struct PriceData: PeacockProtocol{
 }
 
 
-struct TotalData:Codable{
+
+
+struct AutoAsyncSetting: Codable,Defaults.Serializable{
+    var url:String
+    var enable:Bool
+}
+
+
+struct TotalData: Codable {
     var Cards:[MemberCardData]
     var Categorys:[CategoryData]
     var Subcategorys:[SubCategoryData]
     var Items:[ItemData]
+    var homeCardTitle:String?
+    var homeCardSubTitle:String?
+    var homeItemsTitle:String?
+    var homeItemsSubTitle:String?
+    var settingPassword:String?
+    var autoSetting:AutoAsyncSetting?
 }
 

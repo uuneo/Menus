@@ -73,7 +73,8 @@ struct ProjectSettingView: View {
         .toolbar{
             ToolbarItem {
                 Button{
-                    items.append(ItemData.space())
+                    items.insert(ItemData.space(), at: 0)
+                   
                 }label: {
                     Image(systemName: "plus")
                 }
