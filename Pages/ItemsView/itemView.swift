@@ -308,7 +308,7 @@ struct itemCardView: View {
                 .background(.ultraThinMaterial)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .shadow(color: Color.shadow1, radius:isShow(show: showDetail, [data.price3.money,data.price4.money]) ? 10 : 0, x: 10, y: 10)
-                .shadow(color: Color.shadow2, radius: isShow(show: showDetail, [data.price3.money,data.price4.money]) ? 10 : 0, x: -10, y: -10)
+                .shadow(color: Color.shadow2, radius: isShow(show: showDetail, [data.price3.money,data.price4.money]) ? 1 : 0, x: -1, y: -1)
                 .opacity(isShow(show: showDetail, [data.price3.money,data.price4.money]) ? 1 : 0)
 //                .offset(x: isShow(show: show, [data.price3.money,data.price4.money]) ? 0 : -size.width)
                 .frame(height: isShow(show: showDetail, [data.price3.money,data.price4.money]) ? 60 : 0)
@@ -382,7 +382,7 @@ struct itemCardView: View {
                                 .foregroundStyle(Color.gray)
                                 .clipShape(Capsule())
                                 .shadow(color: Color.shadow1, radius: 10, x: 10, y: 10)
-                                .shadow(color: Color.shadow2, radius: 10, x: -10, y: -10)
+                                .shadow(color: Color.shadow2, radius: 1, x: -1, y: -1)
                                 .padding(.trailing)
                                 .padding(.top, 10)
                         }
@@ -396,7 +396,7 @@ struct itemCardView: View {
             .clipShape(RoundedRectangle(cornerRadius: 30))
             .clipped()
             .shadow(color: Color.shadow1, radius: 10, x: 10, y: 10)
-            .shadow(color: Color.shadow2, radius: 10, x: -10, y: -10)
+            .shadow(color: Color.shadow2, radius: 1, x: -1, y: -1)
             
             
     }
