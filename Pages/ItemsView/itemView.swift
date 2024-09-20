@@ -215,14 +215,13 @@ struct itemCardView: View {
                 HStack{
                     VStack(alignment: .leading){
                         Text(data.title)
-                            .font(.title)
+                            .font( ISPAD ?.title :.title2)
                             .bold()
-                            .minimumScaleFactor(0.5)
                             
                         Text(data.subTitle)
                             .font(.callout)
                             .foregroundStyle(Color.gray)
-                            .minimumScaleFactor(0.5)
+                            
                     }
                     .foregroundStyle(Color.accent1)
                     Spacer()
