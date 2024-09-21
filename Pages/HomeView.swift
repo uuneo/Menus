@@ -34,13 +34,13 @@ struct HomeView: View {
                     HomeVipCards(Namespace: NewHomeName)
                         .padding(.top, 50)
                 }
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2)
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.57)
                 
                 
                 HStack(alignment: .bottom){
                     HomeItemsView(NewHomeName: NewHomeName, showDetail: $showDetail)
                 }
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2)
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.43)
                 
                 
                 
@@ -67,7 +67,7 @@ struct HomeView: View {
                 .opacity(showDetail ? 1 : 0)
                 .offset(y: showDetail ? 0 : 500)
             
-        }.navigationDestination(isPresented: $manager.showSettings) {
+        }.fullScreenCover(isPresented: $manager.showSettings) {
             
             HomeSettingView()
         }

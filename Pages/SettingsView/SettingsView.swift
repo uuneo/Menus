@@ -12,6 +12,7 @@ import Defaults
 struct SettingsView: View {
     @StateObject private var manager = peacock.shared
     @Default(.settingPassword) var settingPassword
+    @Default(.autoSetting) var autoSetting
     @Environment(\.dismiss) var dismiss
     @State private var changeTitle:Bool = false
     
@@ -19,7 +20,7 @@ struct SettingsView: View {
     
     @State private var columnVisibility: NavigationSplitViewVisibility = .automatic
     
-    
+  
     var body: some View {
       
 
@@ -101,17 +102,7 @@ struct SettingsView: View {
                 .toolbar {
                     
                     
-                    if ISPAD{
-                        ToolbarItem {
-                            Button{
-                                
-                                columnVisibility = columnVisibility == .all ? .doubleColumn : .all
-                                
-                            }label: {
-                                Image(systemName: columnVisibility == .all ? "chevron.left" : "chevron.right")
-                            }
-                        }
-                    }else{
+                    if !ISPAD{
                         ToolbarItem{
                             Button{
                                 manager.showSettings.toggle()
@@ -120,8 +111,6 @@ struct SettingsView: View {
                             }
                         }
                     }
-                   
-                    
                    
                 }
             

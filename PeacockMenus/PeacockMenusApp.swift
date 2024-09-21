@@ -22,21 +22,8 @@ struct PeacockMenusApp: App {
                 .onChange(of: scenePhase) { _, newvalue in
                     
                     if newvalue == .active{
-                        Task{
-                            if autoSetting.enable,
-                               let success  =  try? await manager.updateItem(url: autoSetting.url){
-                               
-                                DispatchQueue.main.async {
-                                    manager.message = .init(title: "提示", body: success ? "更新成功"  : "更新失败")
-                                }
-                            }else{
-                                DispatchQueue.main.async {
-                                    manager.message = .init(title: "提示", body: "自动更新未启用或者地址错误")
-                                }
-                            }
-                        }
+                        manager.updateItem(url: autoSetting.getUrl)
                     }
-                   
                 }
                 .swiftMessage(message: $manager.message)
             

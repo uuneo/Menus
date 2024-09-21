@@ -8,28 +8,10 @@
 import Foundation
 import Defaults
 import SwiftUI
-
-
-
-
-
-
-
-//extension Defaults.Keys{
-//
-//
-//    static let cards = Key<[MemberCardData]>("VipCards",default: MemberCardDataS)
-//    static let categoryItems = Key<[CategoryData]>("CategoryItems",default: CategoryDataS)
-//    static let subcategoryItems = Key<[SubCategoryData]>("SubcategoryItems",default: SubCategoryDataS)
-//    static let items = Key<[ItemData]>("Items",default: ItemDataS)
-//
-//
-//}
-//
+import Alamofire
 
 
 final class peacock:ObservableObject {
-    
     
     static let shared = peacock()
     
@@ -46,25 +28,59 @@ final class peacock:ObservableObject {
     private let session = URLSession(configuration: .default)
     
     
-    func fetch<T:Codable>(url:String) async throws -> T?{
-        guard let requestUrl = URL(string: url) else {return  nil}
-        let data = try await session.data(for: URLRequest(url: requestUrl))
-        let result = try JSONDecoder().decode(T.self, from: data)
-        return result
-    }
-    
-    func updateItem(url:String) async throws ->  Bool{
+    func updateItem(url:String,completion:((Bool) -> Void)? = nil){
         
         if !startsWithHttpOrHttps(url){
-            return false
+            self.message = .init(title: "提示", body: "地址不正确")
+            completion?(false)
+            return
         }
         
-        if  let result:TotalData = try await self.fetch(url: url){
-            return await self.importData(totaldata: result)
+        Task{
+            
+            getData(url: url) { (result: TotalData?) in
+                if let data = result{
+                    Task{
+                        await self.importData(totaldata: data)
+                        DispatchQueue.main.async {
+                            self.message = .init(title: "提示", body: "更新成功")
+                        }
+                        completion?(true)
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        self.message = .init(title: "提示", body: "更新失败")
+                    }
+                    completion?(false)
+                }
+               
+                
+                
+            }
+            
+            
         }
         
-        return false
     }
+    
+    
+    func uploadItem(url:String, completion:((Bool) -> Void)? = nil){
+        if !startsWithHttpOrHttps(url){
+            completion?(false)
+        }
+        
+        Task{
+            
+            do{
+                let data = try JSONEncoder().encode(self.exportTotalData()).toData()
+                uploadFile(url: url, data: data,completion: completion)
+            }catch{
+                completion?(false)
+            }
+        }
+        
+    }
+    
     
     func startsWithHttpOrHttps(_ urlString: String) -> Bool {
         let pattern = "^(http|https)://.*"
@@ -72,6 +88,34 @@ final class peacock:ObservableObject {
         return test.evaluate(with: urlString)
     }
     
+    
+    func uploadFile(url: String, data: Data,completion: ((Bool)->Void)?) {
+        
+        AF.upload(data, to: url).responseDecodable(of: Bool.self) { response in
+            switch response.result{
+            case .success(let data):
+               completion?(data)
+            case .failure(_):
+               completion?(false)
+            }
+        }
+    }
+    
+    
+    func getData<T: Codable>(url: String, completion: @escaping (T?)-> Void) {
+        
+        AF.request(url).responseDecodable(of: T.self) { response in
+            switch response.result{
+            case .success(let data):
+               completion(data)
+            case .failure(_):
+                completion(nil)
+            }
+        }
+    
+    }
+    
+
 }
 
 extension peacock{
@@ -117,14 +161,14 @@ extension peacock{
         let data = text.data(using: .utf8)!
         do{
             let totalData = try decoder.decode(TotalData.self, from: data)
-            
-            return importData(totaldata: totalData)
+            importData(totaldata: totalData)
+            return true
         }catch{
             return false
         }
     }
     
-    @MainActor func importData(totaldata:TotalData) -> Bool{
+    @MainActor func importData(totaldata:TotalData){
         let cards = totaldata.Cards
         let categorys = totaldata.Categorys
         let subcategorys = totaldata.Subcategorys
@@ -177,9 +221,6 @@ extension peacock{
             Defaults[.settingPassword] = password
             
         }
-        
-        
-        return true
     }
 }
 

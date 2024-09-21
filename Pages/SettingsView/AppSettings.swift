@@ -17,6 +17,7 @@ struct AppSettings: View {
     @Default(.settingPassword) var settingPassword
     @Default(.autoSetting) var autoSetting
     @StateObject private var manager = peacock.shared
+    @State private var uploadProgress:Bool  = false
     var body: some View {
         List {
             
@@ -50,29 +51,25 @@ struct AppSettings: View {
             }
             
             Section{
+            
+                Label("上传地址", systemImage: "link")
+                TextField("输入上传更新地址", text: $autoSetting.updateUrl)
+                    .customField(icon: "link")
                 
                 Toggle("自动同步", isOn: $autoSetting.enable)
                     .toggleStyle(SwitchToggleStyle(tint: .accentColor))
             
-                TextField("自动同步地址", text: $autoSetting.url)
+                TextField("自动同步地址", text: $autoSetting.getUrl)
                     .customField(icon: "link")
+                
+                
             }header: {
                 Label("自动同步地址", systemImage: "link")
             }.onChange(of: autoSetting.enable) { _, newValue in
                 if newValue{
-                    Task{
-                        if let success  =  try? await manager.updateItem(url: autoSetting.url){
-                            
-                            DispatchQueue.main.async {
-                                manager.message = DemoMessage(title: "提示", body: success ? "更新成功"  : "更新失败")
-                                self.autoSetting.enable = true
-                            }
-                        }else{
-                            DispatchQueue.main.async {
-                                manager.message = DemoMessage(title: "提示", body: "地址/网络/格式错误")
-                                self.autoSetting.enable = false
-                            }
-                        }
+                    
+                    manager.updateItem(url: autoSetting.getUrl){success in
+                        self.autoSetting.enable = success
                     }
                 }
             }
@@ -83,6 +80,31 @@ struct AppSettings: View {
             }header: {
                 Label("设置密码", systemImage: "lock")
             }
+        }
+        .toolbar {
+            ToolbarItem( placement: .topBarLeading){
+                Button{
+                    uploadProgress = true
+                    manager.uploadItem(url: autoSetting.getUrl){success in
+                        uploadProgress = false
+                        DispatchQueue.main.async{
+                            manager.message = .init(title: "同步结果", body: success ? "项目同步成功" : "项目同步失败")
+                        }
+                    }
+                }label:{
+                    
+                    if uploadProgress{
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                    }else{
+                        Image(systemName: "icloud.and.arrow.up")
+                    }
+                    
+            
+                    
+                }.disabled(!manager.startsWithHttpOrHttps(autoSetting.updateUrl))
+            }
+           
         }
        
     }
