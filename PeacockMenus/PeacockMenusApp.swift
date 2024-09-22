@@ -23,6 +23,7 @@ struct PeacockMenusApp: App {
 						manager.updateItem(url: autoSetting.url)
                     }
                 }
+				.environmentObject(manager)
 				
 			
 

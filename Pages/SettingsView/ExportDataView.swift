@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ExportDataView: View {
+	@EnvironmentObject var manager:peacock
 
-    @StateObject var manager = peacock.shared
     @State private var exportData:String = "没有数据"
     @State private var fileURL:URL?
     @State private var isEditing:Bool = false
@@ -61,6 +61,7 @@ struct ExportDataView: View {
 #Preview {
     NavigationStack{
         ExportDataView()
+			.environmentObject(peacock.shared)
     }
    
 }

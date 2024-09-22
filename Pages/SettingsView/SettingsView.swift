@@ -10,7 +10,7 @@ import Defaults
 
 
 struct SettingsView: View {
-    @StateObject private var manager = peacock.shared
+	@EnvironmentObject var manager:peacock
     @Default(.settingPassword) var settingPassword
     @Default(.autoSetting) var autoSetting
     @Environment(\.dismiss) var dismiss
@@ -90,48 +90,33 @@ struct SettingsView: View {
                 .listRowSpacing(20)
                 .listStyle(.insetGrouped)
                 
-                .navigationTitle("设置")
-                .gesture(
-                    DragGesture()
-                        .onEnded { value in
-                            if value.translation.width > 100 {
-                                self.dismiss()
-                            }
-                        }
-                )
-                .toolbar {
-                    
-                    
-                    if !ISPAD{
-                        ToolbarItem{
-                            Button{
-                                manager.showSettings.toggle()
-                            }label:{
-                                Image(systemName: "xmark")
-                            }
-                        }
-                    }
-                   
-                }
-            
-           
-           
-            
-        }content: {
-            BasicSettingsView(columnVisibility: $columnVisibility)
-               
-        }detail:{
-            
-                AppSettings()
-                    .navigationTitle("App设置")
-         
-        }
-        .onChange(of: selectedTab) { _, _ in
-            self.columnVisibility = .doubleColumn
-        }
-
-        
-    }
+				.navigationTitle("设置")
+				.gesture(
+					DragGesture()
+						.onEnded { value in
+							if value.translation.width > 100 {
+								self.dismiss()
+							}
+						}
+				)
+			
+			
+			
+		}content: {
+			BasicSettingsView(columnVisibility: $columnVisibility)
+			
+		}detail:{
+			
+			AppSettings()
+				.navigationTitle("App设置")
+			
+		}
+		.onChange(of: selectedTab) { _, _ in
+			self.columnVisibility = .doubleColumn
+		}
+		
+		
+	}
 }
 
 
@@ -244,4 +229,5 @@ struct SettingsIphoneView: View {
 
 #Preview {
     SettingsView()
+		.environmentObject(peacock.shared)
 }

@@ -9,7 +9,8 @@ import SwiftUI
 import Defaults
 
 struct CategorySettingView: View {
-    @StateObject var manager = peacock.shared
+	
+	@EnvironmentObject var manager:peacock
     @Default(.Categorys) var items
     @Binding var columnVisibility: NavigationSplitViewVisibility
     var body: some View {
@@ -93,9 +94,9 @@ struct ChangeCategoryView: View {
 
 
 #Preview {
-    NavigationStack {
-                CategorySettingView(columnVisibility: .constant(.all))
-//        ChangeCategoryView(item: .constant(CategoryData.example))
-    }
-    
+	NavigationStack {
+		CategorySettingView(columnVisibility: .constant(.all))
+			.environmentObject(peacock.shared)
+	}
+	
 }

@@ -7,71 +7,55 @@
 
 import SwiftUI
 import Defaults
-import Pow
+import UIKit
 
 struct ContentView: View {
-    
-    var body: some View {
-        
+	
+	@EnvironmentObject var manager:peacock
 
-        NavigationStack{
-            HomeView()
-        }
-
-    }
-    
+	
+	var body: some View {
+		
+		ZStack(alignment: .top){
+			
+			switch manager.page {
+			case .home:
+				HomeView()
+					.transition(AnyTransition.opacity.combined(with: .slide))
+			case .setting:
+				HomeSettingView()
+					.transition(AnyTransition.opacity.combined(with: .slide))
+			case .photo:
+				PhotosView()
+					.transition(AnyTransition.opacity.combined(with: .slide))
+			}
+			
+			
+			HStack{
+				Spacer()
+				MenuButtons()
+					
+				
+			}
+			.zIndex(99)
+			.offset(y: 50)
+			
+			
+			
+		}
+		
+	}
+	
 }
 
 
 
 
 
-
-
-
-struct PriceSlide: View {
-  @State
-  var isPriceRevealed = false
-
-  var body: some View {
-    ZStack {
-      LinearGradient(
-        colors: [.black, Color(red: 0.45, green: 0.45, blue: 0.52)],
-        startPoint: .top,
-        endPoint: .bottom
-      )
-
-    if isPriceRevealed {
-        Text("$499")
-          .transition(
-             .identity
-             .animation(.linear(duration: 1).delay(2))
-             .combined(
-               with: .movingParts.anvil
-             )
-          )
-      } else {
-          Text("$999")
-            .transition(
-              .asymmetric(
-                insertion: .identity,
-                removal: .opacity.animation(.easeOut(duration: 0.2)))
-            )
-      }
-    }
-    .font(.largeTitle.bold())
-    .foregroundColor(.white)
-    .contentShape(Rectangle())
-    .onTapGesture {
-      withAnimation {
-        isPriceRevealed.toggle()
-      }
-    }
-  }
-}
 
 
 #Preview {
     ContentView()
+		.environmentObject(peacock.shared)
 }
   

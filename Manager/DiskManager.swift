@@ -11,54 +11,61 @@ import SwiftUI
 import Alamofire
 import JDStatusBarNotification
 
+enum Page:String,Identifiable, CaseIterable{
+	case home = "house.circle"
+	case setting = "gear.circle"
+	case photo = "photo.artframe.circle"
+	var id: String { self.rawValue }
+}
+
+
 
 final class peacock:ObservableObject {
     
     static let shared = peacock()
     
     private init() { }
+	
     
     @Published var selectedItem: CategoryData = CategoryData.example
     
     @Published var selectCard:MemberCardData = MemberCardData.nonmember
+	
     
-    @Published var showSettings:Bool = false
-    
-    
-    private let session = URLSession(configuration: .default)
+	@Published var page :Page = .home
+	
+	@Published var showMenu:Bool = false
+	
     
     
     func updateItem(url:String,completion:((Bool) -> Void)? = nil){
         
         if !startsWithHttpOrHttps(url){
-			self.toast("地址不正确", mode: .light)
+			Task{
+				await self.toast("地址不正确", mode: .light)
+			}
+			
             completion?(false)
             return
         }
         
-        Task{
-            
-            getData(url: url) { (result: TotalData?) in
-                if let data = result{
-                    Task{
-                        await self.importData(totaldata: data)
-                        DispatchQueue.main.async {
-							self.toast("更新成功", mode: .success)
-                        }
-                        completion?(true)
-                    }
-                }else{
-                    DispatchQueue.main.async {
-						self.toast("更新失败", mode: .matrix)
-                    }
-                    completion?(false)
-                }
-               
-                
-                
-            }
-            
-            
+		Task{
+			
+			getData(url: url) { (result: TotalData?) in
+			
+				Task{
+					if let data = result{
+						await self.importData(totaldata: data)
+						await self.toast("更新成功", mode: .success)
+						completion?(true)
+					}else{
+						await self.toast("更新失败", mode: .matrix)
+						completion?(false)
+					}
+				}
+			}
+			
+			
         }
         
     }
@@ -68,17 +75,10 @@ final class peacock:ObservableObject {
         if !startsWithHttpOrHttps(url){
             completion?(false)
         }
+		
+		uploadFile(url: url,completion: completion)
         
-        Task{
-            
-            do{
-                let data = try JSONEncoder().encode(self.exportTotalData()).toData()
-                uploadFile(url: url, data: data,completion: completion)
-            }catch{
-                completion?(false)
-            }
-        }
-        
+		
     }
     
     
@@ -88,33 +88,70 @@ final class peacock:ObservableObject {
         return test.evaluate(with: urlString)
     }
     
+
     
-    func uploadFile(url: String, data: Data,completion: ((Bool)->Void)?) {
-        
-        AF.upload(data, to: url).responseDecodable(of: Bool.self) { response in
-            switch response.result{
-            case .success(let data):
-               completion?(data)
-            case .failure(_):
-               completion?(false)
-            }
-        }
-    }
+	func uploadFile(url: String, completion: ((Bool)->Void)?) {
+		
+		
+		
+		if let fileURL = saveJSONToTempFile(object: self.exportTotalData(), fileName: "menus"),
+			let requestUrl = URL(string: url) {
+			
+			var request = URLRequest(url: requestUrl)
+			request.httpMethod = HTTPMethod.post.rawValue
+			request.cachePolicy = .reloadIgnoringLocalCacheData // 禁用缓存
+			
+			
+			AF.upload(multipartFormData: { multipartFormData in
+				// 添加文件数据
+				multipartFormData.append(fileURL, withName: "file", fileName: fileURL.lastPathComponent, mimeType: "application/json")
+			}, with: request)
+			.responseDecodable(of: [String: Bool].self) { response in
+				switch response.result {
+				case .success(let data):
+					debugPrint(data)
+					completion?(data["status"] ?? false)
+				case .failure(let err):
+					debugPrint(err)
+					completion?(false)
+				}
+			}
+			
+		}else{
+			completion?(false)
+		
+		}
+		
+	}
     
     
-    func getData<T: Codable>(url: String, completion: @escaping (T?)-> Void) {
-        
-        AF.request(url).responseDecodable(of: T.self) { response in
-            switch response.result{
-            case .success(let data):
-               completion(data)
-            case .failure(_):
-                completion(nil)
-            }
-        }
-    
-    }
-    
+	func getData<T: Codable>(url: String, completion: @escaping (T?)-> Void) {
+		
+		
+		
+		if let requestUrl = URL(string: url){
+			
+			var request = URLRequest(url: requestUrl)
+			request.httpMethod = HTTPMethod.get.rawValue
+			request.cachePolicy = .reloadIgnoringLocalCacheData
+			
+			AF.request(request).responseDecodable(of: T.self) { response in
+				
+				switch response.result{
+				case .success(let data):
+					completion(data)
+				case .failure(_):
+					completion(nil)
+				}
+			}
+		}else{
+			completion(nil)
+		}
+		
+		
+		
+	}
+	
 
 }
 
@@ -179,14 +216,18 @@ extension peacock{
         let itemSubtitle =  totaldata.homeItemsSubTitle
         let setting =  totaldata.autoSetting
         let password =  totaldata.settingPassword
+		
+		
         
         
         if !cards.isEmpty{
             Defaults[.Cards] = cards
+			
         }
         
         if !categorys.isEmpty{
             Defaults[.Categorys] = categorys
+			
         }
         
         if !subcategorys.isEmpty{
@@ -219,10 +260,12 @@ extension peacock{
         
         if let password = password{
             Defaults[.settingPassword] = password
+			
             
         }
     }
 	
+	@MainActor
 	func toast(_ message:String,mode:IncludedStatusBarNotificationStyle = .defaultStyle,duration:Double = 1.6){
 		
 		NotificationPresenter.shared.present(message, includedStyle: mode, duration: duration) { presenter in

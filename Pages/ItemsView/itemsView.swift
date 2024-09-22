@@ -10,7 +10,8 @@ import ScalingHeaderScrollView
 import Defaults
 
 struct itemsView: View {
-    @StateObject var manager = peacock.shared
+	
+	@EnvironmentObject var manager:peacock
     @Binding var show:Bool
     var detailName:Namespace.ID
     
@@ -93,7 +94,7 @@ struct itemsView: View {
             Color.background
         )
         .ignoresSafeArea()
-        
+		
         
         
         
@@ -329,7 +330,8 @@ struct itemsView: View {
 
 
 struct PickerOfCardView: View {
-    @StateObject var manager = peacock.shared
+
+	@EnvironmentObject var manager:peacock
     @Default(.Cards) var cards
     let nonmember = MemberCardData.nonmember
     var body: some View {
@@ -358,4 +360,5 @@ struct PickerOfCardView: View {
 
 #Preview {
     itemsView(show: .constant(true), detailName: Namespace().wrappedValue)
+		.environmentObject(peacock.shared)
 }

@@ -126,7 +126,7 @@ struct itemView: View {
 
 
 struct itemCardView: View {
-    @StateObject var manager = peacock.shared
+	@EnvironmentObject var manager:peacock
     
     var data:ItemData
     
@@ -453,6 +453,7 @@ enum priceType {
 
 #Preview {
     itemView()
+		.environmentObject(peacock.shared)
 }
 
 

@@ -9,12 +9,13 @@ import Defaults
 import SwiftUI
 
 struct SubCategorySettingView: View {
-    @StateObject var manager = peacock.shared
+	@EnvironmentObject var manager:peacock
     @Default(.Subcategorys) var items
     @Default(.Categorys) var categoryItems
     @Binding var columnVisibility: NavigationSplitViewVisibility
+	@State private var selectedItem:SubCategoryData?
     var body: some View {
-        List {
+		List(selection: $selectedItem) {
             ForEach($items, id: \.id){item in
                 NavigationLink{
                     ChangeSubcategoryView(item: item)
@@ -24,9 +25,23 @@ struct SubCategorySettingView: View {
                         Spacer()
                         Text("\(categoryTitle(id: item.categoryId.wrappedValue))")
                     }
+					.swipeActions(edge: .leading, allowsFullSwipe: true) {
+						Button{
+							// TODO: 删除
+							if let index = items.firstIndex(where: {$0 == item.wrappedValue}){
+								let newItem = item.wrappedValue.copy()
+								items.insert(newItem,at: index)
+								self.selectedItem = newItem
+							}
+							
+						}label: {
+							Text("复制")
+						}
+					}
                     
                 }
                 .listRowSpacing(30)
+				.tag(item.wrappedValue)
             }
             .onDelete(perform: manager.removeSubcategoryItems)
             .onMove(perform: { indices, newOffset in
@@ -38,7 +53,9 @@ struct SubCategorySettingView: View {
         .toolbar{
             ToolbarItem {
                 Button{
-                    items.insert(SubCategoryData.space(), at: 0)
+					let item = SubCategoryData.space()
+                    items.insert(item, at: 0)
+					self.selectedItem = item
                 }label: {
                     Image(systemName: "plus")
                 }
@@ -98,4 +115,5 @@ struct ChangeSubcategoryView:View {
 
 #Preview {
     SubCategorySettingView(columnVisibility: .constant(.all))
+		.environmentObject(peacock.shared)
 }

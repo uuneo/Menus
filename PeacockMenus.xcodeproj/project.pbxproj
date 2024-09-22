@@ -16,6 +16,9 @@
 		19818B722C8DCFAF001A2964 /* ExportDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19818B712C8DCFAF001A2964 /* ExportDataView.swift */; };
 		1985A7AD2C9FDCE9003D255B /* JDStatusBarNotification in Frameworks */ = {isa = PBXBuildFile; productRef = 1985A7AC2C9FDCE9003D255B /* JDStatusBarNotification */; };
 		1985A7AF2C9FEF46003D255B /* OtherViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1985A7AE2C9FEF41003D255B /* OtherViews.swift */; };
+		1985A7B12CA00E95003D255B /* HomeSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1985A7B02CA00E94003D255B /* HomeSettingView.swift */; };
+		1985A7B32CA0350E003D255B /* MenuButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1985A7B22CA0350E003D255B /* MenuButtons.swift */; };
+		1985A7B62CA03643003D255B /* PhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1985A7B52CA03643003D255B /* PhotosView.swift */; };
 		198706EB2C94114800F59CE9 /* extension+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198706EA2C94114800F59CE9 /* extension+.swift */; };
 		198706F32C941E5000F59CE9 /* HomeItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198706F22C941E5000F59CE9 /* HomeItemsView.swift */; };
 		198706F52C941F5400F59CE9 /* HomeVipCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198706F42C941F5400F59CE9 /* HomeVipCards.swift */; };
@@ -70,6 +73,9 @@
 		197768A72C99C9FB00F40521 /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
 		19818B712C8DCFAF001A2964 /* ExportDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportDataView.swift; sourceTree = "<group>"; };
 		1985A7AE2C9FEF41003D255B /* OtherViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViews.swift; sourceTree = "<group>"; };
+		1985A7B02CA00E94003D255B /* HomeSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSettingView.swift; sourceTree = "<group>"; };
+		1985A7B22CA0350E003D255B /* MenuButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButtons.swift; sourceTree = "<group>"; };
+		1985A7B52CA03643003D255B /* PhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosView.swift; sourceTree = "<group>"; };
 		198706EA2C94114800F59CE9 /* extension+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+.swift"; sourceTree = "<group>"; };
 		198706F22C941E5000F59CE9 /* HomeItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeItemsView.swift; sourceTree = "<group>"; };
 		198706F42C941F5400F59CE9 /* HomeVipCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVipCards.swift; sourceTree = "<group>"; };
@@ -122,6 +128,14 @@
 				197768882C9863F000F40521 /* UniformTypeIdentifiers.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1985A7B42CA0362E003D255B /* PhotoView */ = {
+			isa = PBXGroup;
+			children = (
+				1985A7B52CA03643003D255B /* PhotosView.swift */,
+			);
+			path = PhotoView;
 			sourceTree = "<group>";
 		};
 		198706F02C941D7900F59CE9 /* VipCardView */ = {
@@ -209,7 +223,6 @@
 		199075C62C8B544800E23FD7 /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				1985A7AE2C9FEF41003D255B /* OtherViews.swift */,
 				1990759B2C87F1AB00E23FD7 /* TextField+.swift */,
 				199075C42C8B3E0800E23FD7 /* DropDelegate+.swift */,
 				199075BA2C8B0D9A00E23FD7 /* PeacockProtocol.swift */,
@@ -221,11 +234,14 @@
 		19D231D52C93FCBF001044BB /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				1985A7B42CA0362E003D255B /* PhotoView */,
 				19E5B8C02C8DC7A600EC77F7 /* SettingsView */,
 				198706F12C941D8F00F59CE9 /* ItemsView */,
 				198706F02C941D7900F59CE9 /* VipCardView */,
 				198706F82C9420BE00F59CE9 /* HomeView.swift */,
 				197768A72C99C9FB00F40521 /* AppIconView.swift */,
+				1985A7AE2C9FEF41003D255B /* OtherViews.swift */,
+				1985A7B22CA0350E003D255B /* MenuButtons.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -242,6 +258,7 @@
 				194BBAA82C8DD0E1002EAA09 /* AppSettings.swift */,
 				19818B712C8DCFAF001A2964 /* ExportDataView.swift */,
 				194BBAA62C8DD04F002EAA09 /* ImportDataView.swift */,
+				1985A7B02CA00E94003D255B /* HomeSettingView.swift */,
 			);
 			path = SettingsView;
 			sourceTree = "<group>";
@@ -339,9 +356,11 @@
 				194BBAA92C8DD0E1002EAA09 /* AppSettings.swift in Sources */,
 				19D231D72C93FCDC001044BB /* itemsView.swift in Sources */,
 				197768A82C99C9FB00F40521 /* AppIconView.swift in Sources */,
+				1985A7B62CA03643003D255B /* PhotosView.swift in Sources */,
 				194BBAA72C8DD04F002EAA09 /* ImportDataView.swift in Sources */,
 				19DDEC212C96CA8800C86EC5 /* vipCardSettingView.swift in Sources */,
 				19CD68A62C9829D500AF6CF8 /* BasicSettingsView.swift in Sources */,
+				1985A7B32CA0350E003D255B /* MenuButtons.swift in Sources */,
 				1990759C2C87F1AB00E23FD7 /* TextField+.swift in Sources */,
 				1990758E2C87E9DF00E23FD7 /* ImageManager.swift in Sources */,
 				19DDEC232C96CAC200C86EC5 /* CategorySettingView.swift in Sources */,
@@ -358,6 +377,7 @@
 				198707042C956D3500F59CE9 /* itemView.swift in Sources */,
 				19F835B62C8F0A000083A66D /* VipCardView.swift in Sources */,
 				19DDEC252C96CAE000C86EC5 /* SubCategorySettingView.swift in Sources */,
+				1985A7B12CA00E95003D255B /* HomeSettingView.swift in Sources */,
 				199075C52C8B3E0800E23FD7 /* DropDelegate+.swift in Sources */,
 				19E40CCC2C9AF6360077F71F /* DataModal.swift in Sources */,
 				199075A92C89C73F00E23FD7 /* DiskManager.swift in Sources */,

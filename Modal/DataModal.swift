@@ -77,6 +77,10 @@ struct SubCategoryData: PeacockProtocol{
     static func space() -> SubCategoryData {
         return SubCategoryData(categoryId: Defaults[.Categorys].first?.id ?? UUID().uuidString, title: "新项目", subTitle: "", footer: "")
     }
+	
+	func copy() -> SubCategoryData {
+		return SubCategoryData(id: UUID().uuidString, categoryId: categoryId, title: title, subTitle: subTitle, footer: footer)
+	}
     
 }
 
@@ -97,6 +101,10 @@ struct ItemData: PeacockProtocol{
     static func space() -> ItemData {
         return ItemData(categoryId: Defaults[.Categorys].first?.id ?? UUID().uuidString, subcategoryId: Defaults[.Subcategorys].first?.id ?? UUID().uuidString, title: "新项目", subTitle: "NewItem", price1: PriceData(prefix: "¥", money: 0, suffix: "元/次", discount: false), price2: PriceData(prefix: "¥", money: 0, suffix: "元/次", discount: false), price3: PriceData(prefix: "¥", money: 0, suffix: "元/6次", discount: false), price4: PriceData(prefix: "¥", money: 0, suffix: "元/12次", discount: false))
     }
+	
+	func copy() -> ItemData {
+		return ItemData( id: UUID().uuidString, categoryId: categoryId, subcategoryId: subcategoryId, title: title, subTitle: subTitle, header: header, price1: price1, price2: price2, price3: price3, price4: price4)
+	}
 }
 
 struct PriceData: PeacockProtocol{

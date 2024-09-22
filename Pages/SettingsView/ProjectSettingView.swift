@@ -9,12 +9,14 @@ import SwiftUI
 import Defaults
 
 struct ProjectSettingView: View {
-    @StateObject var manager = peacock.shared
+	@EnvironmentObject var manager:peacock
     @Default(.Items) var items
     @Default(.Subcategorys) var subcategoryItems
     @Default(.Categorys) var categoryItems
     @Binding var columnVisibility: NavigationSplitViewVisibility
     @State private var searchText:String = ""
+	
+	@State private var selectItem:ItemData?
     
     var filterItems:[ItemData]{
         let itemsData = items.filter({$0.title.contains(searchText)})
@@ -23,26 +25,41 @@ struct ProjectSettingView: View {
     
     
     var body: some View {
-        List {
+		List(selection: $selectItem ) {
             if items.filter({$0.title.contains(searchText)}).count == 0{
                 ForEach($items,id: \.id){item in
                     
-                 
                     
                     NavigationLink{
                         ChangeItemView(item: item)
                     }label: {
                         HStack{
-                            Text("\(item.title.wrappedValue)")
+							Text(subcategoryTitle(item: item.wrappedValue))
                             Spacer()
-                            Text(subcategoryTitle(item: item.wrappedValue))
+							Text("\(item.title.wrappedValue)")
                         }
+						.swipeActions(edge: .leading, allowsFullSwipe: true) {
+							Button{
+								// TODO: 删除
+								if let index = items.firstIndex(where: {$0 == item.wrappedValue}){
+									let newItem = item.wrappedValue.copy()
+									items.insert(newItem,at: index)
+									self.selectItem = newItem
+								}
+								
+							}label: {
+								Text("复制")
+							}
+						}
                     }
+					.tag(item.wrappedValue)
                 }
+				
                 .onDelete(perform: manager.removeItems)
                 .onMove { indexSet, number in
                     items.move(fromOffsets: indexSet, toOffset: number)
                 }
+				
             
             }else{
                 ForEach(filterItems,id: \.id){item in
@@ -249,4 +266,5 @@ struct ChangeItemView:View {
 
 #Preview {
     ProjectSettingView(columnVisibility: .constant(.all))
+		.environmentObject(peacock.shared)
 }

@@ -8,6 +8,12 @@
             "state" : "translated",
             "value" : "%@"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
         }
       }
     },
@@ -50,25 +56,11 @@
             "state" : "translated",
             "value" : "%lld"
           }
-        }
-      }
-    },
-    "$499" : {
-      "localizations" : {
-        "en" : {
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "499"
-          }
-        }
-      }
-    },
-    "$999" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "$999"
+            "value" : "%lld"
           }
         }
       }
@@ -79,6 +71,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "$"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¥"
           }
         }
       }
@@ -103,13 +101,12 @@
         }
       }
     },
-    "上传地址" : {
-      "extractionState" : "stale",
+    "一次相遇，终身美好" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Upload Address"
+            "value" : "A single encounter, a lifetime of beauty."
           }
         }
       }
@@ -354,6 +351,9 @@
         }
       }
     },
+    "复制" : {
+
+    },
     "完成" : {
       "localizations" : {
         "en" : {
@@ -394,22 +394,12 @@
         }
       }
     },
-    "忘记密码" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Forgot Password"
-          }
-        }
-      }
-    },
     "恢复初始化" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " Restore Initialization"
+            "value" : "Restore Initialization"
           }
         }
       }
@@ -469,7 +459,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " File Import Priority Over Text Import"
+            "value" : "File Import Priority Over Text Import"
           }
         }
       }

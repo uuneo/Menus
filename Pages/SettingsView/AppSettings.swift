@@ -16,7 +16,8 @@ struct AppSettings: View {
     @Default(.homeItemsSubTitle) var homeItemsSubTitle
     @Default(.settingPassword) var settingPassword
     @Default(.autoSetting) var autoSetting
-    @StateObject private var manager = peacock.shared
+
+	@EnvironmentObject var manager:peacock
     @State private var uploadProgress:Bool  = false
     var body: some View {
         List {
@@ -85,11 +86,7 @@ struct AppSettings: View {
                     uploadProgress = true
                     manager.uploadItem(url: autoSetting.url){success in
                         uploadProgress = false
-                        DispatchQueue.main.async{
-							
-							manager.toast(success ? "项目同步成功" : "项目同步失败", mode: success ? .success : .matrix)
-								
-                        }
+						manager.toast(success ? "项目同步成功" : "项目同步失败", mode: success ? .success : .matrix)
                     }
                 }label:{
                     
@@ -112,4 +109,6 @@ struct AppSettings: View {
 
 #Preview {
     AppSettings()
+		.environmentObject(peacock.shared)
 }
+

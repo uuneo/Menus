@@ -9,7 +9,8 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct ImportDataView: View {
-    @StateObject var manager = peacock.shared
+
+	@EnvironmentObject var manager:peacock
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
     @State private var alertTitle: String = ""
@@ -162,4 +163,5 @@ struct ImportDataView: View {
 
 #Preview {
     ImportDataView()
+		.environmentObject(peacock.shared)
 }
