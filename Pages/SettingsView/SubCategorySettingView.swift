@@ -76,19 +76,19 @@ struct ChangeSubcategoryView:View {
             
             Section{
                 TextField("项目小类", text: $item.title)
-                    .customTitleField(icon: "pencil")
+                    .customField(icon: "pencil")
             }header:{
                 Text("项目小类")
             }
             Section{
                 TextField("项目小类副标题", text: $item.subTitle)
-                    .customTitleField(icon: "pencil")
+                    .customField(icon: "pencil")
             }header: {
                 Text("项目小类副标题")
             }
             Section{
                 TextField("项目小类底部", text: $item.footer)
-                    .customTitleField(icon: "pencil")
+                    .customField(icon: "pencil")
             }header: {
                 Text("项目小类底部")
             }

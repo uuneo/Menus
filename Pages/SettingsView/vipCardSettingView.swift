@@ -71,7 +71,7 @@ struct changeVipCardView: View {
             
             Section{
                 TextField("标题", text: $card.title)
-                    .customTitleField(icon: "pencil")
+                    .customField(icon: "pencil")
             }header: {
                 Text("卡名称")
             }
@@ -79,7 +79,7 @@ struct changeVipCardView: View {
             
             Section{
                 TextField("副标题", text: $card.subTitle)
-                    .customTitleField(icon: "pencil")
+                    .customField(icon: "pencil")
             }header: {
                 Text("副标题")
             }
@@ -87,20 +87,20 @@ struct changeVipCardView: View {
             
             Section{
                 TextField("金额", value: $card.money, formatter: NumberFormatter())
-                    .customTitleField(icon: "pencil")
+                    .customField(icon: "pencil")
             }header: {
                 Text("金额")
             }
             
             Section{
                 TextField("折扣名称", text: $card.name)
-                    .customTitleField(icon: "pencil")
+                    .customField(icon: "pencil")
             }header: {
                 Text("折扣名称")
             }
             Section{
                 TextField("折扣", value: $card.discount, formatter: formatter)
-                    .customTitleField(icon: "pencil")
+                    .customField(icon: "pencil")
                     .onChange(of: card.discount) { _ , newValue in
                         if newValue > 1{
                             card.discount = 1
@@ -116,7 +116,7 @@ struct changeVipCardView: View {
             
             Section{
                 TextField("折扣2", value: $card.discount2, formatter: formatter)
-                    .customTitleField(icon: "pencil")
+                    .customField(icon: "pencil")
                     .onChange(of: card.discount2) { _ , newValue in
                         if newValue > 1{
                             card.discount = 1
@@ -132,7 +132,7 @@ struct changeVipCardView: View {
             Section{
                 
                   TextField("图片", text: $card.image)
-                      .customTitleField(icon: "pencil")
+                      .customField(icon: "pencil")
             }header: {
                 Text("图片地址")
             }
@@ -140,7 +140,7 @@ struct changeVipCardView: View {
             
             Section{
                 TextEditor(text:  $card.footer)
-                    .customTitleField(icon: "pencil")
+                    .customField(icon: "pencil")
             }header: {
                 Text("中间文字")
             }

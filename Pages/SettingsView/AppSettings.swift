@@ -74,7 +74,7 @@ struct AppSettings: View {
             
             Section {
                 SecureField("输入密码", text: $settingPassword)
-                    .customTitleField(icon: "lock")
+                    .customField(icon: "lock")
             }header: {
                 Label("设置密码", systemImage: "lock")
             }

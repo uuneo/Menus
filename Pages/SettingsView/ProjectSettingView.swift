@@ -151,7 +151,7 @@ struct ChangeItemView:View {
             
             Section{
                 TextField("项目名称", text: $item.title)
-                    .customTitleField(icon: "pencil")
+                    .customField(icon: "pencil")
                
             }header: {
                 Text("项目名称")
@@ -159,7 +159,7 @@ struct ChangeItemView:View {
             
             Section{
                 TextField("项目副标题", text: $item.subTitle)
-                    .customTitleField(icon: "pencil")
+                    .customField(icon: "pencil")
             }header: {
                 Text("项目副标题")
             }
@@ -167,7 +167,7 @@ struct ChangeItemView:View {
             
             Section{
                 TextField("项目小类别", text: $item.header)
-                    .customTitleField(icon: "pencil")
+                    .customField(icon: "pencil")
             }header: {
                 Text("项目小类别")
             }
@@ -178,14 +178,14 @@ struct ChangeItemView:View {
             Section{
                 
                 TextField("价格", value: $item.price1.money, formatter: NumberFormatter())
-                    .customTitleField(icon: "pencil",title: "价格")
+                    .customField(icon: "pencil",title: "价格")
                 
                 TextField("前缀", text: $item.price1.prefix)
-                    .customTitleField(icon: "pencil",title: "前缀")
+                    .customField(icon: "pencil",title: "前缀")
                 
                 
                 TextField("后缀", text: $item.price1.suffix)
-                    .customTitleField(icon: "pencil",title: "后缀")
+                    .customField(icon: "pencil",title: "后缀")
                 
                 Toggle("是否打折", isOn: $item.price1.discount)
                 
@@ -195,14 +195,14 @@ struct ChangeItemView:View {
             
             Section{
                 TextField("价格", value: $item.price2.money, formatter: NumberFormatter())
-                    .customTitleField(icon: "pencil",title: "价格")
+                    .customField(icon: "pencil",title: "价格")
                 
                 TextField("前缀", text: $item.price2.prefix)
-                    .customTitleField(icon: "pencil",title: "前缀")
+                    .customField(icon: "pencil",title: "前缀")
                 
                
                 TextField("后缀", text: $item.price2.suffix)
-                    .customTitleField(icon: "pencil",title: "后缀")
+                    .customField(icon: "pencil",title: "后缀")
                 
                 Toggle("是否打折", isOn: $item.price2.discount)
                 
@@ -213,13 +213,13 @@ struct ChangeItemView:View {
             Section{
                 
                 TextField("价格", value: $item.price3.money, formatter: NumberFormatter())
-                    .customTitleField(icon: "pencil",title: "价格")
+                    .customField(icon: "pencil",title: "价格")
                 
                 TextField("前缀", text: $item.price3.prefix)
-                    .customTitleField(icon: "pencil",title: "前缀")
+                    .customField(icon: "pencil",title: "前缀")
                 
                 TextField("后缀", text: $item.price3.suffix)
-                    .customTitleField(icon: "pencil",title: "后缀")
+                    .customField(icon: "pencil",title: "后缀")
                 
                 Toggle("是否打折", isOn: $item.price3.discount)
                 
@@ -230,13 +230,13 @@ struct ChangeItemView:View {
             Section{
                 
                 TextField("价格", value: $item.price4.money, formatter: NumberFormatter())
-                    .customTitleField(icon: "pencil",title: "价格")
+                    .customField(icon: "pencil",title: "价格")
                 
                 TextField("前缀", text: $item.price4.prefix)
-                    .customTitleField(icon: "pencil",title: "前缀")
+                    .customField(icon: "pencil",title: "前缀")
                 
                 TextField("后缀", text: $item.price4.suffix)
-                    .customTitleField(icon: "pencil",title: "后缀")
+                    .customField(icon: "pencil",title: "后缀")
                 
                 Toggle("是否打折", isOn: $item.price4.discount)
                 

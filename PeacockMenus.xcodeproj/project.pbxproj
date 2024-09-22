@@ -15,6 +15,7 @@
 		197768A82C99C9FB00F40521 /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197768A72C99C9FB00F40521 /* AppIconView.swift */; };
 		19818B722C8DCFAF001A2964 /* ExportDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19818B712C8DCFAF001A2964 /* ExportDataView.swift */; };
 		1985A7AD2C9FDCE9003D255B /* JDStatusBarNotification in Frameworks */ = {isa = PBXBuildFile; productRef = 1985A7AC2C9FDCE9003D255B /* JDStatusBarNotification */; };
+		1985A7AF2C9FEF46003D255B /* OtherViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1985A7AE2C9FEF41003D255B /* OtherViews.swift */; };
 		198706EB2C94114800F59CE9 /* extension+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198706EA2C94114800F59CE9 /* extension+.swift */; };
 		198706F32C941E5000F59CE9 /* HomeItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198706F22C941E5000F59CE9 /* HomeItemsView.swift */; };
 		198706F52C941F5400F59CE9 /* HomeVipCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198706F42C941F5400F59CE9 /* HomeVipCards.swift */; };
@@ -26,12 +27,10 @@
 		1990757E2C86100100E23FD7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990757D2C86100100E23FD7 /* ContentView.swift */; };
 		199075802C86100300E23FD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1990757F2C86100300E23FD7 /* Assets.xcassets */; };
 		199075832C86100300E23FD7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 199075822C86100300E23FD7 /* Preview Assets.xcassets */; };
-		1990758C2C87E93400E23FD7 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990758B2C87E93400E23FD7 /* AsyncImageView.swift */; };
 		1990758E2C87E9DF00E23FD7 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990758D2C87E9DF00E23FD7 /* ImageManager.swift */; };
 		199075912C87EA0C00E23FD7 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 199075902C87EA0C00E23FD7 /* Kingfisher */; };
-		1990759C2C87F1AB00E23FD7 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990759B2C87F1AB00E23FD7 /* Array+.swift */; };
+		1990759C2C87F1AB00E23FD7 /* TextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990759B2C87F1AB00E23FD7 /* TextField+.swift */; };
 		199075A92C89C73F00E23FD7 /* DiskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199075A82C89C73F00E23FD7 /* DiskManager.swift */; };
-		199075B42C8AC8CB00E23FD7 /* ButtonView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199075B32C8AC8CB00E23FD7 /* ButtonView+.swift */; };
 		199075BB2C8B0D9A00E23FD7 /* PeacockProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199075BA2C8B0D9A00E23FD7 /* PeacockProtocol.swift */; };
 		199075C52C8B3E0800E23FD7 /* DropDelegate+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199075C42C8B3E0800E23FD7 /* DropDelegate+.swift */; };
 		199BB8E12C9EDE2900D25774 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 199BB8E02C9EDE2900D25774 /* Alamofire */; };
@@ -70,6 +69,7 @@
 		197768882C9863F000F40521 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
 		197768A72C99C9FB00F40521 /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
 		19818B712C8DCFAF001A2964 /* ExportDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportDataView.swift; sourceTree = "<group>"; };
+		1985A7AE2C9FEF41003D255B /* OtherViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViews.swift; sourceTree = "<group>"; };
 		198706EA2C94114800F59CE9 /* extension+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+.swift"; sourceTree = "<group>"; };
 		198706F22C941E5000F59CE9 /* HomeItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeItemsView.swift; sourceTree = "<group>"; };
 		198706F42C941F5400F59CE9 /* HomeVipCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVipCards.swift; sourceTree = "<group>"; };
@@ -81,11 +81,9 @@
 		1990757D2C86100100E23FD7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1990757F2C86100300E23FD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		199075822C86100300E23FD7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1990758B2C87E93400E23FD7 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		1990758D2C87E9DF00E23FD7 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
-		1990759B2C87F1AB00E23FD7 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
+		1990759B2C87F1AB00E23FD7 /* TextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+.swift"; sourceTree = "<group>"; };
 		199075A82C89C73F00E23FD7 /* DiskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskManager.swift; sourceTree = "<group>"; };
-		199075B32C8AC8CB00E23FD7 /* ButtonView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ButtonView+.swift"; sourceTree = "<group>"; };
 		199075BA2C8B0D9A00E23FD7 /* PeacockProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeacockProtocol.swift; sourceTree = "<group>"; };
 		199075C42C8B3E0800E23FD7 /* DropDelegate+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DropDelegate+.swift"; sourceTree = "<group>"; };
 		19CD68A32C97DC7900AF6CF8 /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
@@ -199,15 +197,6 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
-		199075942C87EBE200E23FD7 /* OtherView */ = {
-			isa = PBXGroup;
-			children = (
-				1990758B2C87E93400E23FD7 /* AsyncImageView.swift */,
-				199075B32C8AC8CB00E23FD7 /* ButtonView+.swift */,
-			);
-			path = OtherView;
-			sourceTree = "<group>";
-		};
 		1990759A2C87F19100E23FD7 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,8 +209,8 @@
 		199075C62C8B544800E23FD7 /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				199075942C87EBE200E23FD7 /* OtherView */,
-				1990759B2C87F1AB00E23FD7 /* Array+.swift */,
+				1985A7AE2C9FEF41003D255B /* OtherViews.swift */,
+				1990759B2C87F1AB00E23FD7 /* TextField+.swift */,
 				199075C42C8B3E0800E23FD7 /* DropDelegate+.swift */,
 				199075BA2C8B0D9A00E23FD7 /* PeacockProtocol.swift */,
 				198706EA2C94114800F59CE9 /* extension+.swift */,
@@ -348,13 +337,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				194BBAA92C8DD0E1002EAA09 /* AppSettings.swift in Sources */,
-				199075B42C8AC8CB00E23FD7 /* ButtonView+.swift in Sources */,
 				19D231D72C93FCDC001044BB /* itemsView.swift in Sources */,
 				197768A82C99C9FB00F40521 /* AppIconView.swift in Sources */,
 				194BBAA72C8DD04F002EAA09 /* ImportDataView.swift in Sources */,
 				19DDEC212C96CA8800C86EC5 /* vipCardSettingView.swift in Sources */,
 				19CD68A62C9829D500AF6CF8 /* BasicSettingsView.swift in Sources */,
-				1990759C2C87F1AB00E23FD7 /* Array+.swift in Sources */,
+				1990759C2C87F1AB00E23FD7 /* TextField+.swift in Sources */,
 				1990758E2C87E9DF00E23FD7 /* ImageManager.swift in Sources */,
 				19DDEC232C96CAC200C86EC5 /* CategorySettingView.swift in Sources */,
 				198706F32C941E5000F59CE9 /* HomeItemsView.swift in Sources */,
@@ -364,6 +352,7 @@
 				19CD68A42C97DC7900AF6CF8 /* Mock.swift in Sources */,
 				1990757E2C86100100E23FD7 /* ContentView.swift in Sources */,
 				1990757C2C86100100E23FD7 /* PeacockMenusApp.swift in Sources */,
+				1985A7AF2C9FEF46003D255B /* OtherViews.swift in Sources */,
 				19DDEC272C96CAFD00C86EC5 /* ProjectSettingView.swift in Sources */,
 				198706F52C941F5400F59CE9 /* HomeVipCards.swift in Sources */,
 				198707042C956D3500F59CE9 /* itemView.swift in Sources */,
@@ -373,7 +362,6 @@
 				19E40CCC2C9AF6360077F71F /* DataModal.swift in Sources */,
 				199075A92C89C73F00E23FD7 /* DiskManager.swift in Sources */,
 				199075BB2C8B0D9A00E23FD7 /* PeacockProtocol.swift in Sources */,
-				1990758C2C87E93400E23FD7 /* AsyncImageView.swift in Sources */,
 				19818B722C8DCFAF001A2964 /* ExportDataView.swift in Sources */,
 				19E5B8BF2C8DC04500EC77F7 /* SettingsView.swift in Sources */,
 			);

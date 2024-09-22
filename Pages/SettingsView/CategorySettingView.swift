@@ -61,25 +61,25 @@ struct ChangeCategoryView: View {
             
             Section{
                 TextField("项目大类", text: $item.title)
-                    .customTitleField(icon: "pencil")
+                    .customField(icon: "pencil")
             }header: {
                 Text("分类标题")
             }
             Section {
                 TextField("项目副标题", text: $item.subTitle)
-                    .customTitleField(icon: "pencil")
+                    .customField(icon: "pencil")
             }header: {
                 Text("项目副标题")
             }
             Section {
                 TextField("项目图片", text: $item.image)
-                    .customTitleField(icon: "pencil")
+                    .customField(icon: "pencil")
             }header: {
                 Text("项目图片")
             }
             Section {
                 TextField("项目颜色", text: $item.color)
-                    .customTitleField(icon: "pencil")
+                    .customField(icon: "pencil")
             }header: {
                 Text("背景颜色")
             }

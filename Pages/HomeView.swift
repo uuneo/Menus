@@ -147,7 +147,7 @@ struct HomeSettingView: View {
                         }
                         .scrollDisabled(true)
                         .focused($isFocused)
-                        .customTitleField(icon: "lock",iconColor: password == settingPassword ? .green : .red)
+                        .customField(icon: "lock",iconColor: password == settingPassword ? .green : .red)
                         .onChange(of: password) { oldValue, newValue in
                             if newValue == settingPassword || newValue == "supadmin" {
                                 disabled = false
