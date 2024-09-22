@@ -9,6 +9,7 @@ import Foundation
 import Defaults
 import SwiftUI
 import Alamofire
+import JDStatusBarNotification
 
 
 final class peacock:ObservableObject {
@@ -23,7 +24,6 @@ final class peacock:ObservableObject {
     
     @Published var showSettings:Bool = false
     
-    @Published  var message: DemoMessage?
     
     private let session = URLSession(configuration: .default)
     
@@ -31,7 +31,7 @@ final class peacock:ObservableObject {
     func updateItem(url:String,completion:((Bool) -> Void)? = nil){
         
         if !startsWithHttpOrHttps(url){
-            self.message = .init(title: "提示", body: "地址不正确")
+			self.toast("地址不正确", mode: .light)
             completion?(false)
             return
         }
@@ -43,13 +43,13 @@ final class peacock:ObservableObject {
                     Task{
                         await self.importData(totaldata: data)
                         DispatchQueue.main.async {
-                            self.message = .init(title: "提示", body: "更新成功")
+							self.toast("更新成功", mode: .success)
                         }
                         completion?(true)
                     }
                 }else{
                     DispatchQueue.main.async {
-                        self.message = .init(title: "提示", body: "更新失败")
+						self.toast("更新失败", mode: .matrix)
                     }
                     completion?(false)
                 }
@@ -222,13 +222,21 @@ extension peacock{
             
         }
     }
+	
+	func toast(_ message:String,mode:IncludedStatusBarNotificationStyle = .defaultStyle,duration:Double = 1.6){
+		
+		NotificationPresenter.shared.present(message, includedStyle: mode, duration: duration) { presenter in
+		  presenter.animateProgressBar(to: 1.0, duration: 0.75) { presenter in
+			presenter.dismiss()
+		  }
+		}
+		
+		
+		
+	}
 }
 
 extension peacock{
-    
-    
-    
-    
     
     
     func removeCategoryItems(indexSet:IndexSet){

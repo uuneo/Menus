@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Defaults
-import SwiftMessages
+import JDStatusBarNotification
 
 struct AppSettings: View {
     @Default(.homeCardTitle) var homeCardTitle
@@ -51,26 +51,24 @@ struct AppSettings: View {
             }
             
             Section{
-            
-                Label("上传地址", systemImage: "link")
-                TextField("输入上传更新地址", text: $autoSetting.updateUrl)
-                    .customField(icon: "link")
-                
+
                 Toggle("自动同步", isOn: $autoSetting.enable)
                     .toggleStyle(SwitchToggleStyle(tint: .accentColor))
             
-                TextField("自动同步地址", text: $autoSetting.getUrl)
+				TextField("自动同步地址", text: $autoSetting.url)
                     .customField(icon: "link")
                 
                 
             }header: {
                 Label("自动同步地址", systemImage: "link")
-            }.onChange(of: autoSetting.enable) { _, newValue in
+			}footer: {
+				Text("服务器必须实现GET和POST方法，GET方法返回JSON数据，POST方法接收JSON文件")
+			}
+			
+			
+			.onChange(of: autoSetting.enable) { _, newValue in
                 if newValue{
-                    
-                    manager.updateItem(url: autoSetting.getUrl){success in
-                        self.autoSetting.enable = success
-                    }
+					manager.updateItem(url: autoSetting.url)
                 }
             }
             
@@ -85,10 +83,12 @@ struct AppSettings: View {
             ToolbarItem( placement: .topBarLeading){
                 Button{
                     uploadProgress = true
-                    manager.uploadItem(url: autoSetting.getUrl){success in
+                    manager.uploadItem(url: autoSetting.url){success in
                         uploadProgress = false
                         DispatchQueue.main.async{
-                            manager.message = .init(title: "同步结果", body: success ? "项目同步成功" : "项目同步失败")
+							
+							manager.toast(success ? "项目同步成功" : "项目同步失败", mode: success ? .success : .matrix)
+								
                         }
                     }
                 }label:{
@@ -102,7 +102,7 @@ struct AppSettings: View {
                     
             
                     
-                }.disabled(!manager.startsWithHttpOrHttps(autoSetting.updateUrl))
+                }.disabled(!manager.startsWithHttpOrHttps(autoSetting.url))
             }
            
         }

@@ -7,8 +7,6 @@
 
 import SwiftUI
 import Defaults
-import SwiftMessages
-
 
 @main
 struct PeacockMenusApp: App {
@@ -22,10 +20,12 @@ struct PeacockMenusApp: App {
                 .onChange(of: scenePhase) { _, newvalue in
                     
                     if newvalue == .active{
-                        manager.updateItem(url: autoSetting.getUrl)
+						manager.updateItem(url: autoSetting.url)
                     }
                 }
-                .swiftMessage(message: $manager.message)
+				
+			
+
             
         }
     }

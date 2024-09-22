@@ -1,5 +1,5 @@
 {
-  "originHash" : "b810ed4adc7a0e3a6512645700fc4689ca0230414bb8e8069e0d79b8c5d88abf",
+  "originHash" : "c2c0d01ff7e3675de7b914b02f7579f58ced47fc6a80c4799b02ee4b36fab3fa",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -17,6 +17,15 @@
       "state" : {
         "branch" : "main",
         "revision" : "4c009d5c2496e7aa126e922c94dd3d6ae049efa2"
+      }
+    },
+    {
+      "identity" : "jdstatusbarnotification",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/calimarkus/JDStatusBarNotification.git",
+      "state" : {
+        "revision" : "ffde0bab9fd0b47e426e696b5fe53deefc781452",
+        "version" : "2.2.2"
       }
     },
     {
@@ -44,15 +53,6 @@
       "state" : {
         "branch" : "master",
         "revision" : "eaf89763e29bea3cfbc440f7438ef94603ca407e"
-      }
-    },
-    {
-      "identity" : "swiftmessages",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SwiftKickMobile/SwiftMessages.git",
-      "state" : {
-        "revision" : "b899be48a61ddb209695a8d5e411189b704a7fa3",
-        "version" : "10.0.0"
       }
     },
     {

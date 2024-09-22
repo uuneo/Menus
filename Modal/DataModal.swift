@@ -15,7 +15,7 @@ extension Defaults.Keys{
     static let homeItemsTitle = Key<String>("HomeItemsTitle",default: "项目分类")
     static let homeItemsSubTitle = Key<String>("HomeItemsSubTitle",default: "Peacock-Items")
     static let settingPassword = Key<String>("SettingPassword",default: "")
-    static let autoSetting = Key<AutoAsyncSetting>("AutoSetting",default: AutoAsyncSetting(getUrl: "https://example.com/menus.json", updateUrl: "https://example.com/upload", enable: false))
+    static let autoSetting = Key<AutoAsyncSetting>("AutoSetting",default: AutoAsyncSetting(url: "https://example.com/menus.json", enable: false))
     
     
     static let Cards = Key<[MemberCardData]>("MemberCards",default:MemberCardDataS)
@@ -117,8 +117,7 @@ struct PriceData: PeacockProtocol{
 
 
 struct AutoAsyncSetting: Codable,Defaults.Serializable{
-    var getUrl:String
-    var updateUrl:String = ""
+	var url:String
     var enable:Bool
 }
 

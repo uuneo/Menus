@@ -163,7 +163,7 @@ struct HomeSettingView: View {
                 }
                 .frame(width: ISPAD ? 400 : UIScreen.main.bounds.width - 50, height: 250)
                 .background(Color.orange.gradient)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
+				.clipShape(UnevenRoundedRectangle(topLeadingRadius: 30,topTrailingRadius: 30))
                 
                 VStack{
                     

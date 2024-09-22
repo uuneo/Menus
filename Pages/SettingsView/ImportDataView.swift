@@ -44,14 +44,13 @@ struct ImportDataView: View {
                         
                         
                         if let totaldata = totaldata{
-                            let success =  manager.importData(totaldata: totaldata)
-                            if success{
+                            manager.importData(totaldata: totaldata)
                                 alertTitle = "导入成功"
                                 alertMessage = "数据导入成功"
-                            }else{
-                                alertTitle = "导入失败"
-                                alertMessage = "数据导入失败"
-                            }
+                            
+                        }else{
+                            alertTitle = "导入失败"
+                            alertMessage = "数据导入失败"
                         }
                         
                         showAlert.toggle()

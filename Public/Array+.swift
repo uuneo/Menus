@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 import SwiftUI
-import SwiftMessages
 
 struct RawRepresentableArray<Element>: RawRepresentable where Element: Codable {
     var array: [Element]
@@ -158,42 +157,3 @@ extension View {
     }
 }
 
-
-extension DemoMessage: MessageViewConvertible {
-    func asMessageView() -> DemoMessageView {
-        DemoMessageView(message: self)
-    }
-}
-
-
-struct DemoMessage: Identifiable,Equatable {
-    let title: String
-    let body: String
-    var id: String { title + body }
-}
-
-
-struct DemoMessageView: View {
-
-    let message: DemoMessage
-
-    var body: some View {
-        HStack(alignment: .center) {
-            Text(message.title).font(.system(size: 20, weight: .bold))
-            Text(message.body)
-        }
-        .foregroundStyle(Color.accent1)
-        .multilineTextAlignment(.leading)
-        .padding(30)
-        // This makes the message width greedy
-        .frame(maxWidth: 500)
-        .background(.ultraThinMaterial)
-        // This makes a tab-style view where the bottom corners are rounded and
-        // the view's background extends to the top edge.
-        .mask(
-            UnevenRoundedRectangle(bottomLeadingRadius: 15, bottomTrailingRadius: 15)
-            // This causes the background to extend into the safe area to the screen edge.
-            .edgesIgnoringSafeArea(.top)
-        )
-    }
-}
