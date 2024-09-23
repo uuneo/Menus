@@ -13,13 +13,13 @@ struct SettingsView: View {
 	@EnvironmentObject var manager:peacock
     @Default(.settingPassword) var settingPassword
     @Default(.autoSetting) var autoSetting
-    @Environment(\.dismiss) var dismiss
     @State private var changeTitle:Bool = false
     
     @State private var selectedTab:Int? = 0
     
     @State private var columnVisibility: NavigationSplitViewVisibility = .automatic
     
+	@State private var uploadProgress:Bool  = false
   
     var body: some View {
       
@@ -95,10 +95,33 @@ struct SettingsView: View {
 					DragGesture()
 						.onEnded { value in
 							if value.translation.width > 100 {
-								self.dismiss()
+								manager.page = .home
 							}
 						}
 				)
+				.toolbar {
+					ToolbarItem( placement: .topBarLeading){
+						Button{
+							uploadProgress = true
+							manager.uploadItem(url: autoSetting.url){success in
+								uploadProgress = false
+								manager.toast(success ? "项目同步成功" : "项目同步失败", mode: success ? .success : .matrix)
+							}
+						}label:{
+							
+							if uploadProgress{
+								ProgressView()
+									.progressViewStyle(CircularProgressViewStyle())
+							}else{
+								Image(systemName: "icloud.and.arrow.up")
+							}
+							
+					
+							
+						}.disabled(!manager.startsWithHttpOrHttps(autoSetting.url))
+					}
+				   
+				}
 			
 			
 			
@@ -121,10 +144,12 @@ struct SettingsView: View {
 
 
 struct SettingsIphoneView: View {
+	@EnvironmentObject var manager:peacock
     @State private var selectedTab:Int? = 0
     @State private var columnVisibility: NavigationSplitViewVisibility = .automatic
-    
     @State private var showIconPicker:Bool = false
+	@State private var uploadProgress:Bool  = false
+	@Default(.autoSetting) var autoSetting
     var body: some View {
         NavigationStack{
             List(selection: $selectedTab) {
@@ -220,6 +245,29 @@ struct SettingsIphoneView: View {
                 
               
             }
+			.toolbar {
+				ToolbarItem( placement: .topBarLeading){
+					Button{
+						uploadProgress = true
+						manager.uploadItem(url: autoSetting.url){success in
+							uploadProgress = false
+							manager.toast(success ? "项目同步成功" : "项目同步失败", mode: success ? .success : .matrix)
+						}
+					}label:{
+						
+						if uploadProgress{
+							ProgressView()
+								.progressViewStyle(CircularProgressViewStyle())
+						}else{
+							Image(systemName: "icloud.and.arrow.up")
+						}
+						
+				
+						
+					}.disabled(!manager.startsWithHttpOrHttps(autoSetting.url))
+				}
+			   
+			}
         }
     }
 }

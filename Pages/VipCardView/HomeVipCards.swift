@@ -70,21 +70,30 @@ struct HomeVipCards: View {
     
     
     
-    private var ipadViews: some View{
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(alignment: .center, spacing: 30) {
-              ForEach($cards) { item in
-                  VipCardView(item: item,size: CGSize(width: 355, height: 230), show: $showDetail)
-                      .padding()
-              }
-               
-           }
-           .padding()
-           .padding(.leading, 10)
-        }
-         
-    }
-    
+	private var ipadViews: some View{
+		ScrollViewReader { proxy in
+			ScrollView(.horizontal, showsIndicators: false) {
+				HStack(alignment: .center, spacing: 0) {
+					
+					scallBtn( proxy: proxy, isHead: true)
+					
+					
+					ForEach($cards) { item in
+						VipCardView(item: item,size: CGSize(width: 355, height: 230), show: $showDetail)
+							.scaleEffect(0.95)
+							.padding(.horizontal, 20)
+							.id(item.id)
+					}
+					scallBtn( proxy: proxy, isHead: false)
+					
+				}
+				.padding(.leading, 10)
+			}
+		}
+		
+		
+	}
+	
     
     
 }
@@ -92,3 +101,6 @@ struct HomeVipCards: View {
 #Preview {
     HomeVipCards(Namespace: Namespace().wrappedValue)
 }
+
+
+

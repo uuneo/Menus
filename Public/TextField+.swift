@@ -32,11 +32,30 @@ struct OutlineOverlay: ViewModifier {
 }
 
 
-struct TextFieldModifier: ViewModifier {
+struct TextFieldModifier<T: Equatable>: ViewModifier {
     var icon: String
     var iconColor: Color
     var title: String = ""
-
+	@Binding var data:T
+	
+	func clear(){
+		if data is String{
+			data = "" as! T
+		}else if data is Int{
+			data = 0 as! T
+		}
+	}
+	
+	// 检查值是否为空
+	func isDataEmpty() -> Bool {
+		if let stringValue = data as? String {
+			return stringValue.isEmpty
+		} else if let intValue = data as? Int {
+			return intValue == 0
+		}
+		return true // 默认认为空
+	}
+	
     func body(content: Content) -> some View {
         HStack {
             // 图标
@@ -67,13 +86,32 @@ struct TextFieldModifier: ViewModifier {
                 .background(.thinMaterial)
                 .cornerRadius(20)
                 .modifier(OutlineOverlay(cornerRadius: 20))
+				.overlay {
+					HStack{
+						Spacer()
+						if !isDataEmpty() {
+							Button {
+								clear()
+							} label: {
+								Image(systemName: "xmark")
+									.foregroundStyle(.secondary)
+									.padding(10)
+									.background(.ultraThinMaterial)
+									.clipShape(Circle())
+									.padding(.trailing, 8)
+									.contentShape(Circle())
+							}
+						}
+					}
+				}
+			
         }
         .padding(.horizontal)
     }
 }
 
 extension View {
-	func customField(icon: String,iconColor:Color = Color.secondary,title:String = "") -> some View {
-		self.modifier(TextFieldModifier( icon: icon,iconColor: iconColor,title: title))
+	func customField<T:Equatable>(icon: String,iconColor:Color = Color.secondary,title:String = "", data: Binding<T>) -> some View {
+		self.modifier(TextFieldModifier( icon: icon,iconColor: iconColor,title: title,data: data))
 	}
 }

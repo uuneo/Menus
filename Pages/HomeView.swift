@@ -33,15 +33,14 @@ struct HomeView: View {
 					
 					HStack(alignment: .bottom){
 						HomeVipCards(Namespace: NewHomeName)
-							.padding(.top, 50)
 					}
-					.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.57)
+					.frame(height: UIScreen.main.bounds.height * 0.55 - 10)
 					
 					
-					HStack(alignment: .bottom){
+					HStack(alignment: .top){
 						HomeItemsView(NewHomeName: NewHomeName, showDetail: $showDetail)
 					}
-					.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.43)
+					.frame(height: UIScreen.main.bounds.height * 0.45 - 10)
 					
 					
 				}

@@ -14,53 +14,75 @@ struct SubCategorySettingView: View {
     @Default(.Categorys) var categoryItems
     @Binding var columnVisibility: NavigationSplitViewVisibility
 	@State private var selectedItem:SubCategoryData?
+	
+	@State private var scalId:String?
     var body: some View {
-		List(selection: $selectedItem) {
-            ForEach($items, id: \.id){item in
-                NavigationLink{
-                    ChangeSubcategoryView(item: item)
-                }label: {
-                    HStack{
-                        Text("\(item.title.wrappedValue)")
-                        Spacer()
-                        Text("\(categoryTitle(id: item.categoryId.wrappedValue))")
-                    }
-					.swipeActions(edge: .leading, allowsFullSwipe: true) {
-						Button{
-							// TODO: 删除
-							if let index = items.firstIndex(where: {$0 == item.wrappedValue}){
-								let newItem = item.wrappedValue.copy()
-								items.insert(newItem,at: index)
-								self.selectedItem = newItem
-							}
+		ScrollViewReader { proxy in
+			List(selection: $selectedItem) {
+				
+				ForEach($items, id: \.id){item in
+					NavigationLink{
+						ChangeSubcategoryView(item: item)
+					}label: {
+						HStack{
 							
-						}label: {
-							Text("复制")
+							Text("\(categoryTitle(id: item.categoryId.wrappedValue))")
+							Spacer()
+							Text("\(item.title.wrappedValue)")
+							
+							
 						}
+						.swipeActions(edge: .leading, allowsFullSwipe: true) {
+							Button{
+								// TODO: copy
+								if let index = items.firstIndex(where: {$0 == item.wrappedValue}){
+									let newItem = item.wrappedValue.copy()
+									items.insert(newItem,at: index)
+									self.selectedItem = newItem
+								}
+								
+							}label: {
+								Text("复制")
+							}
+						}
+						
+						
 					}
-                    
-                }
-                .listRowSpacing(30)
-				.tag(item.wrappedValue)
-            }
-            .onDelete(perform: manager.removeSubcategoryItems)
-            .onMove(perform: { indices, newOffset in
-                items.move(fromOffsets: indices, toOffset: newOffset)
-            })
-            
-        }
-        .listStyle(.insetGrouped)
-        .toolbar{
-            ToolbarItem {
-                Button{
-					let item = SubCategoryData.space()
-                    items.insert(item, at: 0)
-					self.selectedItem = item
-                }label: {
-                    Image(systemName: "plus")
-                }
-            }
-        }
+					.listRowSpacing(30)
+					.tag(item.wrappedValue)
+					.id(item.id)
+					
+				}
+				.onDelete(perform: manager.removeSubcategoryItems)
+				.onMove(perform: { indices, newOffset in
+					items.move(fromOffsets: indices, toOffset: newOffset)
+				})
+				
+				
+				
+			}
+			.toolbar{
+				ToolbarItem {
+					Button{
+						let newItem = SubCategoryData.space()
+						items.append(newItem)
+						self.selectedItem = newItem
+						self.scalId = newItem.id
+							
+						
+					}label: {
+						Image(systemName: "plus")
+					}
+				}
+			}
+			.onChange(of: scalId) { oldValue, newValue in
+				withAnimation {
+					proxy.scrollTo(newValue)
+				}
+			}
+			
+		}
+		
        
     }
     
@@ -93,19 +115,19 @@ struct ChangeSubcategoryView:View {
             
             Section{
                 TextField("项目小类", text: $item.title)
-                    .customField(icon: "pencil")
+					.customField(icon: "pencil",data: $item.title)
             }header:{
                 Text("项目小类")
             }
             Section{
                 TextField("项目小类副标题", text: $item.subTitle)
-                    .customField(icon: "pencil")
+					.customField(icon: "pencil",data: $item.subTitle)
             }header: {
                 Text("项目小类副标题")
             }
             Section{
                 TextField("项目小类底部", text: $item.footer)
-                    .customField(icon: "pencil")
+					.customField(icon: "pencil",data:  $item.footer)
             }header: {
                 Text("项目小类底部")
             }

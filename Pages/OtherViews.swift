@@ -81,3 +81,32 @@ struct AsyncImageView: View {
 	}
 }
 
+
+
+struct scallBtn:View {
+	var proxy:ScrollViewProxy
+	var isHead:Bool = false
+	var body: some View {
+		VStack{
+			Spacer()
+			
+			Button{
+				withAnimation{
+					proxy.scrollTo(isHead ? "FOOTER" : "HEAD",anchor: .leading)
+				}
+			}label: {
+				Image(systemName: isHead ? "chevron.right.2" : "chevron.left.2")
+					.font(.title)
+					.tint(.gray)
+					.padding()
+					
+			}
+			
+			Spacer()
+		}
+		.background(.ultraThinMaterial)
+		.frame(width: 50, height: 50)
+		.clipShape(Circle())
+		.id( isHead ? "HEAD"  : "FOOTER")
+	}
+}

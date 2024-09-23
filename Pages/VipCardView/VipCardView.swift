@@ -96,7 +96,17 @@ struct VipCardView:View {
             .padding(10)
             .background(.ultraThinMaterial)
             .clipShape(RoundedRectangle(cornerRadius: 10))
+			
             .offset(x: show ? 0 : -size.width + 10)
+			.contentShape(RoundedRectangle(cornerRadius: 10))
+			.onTapGesture {
+				withAnimation(.spring(duration: 0.6, bounce: 0.5, blendDuration: 0.5)) {
+					self.show.toggle()
+				}
+			   
+			}
+			
+			
            
             
         }
@@ -105,12 +115,7 @@ struct VipCardView:View {
         .clipped()
         .cornerRadius(10)
         .shadow(radius: 10)
-        .onTapGesture {
-            withAnimation(.spring(duration: 0.6, bounce: 0.5, blendDuration: 0.5)) {
-                self.show.toggle()
-            }
-           
-        }
+        
        
     }
 
