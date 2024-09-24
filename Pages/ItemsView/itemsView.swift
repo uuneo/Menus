@@ -38,7 +38,7 @@ struct itemsView: View {
                 Color(from: manager.selectedItem.color)
                     .edgesIgnoringSafeArea(.all)
                     .clipShape(RoundedRectangle(cornerRadius:  show ? 0 : 100))
-                    .matchedGeometryEffect(id: "\(manager.selectedItem.id)-background", in: detailName,properties: [.frame], isSource: show)
+                    .matchedGeometryEffect(id: "\(manager.selectedItem.id)-background", in: detailName,properties: [.position,.size,.frame], isSource: show)
                 
                 if ISPAD{
                     ipadHeader()

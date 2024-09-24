@@ -100,7 +100,7 @@ struct categoryCardView: View {
 	var body: some View {
 		ZStack{
 			Color(from:  item.color)
-				.matchedGeometryEffect(id: "\(item.id)-background", in: NewHomeName,properties: [.frame], isSource: !show)
+				.matchedGeometryEffect(id: "\(item.id)-background", in: NewHomeName,properties: [.position,.size,.frame], isSource: !show)
 			
 			VStack(alignment: .leading) {
 				VStack(alignment: .leading){

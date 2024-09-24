@@ -21,7 +21,9 @@ struct PeacockMenusApp: App {
                     
                     if newvalue == .active{
 						manager.updateItem(url: autoSetting.url)
-                    }
+                    }else if newvalue == .background{
+						IconAnimatorHandler.shared.startAnimation()
+					}
                 }
 				.environmentObject(manager)
 				
@@ -33,4 +35,3 @@ struct PeacockMenusApp: App {
     
     
 }
-

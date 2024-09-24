@@ -15,25 +15,25 @@ struct AppIconView: View {
     var body: some View {
         List{
             LazyVGrid(columns: columns){
-                ForEach(Array(logoImage.arr.enumerated()), id: \.offset){index,item in
+				ForEach(Array(appIcon.arr), id: \.self){ item in
                   
                     ZStack{
-                        Image(item.rawValue)
+                        Image(item.toLogoImage)
                             .resizable()
                             .clipShape(RoundedRectangle(cornerRadius: 20, style: .circular))
                             .frame(width: 60,height:60)
-                            .tag(appIcon.arr[index])
+                            .tag(item)
                         Image(systemName: "checkmark.seal.fill")
                             .font(.system(.largeTitle))
-                            .scaleEffect(appIcon.arr[index] == setting_active_app_icon ? 1 : 0.1)
-                            .opacity(appIcon.arr[index] == setting_active_app_icon ? 1 : 0)
+                            .scaleEffect(item == setting_active_app_icon ? 1 : 0.1)
+                            .opacity(item == setting_active_app_icon ? 1 : 0)
                             .foregroundStyle(.green)
                         
                     }.animation(.spring, value: setting_active_app_icon)
                         .padding()
                             .listRowBackground(Color.clear)
                             .onTapGesture {
-                                setting_active_app_icon = appIcon.arr[index]
+								setting_active_app_icon = item
                                 let manager = UIApplication.shared
                                 
                                 var iconName:String? = manager.alternateIconName ?? appIcon.def.rawValue
@@ -96,12 +96,14 @@ struct AppIconView: View {
 
 enum appIcon:String,CaseIterable{
     case def = "AppIcon"
-    case one = "AppIcon1"
-    case two = "AppIcon2"
-    case three = "AppIcon3"
+    case one = "AppIcon11"
+    case two = "AppIcon12"
+    case three = "AppIcon13"
     
     
     static let arr = Array(appIcon.allCases)
+	
+	static let allString = Array(appIcon.allCases.map{$0.rawValue})
     
     var toLogoImage: String{
         switch self {
@@ -113,6 +115,7 @@ enum appIcon:String,CaseIterable{
             logoImage.two.rawValue
         case .three:
             logoImage.three.rawValue
+
         }
     }
 }
