@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "zh-Hans",
   "strings" : {
+    " 会员优先服务" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Priority service for members"
+          }
+        }
+      }
+    },
     "%@" : {
       "localizations" : {
         "en" : {
@@ -81,12 +91,222 @@
         }
       }
     },
+    "1. 课程折扣7折\n2. 卡诗洗发水" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1. 30% off on courses\n2. Kérastase shampoo"
+          }
+        }
+      }
+    },
+    "1. 课程折扣8折" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1. 20% off on courses"
+          }
+        }
+      }
+    },
+    "3折" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "70%  off"
+          }
+        }
+      }
+    },
+    "6折" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "40% off"
+          }
+        }
+      }
+    },
+    "7折" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "30% off"
+          }
+        }
+      }
+    },
+    "8折" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "20% off"
+          }
+        }
+      }
+    },
     "App设置" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "App Settings"
+          }
+        }
+      }
+    },
+    "Basic Card" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basic Card"
+          }
+        }
+      }
+    },
+    "Beauty" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beauty"
+          }
+        }
+      }
+    },
+    "Beauty Chapter" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beauty Chapter"
+          }
+        }
+      }
+    },
+    "Diamond" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diamond"
+          }
+        }
+      }
+    },
+    "Diamond Card" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diamond Card"
+          }
+        }
+      }
+    },
+    "DIRECTORS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DIRECTORS"
+          }
+        }
+      }
+    },
+    "Example Item" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Example Item"
+          }
+        }
+      }
+    },
+    "Gold Card" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gold Card"
+          }
+        }
+      }
+    },
+    "Hair Care" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hair Care"
+          }
+        }
+      }
+    },
+    "Hair Care Chapter" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hair Care Chapter"
+          }
+        }
+      }
+    },
+    "Hair Cut" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hair Cut"
+          }
+        }
+      }
+    },
+    "Hair Cut Chapter" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hair Cut Chapter"
+          }
+        }
+      }
+    },
+    "Hair Dyeing" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hair Dyeing"
+          }
+        }
+      }
+    },
+    "Hair Dyeing Chapter" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hair Dyeing Chapter"
+          }
+        }
+      }
+    },
+    "NewItem" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NewItem"
           }
         }
       }
@@ -101,12 +321,74 @@
         }
       }
     },
+    "other" : {
+
+    },
+    "Peacock-Cards" : {
+
+    },
+    "Peacock-Items" : {
+
+    },
+    "Peacock-Menus" : {
+
+    },
+    "Perming" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perming"
+          }
+        }
+      }
+    },
+    "Perming Chapter" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perming Chapter"
+          }
+        }
+      }
+    },
+    "Scalp Care" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scalp Care"
+          }
+        }
+      }
+    },
+    "Scalp Care Chapter" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scalp Care Chapter"
+          }
+        }
+      }
+    },
+    "Silver Card" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Silver Card"
+          }
+        }
+      }
+    },
     "一次相遇，终身美好" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A single encounter, a lifetime of beauty."
+            "value" : "One encounter, a lifetime of beauty."
           }
         }
       }
@@ -171,6 +453,22 @@
         }
       }
     },
+    "价目表" : {
+
+    },
+    "会员¥" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vip$"
+          }
+        }
+      }
+    },
+    "会员卡" : {
+
+    },
     "会员卡副标题" : {
       "localizations" : {
         "en" : {
@@ -217,6 +515,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yuan"
+          }
+        }
+      }
+    },
+    "元/6次" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CNY/6 x"
+          }
+        }
+      }
+    },
+    "元/12次" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CNY/12 x"
+          }
+        }
+      }
+    },
+    "元/次" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CNY/1 x"
           }
         }
       }
@@ -281,6 +609,16 @@
         }
       }
     },
+    "剪发" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cut Hair"
+          }
+        }
+      }
+    },
     "副标题" : {
       "localizations" : {
         "en" : {
@@ -297,6 +635,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Card Name"
+          }
+        }
+      }
+    },
+    "卡彼" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Capilo"
           }
         }
       }
@@ -351,6 +699,16 @@
         }
       }
     },
+    "基础篇" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basic  Section"
+          }
+        }
+      }
+    },
     "复制" : {
       "localizations" : {
         "en" : {
@@ -360,6 +718,39 @@
           }
         }
       }
+    },
+    "头皮" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scalp Health"
+          }
+        }
+      }
+    },
+    "头皮健康" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scalp Health"
+          }
+        }
+      }
+    },
+    "威娜" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wella"
+          }
+        }
+      }
+    },
+    "子菜单标题" : {
+
     },
     "完成" : {
       "localizations" : {
@@ -397,6 +788,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Export Information"
+          }
+        }
+      }
+    },
+    "总监" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DIRECTORS"
           }
         }
       }
@@ -451,6 +852,26 @@
         }
       }
     },
+    "护理" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Care"
+          }
+        }
+      }
+    },
+    "护理篇" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Care Section"
+          }
+        }
+      }
+    },
     "搜索数据" : {
       "localizations" : {
         "en" : {
@@ -467,6 +888,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "File Import Priority Over Text Import"
+          }
+        }
+      }
+    },
+    "新项目" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NewItem"
           }
         }
       }
@@ -501,6 +932,16 @@
         }
       }
     },
+    "普卡" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basic Card"
+          }
+        }
+      }
+    },
     "更换图标" : {
       "localizations" : {
         "en" : {
@@ -521,6 +962,26 @@
         }
       }
     },
+    "染发" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hair Coloring"
+          }
+        }
+      }
+    },
+    "染发篇" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Color Section"
+          }
+        }
+      }
+    },
     "标题" : {
       "localizations" : {
         "en" : {
@@ -531,12 +992,42 @@
         }
       }
     },
+    "烫发" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perming"
+          }
+        }
+      }
+    },
+    "烫发篇" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perming Section"
+          }
+        }
+      }
+    },
     "确定" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Confirm"
+          }
+        }
+      }
+    },
+    "示例项目" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Example Item"
           }
         }
       }
@@ -557,6 +1048,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Edit"
+          }
+        }
+      }
+    },
+    "美容" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beauty"
+          }
+        }
+      }
+    },
+    "美容篇" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beauty Section"
           }
         }
       }
@@ -591,6 +1102,25 @@
         }
       }
     },
+    "菜单图标" : {
+
+    },
+    "菜单底部" : {
+
+    },
+    "菜单标题" : {
+
+    },
+    "菲灵" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FILLING"
+          }
+        }
+      }
+    },
     "设置" : {
       "localizations" : {
         "en" : {
@@ -617,6 +1147,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Please Paste Data Here"
+          }
+        }
+      }
+    },
+    "身体" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Body"
           }
         }
       }
@@ -676,7 +1216,37 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "General Settings"
+            "value" : "Base Settings"
+          }
+        }
+      }
+    },
+    "造型" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Styling"
+          }
+        }
+      }
+    },
+    "金卡" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gold Card"
+          }
+        }
+      }
+    },
+    "金钻会员专享" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exclusive for Gold Diamond Members"
           }
         }
       }
@@ -691,6 +1261,36 @@
         }
       }
     },
+    "钻卡" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diamond Card"
+          }
+        }
+      }
+    },
+    "银卡" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Silver Card"
+          }
+        }
+      }
+    },
+    "面部" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Face"
+          }
+        }
+      }
+    },
     "项目" : {
       "localizations" : {
         "en" : {
@@ -700,6 +1300,9 @@
           }
         }
       }
+    },
+    "项目分类" : {
+
     },
     "项目副标题" : {
       "localizations" : {
@@ -797,6 +1400,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Item Color"
+          }
+        }
+      }
+    },
+    "首席" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chief or Head"
           }
         }
       }

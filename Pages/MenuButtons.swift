@@ -48,6 +48,7 @@ struct MenuButtons: View {
 				Button{
 					withAnimation{
 						manager.page = item
+						manager.showMenu.toggle()
 					}
 				}label: {
 					Image(systemName: item.rawValue)

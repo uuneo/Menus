@@ -6,31 +6,78 @@
 //
 
 import SwiftUI
+import Defaults
 
 struct PhotosView: View {
-    var body: some View {
-		NavigationStack{
-			ZStack{
-				Image("card5")
-					.resizable()
-					.scaledToFill()
-					.edgesIgnoringSafeArea(.all)
-					.blur(radius: 10)
-					.scaleEffect(1.1)
-					
-					
-				Text("一次相遇，终身美好")
-					.font(.largeTitle)
-					.padding()
-					.foregroundStyle(.linearGradient(colors: [.green,.pink,.blue,.orange], startPoint: .topLeading, endPoint: .bottomTrailing))
+	@Default(.menusName) var itemName
+	@Default(.menusSubName) var subName
+	@Default(.menusFooter) var footerName
+	@Default(.menusImage) var menusImage
+	
+	var body: some View {
+		ZStack{
+			
+			
+			AsyncImageView(imageUrl: menusImage)
+				.scaledToFill()
+				.frame(width: UIScreen.main.bounds.width, height:  UIScreen.main.bounds.height)
 				
+				
+			
+			VStack{
+				
+				VStack{
+					HStack{
+						Text(itemName)
+							.font(.system(size: 35))
+							.bold()
+							.padding()
+							.foregroundStyle(.black)
+							
+						
+						Text(subName)
+							.font(.system(size: 25))
+							.padding()
+							.foregroundStyle(.gray)
+						
+						
+						Spacer()
+					}
+					
+					
+					Divider()
+		
+					
+				}
+				.padding(30)
+				
+				Spacer()
+				HStack{
+					Spacer()
+					Text(footerName)
+						.font(.system(size: 40))
+						.bold()
+						.padding()
+						.foregroundStyle(.orange)
+					
+					
+					
+					Spacer()
+				}
+				.blendMode(.difference)
+				.offset(y: -100)
 			}
 			
-				
+			
+			
+			
 		}
-    }
+		.frame(width: UIScreen.main.bounds.width, height:  UIScreen.main.bounds.height)
+		.ignoresSafeArea()
+		
+	}
 }
 
 #Preview {
-    PhotosView()
+	PhotosView()
 }

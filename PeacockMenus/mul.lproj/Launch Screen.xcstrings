@@ -1,0 +1,42 @@
+{
+  "sourceLanguage" : "zh-Hans",
+  "strings" : {
+    "bpu-OG-dU1.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Beauty Palace Menu\"; ObjectID = \"bpu-OG-dU1\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " Menus"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Beauty Palace Menu"
+          }
+        }
+      }
+    },
+    "GJd-Yh-RWb.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"美丽宫略\"; ObjectID = \"GJd-Yh-RWb\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beauty Plan"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "美丽宫略"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

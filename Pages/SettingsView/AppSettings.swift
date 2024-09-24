@@ -16,11 +16,45 @@ struct AppSettings: View {
     @Default(.homeItemsSubTitle) var homeItemsSubTitle
     @Default(.settingPassword) var settingPassword
     @Default(.autoSetting) var autoSetting
-
+	@Default(.menusName) var menusName
+	@Default(.menusSubName) var subName
+	@Default(.menusFooter) var menusFooter
+	@Default(.menusImage) var menusImage
+ 
 	@EnvironmentObject var manager:peacock
     
     var body: some View {
         List {
+			
+			Section {
+				TextField("菜单标题", text: $menusName)
+					.customField(icon: "pencil",data: $menusName)
+			}header: {
+				Label("菜单标题", systemImage: "doc.text")
+			}
+			
+			Section {
+				TextField("子菜单标题", text: $subName)
+					.customField(icon: "pencil",data: $subName)
+			}header: {
+				Label("子菜单标题", systemImage: "doc.text")
+			}
+			
+			
+			Section {
+				TextField("菜单底部", text: $menusFooter)
+					.customField(icon: "pencil",data: $menusFooter)
+			}header: {
+				Label("菜单底部", systemImage: "doc.text")
+			}
+			
+			Section{
+				TextField("菜单图标", text: $menusImage)
+					.customField(icon: "photo",data: $menusImage)
+				
+			}header: {
+				Label("菜单图标", systemImage: "photo")
+			}
             
             Section {
                 TextField("会员卡标题", text: $homeCardTitle)

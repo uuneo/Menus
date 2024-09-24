@@ -10,7 +10,8 @@
 		190E395A2C9FD16D001061ED /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 190E39592C9FD16D001061ED /* Localizable.xcstrings */; };
 		194BBAA72C8DD04F002EAA09 /* ImportDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194BBAA62C8DD04F002EAA09 /* ImportDataView.swift */; };
 		194BBAA92C8DD0E1002EAA09 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194BBAA82C8DD0E1002EAA09 /* AppSettings.swift */; };
-		196C57532CA2AFE700A2436F /* IconAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196C57522CA2AF4600A2436F /* IconAnimator.swift */; };
+		196C57592CA2FBB200A2436F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 196C57572CA2FBB200A2436F /* InfoPlist.strings */; };
+		196C575D2CA2FC0F00A2436F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 196C575C2CA2FC0F00A2436F /* Launch Screen.storyboard */; };
 		1977686E2C984E3300F40521 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1977686D2C984E3300F40521 /* AppDelegate.swift */; };
 		1977689B2C987CFE00F40521 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 1977689A2C987CFE00F40521 /* Pow */; };
 		197768A82C99C9FB00F40521 /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197768A72C99C9FB00F40521 /* AppIconView.swift */; };
@@ -26,7 +27,6 @@
 		198706F92C9420BE00F59CE9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198706F82C9420BE00F59CE9 /* HomeView.swift */; };
 		198706FC2C943C8100F59CE9 /* ScalingHeaderScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 198706FB2C943C8100F59CE9 /* ScalingHeaderScrollView */; };
 		198707042C956D3500F59CE9 /* itemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198707032C956D3500F59CE9 /* itemView.swift */; };
-		198707092C95B4C500F59CE9 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 198707082C95B4C500F59CE9 /* Launch Screen.storyboard */; };
 		1990757C2C86100100E23FD7 /* PeacockMenusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990757B2C86100100E23FD7 /* PeacockMenusApp.swift */; };
 		1990757E2C86100100E23FD7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990757D2C86100100E23FD7 /* ContentView.swift */; };
 		199075802C86100300E23FD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1990757F2C86100300E23FD7 /* Assets.xcassets */; };
@@ -68,10 +68,9 @@
 		190E39592C9FD16D001061ED /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		194BBAA62C8DD04F002EAA09 /* ImportDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportDataView.swift; sourceTree = "<group>"; };
 		194BBAA82C8DD0E1002EAA09 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
-		19684BC52CA2ACE300F65D00 /* LSApplicationProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSApplicationProxy.h; sourceTree = "<group>"; };
-		196C57502CA2AD7F00A2436F /* LSBundleProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSBundleProxy.h; sourceTree = "<group>"; };
-		196C57512CA2AEDD00A2436F /* MainHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainHeader.h; sourceTree = "<group>"; };
-		196C57522CA2AF4600A2436F /* IconAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconAnimator.swift; sourceTree = "<group>"; };
+		196C57582CA2FBB200A2436F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		196C575A2CA2FBC200A2436F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		196C575B2CA2FC0F00A2436F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		1977686C2C984C7700F40521 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1977686D2C984E3300F40521 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		197768882C9863F000F40521 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
@@ -86,7 +85,6 @@
 		198706F42C941F5400F59CE9 /* HomeVipCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVipCards.swift; sourceTree = "<group>"; };
 		198706F82C9420BE00F59CE9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		198707032C956D3500F59CE9 /* itemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemView.swift; sourceTree = "<group>"; usesTabs = 0; };
-		198707082C95B4C500F59CE9 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		199075782C86100100E23FD7 /* PeacockMenus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeacockMenus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1990757B2C86100100E23FD7 /* PeacockMenusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeacockMenusApp.swift; sourceTree = "<group>"; };
 		1990757D2C86100100E23FD7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -127,16 +125,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		19684BC42CA2ACBC00F65D00 /* IconAnimation */ = {
-			isa = PBXGroup;
-			children = (
-				19684BC52CA2ACE300F65D00 /* LSApplicationProxy.h */,
-				196C57502CA2AD7F00A2436F /* LSBundleProxy.h */,
-				196C57512CA2AEDD00A2436F /* MainHeader.h */,
-			);
-			path = IconAnimation;
-			sourceTree = "<group>";
-		};
 		197768872C9863F000F40521 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,7 +163,6 @@
 		1990756F2C86100100E23FD7 = {
 			isa = PBXGroup;
 			children = (
-				19684BC42CA2ACBC00F65D00 /* IconAnimation */,
 				19D231D52C93FCBF001044BB /* Pages */,
 				199075C62C8B544800E23FD7 /* Public */,
 				1990759A2C87F19100E23FD7 /* Modal */,
@@ -203,9 +190,10 @@
 				1990757D2C86100100E23FD7 /* ContentView.swift */,
 				1990757F2C86100300E23FD7 /* Assets.xcassets */,
 				199075812C86100300E23FD7 /* Preview Content */,
-				198707082C95B4C500F59CE9 /* Launch Screen.storyboard */,
+				196C575C2CA2FC0F00A2436F /* Launch Screen.storyboard */,
 				1977686D2C984E3300F40521 /* AppDelegate.swift */,
 				190E39592C9FD16D001061ED /* Localizable.xcstrings */,
+				196C57572CA2FBB200A2436F /* InfoPlist.strings */,
 			);
 			path = PeacockMenus;
 			sourceTree = "<group>";
@@ -239,7 +227,6 @@
 		199075C62C8B544800E23FD7 /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				196C57522CA2AF4600A2436F /* IconAnimator.swift */,
 				1990759B2C87F1AB00E23FD7 /* TextField+.swift */,
 				199075C42C8B3E0800E23FD7 /* DropDelegate+.swift */,
 				199075BA2C8B0D9A00E23FD7 /* PeacockProtocol.swift */,
@@ -357,10 +344,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				198707092C95B4C500F59CE9 /* Launch Screen.storyboard in Resources */,
+				196C575D2CA2FC0F00A2436F /* Launch Screen.storyboard in Resources */,
 				199075832C86100300E23FD7 /* Preview Assets.xcassets in Resources */,
 				190E395A2C9FD16D001061ED /* Localizable.xcstrings in Resources */,
 				199075802C86100300E23FD7 /* Assets.xcassets in Resources */,
+				196C57592CA2FBB200A2436F /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,7 +359,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				196C57532CA2AFE700A2436F /* IconAnimator.swift in Sources */,
 				194BBAA92C8DD0E1002EAA09 /* AppSettings.swift in Sources */,
 				19D231D72C93FCDC001044BB /* itemsView.swift in Sources */,
 				197768A82C99C9FB00F40521 /* AppIconView.swift in Sources */,
@@ -407,6 +394,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		196C57572CA2FBB200A2436F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				196C57582CA2FBB200A2436F /* zh-Hans */,
+				196C575A2CA2FBC200A2436F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		196C575C2CA2FC0F00A2436F /* Launch Screen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				196C575B2CA2FC0F00A2436F /* Base */,
+			);
+			name = "Launch Screen.storyboard";
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		199075842C86100300E23FD7 /* Debug */ = {
@@ -563,10 +570,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = (
-					"-w",
-					"-Wl,-U,_OBJC_CLASS_$_LSBundleProxy",
-				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.twown.PeacockMenus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -574,7 +578,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = IconAnimation/MainHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -610,10 +614,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = (
-					"-w",
-					"-Wl,-U,_OBJC_CLASS_$_LSBundleProxy",
-				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.twown.PeacockMenus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -621,7 +622,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = IconAnimation/MainHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

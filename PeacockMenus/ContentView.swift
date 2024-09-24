@@ -12,7 +12,7 @@ import UIKit
 struct ContentView: View {
 	
 	@EnvironmentObject var manager:peacock
-
+	
 	
 	var body: some View {
 		
@@ -28,17 +28,18 @@ struct ContentView: View {
 			case .photo:
 				PhotosView()
 					.transition(AnyTransition.opacity.combined(with: .slide))
+					
 			}
 			
 			
 			HStack{
 				Spacer()
 				MenuButtons()
-					
 				
 			}
-			.zIndex(99)
-			.offset(y: 50)
+			.zIndex(199)
+			.offset(y: 40)
+			
 			
 			
 			
@@ -55,7 +56,7 @@ struct ContentView: View {
 
 
 #Preview {
-    ContentView()
+	ContentView()
 		.environmentObject(peacock.shared)
 }
-  
+

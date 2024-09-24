@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  PeacockMenus
+
+  Created by He Cho on 2024/9/24.
+  
+*/
+
+CFBundleDisplayName = "美丽宫略";
+CFBundleName = "美丽宫略";

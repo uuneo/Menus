@@ -57,20 +57,22 @@ struct HomeItemsView: View {
 								
 								if ISPAD{
 									categoryCardView(item: item, NewHomeName: NewHomeName, show: showDetail)
-									
+										.fixedSize(horizontal: true, vertical:  false)
+										.zIndex(100)
 								}else{
 									GeometryReader { geometry in
 										HStack{
 											categoryCardView(item: item, NewHomeName: NewHomeName, show: showDetail)
+												.fixedSize(horizontal: true, vertical: false)
 										}
 										.rotation3DEffect(Angle(degrees: Double(geometry.frame(in: .global).minX - 40) / -40), axis: (x: 0, y: 10, z: 0))
-									}.frame(width: 260, height: 350)
+									}.frame(width: 260)
 								}
 								
 								
 								
 							}
-							.padding(.horizontal, 10)
+							.padding(.horizontal, 20)
 							.id(item.id)
 						}
 						
@@ -100,21 +102,25 @@ struct categoryCardView: View {
 	var body: some View {
 		ZStack{
 			Color(from:  item.color)
-				.matchedGeometryEffect(id: "\(item.id)-background", in: NewHomeName,properties: [.position,.size,.frame], isSource: !show)
+				
 			
 			VStack(alignment: .leading) {
 				VStack(alignment: .leading){
 					Text(item.title)
 						.font(.title)
 						.fontWeight(.bold)
+						.minimumScaleFactor(0.8)
+						.lineLimit(1)
 					
-						.lineLimit(4)
 					Text(item.subTitle)
+						.minimumScaleFactor(0.6)
+						.lineLimit(1)
 					
 					
 				}
 				.foregroundColor(.white)
 				.padding(30)
+				
 				.matchedGeometryEffect(id: "\(item.id)-title", in: NewHomeName,properties: [.position,.size,.frame], isSource: !show)
 				
 				Spacer()
@@ -124,15 +130,18 @@ struct categoryCardView: View {
 				AsyncImageView(imageUrl: item.image)
 				
 					.aspectRatio(contentMode: .fit)
-					.frame(width: 246, height: 170)
+					.frame(width: 260)
 					.matchedGeometryEffect(id: "\(item.id)-image", in: NewHomeName,properties: [.position,.size,.frame], isSource: !show)
 			}
 			
 		}
+		
 		.cornerRadius(30)
-		.shadow(color: Color(from: item.color).opacity(0.5), radius: 20, x: 0, y: 20)
+		.shadow(color: Color.shadow2, radius: 1, x: -1, y: -1)
+		.shadow(color: Color(from: item.color).opacity(0.2), radius: 10, x: 5, y: 20)
 		.padding()
-		.padding(.bottom)
+		.frame(width: 260)
+		.matchedGeometryEffect(id: "\(item.id)-background", in: NewHomeName,properties: [.position,.size,.frame], isSource: !show)
 		
 		
 		

@@ -10,10 +10,14 @@ import Defaults
 
 
 extension Defaults.Keys{
-    static let homeCardTitle = Key<String>("HomeCardTitle",default: "会员卡")
-    static let homeCardSubTitle = Key<String>("HomeCardSubTitle",default: "Peacock-Cards")
-    static let homeItemsTitle = Key<String>("HomeItemsTitle",default: "项目分类")
-    static let homeItemsSubTitle = Key<String>("HomeItemsSubTitle",default: "Peacock-Items")
+	static let menusName = Key<String>("MenusName",default: String(localized: "价目表"))
+	static let menusSubName = Key<String>("MenusSubName",default: String(localized: "Peacock-Menus"))
+	static let menusFooter = Key<String>("MenusFooter",default: String(localized: "一次相遇，终身美好"))
+	static let menusImage = Key<String>("MenusImage",default: String(localized: "other"))
+	static let homeCardTitle = Key<String>("HomeCardTitle",default: String(localized: "会员卡"))
+	static let homeCardSubTitle = Key<String>("HomeCardSubTitle",default: String(localized: "Peacock-Cards"))
+	static let homeItemsTitle = Key<String>("HomeItemsTitle",default: String(localized: "项目分类"))
+	static let homeItemsSubTitle = Key<String>("HomeItemsSubTitle",default: String(localized: "Peacock-Items"))
     static let settingPassword = Key<String>("SettingPassword",default: "")
     static let autoSetting = Key<AutoAsyncSetting>("AutoSetting",default: AutoAsyncSetting(url: "https://example.com/menus.json", enable: false))
     
@@ -71,11 +75,12 @@ struct SubCategoryData: PeacockProtocol{
     var title:String
     var subTitle:String
     var footer:String
+	
     
-    static let example = SubCategoryData(categoryId:UUID().uuidString, title: "染发", subTitle: "Diamond", footer: "金钻会员专享")
+	static let example = SubCategoryData(categoryId:UUID().uuidString, title: String(localized: "染发"), subTitle: String(localized: "Diamond"), footer: String(localized: "金钻会员专享"))
     
     static func space() -> SubCategoryData {
-        return SubCategoryData(categoryId: Defaults[.Categorys].first?.id ?? UUID().uuidString, title: "新项目", subTitle: "", footer: "")
+        return SubCategoryData(categoryId: Defaults[.Categorys].first?.id ?? UUID().uuidString, title: String(localized: "新项目"), subTitle: "", footer: "")
     }
 	
 	func copy() -> SubCategoryData {
@@ -96,10 +101,10 @@ struct ItemData: PeacockProtocol{
     var price3:PriceData
     var price4:PriceData
     
-    static let example = ItemData(categoryId: UUID().uuidString, subcategoryId: UUID().uuidString, title: "示例项目", subTitle: "Example Item", price1: PriceData(prefix: "¥", money: 0, suffix: "元/次", discount: false), price2: PriceData(prefix: "¥", money: 0, suffix: "元/次", discount: false), price3: PriceData(prefix: "¥", money: 0, suffix: "元/6次", discount: false), price4: PriceData(prefix: "¥", money: 0, suffix: "元/12次", discount: false))
+    static let example = ItemData(categoryId: UUID().uuidString, subcategoryId: UUID().uuidString, title: String(localized: "示例项目"), subTitle: String(localized: "Example Item"), price1: PriceData(prefix: "¥", money: 0, suffix: String(localized: "元/次"), discount: false), price2: PriceData(prefix: "¥", money: 0, suffix: String(localized: "元/次"), discount: false), price3: PriceData(prefix: "¥", money: 0, suffix: String(localized: "元/6次"), discount: false), price4: PriceData(prefix: "¥", money: 0, suffix: String(localized: "元/12次"), discount: false))
     
     static func space() -> ItemData {
-        return ItemData(categoryId: Defaults[.Categorys].first?.id ?? UUID().uuidString, subcategoryId: Defaults[.Subcategorys].first?.id ?? UUID().uuidString, title: "新项目", subTitle: "NewItem", price1: PriceData(prefix: "¥", money: 0, suffix: "元/次", discount: false), price2: PriceData(prefix: "¥", money: 0, suffix: "元/次", discount: false), price3: PriceData(prefix: "¥", money: 0, suffix: "元/6次", discount: false), price4: PriceData(prefix: "¥", money: 0, suffix: "元/12次", discount: false))
+        return ItemData(categoryId: Defaults[.Categorys].first?.id ?? UUID().uuidString, subcategoryId: Defaults[.Subcategorys].first?.id ?? UUID().uuidString, title: String(localized: "新项目"), subTitle: String(localized: "NewItem"), price1: PriceData(prefix: "¥", money: 0, suffix: String(localized: "元/次"), discount: false), price2: PriceData(prefix: "¥", money: 0, suffix: String(localized: "元/次"), discount: false), price3: PriceData(prefix: "¥", money: 0, suffix: String(localized: "元/6次"), discount: false), price4: PriceData(prefix: "¥", money: 0, suffix: String(localized: "元/12次"), discount: false))
     }
 	
 	func copy() -> ItemData {
@@ -131,10 +136,15 @@ struct AutoAsyncSetting: Codable,Defaults.Serializable{
 
 
 struct TotalData: Codable {
+	
     var Cards:[MemberCardData]
     var Categorys:[CategoryData]
     var Subcategorys:[SubCategoryData]
     var Items:[ItemData]
+	var menusName:String?
+	var menusSubName:String?
+	var menusFooter:String?
+	var menusImage:String?
     var homeCardTitle:String?
     var homeCardSubTitle:String?
     var homeItemsTitle:String?

@@ -33,14 +33,17 @@ struct HomeView: View {
 					
 					HStack(alignment: .bottom){
 						HomeVipCards(Namespace: NewHomeName)
+						
 					}
-					.frame(height: UIScreen.main.bounds.height * 0.55 - 10)
+					.padding(.top, 30)
+					.frame(height: UIScreen.main.bounds.height * 0.5)
+					
 					
 					
 					HStack(alignment: .top){
 						HomeItemsView(NewHomeName: NewHomeName, showDetail: $showDetail)
 					}
-					.frame(height: UIScreen.main.bounds.height * 0.45 - 10)
+					.frame(height: UIScreen.main.bounds.height * 0.5)
 					
 					
 				}
@@ -49,20 +52,15 @@ struct HomeView: View {
 				
 				
 				
+				
 				itemsView(show: $showDetail,detailName: NewHomeName)
 					.background(.ultraThinMaterial)
 					.opacity(showDetail ? 1 : 0)
-					.offset(y: showDetail ? 0 : 500)
-					.onChange(of: showDetail) { oldValue, newValue in
-						if newValue {
-							withAnimation {
-								manager.showMenu = false
-							}
-							
-						}
-					}
+					.offset(y: showDetail ? 0 : 200)
+			
 				
 			}
+			.background( Color.background)
 			
 		}
 		

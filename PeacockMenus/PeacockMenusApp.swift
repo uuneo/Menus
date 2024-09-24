@@ -13,25 +13,23 @@ struct PeacockMenusApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Default(.autoSetting) var autoSetting
     @Environment(\.scenePhase) var scenePhase
-    @StateObject var manager = peacock.shared
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .onChange(of: scenePhase) { _, newvalue in
-                    
-                    if newvalue == .active{
+	@StateObject var manager = peacock.shared
+	
+	var body: some Scene {
+		WindowGroup {
+			ContentView()
+				.onChange(of: scenePhase) { _, newvalue in
+					
+					if newvalue == .active{
 						manager.updateItem(url: autoSetting.url)
-                    }else if newvalue == .background{
-						IconAnimatorHandler.shared.startAnimation()
 					}
-                }
+				}
 				.environmentObject(manager)
 				
 			
-
-            
-        }
-    }
-    
-    
+			
+		}
+	}
+	
+	
 }

@@ -316,7 +316,7 @@ struct itemCardView: View {
 					.padding(.vertical,10)
 					.background(.ultraThinMaterial)
 					.clipShape(RoundedRectangle(cornerRadius: 10))
-					.shadow(color: Color.shadow1, radius: 10, x: 10, y: 10)
+					.shadow(color: Color.shadow1, radius: 5, x: 10, y: 10)
 					.shadow(color: Color.shadow2, radius: 1, x: -1, y: -1)
 					.frame(height: 60)
 					.transition(.scale)

@@ -156,12 +156,18 @@ final class peacock:ObservableObject {
 }
 
 extension peacock{
-    func exportTotalData() -> TotalData{
-        
-        TotalData(Cards: Defaults[.Cards], Categorys: Defaults[.Categorys], Subcategorys: Defaults[.Subcategorys], Items: Defaults[.Items], homeCardTitle: Defaults[.homeCardTitle], homeCardSubTitle: Defaults[.homeCardSubTitle], homeItemsTitle: Defaults[.homeItemsTitle], homeItemsSubTitle: Defaults[.homeCardSubTitle], settingPassword: Defaults[.settingPassword], autoSetting: Defaults[.autoSetting])
-    }
-    
-    func exportData() -> String{
+	func exportTotalData() -> TotalData{
+		
+		TotalData(
+			Cards: Defaults[.Cards], Categorys: Defaults[.Categorys], Subcategorys: Defaults[.Subcategorys],
+			Items: Defaults[.Items], menusName: Defaults[.menusName], menusSubName: Defaults[.menusSubName],
+			menusFooter: Defaults[.menusFooter], menusImage: Defaults[.menusImage], homeCardTitle: Defaults[.homeCardTitle],
+			homeCardSubTitle: Defaults[.homeCardSubTitle], homeItemsTitle: Defaults[.homeItemsTitle], homeItemsSubTitle: Defaults[.homeItemsSubTitle],
+			settingPassword: Defaults[.settingPassword], autoSetting: Defaults[.autoSetting]
+		)
+	}
+	
+	func exportData() -> String{
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         let data = try! encoder.encode(exportTotalData())
@@ -216,6 +222,10 @@ extension peacock{
         let itemSubtitle =  totaldata.homeItemsSubTitle
         let setting =  totaldata.autoSetting
         let password =  totaldata.settingPassword
+		let menusName = totaldata.menusName
+		let menusFooter = totaldata.menusFooter
+		let menusImage = totaldata.menusImage
+		let subName = totaldata.menusSubName
 		
 		
         
@@ -260,9 +270,24 @@ extension peacock{
         
         if let password = password{
             Defaults[.settingPassword] = password
-			
             
         }
+		
+		if let menusName = menusName{
+			Defaults[.menusName] = menusName
+		}
+		
+		if let menusFooter = menusFooter{
+			Defaults[.menusFooter] = menusFooter
+		}
+		
+		if let menusImage = menusImage{
+			Defaults[.menusImage] = menusImage
+		}
+		
+		if let subName = subName{
+			Defaults[.menusSubName] = subName
+		}
     }
 	
 	@MainActor

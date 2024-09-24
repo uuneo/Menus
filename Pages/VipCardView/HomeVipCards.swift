@@ -31,7 +31,7 @@ struct HomeVipCards: View {
                        
                      Text(subTitle)
                         .foregroundColor(.gray)
-                }.padding(.leading, 60)
+                }.padding(.leading, 30)
                 
                 if ISPAD{
                     ipadViews
@@ -55,13 +55,11 @@ struct HomeVipCards: View {
                             .degrees(proxy.frame(in: .global).minX / -10),
                             axis: (x: 0, y: 1, z: 0), perspective: 1
                         )
-                        .shadow(color: Color("Shadow").opacity(0.3),
-                                radius: 30, x: 0, y: 30)
                         .blur(radius: abs(proxy.frame(in: .global).minX) / 40)
                         .padding(20)
                     
                 }
-            }
+			}
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
         .frame(height: 300)
@@ -88,6 +86,7 @@ struct HomeVipCards: View {
 					
 				}
 				.padding(.leading, 10)
+				.padding(.vertical)
 			}
 		}
 		
