@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AxisTooltip
 import Defaults
 
 struct SizeKey: PreferenceKey {

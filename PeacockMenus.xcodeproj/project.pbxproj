@@ -12,7 +12,6 @@
 		194BBAA92C8DD0E1002EAA09 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194BBAA82C8DD0E1002EAA09 /* AppSettings.swift */; };
 		196C57592CA2FBB200A2436F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 196C57572CA2FBB200A2436F /* InfoPlist.strings */; };
 		196C575D2CA2FC0F00A2436F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 196C575C2CA2FC0F00A2436F /* Launch Screen.storyboard */; };
-		196C57642CA3A47500A2436F /* EasyTipView in Frameworks */ = {isa = PBXBuildFile; productRef = 196C57632CA3A47500A2436F /* EasyTipView */; };
 		196C576F2CA3F1F000A2436F /* SettingTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196C576E2CA3F1E500A2436F /* SettingTipView.swift */; };
 		1977686E2C984E3300F40521 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1977686D2C984E3300F40521 /* AppDelegate.swift */; };
 		1977689B2C987CFE00F40521 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 1977689A2C987CFE00F40521 /* Pow */; };
@@ -120,7 +119,6 @@
 				1977689B2C987CFE00F40521 /* Pow in Frameworks */,
 				199075912C87EA0C00E23FD7 /* Kingfisher in Frameworks */,
 				1985A7AD2C9FDCE9003D255B /* JDStatusBarNotification in Frameworks */,
-				196C57642CA3A47500A2436F /* EasyTipView in Frameworks */,
 				199BB8E12C9EDE2900D25774 /* Alamofire in Frameworks */,
 				198706FC2C943C8100F59CE9 /* ScalingHeaderScrollView in Frameworks */,
 			);
@@ -304,7 +302,6 @@
 				1977689A2C987CFE00F40521 /* Pow */,
 				199BB8E02C9EDE2900D25774 /* Alamofire */,
 				1985A7AC2C9FDCE9003D255B /* JDStatusBarNotification */,
-				196C57632CA3A47500A2436F /* EasyTipView */,
 			);
 			productName = PeacockMenus;
 			productReference = 199075782C86100100E23FD7 /* PeacockMenus.app */;
@@ -343,7 +340,6 @@
 				197768992C987CFE00F40521 /* XCRemoteSwiftPackageReference "Pow" */,
 				199BB8DF2C9EDE2900D25774 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				1985A7AB2C9FDCE9003D255B /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */,
-				196C57622CA3A47400A2436F /* XCRemoteSwiftPackageReference "EasyTipView" */,
 			);
 			productRefGroup = 199075792C86100100E23FD7 /* Products */;
 			projectDirPath = "";
@@ -670,14 +666,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		196C57622CA3A47400A2436F /* XCRemoteSwiftPackageReference "EasyTipView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/teodorpatras/EasyTipView.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.0;
-			};
-		};
 		197768992C987CFE00F40521 /* XCRemoteSwiftPackageReference "Pow" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/EmergeTools/Pow.git";
@@ -729,11 +717,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		196C57632CA3A47500A2436F /* EasyTipView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 196C57622CA3A47400A2436F /* XCRemoteSwiftPackageReference "EasyTipView" */;
-			productName = EasyTipView;
-		};
 		1977689A2C987CFE00F40521 /* Pow */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 197768992C987CFE00F40521 /* XCRemoteSwiftPackageReference "Pow" */;
