@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Defaults
+import TipKit
 
 struct vipCardSettingView: View {
    
@@ -58,6 +59,7 @@ struct changeVipCardView: View {
     @Binding var card:MemberCardData
     @Environment(\.dismiss) var dismiss
     
+	let editTip = EditChangeTipView()
     var formatter: NumberFormatter {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -69,6 +71,7 @@ struct changeVipCardView: View {
     var body: some View {
         Form{
             
+			TipView(editTip)
             Section{
                 TextField("标题", text: $card.title)
 					.customField(icon: "pencil",data: $card.title)

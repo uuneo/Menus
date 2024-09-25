@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Defaults
+import TipKit
 
 struct ProjectSettingView: View {
 	@EnvironmentObject var manager:peacock
@@ -24,6 +25,8 @@ struct ProjectSettingView: View {
     }
     
 	@State private var scalId:String?
+	
+	
     
     var body: some View {
 		
@@ -129,6 +132,8 @@ struct ChangeItemView:View {
     @Default(.Subcategorys) var subcategoryItems
     @Default(.Categorys) var categoryItems
 	
+	let editTip = EditChangeTipView()
+	
 	var priceFormatter: NumberFormatter {
 		let formatter = NumberFormatter()
 		formatter.numberStyle = .currency // 使用货币格式
@@ -143,6 +148,7 @@ struct ChangeItemView:View {
 
         Form{
             
+			TipView(editTip)
             
             Section{
                 Picker(selection: $item.categoryId) {

@@ -1,5 +1,5 @@
 {
-  "originHash" : "c2c0d01ff7e3675de7b914b02f7579f58ced47fc6a80c4799b02ee4b36fab3fa",
+  "originHash" : "702136c400b87d34ce0c93568e012d5f1979be5641c40f482ee6a78d54ea5333",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -17,6 +17,15 @@
       "state" : {
         "branch" : "main",
         "revision" : "4c009d5c2496e7aa126e922c94dd3d6ae049efa2"
+      }
+    },
+    {
+      "identity" : "easytipview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/teodorpatras/EasyTipView.git",
+      "state" : {
+        "revision" : "1cba0e75f745da03773cd7092480c5fa8cde4a72",
+        "version" : "2.1.0"
       }
     },
     {

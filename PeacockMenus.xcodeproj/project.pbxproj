@@ -12,6 +12,8 @@
 		194BBAA92C8DD0E1002EAA09 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194BBAA82C8DD0E1002EAA09 /* AppSettings.swift */; };
 		196C57592CA2FBB200A2436F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 196C57572CA2FBB200A2436F /* InfoPlist.strings */; };
 		196C575D2CA2FC0F00A2436F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 196C575C2CA2FC0F00A2436F /* Launch Screen.storyboard */; };
+		196C57642CA3A47500A2436F /* EasyTipView in Frameworks */ = {isa = PBXBuildFile; productRef = 196C57632CA3A47500A2436F /* EasyTipView */; };
+		196C576F2CA3F1F000A2436F /* SettingTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196C576E2CA3F1E500A2436F /* SettingTipView.swift */; };
 		1977686E2C984E3300F40521 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1977686D2C984E3300F40521 /* AppDelegate.swift */; };
 		1977689B2C987CFE00F40521 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 1977689A2C987CFE00F40521 /* Pow */; };
 		197768A82C99C9FB00F40521 /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197768A72C99C9FB00F40521 /* AppIconView.swift */; };
@@ -71,6 +73,7 @@
 		196C57582CA2FBB200A2436F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		196C575A2CA2FBC200A2436F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		196C575B2CA2FC0F00A2436F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Launch Screen.storyboard"; sourceTree = "<group>"; };
+		196C576E2CA3F1E500A2436F /* SettingTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTipView.swift; sourceTree = "<group>"; };
 		1977686C2C984C7700F40521 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1977686D2C984E3300F40521 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		197768882C9863F000F40521 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
@@ -117,6 +120,7 @@
 				1977689B2C987CFE00F40521 /* Pow in Frameworks */,
 				199075912C87EA0C00E23FD7 /* Kingfisher in Frameworks */,
 				1985A7AD2C9FDCE9003D255B /* JDStatusBarNotification in Frameworks */,
+				196C57642CA3A47500A2436F /* EasyTipView in Frameworks */,
 				199BB8E12C9EDE2900D25774 /* Alamofire in Frameworks */,
 				198706FC2C943C8100F59CE9 /* ScalingHeaderScrollView in Frameworks */,
 			);
@@ -125,6 +129,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		196C576B2CA3F10000A2436F /* TipsView */ = {
+			isa = PBXGroup;
+			children = (
+				196C576E2CA3F1E500A2436F /* SettingTipView.swift */,
+			);
+			path = TipsView;
+			sourceTree = "<group>";
+		};
 		197768872C9863F000F40521 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +250,7 @@
 		19D231D52C93FCBF001044BB /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				196C576B2CA3F10000A2436F /* TipsView */,
 				1985A7B42CA0362E003D255B /* PhotoView */,
 				19E5B8C02C8DC7A600EC77F7 /* SettingsView */,
 				198706F12C941D8F00F59CE9 /* ItemsView */,
@@ -291,6 +304,7 @@
 				1977689A2C987CFE00F40521 /* Pow */,
 				199BB8E02C9EDE2900D25774 /* Alamofire */,
 				1985A7AC2C9FDCE9003D255B /* JDStatusBarNotification */,
+				196C57632CA3A47500A2436F /* EasyTipView */,
 			);
 			productName = PeacockMenus;
 			productReference = 199075782C86100100E23FD7 /* PeacockMenus.app */;
@@ -304,7 +318,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					199075772C86100100E23FD7 = {
 						CreatedOnToolsVersion = 15.4;
@@ -329,6 +343,7 @@
 				197768992C987CFE00F40521 /* XCRemoteSwiftPackageReference "Pow" */,
 				199BB8DF2C9EDE2900D25774 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				1985A7AB2C9FDCE9003D255B /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */,
+				196C57622CA3A47400A2436F /* XCRemoteSwiftPackageReference "EasyTipView" */,
 			);
 			productRefGroup = 199075792C86100100E23FD7 /* Products */;
 			projectDirPath = "";
@@ -377,6 +392,7 @@
 				19CD68A42C97DC7900AF6CF8 /* Mock.swift in Sources */,
 				1990757E2C86100100E23FD7 /* ContentView.swift in Sources */,
 				1990757C2C86100100E23FD7 /* PeacockMenusApp.swift in Sources */,
+				196C576F2CA3F1F000A2436F /* SettingTipView.swift in Sources */,
 				1985A7AF2C9FEF46003D255B /* OtherViews.swift in Sources */,
 				19DDEC272C96CAFD00C86EC5 /* ProjectSettingView.swift in Sources */,
 				198706F52C941F5400F59CE9 /* HomeVipCards.swift in Sources */,
@@ -423,6 +439,7 @@
 				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon AppIcon1 AppIcon2 AppIcon3";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -489,6 +506,7 @@
 				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon AppIcon1 AppIcon2 AppIcon3";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -652,6 +670,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		196C57622CA3A47400A2436F /* XCRemoteSwiftPackageReference "EasyTipView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/teodorpatras/EasyTipView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
 		197768992C987CFE00F40521 /* XCRemoteSwiftPackageReference "Pow" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/EmergeTools/Pow.git";
@@ -703,6 +729,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		196C57632CA3A47500A2436F /* EasyTipView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 196C57622CA3A47400A2436F /* XCRemoteSwiftPackageReference "EasyTipView" */;
+			productName = EasyTipView;
+		};
 		1977689A2C987CFE00F40521 /* Pow */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 197768992C987CFE00F40521 /* XCRemoteSwiftPackageReference "Pow" */;

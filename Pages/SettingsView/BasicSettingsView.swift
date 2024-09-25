@@ -14,6 +14,9 @@ struct BasicSettingsView: View {
     @Binding var columnVisibility: NavigationSplitViewVisibility
     @State private var showAlert:Bool = false
     @State private var showIconPicker:Bool = false
+	
+	let initTip = InitializeDataView()
+
     var body: some View {
         NavigationStack{
             List(selection: $selectedTab){
@@ -74,10 +77,18 @@ struct BasicSettingsView: View {
                 .toolbar{
                     ToolbarItem {
                         Button{
-                            showAlert = true
+							if InitializeDataView.startTipHasDisplayed{
+								showAlert.toggle()
+							}
+							InitializeDataView.startTipHasDisplayed = true
+							
                         }label: {
-                            Label("恢复初始化", systemImage: "hands.and.sparkles")
+							Image(systemName: "gearshape.arrow.triangle.2.circlepath")
+								.popoverTip(initTip)
+								
+								
                         }
+						
                     }
                 }
             

@@ -9,9 +9,11 @@ import SwiftUI
 import Defaults
 import UIKit
 
+
 struct ContentView: View {
 	
 	@EnvironmentObject var manager:peacock
+	@Default(.firstStart) var firstStart
 	
 	
 	var body: some View {
@@ -35,6 +37,26 @@ struct ContentView: View {
 			HStack{
 				Spacer()
 				MenuButtons()
+					.onAppear{
+						if firstStart{
+							manager.showMenu = true
+							manager.showCardDetail.toggle()
+							
+							DispatchQueue.main.asyncAfter(deadline: .now() + 2 ){
+								withAnimation {
+									manager.showCardDetail.toggle()
+								}
+								DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+									
+									SettingTipView.startTipHasDisplayed = true
+								}
+								
+								
+							}
+							
+							
+						}
+					}
 				
 			}
 			.zIndex(199)

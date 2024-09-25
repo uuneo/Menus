@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Defaults
+import TipKit
 
 struct HomeSettingView: View {
 	@EnvironmentObject var manager:peacock
@@ -104,12 +105,16 @@ struct HomeSettingView: View {
 				}
 				.frame(width: ISPAD ? 400 : UIScreen.main.bounds.width - 50, height: 250)
 				.opacity(disabled ? 1 : 0)
-				.alert(isPresented: $showAlert) {
-					Alert(title: Text("恢复初始化"), message: Text("初始化将删除全部数据"), primaryButton: .destructive(Text("确定"), action: {
-						Defaults.reset(.Cards,.Categorys,.Subcategorys,.Items, .settingPassword)
-					}), secondaryButton: .cancel())
-				}
+				
+				
 			}
+		
+			.alert(isPresented: $showAlert) {
+				Alert(title: Text("恢复初始化"), message: Text("初始化将删除全部数据"), primaryButton: .destructive(Text("确定"), action: {
+					Defaults.reset(.Cards,.Categorys,.Subcategorys,.Items, .settingPassword)
+				}), secondaryButton: .cancel())
+			}
+			
 	}
 	
 }

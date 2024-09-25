@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import AxisTooltip
+import Defaults
 
 struct SizeKey: PreferenceKey {
 	static let defaultValue: CGSize? = nil
@@ -23,6 +25,8 @@ struct MenuButtons: View {
 	@State private var viewSize: CGSize = .zero
 	@State private var containerWidth: CGFloat = 0 // 用来存储父视图的宽度
 	@EnvironmentObject var manager:peacock
+	
+	let openSetting = SettingTipView()
 	var body: some View {
 		
 		HStack{
@@ -51,14 +55,33 @@ struct MenuButtons: View {
 						manager.showMenu.toggle()
 					}
 				}label: {
-					Image(systemName: item.rawValue)
-						.frame(width: 35, height: 35)
-						.background( .gray.opacity(manager.page == item ? 0.3 : 0.1))
-						.clipShape(Circle())
-						.shadow(color: Color("buttonShadow"), radius: 3, x: 0, y: 3)
-						.padding(.leading, item != Page.allCases.first ? 20 : 0)
-						.padding(.trailing, item == Page.allCases.last ? 30 : 0)
-						.padding(.vertical, 5)
+					
+					if item == .setting{
+						
+						Image(systemName: item.rawValue)
+							.frame(width: 35, height: 35)
+							.background( .gray.opacity(manager.page == item ? 0.3 : 0.1))
+							.clipShape(Circle())
+							.shadow(color: Color("buttonShadow"), radius: 3, x: 0, y: 3)
+							.padding(.leading, item != Page.allCases.first ? 20 : 0)
+							.padding(.trailing, item == Page.allCases.last ? 30 : 0)
+							.padding(.vertical, 5)
+							.popoverTip(openSetting)
+							
+							
+					}else{
+						Image(systemName: item.rawValue)
+							.frame(width: 35, height: 35)
+							.background( .gray.opacity(manager.page == item ? 0.3 : 0.1))
+							.clipShape(Circle())
+							.shadow(color: Color("buttonShadow"), radius: 3, x: 0, y: 3)
+							.padding(.leading, item != Page.allCases.first ? 20 : 0)
+							.padding(.trailing, item == Page.allCases.last ? 30 : 0)
+							.padding(.vertical, 5)
+					}
+					
+				
+						
 						
 				}
 			}
@@ -75,7 +98,6 @@ struct MenuButtons: View {
 				Color.clear.preference(key: SizeKey.self, value: proxy.size)
 			}
 		)
-	
 		.onPreferenceChange(SizeKey.self) { value in
 			if let size = value{
 				self.viewSize = size

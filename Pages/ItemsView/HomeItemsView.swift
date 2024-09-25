@@ -21,6 +21,8 @@ struct HomeItemsView: View {
 	@Default(.homeItemsTitle) var title
 	@Default(.homeItemsSubTitle) var subTitle
 	
+	@EnvironmentObject var manager:peacock
+	
 	var body: some View {
 		
 		VStack {
@@ -49,10 +51,17 @@ struct HomeItemsView: View {
 						ForEach($items) { item in
 							Button(action: {
 								withAnimation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0.8)){
+									if manager.showMenu{
+										manager.showMenu = false
+									}
 									peacock.shared.selectedItem = item.wrappedValue
 									self.showDetail.toggle()
+									
+									
 								}
-								
+								DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+									DiscountTipView.startTipHasDisplayed = true
+								}
 							}) {
 								
 								if ISPAD{
@@ -149,5 +158,7 @@ struct categoryCardView: View {
 }
 
 #Preview {
-	HomeItemsView(NewHomeName: Namespace().wrappedValue, showDetail: .constant(false))
+	@Previewable @State var showDetail:Bool = false
+	HomeItemsView(NewHomeName: Namespace().wrappedValue, showDetail: $showDetail)
+		.environmentObject(peacock.shared)
 }

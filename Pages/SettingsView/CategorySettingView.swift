@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Defaults
+import TipKit
 
 struct CategorySettingView: View {
 	
@@ -57,9 +58,10 @@ struct CategorySettingView: View {
 struct ChangeCategoryView: View {
     @Binding var item:CategoryData
     @Environment(\.dismiss) var dismiss
+	let editTip = EditChangeTipView()
     var body: some View {
         Form {
-            
+			TipView(editTip)
             Section{
                 TextField("项目大类", text: $item.title)
 					.customField(icon: "pencil",data: $item.title)

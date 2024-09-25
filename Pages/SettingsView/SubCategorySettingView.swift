@@ -7,6 +7,7 @@
 
 import Defaults
 import SwiftUI
+import TipKit
 
 struct SubCategorySettingView: View {
 	@EnvironmentObject var manager:peacock
@@ -100,10 +101,13 @@ struct SubCategorySettingView: View {
 struct ChangeSubcategoryView:View {
     @Binding var item:SubCategoryData
     @Default(.Categorys) var categoryItems
-
+	let editTip = EditChangeTipView()
     var body: some View {
         
         Form{
+			
+			TipView(editTip)
+			
             Section{
                 
                 Picker(selection: $item.categoryId, label: Text("选择项目大类")) {

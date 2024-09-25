@@ -8,6 +8,8 @@
 import SwiftUI
 import ScalingHeaderScrollView
 import Defaults
+import TipKit
+
 
 struct itemsView: View {
 	
@@ -30,6 +32,8 @@ struct itemsView: View {
     var selectItems:[SubCategoryData]{
         return subcategoryItems.filter({$0.categoryId  == manager.selectedItem.id})
     }
+	
+	let discountTip = DiscountTipView()
     
     var body: some View {
         
@@ -143,6 +147,8 @@ struct itemsView: View {
                 VStack{
                     Spacer()
                     PickerOfCardView()
+						.popoverTip(discountTip)
+						
                     
                 }
                 
@@ -198,6 +204,7 @@ struct itemsView: View {
                         .foregroundColor(.white)
                     
                     PickerOfCardView()
+						
                     
                     Spacer()
                     
@@ -260,6 +267,8 @@ struct itemsView: View {
                         Spacer()
                         PickerOfCardView()
                             .padding(.top, 30)
+							.popoverTip(discountTip)
+							
                     }
                     Spacer()
                 }
@@ -318,7 +327,7 @@ struct itemsView: View {
                     Spacer()
                     
                     PickerOfCardView()
-                    
+						
                     
                 }.padding(.horizontal,10)
             }

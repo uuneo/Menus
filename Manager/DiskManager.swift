@@ -30,25 +30,29 @@ final class peacock:ObservableObject {
     @Published var selectedItem: CategoryData = CategoryData.example
     
     @Published var selectCard:MemberCardData = MemberCardData.nonmember
-	
-    
+
 	@Published var page :Page = .home
 	
 	@Published var showMenu:Bool = false
 	
-    
-    
-    func updateItem(url:String,completion:((Bool) -> Void)? = nil){
-        
-        if !startsWithHttpOrHttps(url){
+	@Published  var showCardDetail:Bool = false
+   
+	@Published var resetType:Bool = false
+
+}
+
+extension peacock{
+	func updateItem(url:String,completion:((Bool) -> Void)? = nil){
+		
+		if !startsWithHttpOrHttps(url){
 			Task{
 				await self.toast("地址不正确", mode: .light)
 			}
 			
-            completion?(false)
-            return
-        }
-        
+			completion?(false)
+			return
+		}
+		
 		Task{
 			
 			getData(url: url) { (result: TotalData?) in
@@ -66,30 +70,30 @@ final class peacock:ObservableObject {
 			}
 			
 			
-        }
-        
-    }
-    
-    
-    func uploadItem(url:String, completion:((Bool) -> Void)? = nil){
-        if !startsWithHttpOrHttps(url){
-            completion?(false)
-        }
+		}
+		
+	}
+	
+	
+	func uploadItem(url:String, completion:((Bool) -> Void)? = nil){
+		if !startsWithHttpOrHttps(url){
+			completion?(false)
+		}
 		
 		uploadFile(url: url,completion: completion)
-        
 		
-    }
-    
-    
-    func startsWithHttpOrHttps(_ urlString: String) -> Bool {
-        let pattern = "^(http|https)://.*"
-        let test = NSPredicate(format:"SELF MATCHES %@", pattern)
-        return test.evaluate(with: urlString)
-    }
-    
+		
+	}
+	
+	
+	func startsWithHttpOrHttps(_ urlString: String) -> Bool {
+		let pattern = "^(http|https)://.*"
+		let test = NSPredicate(format:"SELF MATCHES %@", pattern)
+		return test.evaluate(with: urlString)
+	}
+	
 
-    
+	
 	func uploadFile(url: String, completion: ((Bool)->Void)?) {
 		
 		
@@ -123,8 +127,8 @@ final class peacock:ObservableObject {
 		}
 		
 	}
-    
-    
+	
+	
 	func getData<T: Codable>(url: String, completion: @escaping (T?)-> Void) {
 		
 		
@@ -152,10 +156,7 @@ final class peacock:ObservableObject {
 		
 	}
 	
-
-}
-
-extension peacock{
+	
 	func exportTotalData() -> TotalData{
 		
 		TotalData(

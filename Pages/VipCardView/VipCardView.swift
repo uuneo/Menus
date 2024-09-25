@@ -22,7 +22,7 @@ struct VipCardView:View {
                         Text(item.title)
                             .font(.title3)
                             .fontWeight(.bold)
-                            .foregroundColor(Color("accent"))
+                            .foregroundColor(Color("accent2"))
                             .padding(.top)
                             .minimumScaleFactor(0.5)
                         
@@ -37,7 +37,7 @@ struct VipCardView:View {
                     Text(item.name)
                         .font(.title3)
                         .fontWeight(.bold)
-                        .foregroundColor(Color("accent"))
+                        .foregroundColor(Color("accent2"))
                 }
                 .padding(.horizontal)
                 Spacer()
@@ -61,7 +61,7 @@ struct VipCardView:View {
                             .font(.caption)
                         
                     }.padding()
-                        .foregroundColor(Color("accent"))
+                        .foregroundColor(Color("accent2"))
                     Spacer()
                     
                 }

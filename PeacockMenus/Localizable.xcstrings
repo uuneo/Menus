@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "zh-Hans",
   "strings" : {
+    "\t修改数据后将实时保存在本地\n\t不需要任何保存动作" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The modified data is saved locally in real time\nNo save action is required"
+          }
+        }
+      }
+    },
     " 会员优先服务" : {
       "localizations" : {
         "en" : {
@@ -322,16 +332,44 @@
       }
     },
     "other" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "other"
+          }
+        }
+      }
     },
     "Peacock-Cards" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peacock-Cards"
+          }
+        }
+      }
     },
     "Peacock-Items" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peacock-Items"
+          }
+        }
+      }
     },
     "Peacock-Menus" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peacock-Menus"
+          }
+        }
+      }
     },
     "Perming" : {
       "localizations" : {
@@ -389,6 +427,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "One encounter, a lifetime of beauty."
+          }
+        }
+      }
+    },
+    "上传数据" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload Data"
           }
         }
       }
@@ -454,7 +502,14 @@
       }
     },
     "价目表" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Price List"
+          }
+        }
+      }
     },
     "会员¥" : {
       "localizations" : {
@@ -467,7 +522,14 @@
       }
     },
     "会员卡" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vip Card"
+          }
+        }
+      }
     },
     "会员卡副标题" : {
       "localizations" : {
@@ -495,6 +557,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Membership Card Page"
+          }
+        }
+      }
+    },
+    "修改完成后点击按钮可以上传信息到服务器" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After modification, click the button to upload the information to the server"
           }
         }
       }
@@ -750,7 +822,14 @@
       }
     },
     "子菜单标题" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Submenu title"
+          }
+        }
+      }
     },
     "完成" : {
       "localizations" : {
@@ -812,12 +891,32 @@
         }
       }
     },
+    "恢复数据到初始状态" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore data to initial state"
+          }
+        }
+      }
+    },
     "所有项目" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "All Items"
+          }
+        }
+      }
+    },
+    "打开设置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Settings"
           }
         }
       }
@@ -872,12 +971,32 @@
         }
       }
     },
+    "提示" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tips"
+          }
+        }
+      }
+    },
     "搜索数据" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Search Data"
+          }
+        }
+      }
+    },
+    "数据初始化" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data initialization"
           }
         }
       }
@@ -922,6 +1041,16 @@
         }
       }
     },
+    "显示提示" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show Tips"
+          }
+        }
+      }
+    },
     "显示课程" : {
       "localizations" : {
         "en" : {
@@ -962,6 +1091,16 @@
         }
       }
     },
+    "本地数据将覆盖服务器数据" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The local data overwrites the server data"
+          }
+        }
+      }
+    },
     "染发" : {
       "localizations" : {
         "en" : {
@@ -988,6 +1127,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Title"
+          }
+        }
+      }
+    },
+    "点击可以切换折扣" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click to toggle discounts"
           }
         }
       }
@@ -1052,6 +1201,16 @@
         }
       }
     },
+    "编辑APP数据" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit APP data"
+          }
+        }
+      }
+    },
     "美容" : {
       "localizations" : {
         "en" : {
@@ -1103,13 +1262,34 @@
       }
     },
     "菜单图标" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu Icon"
+          }
+        }
+      }
     },
     "菜单底部" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bottom of Menu"
+          }
+        }
+      }
     },
     "菜单标题" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu title"
+          }
+        }
+      }
     },
     "菲灵" : {
       "localizations" : {
@@ -1231,6 +1411,16 @@
         }
       }
     },
+    "重新展示提示信息" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Display the prompt again"
+          }
+        }
+      }
+    },
     "金卡" : {
       "localizations" : {
         "en" : {
@@ -1302,7 +1492,14 @@
       }
     },
     "项目分类" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Item classification"
+          }
+        }
+      }
     },
     "项目副标题" : {
       "localizations" : {
@@ -1310,6 +1507,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Item Subtitle"
+          }
+        }
+      }
+    },
+    "项目同步失败" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Project syn failure"
+          }
+        }
+      }
+    },
+    "项目同步成功" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Project sync success"
           }
         }
       }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Defaults
-import JDStatusBarNotification
+import TipKit
 
 struct AppSettings: View {
     @Default(.homeCardTitle) var homeCardTitle
@@ -22,9 +22,13 @@ struct AppSettings: View {
 	@Default(.menusImage) var menusImage
  
 	@EnvironmentObject var manager:peacock
+	
+	let editTip = EditChangeTipView()
     
     var body: some View {
         List {
+			
+			TipView(editTip)
 			
 			Section {
 				TextField("菜单标题", text: $menusName)

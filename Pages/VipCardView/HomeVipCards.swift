@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Defaults
+import TipKit
 
 
 struct HomeVipCards: View {
@@ -14,8 +15,8 @@ struct HomeVipCards: View {
     @Default(.Cards) var cards
     @Default(.homeCardTitle) var title
     @Default(.homeCardSubTitle) var subTitle
-    
-    @State private var showDetail:Bool = false
+	@EnvironmentObject var manager:peacock
+	
     var body: some View {
         ZStack{
             VStack(alignment: .leading) {
@@ -50,14 +51,15 @@ struct HomeVipCards: View {
         TabView{
             ForEach($cards) { item in
                 GeometryReader { proxy in
-                    VipCardView(item: item, size: CGSize(width: 355, height: 230), show: $showDetail)
-                        .rotation3DEffect(
-                            .degrees(proxy.frame(in: .global).minX / -10),
-                            axis: (x: 0, y: 1, z: 0), perspective: 1
-                        )
-                        .blur(radius: abs(proxy.frame(in: .global).minX) / 40)
-                        .padding(20)
-                    
+					if cards.first == item.wrappedValue {
+						VipCardView(item: item, size: CGSize(width: 355, height: 230), show: $manager.showCardDetail)
+							.rotation3DEffect(
+								.degrees(proxy.frame(in: .global).minX / -10),
+								axis: (x: 0, y: 1, z: 0), perspective: 1
+							)
+							.blur(radius: abs(proxy.frame(in: .global).minX) / 40)
+							.padding(20)
+					}
                 }
 			}
         }
@@ -77,10 +79,11 @@ struct HomeVipCards: View {
 					
 					
 					ForEach($cards) { item in
-						VipCardView(item: item,size: CGSize(width: 355, height: 230), show: $showDetail)
+						VipCardView(item: item,size: CGSize(width: 355, height: 230), show: $manager.showCardDetail)
 							.scaleEffect(0.95)
 							.padding(.horizontal, 20)
 							.id(item.id)
+						
 					}
 					scallBtn( proxy: proxy, isHead: false)
 					
@@ -99,6 +102,7 @@ struct HomeVipCards: View {
 
 #Preview {
     HomeVipCards(Namespace: Namespace().wrappedValue)
+		.environmentObject(peacock.shared)
 }
 
 

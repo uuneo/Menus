@@ -26,6 +26,10 @@ extension Defaults.Keys{
     static let Categorys = Key<[CategoryData]>("Categorys",default:CategoryDataS)
     static let Subcategorys = Key<[SubCategoryData]>("Subcategorys",default: SubCategoryDataS)
     static let Items = Key<[ItemData]>("Items",default: ItemDataS)
+	
+	
+	
+	static let firstStart = Key<Bool>("FirstStart",default: true)
 }
 
 
