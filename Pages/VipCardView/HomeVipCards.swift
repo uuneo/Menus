@@ -51,15 +51,13 @@ struct HomeVipCards: View {
         TabView{
             ForEach($cards) { item in
                 GeometryReader { proxy in
-					if cards.first == item.wrappedValue {
-						VipCardView(item: item, size: CGSize(width: 355, height: 230), show: $manager.showCardDetail)
-							.rotation3DEffect(
-								.degrees(proxy.frame(in: .global).minX / -10),
-								axis: (x: 0, y: 1, z: 0), perspective: 1
-							)
-							.blur(radius: abs(proxy.frame(in: .global).minX) / 40)
-							.padding(20)
-					}
+					VipCardView(item: item, size: CGSize(width: 355, height: 230), show: $manager.showCardDetail)
+						.rotation3DEffect(
+							.degrees(proxy.frame(in: .global).minX / -10),
+							axis: (x: 0, y: 1, z: 0), perspective: 1
+						)
+						.blur(radius: abs(proxy.frame(in: .global).minX) / 40)
+						.padding(20)
                 }
 			}
         }
