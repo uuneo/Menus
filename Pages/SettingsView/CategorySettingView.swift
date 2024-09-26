@@ -59,6 +59,7 @@ struct ChangeCategoryView: View {
     @Binding var item:CategoryData
     @Environment(\.dismiss) var dismiss
 	let editTip = EditChangeTipView()
+
     var body: some View {
         Form {
 			TipView(editTip)
@@ -81,6 +82,17 @@ struct ChangeCategoryView: View {
                 Text("项目图片")
             }
             Section {
+				
+				ColorPicker("选择/输入背景颜色", selection: Binding(get: {
+					Color(from: item.color)
+				}, set: { value in
+					if let value  = value.toHex() {
+						item.color = value
+					}
+					
+				}))
+					
+				
                 TextField("项目颜色", text: $item.color)
 					.customField(icon: "pencil",data: $item.color)
             }header: {

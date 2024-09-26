@@ -147,7 +147,9 @@ struct categoryCardView: View {
 		
 		.cornerRadius(30)
 		.shadow(color: Color.shadow2, radius: 1, x: -1, y: -1)
-		.shadow(color: Color(from: item.color).opacity(0.2), radius: 10, x: 5, y: 20)
+		.shadow(color: Color.shadow1, radius: 1, x: 1, y: 1)
+		.shadow(color: Color.shadow1, radius: 10, x: 10, y: 10)
+		.shadow(color: Color(from:item.color), radius: 3, x: 3, y: 3)
 		.padding()
 		.frame(width: 260)
 		.matchedGeometryEffect(id: "\(item.id)-background", in: NewHomeName,properties: [.position,.size,.frame], isSource: !show)

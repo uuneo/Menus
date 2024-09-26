@@ -1,5 +1,5 @@
 {
-  "originHash" : "c2c0d01ff7e3675de7b914b02f7579f58ced47fc6a80c4799b02ee4b36fab3fa",
+  "originHash" : "2d654600663904fefc7f031a7fbcec04b32c1bdabbc87443bf6a4c9347421576",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -44,6 +44,15 @@
       "state" : {
         "revision" : "f0d0f3e72d42beaf2b01f1cb798e1b55902814eb",
         "version" : "1.0.4"
+      }
+    },
+    {
+      "identity" : "qrscanner",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/uuneo/QRScanner.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "0262bf06c1f4683b6cde9ee9a72f3b720147e81c"
       }
     },
     {

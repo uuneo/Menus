@@ -111,7 +111,7 @@ struct VipCardView:View {
         .background(Color.background0)
         .clipped()
         .cornerRadius(10)
-		.shadow(color: Color.backgroundShadow, radius: 10, x: 5, y: 10)
+		.shadow(color: Color.shadow1, radius: 10, x: 5, y: 10)
 		.shadow(color: Color.shadow2, radius: 1, x: -1, y: -1)
         
        

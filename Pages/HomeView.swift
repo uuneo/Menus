@@ -11,6 +11,7 @@ import Combine
 import Defaults
 
 
+
 let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
 let statusBarHeight = windowScene?.statusBarManager?.statusBarFrame.height ?? 0
 
@@ -33,9 +34,8 @@ struct HomeView: View {
 					
 					HStack(alignment: .bottom){
 						HomeVipCards(Namespace: NewHomeName)
-						
+							.padding(.top, 30)
 					}
-					.padding(.top, 30)
 					.frame(height: UIScreen.main.bounds.height * 0.5)
 					
 					
@@ -58,6 +58,7 @@ struct HomeView: View {
 					.opacity(showDetail ? 1 : 0)
 					.offset(y: showDetail ? 0 : 200)
 			
+				
 				
 			}
 			.background( Color.background)

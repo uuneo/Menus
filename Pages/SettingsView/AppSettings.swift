@@ -23,6 +23,8 @@ struct AppSettings: View {
  
 	@EnvironmentObject var manager:peacock
 	
+	@State private var showScan:Bool	= false
+	
 	let editTip = EditChangeTipView()
     
     var body: some View {
@@ -96,7 +98,8 @@ struct AppSettings: View {
             
 				TextField("自动同步地址", text: $autoSetting.url)
 					.customField(icon: "link",data: $autoSetting.url)
-                
+				
+				
             }header: {
                 Label("自动同步地址", systemImage: "link")
 			}footer: {
@@ -115,7 +118,21 @@ struct AppSettings: View {
                 Label("设置密码", systemImage: "lock")
             }
         }
-       
+		.toolbar {
+			ToolbarItem {
+				Button{
+					
+					
+				}label: {
+					Image(systemName: "qrcode.viewfinder")
+				}
+			}
+		}
+		.sheet(isPresented: $showScan) {
+			ScanView() { code in
+				debugPrint(code)
+			}
+		}
        
     }
 }
