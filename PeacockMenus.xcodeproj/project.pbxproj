@@ -14,7 +14,6 @@
 		196C575D2CA2FC0F00A2436F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 196C575C2CA2FC0F00A2436F /* Launch Screen.storyboard */; };
 		196C576F2CA3F1F000A2436F /* SettingTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196C576E2CA3F1E500A2436F /* SettingTipView.swift */; };
 		196C57722CA4474400A2436F /* QRScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 196C57712CA4474400A2436F /* QRScanner */; };
-		196C57742CA4478C00A2436F /* ScanCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196C57732CA4478C00A2436F /* ScanCodeView.swift */; };
 		1977686E2C984E3300F40521 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1977686D2C984E3300F40521 /* AppDelegate.swift */; };
 		1977689B2C987CFE00F40521 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 1977689A2C987CFE00F40521 /* Pow */; };
 		197768A82C99C9FB00F40521 /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197768A72C99C9FB00F40521 /* AppIconView.swift */; };
@@ -75,7 +74,6 @@
 		196C575A2CA2FBC200A2436F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		196C575B2CA2FC0F00A2436F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		196C576E2CA3F1E500A2436F /* SettingTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTipView.swift; sourceTree = "<group>"; };
-		196C57732CA4478C00A2436F /* ScanCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanCodeView.swift; sourceTree = "<group>"; };
 		1977686C2C984C7700F40521 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1977686D2C984E3300F40521 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		197768882C9863F000F40521 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
@@ -151,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				1985A7B52CA03643003D255B /* PhotosView.swift */,
-				196C57732CA4478C00A2436F /* ScanCodeView.swift */,
 			);
 			path = PhotoView;
 			sourceTree = "<group>";
@@ -393,7 +390,6 @@
 				198706EB2C94114800F59CE9 /* extension+.swift in Sources */,
 				1977686E2C984E3300F40521 /* AppDelegate.swift in Sources */,
 				19CD68A42C97DC7900AF6CF8 /* Mock.swift in Sources */,
-				196C57742CA4478C00A2436F /* ScanCodeView.swift in Sources */,
 				1990757E2C86100100E23FD7 /* ContentView.swift in Sources */,
 				1990757C2C86100100E23FD7 /* PeacockMenusApp.swift in Sources */,
 				196C576F2CA3F1F000A2436F /* SettingTipView.swift in Sources */,

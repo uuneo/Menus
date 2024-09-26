@@ -8,3 +8,6 @@
 
 CFBundleDisplayName = "BeautyPlan";
 CFBundleName = "BeautyPlan";
+
+
+NSCameraUsageDescription = "Scan the QR code to obtain the server address";

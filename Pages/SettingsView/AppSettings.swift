@@ -22,8 +22,7 @@ struct AppSettings: View {
 	@Default(.menusImage) var menusImage
  
 	@EnvironmentObject var manager:peacock
-	
-	@State private var showScan:Bool	= false
+
 	
 	let editTip = EditChangeTipView()
     
@@ -118,21 +117,7 @@ struct AppSettings: View {
                 Label("设置密码", systemImage: "lock")
             }
         }
-		.toolbar {
-			ToolbarItem {
-				Button{
-					
-					
-				}label: {
-					Image(systemName: "qrcode.viewfinder")
-				}
-			}
-		}
-		.sheet(isPresented: $showScan) {
-			ScanView() { code in
-				debugPrint(code)
-			}
-		}
+		
        
     }
 }
