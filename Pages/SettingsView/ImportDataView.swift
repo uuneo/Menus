@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
+import CryptoKit
 
 struct ImportDataView: View {
 	
@@ -108,22 +109,25 @@ struct ImportDataView: View {
 				}
 				
 				
-				.fileImporter(isPresented: $importFile, allowedContentTypes: [UTType.json]) { result in
+				.fileImporter(isPresented: $importFile, allowedContentTypes: [.trnExportType]) { result in
 					switch result {
 					case .success(let fileUrl):
 						// 检查文件是否位于沙盒之外，如果是，处理安全作用域
 						if fileUrl.startAccessingSecurityScopedResource() {
 							do {
 								// 读取文件数据
-								let data = try Data(contentsOf: fileUrl)
+								let encryptedData = try Data(contentsOf: fileUrl)
+								let decryptedData = try AES.GCM.open(.init(combined: encryptedData), using: .trnKey)
+								
+								let totalData = try JSONDecoder().decode(TotalData.self, from: decryptedData)
+								
 								// 在此处理读取的数据，例如将其解析为 JSON
-								self.totaldata =  try? JSONDecoder().decode(TotalData.self, from: data)
-								// 处理完文件后停止访问安全作用域
-								fileUrl.stopAccessingSecurityScopedResource()
+								self.totaldata =  totalData
+								self.fileUrl = fileUrl
+								
 							} catch {
-								// 处理读取文件错误
-								alertTitle = "文件读取失败"
-								self.showAlert.toggle()
+						
+								debugPrint(error.localizedDescription)
 							}
 						} else {
 							alertTitle = "无法访问文件"

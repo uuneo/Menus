@@ -1,22 +1,17 @@
 //
-//  HomeView.swift
+//  MenuPriceView.swift
 //  PeacockMenus
 //
-//  Created by He Cho on 2024/9/13.
+//  Created by He Cho on 2024/9/29.
 //
 
-import Foundation
 import SwiftUI
-import Combine
-import Defaults
-
 
 
 let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
 let statusBarHeight = windowScene?.statusBarManager?.statusBarFrame.height ?? 0
 
-
-struct HomeView: View {
+struct MenuPriceView: View {
 	@EnvironmentObject var manager:peacock
 	@Namespace var NewHomeName
 	@State var showDetail:Bool = false
@@ -68,19 +63,8 @@ struct HomeView: View {
 		
 	}
 	
-	
 }
-
-
-
-
 
 #Preview {
-	
-	NavigationStack{
-		HomeView()
-			.environmentObject(peacock.shared)
-	}
-	
+    MenuPriceView()
 }
-

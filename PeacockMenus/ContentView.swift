@@ -30,7 +30,15 @@ struct ContentView: View {
 			case .photo:
 				PhotosView()
 					.transition(AnyTransition.opacity.combined(with: .slide))
-					
+			case .menu:
+				MenuPriceView()
+					.transition(AnyTransition.opacity.combined(with: .scale(scale: 0.5)))
+			case .music:
+				MusicView()
+					.transition(AnyTransition.opacity.combined(with: .scale(scale: 0.5)))
+			case .book:
+				BookView()
+					.transition(AnyTransition.opacity.combined(with: .scale(scale: 0.5)))
 			}
 			
 			

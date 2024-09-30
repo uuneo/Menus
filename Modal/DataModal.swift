@@ -7,6 +7,9 @@
 
 import Foundation
 import Defaults
+import CoreTransferable
+import UniformTypeIdentifiers
+import CryptoKit
 
 
 extension Defaults.Keys{
@@ -18,18 +21,19 @@ extension Defaults.Keys{
 	static let homeCardSubTitle = Key<String>("HomeCardSubTitle",default: String(localized: "Peacock-Cards"))
 	static let homeItemsTitle = Key<String>("HomeItemsTitle",default: String(localized: "项目分类"))
 	static let homeItemsSubTitle = Key<String>("HomeItemsSubTitle",default: String(localized: "Peacock-Items"))
-    static let settingPassword = Key<String>("SettingPassword",default: "")
-    static let autoSetting = Key<AutoAsyncSetting>("AutoSetting",default: AutoAsyncSetting(url: "https://example.com/menus.json", enable: false))
-    
-    
-    static let Cards = Key<[MemberCardData]>("MemberCards",default:MemberCardDataS)
-    static let Categorys = Key<[CategoryData]>("Categorys",default:CategoryDataS)
-    static let Subcategorys = Key<[SubCategoryData]>("Subcategorys",default: SubCategoryDataS)
-    static let Items = Key<[ItemData]>("Items",default: ItemDataS)
+	static let settingPassword = Key<String>("SettingPassword",default: "")
+	static let autoSetting = Key<AutoAsyncSetting>("AutoSetting",default: AutoAsyncSetting(url: "https://example.com/menus.json", enable: false))
+	
+	
+	static let Cards = Key<[MemberCardData]>("MemberCards",default:MemberCardDataS)
+	static let Categorys = Key<[CategoryData]>("Categorys",default:CategoryDataS)
+	static let Subcategorys = Key<[SubCategoryData]>("Subcategorys",default: SubCategoryDataS)
+	static let Items = Key<[ItemData]>("Items",default: ItemDataS)
 	
 	
 	
 	static let firstStart = Key<Bool>("FirstStart",default: true)
+	static let defaultHome = Key<Page>("defaultHome", default: Page.home)
 }
 
 
@@ -155,5 +159,55 @@ struct TotalData: Codable {
     var homeItemsSubTitle:String?
     var settingPassword:String?
     var autoSetting:AutoAsyncSetting?
+	
+
+	
+	
 }
 
+
+extension TotalData:Transferable{
+	static var transferRepresentation: some TransferRepresentation{
+		
+		
+		DataRepresentation(exportedContentType: .trnExportType){
+			let data = try JSONEncoder().encode($0)
+			guard let encrypteData = try AES.GCM.seal(data, using: .trnKey).combined else{
+				throw EncryptionError.failed
+			}
+			return encrypteData
+		}
+		.suggestedFileName("PeacockMenus-\(Date().yyyyMMddhhmmss())")
+		
+			
+	}
+	enum EncryptionError:Error{
+		case failed
+	}
+	
+
+}
+
+
+
+
+extension UTType{
+	static var trnExportType = UTType(exportedAs: "com.twown.PeacockMenus.trn")
+}
+
+extension SymmetricKey{
+	static var trnKey :SymmetricKey{
+		let key = "iJUSTINE".data(using: .utf8 )!
+		let sha256 = SHA256.hash(data: key)
+		return .init(data: sha256)
+	}
+}
+
+
+extension Date{
+	func yyyyMMddhhmmss() -> String {
+		let formatter = DateFormatter()
+		formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"  // 自定义格式
+		return formatter.string(from: self)  // 返回格式化的日期字符串
+	}
+}

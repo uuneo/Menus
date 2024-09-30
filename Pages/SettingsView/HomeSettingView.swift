@@ -11,7 +11,6 @@ import TipKit
 
 struct HomeSettingView: View {
 	@EnvironmentObject var manager:peacock
-	@State private var password:String = ""
 	@Default(.settingPassword) var settingPassword
 	
 	@FocusState var isFocused:Bool
@@ -19,6 +18,13 @@ struct HomeSettingView: View {
 	@State private var disabled = true
 	
 	@State private var showAlert:Bool = false
+	
+	
+	@State private var showPopup: Bool = false
+	@State private var showAlert2: Bool = false
+	@State private var isWrongPassword: Bool = false
+	@State private var isTryingAgain: Bool = false
+	
 	
 	var body: some View {
 		ZStack{
@@ -30,91 +36,66 @@ struct HomeSettingView: View {
 		}
 		
 		
-			.disabled(disabled)
-			.blur(radius: disabled ? 10 : 0)
-			.onAppear{
-				if settingPassword  == password{
-					disabled = false
-				}
-			}
-			.overlay {
-				
-				ZStack{
-					VStack{
-						Spacer()
-						HStack{
-							Label("管理密码", systemImage: "person.badge.key")
-								.font(.title)
-								.foregroundStyle(.white)
-								.minimumScaleFactor(0.5)
-							Spacer()
-							
-							
-						}.padding(.leading)
-						
-						HStack{
-							Spacer()
-							
-							SecureField( text: $password){
-								Label("输入密码", systemImage: "lock")
-							}
-							.scrollDisabled(true)
-							.focused($isFocused)
-							.customField(icon: "lock",iconColor: password == settingPassword ? .green : .red,data: .constant(""))
-							.onChange(of: password) { oldValue, newValue in
-								if newValue == settingPassword || newValue == "supadmin" {
-									disabled = false
-									self.isFocused = false
-									self.password = settingPassword
-									manager.showMenu = false
-								}
-							}
-							
-							Spacer()
-							
-						}
-						Spacer()
-					}
-					.frame(width: ISPAD ? 400 : UIScreen.main.bounds.width - 50, height: 250)
-					.background(Color.orange.gradient)
-					.clipShape(RoundedRectangle(cornerRadius: 30))
-					
-					VStack{
-						
-						HStack{
-							
-							Button{
-								self.showAlert.toggle()
-							}label: {
-								Image(systemName: "questionmark.circle")
-									.padding(5)
-								
-									.background(.ultraThinMaterial)
-									.font(.callout)
-									.clipShape(Circle())
-									.foregroundStyle(.gray)
-
-							}
-							
-							Spacer()
-						
-							
-						}.padding(10)
-						Spacer()
-					}
-				}
-				.frame(width: ISPAD ? 400 : UIScreen.main.bounds.width - 50, height: 250)
-				.opacity(disabled ? 1 : 0)
-				
-				
-			}
-		
-			.alert(isPresented: $showAlert) {
-				Alert(title: Text("恢复初始化"), message: Text("初始化将删除全部数据"), primaryButton: .destructive(Text("确定"), action: {
-					Defaults.reset(.Cards,.Categorys,.Subcategorys,.Items, .settingPassword)
-				}), secondaryButton: .cancel())
+		.disabled(disabled)
+		.blur(radius: disabled ? 10 : 0)
+		.onAppear{
+			withAnimation {
+				disabled = settingPassword  != ""
+				self.showPopup = true
 			}
 			
+		}
+		
+		.alert(isPresented: $showAlert) {
+			Alert(title: Text("恢复初始化"), message: Text("初始化将删除全部数据"), primaryButton: .destructive(Text("确定"), action: {
+				Defaults.reset(.Cards,.Categorys,.Subcategorys,.Items, .settingPassword)
+			}), secondaryButton: .cancel())
+		}
+		
+		.popView(isPresented: $showPopup) {
+			withAnimation {
+				showAlert2 = isWrongPassword
+				isWrongPassword = false
+			}
+			
+		} content: {
+			CustomAlertWithTextField(show: $showPopup) { password in
+				withAnimation {
+					if password == settingPassword {
+						self.disabled = false
+					} else if password == "canceAndCloselView" {
+						manager.page = .home
+					}else{
+						isWrongPassword = true
+					}
+				}
+				
+			}
+		}
+		.popView(isPresented: $showAlert2) {
+			withAnimation {
+				showPopup = isTryingAgain
+				isTryingAgain = false
+			}
+			
+		} content: {
+			CustomAlert(show: $showAlert2) { success in
+				withAnimation {
+					if success{
+						isTryingAgain = true
+					}else{
+						manager.page = .home
+					}
+					
+				}
+				
+				
+			}
+		}
+		
+		
+		
+		
 	}
 	
 }

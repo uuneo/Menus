@@ -6,74 +6,19 @@
 //
 
 import SwiftUI
-import Defaults
+
 
 struct PhotosView: View {
-	@Default(.menusName) var itemName
-	@Default(.menusSubName) var subName
-	@Default(.menusFooter) var footerName
-	@Default(.menusImage) var menusImage
+
 	
 	var body: some View {
-		ZStack{
+		GeometryReader {
+			let size = $0.size
+			let safeArea = $0.safeAreaInsets
 			
-			
-			AsyncImageView(imageUrl: menusImage)
-				.scaledToFill()
-				.frame(width: UIScreen.main.bounds.width, height:  UIScreen.main.bounds.height)
-				
-				
-			
-			VStack{
-				
-				VStack{
-					HStack{
-						Text(itemName)
-							.font(.system(size: 35))
-							.bold()
-							.padding()
-							.foregroundStyle(.black)
-							
-						
-						Text(subName)
-							.font(.system(size: 25))
-							.padding()
-							.foregroundStyle(.gray)
-						
-						
-						Spacer()
-					}
-					
-					
-					Divider()
-		
-					
-				}
-				.padding(30)
-				
-				Spacer()
-				HStack{
-					Spacer()
-					Text(footerName)
-						.font(.system(size: 40))
-						.bold()
-						.padding()
-						.foregroundStyle(.orange)
-					
-					
-					
-					Spacer()
-				}
-				.blendMode(.difference)
-				.offset(y: -100)
-			}
-			
-			
-			
-			
+			HomePhotoView(size: size, safeArea: safeArea)
+				.ignoresSafeArea(.all, edges: .top)
 		}
-		.frame(width: UIScreen.main.bounds.width, height:  UIScreen.main.bounds.height)
-		.ignoresSafeArea()
 		
 	}
 }

@@ -42,7 +42,7 @@ final class ImageManager{
     /// - Parameter imageUrl: 图片URL字符串
     /// - Returns: 保存在本地中的`图片 File URL`
     class func downloadImage(_ imageUrl: String) async -> String? {
-        let groupName:String = "PeacockMenus"
+        let groupName:String = "group.PeacockMenus"
         guard let groupUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupName),
               let cache = try? ImageCache(name: "shared", cacheDirectoryURL: groupUrl),
               let imageResource = URL(string: imageUrl)

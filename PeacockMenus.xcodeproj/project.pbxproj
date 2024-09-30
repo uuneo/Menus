@@ -13,7 +13,6 @@
 		196C57592CA2FBB200A2436F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 196C57572CA2FBB200A2436F /* InfoPlist.strings */; };
 		196C575D2CA2FC0F00A2436F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 196C575C2CA2FC0F00A2436F /* Launch Screen.storyboard */; };
 		196C576F2CA3F1F000A2436F /* SettingTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196C576E2CA3F1E500A2436F /* SettingTipView.swift */; };
-		196C57722CA4474400A2436F /* QRScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 196C57712CA4474400A2436F /* QRScanner */; };
 		1977686E2C984E3300F40521 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1977686D2C984E3300F40521 /* AppDelegate.swift */; };
 		1977689B2C987CFE00F40521 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 1977689A2C987CFE00F40521 /* Pow */; };
 		197768A82C99C9FB00F40521 /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197768A72C99C9FB00F40521 /* AppIconView.swift */; };
@@ -29,6 +28,11 @@
 		198706F92C9420BE00F59CE9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198706F82C9420BE00F59CE9 /* HomeView.swift */; };
 		198706FC2C943C8100F59CE9 /* ScalingHeaderScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 198706FB2C943C8100F59CE9 /* ScalingHeaderScrollView */; };
 		198707042C956D3500F59CE9 /* itemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198707032C956D3500F59CE9 /* itemView.swift */; };
+		1989BF022CA84B2600D5B8DE /* FlipClockText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1989BF012CA8496500D5B8DE /* FlipClockText.swift */; };
+		1989BF112CA85D8D00D5B8DE /* PopPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1989BF102CA85D8D00D5B8DE /* PopPasswordView.swift */; };
+		1989BF262CA9314A00D5B8DE /* contact.json in Resources */ = {isa = PBXBuildFile; fileRef = 1989BF252CA9314A00D5B8DE /* contact.json */; };
+		1989BF292CA931FE00D5B8DE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 1989BF282CA931FE00D5B8DE /* Lottie */; };
+		1989BF2B2CA9329600D5B8DE /* AniMationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1989BF2A2CA9328800D5B8DE /* AniMationView.swift */; };
 		1990757C2C86100100E23FD7 /* PeacockMenusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990757B2C86100100E23FD7 /* PeacockMenusApp.swift */; };
 		1990757E2C86100100E23FD7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990757D2C86100100E23FD7 /* ContentView.swift */; };
 		199075802C86100300E23FD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1990757F2C86100300E23FD7 /* Assets.xcassets */; };
@@ -40,6 +44,19 @@
 		199075BB2C8B0D9A00E23FD7 /* PeacockProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199075BA2C8B0D9A00E23FD7 /* PeacockProtocol.swift */; };
 		199075C52C8B3E0800E23FD7 /* DropDelegate+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199075C42C8B3E0800E23FD7 /* DropDelegate+.swift */; };
 		199BB8E12C9EDE2900D25774 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 199BB8E02C9EDE2900D25774 /* Alamofire */; };
+		19AF99ED2CA93D8A0093206C /* album.json in Resources */ = {isa = PBXBuildFile; fileRef = 19AF99EC2CA93D8A0093206C /* album.json */; };
+		19AF99EF2CA93F8F0093206C /* music.json in Resources */ = {isa = PBXBuildFile; fileRef = 19AF99EE2CA93F8F0093206C /* music.json */; };
+		19AF99F12CA943300093206C /* menus.json in Resources */ = {isa = PBXBuildFile; fileRef = 19AF99F02CA9432F0093206C /* menus.json */; };
+		19AF99F32CA945810093206C /* MenuPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AF99F22CA945810093206C /* MenuPriceView.swift */; };
+		19AF99F62CA947230093206C /* HomeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AF99F52CA947180093206C /* HomeMenuView.swift */; };
+		19AF99FA2CA94C8B0093206C /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AF99F92CA94C8A0093206C /* BookView.swift */; };
+		19AF99FC2CA94CA20093206C /* MusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AF99FB2CA94CA20093206C /* MusicView.swift */; };
+		19AF99FF2CA952FE0093206C /* CustomSimulataneousGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AF99FE2CA952F50093206C /* CustomSimulataneousGesture.swift */; };
+		19AF9A012CA953130093206C /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AF9A002CA953120093206C /* SharedData.swift */; };
+		19AF9A032CA953290093206C /* PhotosScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AF9A022CA953280093206C /* PhotosScrollView.swift */; };
+		19AF9A052CA9533D0093206C /* OtherContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AF9A042CA9533C0093206C /* OtherContents.swift */; };
+		19AF9A072CA953520093206C /* CustomPagingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AF9A062CA953510093206C /* CustomPagingIndicatorView.swift */; };
+		19AF9A092CA953A10093206C /* HomePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AF9A082CA953950093206C /* HomePhotoView.swift */; };
 		19CD68A42C97DC7900AF6CF8 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD68A32C97DC7900AF6CF8 /* Mock.swift */; };
 		19CD68A62C9829D500AF6CF8 /* BasicSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD68A52C9829D500AF6CF8 /* BasicSettingsView.swift */; };
 		19D231D72C93FCDC001044BB /* itemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D231D62C93FCDC001044BB /* itemsView.swift */; };
@@ -51,6 +68,13 @@
 		19E5B8BA2C8D605500EC77F7 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 19E5B8B92C8D605500EC77F7 /* Defaults */; };
 		19E5B8BF2C8DC04500EC77F7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E5B8BE2C8DC04500EC77F7 /* SettingsView.swift */; };
 		19F835B62C8F0A000083A66D /* VipCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F835B52C8F0A000083A66D /* VipCardView.swift */; };
+		19FB9E2E2CA973C9007014E2 /* ExpandedBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FB9E2D2CA973C6007014E2 /* ExpandedBottom.swift */; };
+		19FB9E302CA97FDB007014E2 /* test.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 19FB9E2F2CA97FDB007014E2 /* test.mp3 */; };
+		19FB9E322CA982A9007014E2 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FB9E312CA982A3007014E2 /* AudioManager.swift */; };
+		19FB9E352CA98327007014E2 /* RingTongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FB9E342CA98322007014E2 /* RingTongView.swift */; };
+		19FB9E512CAA44D7007014E2 /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FB9E502CAA44D1007014E2 /* TaskRowView.swift */; };
+		19FB9E532CAA4501007014E2 /* ModalTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FB9E522CAA44F8007014E2 /* ModalTask.swift */; };
+		19FB9E552CAA4FE3007014E2 /* NewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FB9E542CAA4FD9007014E2 /* NewTaskView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -88,6 +112,10 @@
 		198706F42C941F5400F59CE9 /* HomeVipCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVipCards.swift; sourceTree = "<group>"; };
 		198706F82C9420BE00F59CE9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		198707032C956D3500F59CE9 /* itemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemView.swift; sourceTree = "<group>"; usesTabs = 0; };
+		1989BF012CA8496500D5B8DE /* FlipClockText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipClockText.swift; sourceTree = "<group>"; };
+		1989BF102CA85D8D00D5B8DE /* PopPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopPasswordView.swift; sourceTree = "<group>"; };
+		1989BF252CA9314A00D5B8DE /* contact.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = contact.json; sourceTree = "<group>"; };
+		1989BF2A2CA9328800D5B8DE /* AniMationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AniMationView.swift; sourceTree = "<group>"; };
 		199075782C86100100E23FD7 /* PeacockMenus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeacockMenus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1990757B2C86100100E23FD7 /* PeacockMenusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeacockMenusApp.swift; sourceTree = "<group>"; };
 		1990757D2C86100100E23FD7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,6 +126,19 @@
 		199075A82C89C73F00E23FD7 /* DiskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskManager.swift; sourceTree = "<group>"; };
 		199075BA2C8B0D9A00E23FD7 /* PeacockProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeacockProtocol.swift; sourceTree = "<group>"; };
 		199075C42C8B3E0800E23FD7 /* DropDelegate+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DropDelegate+.swift"; sourceTree = "<group>"; };
+		19AF99EC2CA93D8A0093206C /* album.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = album.json; sourceTree = "<group>"; };
+		19AF99EE2CA93F8F0093206C /* music.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = music.json; sourceTree = "<group>"; };
+		19AF99F02CA9432F0093206C /* menus.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = menus.json; sourceTree = "<group>"; };
+		19AF99F22CA945810093206C /* MenuPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPriceView.swift; sourceTree = "<group>"; };
+		19AF99F52CA947180093206C /* HomeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuView.swift; sourceTree = "<group>"; };
+		19AF99F92CA94C8A0093206C /* BookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookView.swift; sourceTree = "<group>"; };
+		19AF99FB2CA94CA20093206C /* MusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MusicView.swift; path = Pages/BookView/MusicView.swift; sourceTree = SOURCE_ROOT; };
+		19AF99FE2CA952F50093206C /* CustomSimulataneousGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSimulataneousGesture.swift; sourceTree = "<group>"; };
+		19AF9A002CA953120093206C /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
+		19AF9A022CA953280093206C /* PhotosScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosScrollView.swift; sourceTree = "<group>"; };
+		19AF9A042CA9533C0093206C /* OtherContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherContents.swift; sourceTree = "<group>"; };
+		19AF9A062CA953510093206C /* CustomPagingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPagingIndicatorView.swift; sourceTree = "<group>"; };
+		19AF9A082CA953950093206C /* HomePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePhotoView.swift; sourceTree = "<group>"; };
 		19CD68A32C97DC7900AF6CF8 /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
 		19CD68A52C9829D500AF6CF8 /* BasicSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicSettingsView.swift; sourceTree = "<group>"; };
 		19D231D62C93FCDC001044BB /* itemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemsView.swift; sourceTree = "<group>"; };
@@ -109,6 +150,13 @@
 		19E40CCD2C9C504C0077F71F /* PeacockMenus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PeacockMenus.entitlements; sourceTree = "<group>"; };
 		19E5B8BE2C8DC04500EC77F7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		19F835B52C8F0A000083A66D /* VipCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VipCardView.swift; sourceTree = "<group>"; };
+		19FB9E2D2CA973C6007014E2 /* ExpandedBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedBottom.swift; sourceTree = "<group>"; };
+		19FB9E2F2CA97FDB007014E2 /* test.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test.mp3; sourceTree = "<group>"; };
+		19FB9E312CA982A3007014E2 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		19FB9E342CA98322007014E2 /* RingTongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingTongView.swift; sourceTree = "<group>"; };
+		19FB9E502CAA44D1007014E2 /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
+		19FB9E522CAA44F8007014E2 /* ModalTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTask.swift; sourceTree = "<group>"; };
+		19FB9E542CAA4FD9007014E2 /* NewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,11 +165,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				19E5B8BA2C8D605500EC77F7 /* Defaults in Frameworks */,
+				1989BF292CA931FE00D5B8DE /* Lottie in Frameworks */,
 				1977689B2C987CFE00F40521 /* Pow in Frameworks */,
 				199075912C87EA0C00E23FD7 /* Kingfisher in Frameworks */,
 				1985A7AD2C9FDCE9003D255B /* JDStatusBarNotification in Frameworks */,
 				199BB8E12C9EDE2900D25774 /* Alamofire in Frameworks */,
-				196C57722CA4474400A2436F /* QRScanner in Frameworks */,
 				198706FC2C943C8100F59CE9 /* ScalingHeaderScrollView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -148,6 +196,7 @@
 		1985A7B42CA0362E003D255B /* PhotoView */ = {
 			isa = PBXGroup;
 			children = (
+				19AF99FD2CA952EC0093206C /* ToolsView */,
 				1985A7B52CA03643003D255B /* PhotosView.swift */,
 			);
 			path = PhotoView;
@@ -172,9 +221,33 @@
 			path = ItemsView;
 			sourceTree = "<group>";
 		};
+		1989BF002CA8495C00D5B8DE /* ToolsView */ = {
+			isa = PBXGroup;
+			children = (
+				1989BF2A2CA9328800D5B8DE /* AniMationView.swift */,
+				1989BF012CA8496500D5B8DE /* FlipClockText.swift */,
+				1989BF102CA85D8D00D5B8DE /* PopPasswordView.swift */,
+			);
+			path = ToolsView;
+			sourceTree = "<group>";
+		};
+		1989BF242CA9312F00D5B8DE /* lottleAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				19AF99EC2CA93D8A0093206C /* album.json */,
+				19AF99F02CA9432F0093206C /* menus.json */,
+				19AF99EE2CA93F8F0093206C /* music.json */,
+				1989BF252CA9314A00D5B8DE /* contact.json */,
+			);
+			path = lottleAnimation;
+			sourceTree = "<group>";
+		};
 		1990756F2C86100100E23FD7 = {
 			isa = PBXGroup;
 			children = (
+				19FB9E362CA984DE007014E2 /* Sounds */,
+				1989BF242CA9312F00D5B8DE /* lottleAnimation */,
+				1989BF002CA8495C00D5B8DE /* ToolsView */,
 				19D231D52C93FCBF001044BB /* Pages */,
 				199075C62C8B544800E23FD7 /* Public */,
 				1990759A2C87F19100E23FD7 /* Modal */,
@@ -221,6 +294,7 @@
 		199075932C87EBD000E23FD7 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				19FB9E312CA982A3007014E2 /* AudioManager.swift */,
 				1990758D2C87E9DF00E23FD7 /* ImageManager.swift */,
 				199075A82C89C73F00E23FD7 /* DiskManager.swift */,
 			);
@@ -247,18 +321,64 @@
 			path = Public;
 			sourceTree = "<group>";
 		};
+		19AF99F42CA9470E0093206C /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				198706F82C9420BE00F59CE9 /* HomeView.swift */,
+				19AF99F52CA947180093206C /* HomeMenuView.swift */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
+		19AF99F72CA94B6F0093206C /* BookView */ = {
+			isa = PBXGroup;
+			children = (
+				19FB9E542CAA4FD9007014E2 /* NewTaskView.swift */,
+				19FB9E522CAA44F8007014E2 /* ModalTask.swift */,
+				19FB9E502CAA44D1007014E2 /* TaskRowView.swift */,
+				19AF99F92CA94C8A0093206C /* BookView.swift */,
+			);
+			path = BookView;
+			sourceTree = "<group>";
+		};
+		19AF99F82CA94B850093206C /* MusicView */ = {
+			isa = PBXGroup;
+			children = (
+				19FB9E342CA98322007014E2 /* RingTongView.swift */,
+				19FB9E2D2CA973C6007014E2 /* ExpandedBottom.swift */,
+				19AF99FB2CA94CA20093206C /* MusicView.swift */,
+			);
+			path = MusicView;
+			sourceTree = "<group>";
+		};
+		19AF99FD2CA952EC0093206C /* ToolsView */ = {
+			isa = PBXGroup;
+			children = (
+				19AF9A082CA953950093206C /* HomePhotoView.swift */,
+				19AF9A062CA953510093206C /* CustomPagingIndicatorView.swift */,
+				19AF9A042CA9533C0093206C /* OtherContents.swift */,
+				19AF9A022CA953280093206C /* PhotosScrollView.swift */,
+				19AF9A002CA953120093206C /* SharedData.swift */,
+				19AF99FE2CA952F50093206C /* CustomSimulataneousGesture.swift */,
+			);
+			path = ToolsView;
+			sourceTree = "<group>";
+		};
 		19D231D52C93FCBF001044BB /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				19AF99F82CA94B850093206C /* MusicView */,
+				19AF99F72CA94B6F0093206C /* BookView */,
+				19AF99F42CA9470E0093206C /* HomeView */,
 				196C576B2CA3F10000A2436F /* TipsView */,
 				1985A7B42CA0362E003D255B /* PhotoView */,
 				19E5B8C02C8DC7A600EC77F7 /* SettingsView */,
 				198706F12C941D8F00F59CE9 /* ItemsView */,
 				198706F02C941D7900F59CE9 /* VipCardView */,
-				198706F82C9420BE00F59CE9 /* HomeView.swift */,
 				197768A72C99C9FB00F40521 /* AppIconView.swift */,
 				1985A7AE2C9FEF41003D255B /* OtherViews.swift */,
 				1985A7B22CA0350E003D255B /* MenuButtons.swift */,
+				19AF99F22CA945810093206C /* MenuPriceView.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -278,6 +398,14 @@
 				1985A7B02CA00E94003D255B /* HomeSettingView.swift */,
 			);
 			path = SettingsView;
+			sourceTree = "<group>";
+		};
+		19FB9E362CA984DE007014E2 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				19FB9E2F2CA97FDB007014E2 /* test.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,7 +432,7 @@
 				1977689A2C987CFE00F40521 /* Pow */,
 				199BB8E02C9EDE2900D25774 /* Alamofire */,
 				1985A7AC2C9FDCE9003D255B /* JDStatusBarNotification */,
-				196C57712CA4474400A2436F /* QRScanner */,
+				1989BF282CA931FE00D5B8DE /* Lottie */,
 			);
 			productName = PeacockMenus;
 			productReference = 199075782C86100100E23FD7 /* PeacockMenus.app */;
@@ -343,7 +471,7 @@
 				197768992C987CFE00F40521 /* XCRemoteSwiftPackageReference "Pow" */,
 				199BB8DF2C9EDE2900D25774 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				1985A7AB2C9FDCE9003D255B /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */,
-				196C57702CA4474400A2436F /* XCRemoteSwiftPackageReference "QRScanner" */,
+				1989BF272CA931FE00D5B8DE /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 199075792C86100100E23FD7 /* Products */;
 			projectDirPath = "";
@@ -359,9 +487,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1989BF262CA9314A00D5B8DE /* contact.json in Resources */,
 				196C575D2CA2FC0F00A2436F /* Launch Screen.storyboard in Resources */,
+				19AF99ED2CA93D8A0093206C /* album.json in Resources */,
+				19FB9E302CA97FDB007014E2 /* test.mp3 in Resources */,
+				19AF99EF2CA93F8F0093206C /* music.json in Resources */,
 				199075832C86100300E23FD7 /* Preview Assets.xcassets in Resources */,
 				190E395A2C9FD16D001061ED /* Localizable.xcstrings in Resources */,
+				19AF99F12CA943300093206C /* menus.json in Resources */,
 				199075802C86100300E23FD7 /* Assets.xcassets in Resources */,
 				196C57592CA2FBB200A2436F /* InfoPlist.strings in Resources */,
 			);
@@ -374,7 +507,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19AF9A092CA953A10093206C /* HomePhotoView.swift in Sources */,
+				1989BF022CA84B2600D5B8DE /* FlipClockText.swift in Sources */,
+				19AF99FA2CA94C8B0093206C /* BookView.swift in Sources */,
+				19FB9E512CAA44D7007014E2 /* TaskRowView.swift in Sources */,
+				1989BF2B2CA9329600D5B8DE /* AniMationView.swift in Sources */,
 				194BBAA92C8DD0E1002EAA09 /* AppSettings.swift in Sources */,
+				19AF9A072CA953520093206C /* CustomPagingIndicatorView.swift in Sources */,
 				19D231D72C93FCDC001044BB /* itemsView.swift in Sources */,
 				197768A82C99C9FB00F40521 /* AppIconView.swift in Sources */,
 				1985A7B62CA03643003D255B /* PhotosView.swift in Sources */,
@@ -383,29 +522,42 @@
 				19CD68A62C9829D500AF6CF8 /* BasicSettingsView.swift in Sources */,
 				1985A7B32CA0350E003D255B /* MenuButtons.swift in Sources */,
 				1990759C2C87F1AB00E23FD7 /* TextField+.swift in Sources */,
+				1989BF112CA85D8D00D5B8DE /* PopPasswordView.swift in Sources */,
+				19AF9A012CA953130093206C /* SharedData.swift in Sources */,
 				1990758E2C87E9DF00E23FD7 /* ImageManager.swift in Sources */,
 				19DDEC232C96CAC200C86EC5 /* CategorySettingView.swift in Sources */,
 				198706F32C941E5000F59CE9 /* HomeItemsView.swift in Sources */,
 				198706F92C9420BE00F59CE9 /* HomeView.swift in Sources */,
+				19AF99F62CA947230093206C /* HomeMenuView.swift in Sources */,
+				19FB9E532CAA4501007014E2 /* ModalTask.swift in Sources */,
 				198706EB2C94114800F59CE9 /* extension+.swift in Sources */,
 				1977686E2C984E3300F40521 /* AppDelegate.swift in Sources */,
+				19FB9E322CA982A9007014E2 /* AudioManager.swift in Sources */,
 				19CD68A42C97DC7900AF6CF8 /* Mock.swift in Sources */,
 				1990757E2C86100100E23FD7 /* ContentView.swift in Sources */,
+				19FB9E2E2CA973C9007014E2 /* ExpandedBottom.swift in Sources */,
+				19FB9E552CAA4FE3007014E2 /* NewTaskView.swift in Sources */,
+				19AF99FC2CA94CA20093206C /* MusicView.swift in Sources */,
 				1990757C2C86100100E23FD7 /* PeacockMenusApp.swift in Sources */,
 				196C576F2CA3F1F000A2436F /* SettingTipView.swift in Sources */,
 				1985A7AF2C9FEF46003D255B /* OtherViews.swift in Sources */,
 				19DDEC272C96CAFD00C86EC5 /* ProjectSettingView.swift in Sources */,
+				19FB9E352CA98327007014E2 /* RingTongView.swift in Sources */,
 				198706F52C941F5400F59CE9 /* HomeVipCards.swift in Sources */,
 				198707042C956D3500F59CE9 /* itemView.swift in Sources */,
 				19F835B62C8F0A000083A66D /* VipCardView.swift in Sources */,
+				19AF99FF2CA952FE0093206C /* CustomSimulataneousGesture.swift in Sources */,
 				19DDEC252C96CAE000C86EC5 /* SubCategorySettingView.swift in Sources */,
 				1985A7B12CA00E95003D255B /* HomeSettingView.swift in Sources */,
 				199075C52C8B3E0800E23FD7 /* DropDelegate+.swift in Sources */,
 				19E40CCC2C9AF6360077F71F /* DataModal.swift in Sources */,
 				199075A92C89C73F00E23FD7 /* DiskManager.swift in Sources */,
 				199075BB2C8B0D9A00E23FD7 /* PeacockProtocol.swift in Sources */,
+				19AF9A032CA953290093206C /* PhotosScrollView.swift in Sources */,
 				19818B722C8DCFAF001A2964 /* ExportDataView.swift in Sources */,
 				19E5B8BF2C8DC04500EC77F7 /* SettingsView.swift in Sources */,
+				19AF99F32CA945810093206C /* MenuPriceView.swift in Sources */,
+				19AF9A052CA9533D0093206C /* OtherContents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,14 +822,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		196C57702CA4474400A2436F /* XCRemoteSwiftPackageReference "QRScanner" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/uuneo/QRScanner.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		197768992C987CFE00F40521 /* XCRemoteSwiftPackageReference "Pow" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/EmergeTools/Pow.git";
@@ -700,6 +844,14 @@
 			requirement = {
 				branch = master;
 				kind = branch;
+			};
+		};
+		1989BF272CA931FE00D5B8DE /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.0;
 			};
 		};
 		1990758F2C87EA0C00E23FD7 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
@@ -729,11 +881,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		196C57712CA4474400A2436F /* QRScanner */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 196C57702CA4474400A2436F /* XCRemoteSwiftPackageReference "QRScanner" */;
-			productName = QRScanner;
-		};
 		1977689A2C987CFE00F40521 /* Pow */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 197768992C987CFE00F40521 /* XCRemoteSwiftPackageReference "Pow" */;
@@ -748,6 +895,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 198706FA2C943C8000F59CE9 /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */;
 			productName = ScalingHeaderScrollView;
+		};
+		1989BF282CA931FE00D5B8DE /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1989BF272CA931FE00D5B8DE /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 		199075902C87EA0C00E23FD7 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

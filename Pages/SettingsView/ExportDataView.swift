@@ -38,12 +38,8 @@ struct ExportDataView: View {
         }.toolbar{
             ToolbarItem(placement: .topBarLeading) {
                 
-                
-                if let file = fileURL{
-                    ShareLink(item: file){
-                        Label("分享", systemImage: "square.and.arrow.up")
-                    }
-                }
+				ShareLink(item:manager.exportTotalData(),preview: SharePreview("分享", icon: "square.and.arrow.up"))
+		
             }
         }.task {
             DispatchQueue.global(qos: .background).async {

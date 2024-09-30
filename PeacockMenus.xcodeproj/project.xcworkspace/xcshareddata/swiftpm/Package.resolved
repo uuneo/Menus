@@ -1,5 +1,5 @@
 {
-  "originHash" : "2d654600663904fefc7f031a7fbcec04b32c1bdabbc87443bf6a4c9347421576",
+  "originHash" : "218770fe1776c4c8c00a8f585a0aa4af5c8c90e9f44768e3c87afad42adbe681",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -38,21 +38,21 @@
       }
     },
     {
+      "identity" : "lottie-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/lottie-ios.git",
+      "state" : {
+        "revision" : "fe4c6fe3a0aa66cdeb51d549623c82ca9704b9a5",
+        "version" : "4.5.0"
+      }
+    },
+    {
       "identity" : "pow",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/EmergeTools/Pow.git",
       "state" : {
         "revision" : "f0d0f3e72d42beaf2b01f1cb798e1b55902814eb",
         "version" : "1.0.4"
-      }
-    },
-    {
-      "identity" : "qrscanner",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/uuneo/QRScanner.git",
-      "state" : {
-        "branch" : "master",
-        "revision" : "0262bf06c1f4683b6cde9ee9a72f3b720147e81c"
       }
     },
     {

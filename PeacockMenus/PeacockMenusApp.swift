@@ -14,6 +14,7 @@ struct PeacockMenusApp: App {
 	@UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 	@Default(.autoSetting) var autoSetting
 	@Default(.firstStart) var firstStart
+	@Default(.defaultHome) var defaultHome
 	@Environment(\.scenePhase) var scenePhase
 	@StateObject var manager = peacock.shared
 	
@@ -45,12 +46,14 @@ struct PeacockMenusApp: App {
 					
 					DispatchQueue.main.async{
 						manager.resetType = false
+						manager.page  = defaultHome
 					}
 					
 					try? Tips.configure([
 						.displayFrequency(.immediate),
 						.datastoreLocation(.applicationDefault)
 					])
+				
 				}
 			
 			

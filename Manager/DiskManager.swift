@@ -11,11 +11,16 @@ import SwiftUI
 import Alamofire
 import JDStatusBarNotification
 
-enum Page:String,Identifiable, CaseIterable{
+enum Page:String,Identifiable, CaseIterable, Defaults.Serializable{
 	case home = "house.circle"
 	case setting = "gear.circle"
 	case photo = "photo.artframe.circle"
+	case menu = "list.bullet.circle"
+	case music = "headphones.circle"
+	case book = "calendar.circle"
 	var id: String { self.rawValue }
+	
+	static let arr:[Self] = [.home, .setting]
 }
 
 
@@ -31,7 +36,7 @@ final class peacock:ObservableObject {
     
     @Published var selectCard:MemberCardData = MemberCardData.nonmember
 
-	@Published var page :Page = .home
+	@Published var page: Page = .home
 	
 	@Published var showMenu:Bool = false
 	

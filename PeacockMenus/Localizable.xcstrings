@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "zh-Hans",
   "strings" : {
+    "" : {
+
+    },
     "\t修改数据后将实时保存在本地\n\t不需要任何保存动作" : {
       "localizations" : {
         "en" : {
@@ -20,6 +23,9 @@
           }
         }
       }
+    },
+    ":" : {
+
     },
     "%@" : {
       "localizations" : {
@@ -101,6 +107,9 @@
         }
       }
     },
+    "0:00" : {
+
+    },
     "1. 课程折扣7折\n2. 卡诗洗发水" : {
       "localizations" : {
         "en" : {
@@ -120,6 +129,9 @@
           }
         }
       }
+    },
+    "3:33" : {
+
     },
     "3折" : {
       "localizations" : {
@@ -201,6 +213,12 @@
         }
       }
     },
+    "Cancel" : {
+
+    },
+    "Create Task" : {
+
+    },
     "Diamond" : {
       "localizations" : {
         "en" : {
@@ -240,6 +258,9 @@
           }
         }
       }
+    },
+    "Go for a Walk!" : {
+
     },
     "Gold Card" : {
       "localizations" : {
@@ -311,6 +332,24 @@
         }
       }
     },
+    "iJustine's Airpods" : {
+
+    },
+    "Locked File" : {
+
+    },
+    "Look What You Made Me do" : {
+
+    },
+    "Make a reservation" : {
+
+    },
+    "Menu Price" : {
+
+    },
+    "Music" : {
+
+    },
     "NewItem" : {
       "localizations" : {
         "en" : {
@@ -340,6 +379,9 @@
           }
         }
       }
+    },
+    "Password" : {
+
     },
     "Peacock-Cards" : {
       "localizations" : {
@@ -391,6 +433,12 @@
         }
       }
     },
+    "Photo Album" : {
+
+    },
+    "Please enter the correct password to unclock the file." : {
+
+    },
     "Scalp Care" : {
       "localizations" : {
         "en" : {
@@ -420,6 +468,30 @@
           }
         }
       }
+    },
+    "Task Color" : {
+
+    },
+    "Task Date" : {
+
+    },
+    "Task Title" : {
+
+    },
+    "Taylor Swift" : {
+
+    },
+    "This file has been locked by the user, please enter the password to continue." : {
+
+    },
+    "Try Again" : {
+
+    },
+    "Unlock" : {
+
+    },
+    "Wrong Password" : {
+
     },
     "一次相遇，终身美好" : {
       "localizations" : {
@@ -661,6 +733,9 @@
         }
       }
     },
+    "切换默认首页" : {
+
+    },
     "初始化将删除全部数据" : {
       "localizations" : {
         "en" : {
@@ -750,6 +825,9 @@
           }
         }
       }
+    },
+    "图库" : {
+
     },
     "图片" : {
       "localizations" : {
@@ -991,6 +1069,9 @@
         }
       }
     },
+    "播放列表" : {
+
+    },
     "数据初始化" : {
       "localizations" : {
         "en" : {
@@ -1182,6 +1263,7 @@
       }
     },
     "管理密码" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1230,6 +1312,9 @@
           }
         }
       }
+    },
+    "背景音乐" : {
+
     },
     "背景颜色" : {
       "localizations" : {
@@ -1624,6 +1709,9 @@
         }
       }
     },
+    "预约服务" : {
+
+    },
     "首席" : {
       "localizations" : {
         "en" : {
@@ -1633,6 +1721,9 @@
           }
         }
       }
+    },
+    "默认首页" : {
+
     }
   },
   "version" : "1.0"

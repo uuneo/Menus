@@ -20,6 +20,7 @@ struct AppSettings: View {
 	@Default(.menusSubName) var subName
 	@Default(.menusFooter) var menusFooter
 	@Default(.menusImage) var menusImage
+	@Default(.defaultHome) var defaultHome
  
 	@EnvironmentObject var manager:peacock
 
@@ -116,6 +117,19 @@ struct AppSettings: View {
             }header: {
                 Label("设置密码", systemImage: "lock")
             }
+			
+			
+			Section{
+				Picker(selection: $defaultHome, label: Text("默认首页")) {
+					ForEach(Page.allCases, id: \.self){ icon in
+						Image(systemName: icon.rawValue)
+					}
+				}
+
+			}header: {
+				Label("切换默认首页", systemImage: "house.circle")
+			}
+			
         }
 		
        
