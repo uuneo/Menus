@@ -1,0 +1,38 @@
+{
+  "images" : [
+    {
+      "filename" : "heavenly_star_26351_56048_An_iconic_vector_logo_featuring_the_l_ed4e4730-57d3-4e23-a8a7-703004572f1c.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "heavenly_star_26351_56048_An_iconic_vector_logo_featuring_the_l_ed4e4730-57d3-4e23-a8a7-703004572f1c 1.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "tinted"
+        }
+      ],
+      "filename" : "heavenly_star_26351_56048_An_iconic_vector_logo_featuring_the_l_ed4e4730-57d3-4e23-a8a7-703004572f1c 2.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

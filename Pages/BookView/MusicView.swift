@@ -44,7 +44,7 @@ struct MusicView: View {
 									
 									isplaying = true
 									
-									audioManager.togglePlay(audioURL: url)
+									audioManager.togglePlay( url)
 									
 									
 								}label:{

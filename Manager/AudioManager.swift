@@ -7,42 +7,139 @@
 
 import Foundation
 import AVFoundation
+import Combine
+
+enum PlayType{
+	case playing
+	case pause
+	case stop
+}
+
 
 class AudioPlayerManager: ObservableObject{
 	static let shard = AudioPlayerManager()
 	
 	private init() {}
 	
+	
+	@Published var musics: [URL]?
 	@Published var currentlyPlayingURL: URL?
+	@Published var isPlaying:PlayType = .stop
+	
+	
 	private var audioPlayer: AVAudioPlayer?
+	private var cancellable: AnyCancellable?
+	
+	@Published var currentTime: Double = 0
+	@Published var totalTime: Double = 0
+	
+
+	func getCurrentTime() -> Double{
+		guard let audioPlayer else{
+			return 0
+		}
+		return audioPlayer.currentTime
+	}
 	
 	
-	func togglePlay(audioURL: URL) {
-		if let currentlyPlayingURL = currentlyPlayingURL, currentlyPlayingURL == audioURL {
-			stop()
-		} else {
-			play(audioURL)
+}
+
+
+extension AudioPlayerManager{
+	func togglePlay(_ audioURL: URL? = nil) {
+		switch isPlaying {
+		case .playing:
+			self.Pause()
+		case .pause:
+			self.play(audioURL)
+		case .stop:
+			self.play(audioURL)
+		}
+		
+	}
+	
+	func nextMusic() {
+		if isPlaying != .stop {
+			self.stop()
+		}
+		if let musics {
+			// 获取当前播放音乐的索引
+			if let currentIndex = musics.firstIndex(where: { $0 == self.currentlyPlayingURL }) {
+				// 计算下一首音乐的索引，如果超过音乐列表长度则回到第一个
+				let nextIndex = currentIndex + 1 >= musics.count ? 0 : currentIndex + 1
+				
+				// 设置当前播放的音乐 URL 为下一首音乐
+				self.currentlyPlayingURL = musics[nextIndex]
+				
+				// 调用播放函数播放下一首音乐
+				play(self.currentlyPlayingURL)
+			}
 		}
 	}
 	
-	func play(_ audioURL: URL) {
-		do {
-			audioPlayer = try AVAudioPlayer(contentsOf: audioURL)
+	
+	func previousMusic() {
+		
+		if isPlaying != .stop {
+			self.stop()
+		}
+		
+		if let musics {
+			// 获取当前播放音乐的索引
+			if let currentIndex = musics.firstIndex(where: { $0 == self.currentlyPlayingURL }) {
+				// 计算上一首音乐的索引，如果当前是第一首则回到最后一首
+				let previousIndex = currentIndex - 1 < 0 ? musics.count - 1 : currentIndex - 1
+				
+				// 设置当前播放的音乐 URL 为上一首音乐
+				self.currentlyPlayingURL = musics[previousIndex]
+				
+				// 调用播放函数播放上一首音乐
+				play( self.currentlyPlayingURL)
+			}
+		}
+	}
+
+	
+	func play(_ audioURL: URL? = nil) {
+		
+		if let audioURL{
+			do {
+				
+				audioPlayer = try AVAudioPlayer(contentsOf: audioURL)
+				audioPlayer?.play()
+				currentlyPlayingURL = audioURL
+				self.isPlaying = .playing
+				
+
+			} catch {
+	#if DEBUG
+				print("playFail: \(error.localizedDescription)")
+	#endif
+			}
+		}else{
 			audioPlayer?.play()
-			currentlyPlayingURL = audioURL
-		} catch {
-#if DEBUG
-			print("playFail: \(error)")
-#endif
-			
+			self.isPlaying = .playing
 		}
+	
+		
 	}
 	
+	func Pause(){
+		self.audioPlayer?.pause()
+		self.isPlaying = .pause
+	}
+
 	func stop() {
 		audioPlayer?.stop()
 		currentlyPlayingURL = nil
+		self.isPlaying = .stop
 	}
 	
+
+}
+
+
+extension AudioPlayerManager{
 	func writeToLibrarySoundsDirectory() {
 		// 获取 Library 目录
 		guard let libraryDirectory = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first else {
@@ -66,25 +163,7 @@ class AudioPlayerManager: ObservableObject{
 			
 			return
 		}
-		
-		// 要写入的文件路径
-		let fileURL = soundsDirectory.appendingPathComponent("example.txt")
-		// 写入文件
-		let contents = "Hello, this is a test file."
-		do {
-			try contents.write(to: fileURL, atomically: true, encoding: .utf8)
-#if DEBUG
-			print("File written successfully.")
-#endif
-			
-		} catch {
-			
-#if DEBUG
-			print("Error writing file: \(error)")
-#endif
-			
-			
-		}
+
 	}
 	
 	/// 将指定文件保存在 Library/Sound，如果存在则覆盖
@@ -185,6 +264,4 @@ class AudioPlayerManager: ObservableObject{
 			return []
 		}
 	}
-	
-	
 }

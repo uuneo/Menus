@@ -5,11 +5,15 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>Appicon</string>
 			<key>CFBundleURLName</key>
 			<string>com.twown.PeacockMenus</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>ppeacock</string>
+				<string>menus</string>
 			</array>
 		</dict>
 	</array>
@@ -36,8 +40,6 @@
 				</array>
 			</dict>
 		</dict>
-		<dict/>
-		<dict/>
 	</array>
 </dict>
 </plist>

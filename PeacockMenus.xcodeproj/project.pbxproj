@@ -75,6 +75,8 @@
 		19FB9E512CAA44D7007014E2 /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FB9E502CAA44D1007014E2 /* TaskRowView.swift */; };
 		19FB9E532CAA4501007014E2 /* ModalTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FB9E522CAA44F8007014E2 /* ModalTask.swift */; };
 		19FB9E552CAA4FE3007014E2 /* NewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FB9E542CAA4FD9007014E2 /* NewTaskView.swift */; };
+		19FB9E572CAA6EF9007014E2 /* test2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 19FB9E562CAA6EF9007014E2 /* test2.mp3 */; };
+		19FB9E592CAA6FDE007014E2 /* test3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 19FB9E582CAA6FDE007014E2 /* test3.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -157,6 +159,8 @@
 		19FB9E502CAA44D1007014E2 /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
 		19FB9E522CAA44F8007014E2 /* ModalTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTask.swift; sourceTree = "<group>"; };
 		19FB9E542CAA4FD9007014E2 /* NewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskView.swift; sourceTree = "<group>"; };
+		19FB9E562CAA6EF9007014E2 /* test2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test2.mp3; sourceTree = "<group>"; };
+		19FB9E582CAA6FDE007014E2 /* test3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test3.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -403,6 +407,8 @@
 		19FB9E362CA984DE007014E2 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				19FB9E582CAA6FDE007014E2 /* test3.mp3 */,
+				19FB9E562CAA6EF9007014E2 /* test2.mp3 */,
 				19FB9E2F2CA97FDB007014E2 /* test.mp3 */,
 			);
 			path = Sounds;
@@ -489,12 +495,14 @@
 			files = (
 				1989BF262CA9314A00D5B8DE /* contact.json in Resources */,
 				196C575D2CA2FC0F00A2436F /* Launch Screen.storyboard in Resources */,
+				19FB9E592CAA6FDE007014E2 /* test3.mp3 in Resources */,
 				19AF99ED2CA93D8A0093206C /* album.json in Resources */,
 				19FB9E302CA97FDB007014E2 /* test.mp3 in Resources */,
 				19AF99EF2CA93F8F0093206C /* music.json in Resources */,
 				199075832C86100300E23FD7 /* Preview Assets.xcassets in Resources */,
 				190E395A2C9FD16D001061ED /* Localizable.xcstrings in Resources */,
 				19AF99F12CA943300093206C /* menus.json in Resources */,
+				19FB9E572CAA6EF9007014E2 /* test2.mp3 in Resources */,
 				199075802C86100300E23FD7 /* Assets.xcassets in Resources */,
 				196C57592CA2FBB200A2436F /* InfoPlist.strings in Resources */,
 			);
@@ -714,6 +722,7 @@
 		199075872C86100300E23FD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon AppIcon1 AppIcon2 AppIcon3";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -758,6 +767,7 @@
 		199075882C86100300E23FD7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon AppIcon1 AppIcon2 AppIcon3";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
