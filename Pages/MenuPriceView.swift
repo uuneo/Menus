@@ -12,13 +12,9 @@ let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
 let statusBarHeight = windowScene?.statusBarManager?.statusBarFrame.height ?? 0
 
 struct MenuPriceView: View {
-	@EnvironmentObject var manager:peacock
 	@Namespace var NewHomeName
-	@State var showDetail:Bool = false
 	
-	@State private var showMenu:Bool = false
-	
-	
+	@EnvironmentObject var manager:peacock
 	
 	var body: some View {
 		NavigationStack{
@@ -36,7 +32,7 @@ struct MenuPriceView: View {
 					
 					
 					HStack(alignment: .top){
-						HomeItemsView(NewHomeName: NewHomeName, showDetail: $showDetail)
+						HomeItemsView(NewHomeName: NewHomeName)
 					}
 					.frame(height: UIScreen.main.bounds.height * 0.5)
 					
@@ -47,11 +43,12 @@ struct MenuPriceView: View {
 				
 				
 				
+				if manager.selectedItem != nil{
+					itemsView(detailName: NewHomeName)
+						.background(.ultraThinMaterial)
+				}
 				
-				itemsView(show: $showDetail,detailName: NewHomeName)
-					.background(.ultraThinMaterial)
-					.opacity(showDetail ? 1 : 0)
-					.offset(y: showDetail ? 0 : 200)
+			
 			
 				
 				

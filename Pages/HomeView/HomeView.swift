@@ -66,6 +66,7 @@ struct HomeView: View {
 			
 			HomeMenuView()
 				.offset(y: 30)
+				.zIndex(9999)
 			
 			
 			

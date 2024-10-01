@@ -24,7 +24,13 @@ struct MenuButtons: View {
 			Button{
 				withAnimation(.bouncy(duration: 0.3, extraBounce: 0.2)){
 					
-					manager.page =	manager.page == .home ? .setting  : .home
+					
+					if manager.selectedItem != nil{
+						manager.selectedItem = nil
+					}else{
+						manager.page =	manager.page == .home ? .setting  : .home
+					}
+					
 				}
 				
 			}label: {

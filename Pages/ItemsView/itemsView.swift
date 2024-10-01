@@ -14,7 +14,6 @@ import TipKit
 struct itemsView: View {
 	
 	@EnvironmentObject var manager:peacock
-    @Binding var show:Bool
     var detailName:Namespace.ID
     
     @State private var progress:CGFloat = 0
@@ -30,7 +29,7 @@ struct itemsView: View {
     @Default(.Items) var items
     
     var selectItems:[SubCategoryData]{
-        return subcategoryItems.filter({$0.categoryId  == manager.selectedItem.id})
+        return subcategoryItems.filter({$0.categoryId  == manager.selectedItem?.id})
     }
 	
 	let discountTip = DiscountTipView()
@@ -39,9 +38,11 @@ struct itemsView: View {
         
         ScalingHeaderScrollView {
             ZStack {
-                Color(from: manager.selectedItem.color)
-                    .edgesIgnoringSafeArea(.all)
-                    .clipShape(RoundedRectangle(cornerRadius:  show ? 0 : 100))
+				if let data = manager.selectedItem{
+					Color(from: data.color)
+						.edgesIgnoringSafeArea(.all)
+				}
+             
                    
                 
                 if ISPAD{
@@ -52,7 +53,7 @@ struct itemsView: View {
                 
                 
             }
-			.matchedGeometryEffect(id: "\(manager.selectedItem.id)-background", in: detailName,properties: [.position,.size,.frame], isSource: show)
+			.matchedGeometryEffect(id: "\(manager.selectedItem?.id ?? "")-background", in: detailName,properties: [.position,.size,.frame], isSource: manager.selectedItem == nil)
         } content: {
             ZStack{
                 
@@ -70,18 +71,6 @@ struct itemsView: View {
                     
                 }
                 
-                
-            }
-            .onChange(of: show) { oldValue, newValue in
-                if newValue{
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1){
-                        withAnimation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0.8)) {
-                            self.isScrolling = true
-                        }
-                    }
-                }else{
-                    self.isScrolling = false
-                }
                 
             }
             
@@ -113,9 +102,7 @@ struct itemsView: View {
                     Spacer()
                     Button{
                         withAnimation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0.8)) {
-                            self.show.toggle()
-                            manager.selectedItem = CategoryData.example
-                            
+							manager.selectedItem = nil
                         }
                         
                     }label:{
@@ -129,19 +116,23 @@ struct itemsView: View {
                 VStack(alignment: .leading){
                     Spacer()
                     
+					if let data = manager.selectedItem {
+						Text(data.title )
+							.font(.largeTitle)
+							.bold()
+						
+						Text(data.subTitle)
+					}
+                   
                     
-                    Text(manager.selectedItem.title )
-                        .font(.largeTitle)
-                        .bold()
                     
-                    
-                    Text(manager.selectedItem.subTitle)
+                   
                     
                 }
                 .foregroundColor(.white)
                 .frame(minWidth: 200)
                 .padding(.vertical)
-                .matchedGeometryEffect(id: "\(manager.selectedItem.id)-title", in: detailName,properties: [.position,.size,.frame], isSource: show)
+                .matchedGeometryEffect(id: "\(manager.selectedItem?.id ?? "")-title", in: detailName,properties: [.position,.size,.frame], isSource: manager.selectedItem != nil)
                 Spacer()
                 
                 VStack{
@@ -156,12 +147,14 @@ struct itemsView: View {
                 
                 VStack{
                     Spacer()
-                    AsyncImageView(imageUrl: manager.selectedItem.image)
-                    
-                        .scaledToFit()
-                        .frame(width: 200)
-                        .padding(.trailing, 100)
-                        .matchedGeometryEffect(id: "\(manager.selectedItem.id)-image", in: detailName,properties: [.position,.size,.frame], isSource: show)
+					if let data = manager.selectedItem{
+						AsyncImageView(imageUrl: data.image)
+						
+							.scaledToFit()
+							.frame(width: 200)
+							.padding(.trailing, 100)
+							.matchedGeometryEffect(id: "\(data.id)-image", in: detailName,properties: [.position,.size,.frame], isSource: manager.selectedItem != nil)
+					}
                 }
                 
             }
@@ -172,8 +165,7 @@ struct itemsView: View {
                 HStack{
                     Button{
                         withAnimation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0.8)) {
-                            self.show.toggle()
-                            manager.selectedItem = CategoryData.example
+                            manager.selectedItem = nil
                         }
                         
                     }label:{
@@ -185,23 +177,29 @@ struct itemsView: View {
                     
                     
                     Spacer()
+					
+					if let data = manager.selectedItem {
+						AsyncImageView(imageUrl: data.image)
+							.scaledToFit()
+							.frame(width: 50)
+							.padding(.horizontal)
+						
+						Text(data.title )
+							.font(.title3)
+							.bold()
+							.foregroundColor(.white)
+							.lineLimit(1)
+						
+						
+						
+						Text(data.subTitle)
+							.lineLimit(1)
+							.foregroundColor(.white)
+					}
                     
-                    AsyncImageView(imageUrl: manager.selectedItem.image)
-                        .scaledToFit()
-                        .frame(width: 50)
-                        .padding(.horizontal)
+                 
                     
-                    Text(manager.selectedItem.title )
-                        .font(.title3)
-                        .bold()
-                        .foregroundColor(.white)
-                        .lineLimit(1)
-                    
-                    
-                    
-                    Text(manager.selectedItem.subTitle)
-                        .lineLimit(1)
-                        .foregroundColor(.white)
+                   
                     
                     PickerOfCardView()
 						
@@ -230,8 +228,7 @@ struct itemsView: View {
                     HStack(alignment: .bottom){
                         Button{
                             withAnimation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0.8)) {
-                                self.show.toggle()
-                                manager.selectedItem = CategoryData.example
+                                manager.selectedItem = nil
                                 
                             }
                             
@@ -243,18 +240,21 @@ struct itemsView: View {
                         
                         VStack(alignment: .leading){
                             
+							if let data = manager.selectedItem{
+								Text(data.title )
+									.font(.title)
+									.bold()
+									.minimumScaleFactor(0.5)
+								
+								Text(data.subTitle)
+									.minimumScaleFactor(0.5)
+							}
                             
-                            Text(manager.selectedItem.title )
-                                .font(.title)
-                                .bold()
-                                .minimumScaleFactor(0.5)
-                            
-                            Text(manager.selectedItem.subTitle)
-                                .minimumScaleFactor(0.5)
+                           
                             
                         }
                         .foregroundColor(.white)
-                        .matchedGeometryEffect(id: "\(manager.selectedItem.id)-title", in: detailName,properties: [.position,.size,.frame], isSource: show)
+						.matchedGeometryEffect(id: "\(manager.selectedItem?.id ?? "")-title", in: detailName,properties: [.position,.size,.frame], isSource: manager.selectedItem != nil)
                         
                         
                         
@@ -280,12 +280,15 @@ struct itemsView: View {
                     Spacer()
                     VStack{
                         Spacer()
-                        AsyncImageView(imageUrl: manager.selectedItem.image)
-                        
-                            .scaledToFit()
-                            .frame(width: 100)
-                            .padding(.trailing, 10)
-                            .matchedGeometryEffect(id: "\(manager.selectedItem.id)-image", in: detailName,properties: [.position,.size,.frame], isSource: show)
+						if let data = manager.selectedItem{
+							AsyncImageView(imageUrl: data.image)
+							
+								.scaledToFit()
+								.frame(width: 100)
+								.padding(.trailing, 10)
+								.matchedGeometryEffect(id: "\(data.id)-image", in: detailName,properties: [.position,.size,.frame], isSource: manager.selectedItem != nil)
+						}
+                      
                     }
                 }
             }
@@ -297,8 +300,7 @@ struct itemsView: View {
                 HStack{
                     Button{
                         withAnimation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0.8)) {
-                            self.show.toggle()
-                            manager.selectedItem = CategoryData.example
+                            manager.selectedItem = nil
                         }
                         
                     }label:{
@@ -309,20 +311,24 @@ struct itemsView: View {
                     
                     
                     VStack(alignment: .leading){
+						
+						if let data = manager.selectedItem{
+							Text(data.title )
+								.font(.title3)
+								.bold()
+								.foregroundColor(.white)
+								.lineLimit(1)
+								.minimumScaleFactor(0.5)
+							
+							
+							Text(data.subTitle)
+								.lineLimit(1)
+								.font(.subheadline)
+								.foregroundColor(.white)
+								.minimumScaleFactor(0.5)
+						}
                         
-                        Text(manager.selectedItem.title )
-                            .font(.title3)
-                            .bold()
-                            .foregroundColor(.white)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.5)
-                        
-                        
-                        Text(manager.selectedItem.subTitle)
-                            .lineLimit(1)
-                            .font(.subheadline)
-                            .foregroundColor(.white)
-                            .minimumScaleFactor(0.5)
+                      
                     }
                     Spacer()
                     
@@ -369,6 +375,6 @@ struct PickerOfCardView: View {
 
 
 #Preview {
-    itemsView(show: .constant(true), detailName: Namespace().wrappedValue)
+    itemsView(detailName: Namespace().wrappedValue)
 		.environmentObject(peacock.shared)
 }

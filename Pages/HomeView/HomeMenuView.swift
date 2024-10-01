@@ -18,7 +18,10 @@ struct HomeMenuView: View {
 			GridRow{
 				
 				Button{
-					manager.page = .book
+					withAnimation {
+						manager.page = .book
+					}
+					
 				}label: {
 					
 					ZStack(alignment: .top){
@@ -77,7 +80,10 @@ struct HomeMenuView: View {
 				
 				
 				Button{
-					manager.page = .photo
+					withAnimation {
+						manager.page = .photo
+					}
+					
 				}label: {
 					
 					ZStack(alignment: .top){
@@ -122,7 +128,9 @@ struct HomeMenuView: View {
 				
 				
 				Button{
-					manager.page = .music
+					withAnimation {
+						manager.page = .music
+					}
 				}label: {
 					
 					ZStack(alignment: .top){

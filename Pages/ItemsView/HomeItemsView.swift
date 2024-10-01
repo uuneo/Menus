@@ -15,7 +15,6 @@ struct HomeItemsView: View {
 	@State var showMenu = false
 	
 	var NewHomeName:Namespace.ID
-	@Binding var showDetail:Bool
 	
 	@Default(.Categorys) var items
 	@Default(.homeItemsTitle) var title
@@ -54,8 +53,7 @@ struct HomeItemsView: View {
 									if manager.showMenu{
 										manager.showMenu = false
 									}
-									peacock.shared.selectedItem = item.wrappedValue
-									self.showDetail.toggle()
+									manager.selectedItem = item.wrappedValue
 									
 									
 								}
@@ -65,13 +63,13 @@ struct HomeItemsView: View {
 							}) {
 								
 								if ISPAD{
-									categoryCardView(item: item, NewHomeName: NewHomeName, show: showDetail)
+									categoryCardView(item: item, NewHomeName: NewHomeName)
 										.fixedSize(horizontal: true, vertical:  false)
 										.zIndex(100)
 								}else{
 									GeometryReader { geometry in
 										HStack{
-											categoryCardView(item: item, NewHomeName: NewHomeName, show: showDetail)
+											categoryCardView(item: item, NewHomeName: NewHomeName)
 												.fixedSize(horizontal: true, vertical: false)
 										}
 										.rotation3DEffect(Angle(degrees: Double(geometry.frame(in: .global).minX - 40) / -40), axis: (x: 0, y: 10, z: 0))
@@ -106,8 +104,7 @@ struct HomeItemsView: View {
 struct categoryCardView: View {
 	@Binding var item: CategoryData
 	var NewHomeName:Namespace.ID
-	var show:Bool
-	
+	@EnvironmentObject var manager:peacock
 	var body: some View {
 		ZStack{
 			Color(from:  item.color)
@@ -130,7 +127,7 @@ struct categoryCardView: View {
 				.foregroundColor(.white)
 				.padding(30)
 				
-				.matchedGeometryEffect(id: "\(item.id)-title", in: NewHomeName,properties: [.position,.size,.frame], isSource: !show)
+				.matchedGeometryEffect(id: "\(item.id)-title", in: NewHomeName,properties: [.position,.size,.frame], isSource: manager.selectedItem == nil)
 				
 				Spacer()
 				
@@ -140,7 +137,7 @@ struct categoryCardView: View {
 				
 					.aspectRatio(contentMode: .fit)
 					.frame(width: 260)
-					.matchedGeometryEffect(id: "\(item.id)-image", in: NewHomeName,properties: [.position,.size,.frame], isSource: !show)
+					.matchedGeometryEffect(id: "\(item.id)-image", in: NewHomeName,properties: [.position,.size,.frame], isSource: manager.selectedItem == nil)
 			}
 			
 		}
@@ -152,7 +149,7 @@ struct categoryCardView: View {
 		.shadow(color: Color(from:item.color), radius: 3, x: 3, y: 3)
 		.padding()
 		.frame(width: 260)
-		.matchedGeometryEffect(id: "\(item.id)-background", in: NewHomeName,properties: [.position,.size,.frame], isSource: !show)
+		.matchedGeometryEffect(id: "\(item.id)-background", in: NewHomeName,properties: [.position,.size,.frame], isSource: manager.selectedItem == nil)
 		
 		
 		
@@ -161,6 +158,6 @@ struct categoryCardView: View {
 
 #Preview {
 	@Previewable @State var showDetail:Bool = false
-	HomeItemsView(NewHomeName: Namespace().wrappedValue, showDetail: $showDetail)
+	HomeItemsView(NewHomeName: Namespace().wrappedValue)
 		.environmentObject(peacock.shared)
 }

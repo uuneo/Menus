@@ -32,7 +32,7 @@ final class peacock:ObservableObject {
     private init() { }
 	
     
-    @Published var selectedItem: CategoryData = CategoryData.example
+    @Published var selectedItem: CategoryData?
     
     @Published var selectCard:MemberCardData = MemberCardData.nonmember
 
