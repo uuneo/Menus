@@ -17,6 +17,7 @@ struct PhotosView: View {
 			HomePhotoView(size: $0.size, safeArea: $0.safeAreaInsets)
 				.ignoresSafeArea(.all, edges: .top)
 				.environmentObject(sharedData)
+			
 		}
 		
 	}

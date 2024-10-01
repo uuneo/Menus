@@ -40,8 +40,8 @@ struct OtherContents: View {
 			ScrollView(.horizontal) {
 				LazyHStack(spacing: 10) {
 					ForEach(1...10, id: \.self) {index in
-						AsyncImageView(imageUrl: "https://picsum.photos/200?t=\(color)\(index)")
-							.frame(width: 220, height: 120)
+						AsyncImageView(imageUrl: "https://picsum.photos/350/200?t=\(index * 10)")
+							.frame(width: 300, height: 200)
 					}
 				}
 				.padding(.vertical, 10)

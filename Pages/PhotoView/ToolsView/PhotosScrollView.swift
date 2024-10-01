@@ -11,6 +11,10 @@ struct PhotosScrollView: View {
 	var size: CGSize
 	var safeArea: EdgeInsets
 	@EnvironmentObject var sharedData:SharedData
+	
+	var column:Int{
+		ISPAD ? 8 : 3
+	}
 	var body: some View {
 		let screenHeight = size.height + safeArea.top + safeAreaBottom
 		let minimisedHeight = screenHeight * 0.4
@@ -25,15 +29,16 @@ struct PhotosScrollView: View {
 						.frame(width: size.width)
 						.id(1)
 					
-					/// Other than the Grid ScrollView, the remaining views(Strechable Views) only need to be the remaining height minus from the minimised height and not the full screen height
+					
 					Group {
-						StrechableView(.blue)
+						
+						StrechableView(600, 250,index: 1)
 							.id(2)
 						
-						StrechableView(.yellow)
+						StrechableView(600, 250,index: 2)
 							.id(3)
 						
-						StrechableView(.purple)
+						StrechableView(600, 250,index: 3)
 							.id(4)
 					}
 					.frame(height: screenHeight - minimisedHeight)
@@ -86,12 +91,12 @@ struct PhotosScrollView: View {
 		/// Let's Make this scrollview to start from the bottom
 		let progress = sharedData.progress
 		ScrollView(.vertical) {
-			LazyVGrid(columns: Array(repeating: GridItem(spacing: 2), count: ISPAD ? 8 : 3), spacing: 2) {
+			LazyVGrid(columns: Array(repeating: GridItem(spacing: 2), count: column), spacing: 2) {
 				ForEach(0...300, id: \.self) { index in
 					
 					AsyncImageView(imageUrl: "https://picsum.photos/200?t=\(index)")
 						.aspectRatio(contentMode: .fit)
-						.frame(height: 120)
+						.frame(height: size.width / CGFloat(column))
 						.clipped()
 					
 					
@@ -117,13 +122,13 @@ struct PhotosScrollView: View {
 	
 	/// Strechable Paging Views
 	@ViewBuilder
-	func StrechableView(_ color: Color) -> some View {
+	func StrechableView(_ width:Int, _ height: Int, index:Int) -> some View {
 		/// Now, let's make it strechable
 		GeometryReader {
 			let minY = -sharedData.mainOffset
 			let size = $0.size
 			
-			AsyncImageView(imageUrl: "https://picsum.photos/200")
+			AsyncImageView(imageUrl: "https://picsum.photos/\(width)/\(height)?t=\(index * 30)")
 				.aspectRatio(contentMode: .fit)
 				.frame(width: size.width, height: size.height + (minY > 0 ? minY : 0))
 				.offset(y: (minY > 0 ? -minY : 0))

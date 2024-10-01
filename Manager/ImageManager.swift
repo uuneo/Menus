@@ -64,6 +64,17 @@ final class ImageManager{
         
         return cache.cachePath(forKey: imageResource.cacheKey)
     }
+	
+	
+	class func clearCache(){
+		let groupName:String = "group.PeacockMenus"
+		
+		if let groupUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupName),
+		   let cache = try? ImageCache(name: "shared", cacheDirectoryURL: groupUrl) {
+			cache.clearMemoryCache()
+			cache.clearDiskCache()
+		}
+	}
 
     
 }

@@ -74,6 +74,9 @@ struct ContentView: View {
 			
 			
 		}
+		.onAppear{
+			ImageManager.clearCache()
+		}
 		
 	}
 	
