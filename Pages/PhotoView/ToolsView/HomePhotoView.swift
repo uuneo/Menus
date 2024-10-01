@@ -10,12 +10,12 @@ import SwiftUI
 struct HomePhotoView: View {
 	var size: CGSize
 	var safeArea: EdgeInsets
-	var sharedData = SharedData()
-	/// View Properties
-	/// For Knowing the Direction of the Scroll
+	
+	@EnvironmentObject var sharedData:SharedData
 	@State private var isMovingDown: Bool = false
 	@State private var isGestureAdded: Bool = false
 	@State private var translationValue: CGFloat = 0
+	
 	var body: some View {
 		let minimisedHeight = (size.height + safeArea.top + safeArea.bottom) * 0.4
 		let mainOffset = sharedData.mainOffset
@@ -44,9 +44,10 @@ struct HomePhotoView: View {
 					let mainOffset = sharedData.mainOffset
 					let photosScrollOffset = sharedData.photosScrollOffset
 					
+					
 					if state == .began {
-						 sharedData.canPullDown = translation > 0 && (mainOffset >= 0 && mainOffset < 50)
-						 sharedData.canPullUp = translation < 0 && (photosScrollOffset >= 0 && photosScrollOffset < 50)
+						sharedData.canPullDown = translation > 0 && (mainOffset >= 0 && mainOffset < 50)
+						sharedData.canPullUp = translation < 0 && (photosScrollOffset >= 0 && photosScrollOffset < 50)
 					}
 					
 					if isScrolling {
@@ -89,22 +90,26 @@ struct HomePhotoView: View {
 			.onGeometryChange(for: CGFloat.self) {
 				-$0.frame(in: .scrollView(axis: .vertical)).minY.rounded()
 			} action: { newValue in
-				if #available(iOS 18, *) {
-					sharedData.mainOffset = newValue
-				} else {
-					DispatchQueue.main.async {
-						sharedData.mainOffset = newValue
+
+				
+				if newValue < -80{
+					withAnimation(.easeInOut(duration: 0.25)) {
+						sharedData.progress = 1
+						sharedData.isExpanded = true
 					}
 				}
+				
+				sharedData.mainOffset = newValue
 			}
 		}
 		.scrollBounceBehavior(.basedOnSize)
 		/// Disabling the Main ScrollView Interaction, When the Photos Grid is Expanded
 		.scrollDisabled(sharedData.isExpanded)
-		.environment(sharedData)
 		.onChange(of: translationValue) { oldValue, newValue in
 			isMovingDown = oldValue < newValue
 		}
 		.background(.gray.opacity(0.05))
 	}
 }
+
+

@@ -8,7 +8,7 @@ import SwiftUI
 
 struct CustomPagingIndicatorView: View {
 	var onClose: () -> ()
-	@Environment(SharedData.self) private var sharedData
+	@EnvironmentObject var sharedData:SharedData
 	@Namespace private var animation
 	var body: some View {
 		let progress = sharedData.progress

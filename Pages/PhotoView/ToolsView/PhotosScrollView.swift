@@ -10,7 +10,7 @@ import SwiftUI
 struct PhotosScrollView: View {
 	var size: CGSize
 	var safeArea: EdgeInsets
-	@Environment(SharedData.self) private var sharedData
+	@EnvironmentObject var sharedData:SharedData
 	var body: some View {
 		let screenHeight = size.height + safeArea.top + safeAreaBottom
 		let minimisedHeight = screenHeight * 0.4
@@ -86,12 +86,12 @@ struct PhotosScrollView: View {
 		/// Let's Make this scrollview to start from the bottom
 		let progress = sharedData.progress
 		ScrollView(.vertical) {
-			LazyVGrid(columns: Array(repeating: GridItem(spacing: 2), count: 8), spacing: 2) {
+			LazyVGrid(columns: Array(repeating: GridItem(spacing: 2), count: ISPAD ? 8 : 3), spacing: 2) {
 				ForEach(0...300, id: \.self) { index in
 					
 					AsyncImageView(imageUrl: "https://picsum.photos/200?t=\(index)")
 						.aspectRatio(contentMode: .fit)
-						.frame(height: size.width / 8)
+						.frame(height: 120)
 						.clipped()
 					
 					
@@ -106,6 +106,7 @@ struct PhotosScrollView: View {
 			.onGeometryChange(for: CGFloat.self) {
 				-($0.frame(in: .scrollView(axis: .vertical)).maxY - ($0.bounds(of: .scrollView(axis: .vertical))?.height ?? 0)).rounded()
 			} action: { newValue in
+				
 				sharedData.photosScrollOffset = newValue
 			}
 		}

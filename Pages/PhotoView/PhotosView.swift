@@ -10,14 +10,13 @@ import SwiftUI
 
 struct PhotosView: View {
 
+	@ObservedObject var sharedData = SharedData.shared
 	
 	var body: some View {
 		GeometryReader {
-			let size = $0.size
-			let safeArea = $0.safeAreaInsets
-			
-			HomePhotoView(size: size, safeArea: safeArea)
+			HomePhotoView(size: $0.size, safeArea: $0.safeAreaInsets)
 				.ignoresSafeArea(.all, edges: .top)
+				.environmentObject(sharedData)
 		}
 		
 	}
@@ -25,4 +24,5 @@ struct PhotosView: View {
 
 #Preview {
 	PhotosView()
+		.environmentObject(SharedData.shared)
 }
