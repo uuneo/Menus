@@ -107,9 +107,6 @@
         }
       }
     },
-    "0:00" : {
-
-    },
     "1. 课程折扣7折\n2. 卡诗洗发水" : {
       "localizations" : {
         "en" : {
@@ -129,9 +126,6 @@
           }
         }
       }
-    },
-    "3:33" : {
-
     },
     "3折" : {
       "localizations" : {
@@ -332,9 +326,6 @@
         }
       }
     },
-    "iJustine's Airpods" : {
-
-    },
     "Locked File" : {
 
     },
@@ -476,9 +467,6 @@
 
     },
     "Task Title" : {
-
-    },
-    "Taylor Swift" : {
 
     },
     "This file has been locked by the user, please enter the password to continue." : {
@@ -745,6 +733,9 @@
           }
         }
       }
+    },
+    "删除" : {
+
     },
     "前缀" : {
       "localizations" : {
@@ -1251,6 +1242,9 @@
           }
         }
       }
+    },
+    "确认删除？" : {
+
     },
     "示例项目" : {
       "localizations" : {

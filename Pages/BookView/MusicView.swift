@@ -13,19 +13,17 @@ struct MusicView: View {
 	@Namespace private var animation
 	@State private var show:Bool = true
 	
-	@ObservedObject var audioManager:AudioPlayerManager = AudioPlayerManager.shard
-	@State var isplaying:Bool = false
+	@ObservedObject var avManager:AvManager = AvManager.shared
 	
-	var audioMusics:([URL],[URL]){
-		audioManager.listFilesInDirectory()
-	}
-	
+	@State private var showImport:Bool = false
+	@State private var selectUrl:URL?
+
 	var body: some View{
 		ZStack{
 			HStack{
 				VStack{
 					Spacer()
-					ExpandedBottomSheet(expandSheet: $show, animation: animation,isPlaying: $isplaying)
+					ExpandedBottomSheet(expandSheet: $show, animation: animation)
 					
 				}
 				.frame(width: UIScreen.main.bounds.width / 3)
@@ -34,35 +32,66 @@ struct MusicView: View {
 					VStack{
 						
 						List{
-							ForEach(audioMusics.0, id: \.self){url in
+							ForEach(avManager.musics, id: \.self){url in
 								
 								
 								Button{
-									if !isplaying{
-										audioManager.stop()
-									}
-									
-									isplaying = true
-									
-									audioManager.togglePlay( url)
-									
-									
+									_ = avManager.play(url: url)
 								}label:{
 									HStack{
-										Label("\(url.deletingPathExtension().lastPathComponent)", systemImage: "arrowtriangle.right")
+										Label("\(url.deletingPathExtension().lastPathComponent)", systemImage: "megaphone")
 										Spacer()
 										Image(systemName: "chevron.right")
 											.padding(.trailing)
 									}
 									.padding()
-									.background(.ultraThinMaterial)
+									.background(
+										RoundedRectangle(cornerRadius: 30)
+											.fill(avManager.currentlyPlayingURL == url ? Color.gray.opacity(0.3) : Color.clear)
+										
+										
+									)
+									.background( .ultraThinMaterial )
+									
 									
 								}
-								.listRowBackground(Color.clear)
+								.listRowBackground( Color.clear)
 								
 							}
+							.onDelete { index in
+								for k in index{
+									avManager.deleteSound(url: avManager.musics[k])
+								}
+								avManager.updateMusics()
+							}
+							
+						}.refreshable {
+							avManager.updateMusics()
 						}
-					}.navigationTitle("播放列表")
+						
+					}
+					.navigationTitle("播放列表")
+					.toolbar {
+						ToolbarItem {
+							Button{
+								self.showImport.toggle()
+							}label:{
+								Image(systemName: "square.and.arrow.down")
+							}
+							.fileImporter(isPresented: $showImport, allowedContentTypes: [.audio]) { result in
+								switch result {
+								case .success(let fileUrl):
+									if fileUrl.startAccessingSecurityScopedResource() {
+										avManager.saveSound(url: fileUrl)
+									
+									}
+								case .failure(let err):
+									debugPrint(err)
+								}
+							}
+						}
+						
+					}
 				}
 				
 				

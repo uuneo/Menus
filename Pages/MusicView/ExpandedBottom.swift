@@ -7,6 +7,33 @@
 
 import SwiftUI
 import AVFoundation
+import MediaPlayer
+import AVKit
+
+struct VolumeSliderView: UIViewRepresentable {
+	func makeUIView(context: Context) -> MPVolumeView {
+		let volumeView = MPVolumeView()
+		volumeView.showsVolumeSlider = true
+		volumeView.tintColor = .gray // Set any tint color as per your design
+		return volumeView
+	}
+	
+	func updateUIView(_ uiView: MPVolumeView, context: Context) {
+		// No update needed
+	}
+}
+
+struct RouteButtonView: UIViewRepresentable {
+	func makeUIView(context: Context) -> AVRoutePickerView {
+		let routePickerView = AVRoutePickerView()
+//		routePickerView.tintColor = .red // Set any tint color as per your design
+		return routePickerView
+	}
+	
+	func updateUIView(_ uiView: AVRoutePickerView, context: Context) {
+		// No update needed
+	}
+}
 
 struct ExpandedBottomSheet: View {
 	@Binding var expandSheet: Bool
@@ -15,13 +42,8 @@ struct ExpandedBottomSheet: View {
 	@State private var animateContent: Bool = false
 	@State private var offsetY: CGFloat = 0
 	
-	@State private var audioPlayer: AVAudioPlayer?
-	@Binding var isPlaying:Bool		 // 用来跟踪当前的播放状态
-	@ObservedObject var audioManager:AudioPlayerManager = AudioPlayerManager.shard
+	@ObservedObject var audioManager:AvManager = AvManager.shared
 	
-	var audioMusics:([URL],[URL]){
-		audioManager.listFilesInDirectory()
-	}
 	var body: some View {
 		GeometryReader {
 			let size = $0.size
@@ -61,7 +83,7 @@ struct ExpandedBottomSheet: View {
 					GeometryReader {
 						let size = $0.size
 						
-						Image("music")
+						Image(uiImage: audioManager.albumArtwork)
 							.resizable()
 							.aspectRatio(contentMode: .fill)
 							.frame(width: size.width, height: size.height)
@@ -86,22 +108,7 @@ struct ExpandedBottomSheet: View {
 			}
 			.contentShape(Rectangle())
 			.offset(y: offsetY)
-//			.gesture(
-//				DragGesture()
-//					.onChanged({ value in
-//						let translationY = value.translation.height
-//						offsetY = (translationY > 0 ? translationY : 0)
-//					}).onEnded({ value in
-//						withAnimation(.easeInOut(duration: 0.3)) {
-//							if (offsetY + (value.velocity.height * 0.3)) > size.height * 0.4 {
-//								expandSheet = false
-//								animateContent = false
-//							} else {
-//								offsetY = .zero
-//							}
-//						}
-//					})
-//			)
+
 			.ignoresSafeArea(.container, edges: .all)
 		}
 		.onAppear {
@@ -124,20 +131,20 @@ struct ExpandedBottomSheet: View {
 				VStack(spacing: spacing) {
 					HStack(alignment: .center, spacing: 15) {
 						VStack(alignment: .leading, spacing: 4) {
-							Text("Look What You Made Me do")
+							Text(audioManager.songTitle)
 								.font(.title3)
 								.fontWeight(.semibold)
 								.foregroundColor(.white)
 							
-							Text("Taylor Swift")
+							Text(audioManager.artistName)
 								.foregroundColor(.gray)
 						}
 						.frame(maxWidth: .infinity, alignment: .leading)
 						
 						Button {
-							
+							audioManager.changeIcon()
 						} label: {
-							Image(systemName: "ellipsis")
+							Image(systemName: audioManager.playTypeIcon)
 								.foregroundColor(.white)
 								.padding(12)
 								.background {
@@ -145,26 +152,30 @@ struct ExpandedBottomSheet: View {
 										.fill(.ultraThinMaterial)
 										.environment(\.colorScheme, .light)
 								}
+								
 						}
 
 					}
 					
 					/// Timing Indicator
-					Capsule()
-						.fill(.ultraThinMaterial)
-						.environment(\.colorScheme, .light)
-						.frame(height: 5)
-						.padding(.top, spacing)
+					Slider(value: Binding(get: {
+						audioManager.currentTime
+					}, set: { value in
+						audioManager.setCurrentTime(currentTime: value)
+					}), in: 0.0...max(audioManager.totalTime, 1.0), step: 0.1) { value in
+						debugPrint(value)
+					}
+					.animation(.easeInOut, value: audioManager.currentTime)
 					
 					/// Timing Label View
 					HStack {
-						Text("0:00")
+						Text(audioManager.currentTimeStr)
 							.font(.caption)
 							.foregroundColor(.gray)
 						
 						Spacer(minLength: 0)
 						
-						Text("3:33")
+						Text(audioManager.totalTimeStr)
 							.font(.caption)
 							.foregroundColor(.gray)
 					}
@@ -175,7 +186,7 @@ struct ExpandedBottomSheet: View {
 				/// Playback Controls
 				HStack(spacing: size.width * 0.18) {
 					Button {
-						
+						_ = audioManager.next(false)
 					} label: {
 						Image(systemName: "backward.fill")
 						/// Dynamic Sizing for Smaller to Larger iPhones
@@ -184,23 +195,16 @@ struct ExpandedBottomSheet: View {
 					
 					/// Making Play/Pause Little Bigger
 					Button {
-						if !isPlaying, let url = audioMusics.0.first
-						{
-							audioManager.togglePlay(url)
-							isPlaying.toggle()
-						}else{
-							audioManager.stop()
-							isPlaying.toggle()
-						}
+						_ = audioManager.play(url:audioManager.currentlyPlayingURL)
 						
 					} label: {
-						Image(systemName: isPlaying ? "pause.fill" : "play.fill")
+						Image(systemName: audioManager.icon)
 						/// Dynamic Sizing for Smaller to Larger iPhones
 							.font(size.height < 300 ? .largeTitle : .system(size: 50))
 					}
 					
 					Button {
-						
+						_ = audioManager.next()
 					} label: {
 						Image(systemName: "forward.fill")
 						/// Dynamic Sizing for Smaller to Larger iPhones
@@ -216,39 +220,39 @@ struct ExpandedBottomSheet: View {
 						Image(systemName: "speaker.fill")
 							.foregroundColor(.gray)
 						
-						Capsule()
-							.fill(.ultraThinMaterial)
-							.environment(\.colorScheme, .light)
-							.frame(height: 5)
+						/// Timing Indicator
+						Slider(value: Binding(get: {
+							audioManager.volume
+						}, set: { value in
+							_ = audioManager.volumeData(volume: value)
+						}), in: 0.0...1.0, step: 0.1) { value in
+							debugPrint(value)
+						}
+						.animation(.easeInOut, value: audioManager.volume)
 						
 						Image(systemName: "speaker.wave.3.fill")
 							.foregroundColor(.gray)
 					}
 					
-					HStack(alignment: .top, spacing: size.width * 0.18) {
+					HStack(alignment: .center, spacing: size.width * 0.18) {
 						Button {
 							
 						} label: {
-							Image(systemName: "quote.bubble")
+							Image(systemName: "stopwatch")
 								.font(.title2)
 						}
 						
-						VStack(spacing: 6) {
-							Button {
-								
-							} label: {
-								Image(systemName: "airpods.gen3")
-									.font(.title2)
-							}
+						Button {
 							
-							Text("iJustine's Airpods")
-								.font(.caption)
+						} label: {
+							RouteButtonView()
+								.frame(height: 50)
 						}
 						
 						Button {
 							
 						} label: {
-							Image(systemName: "list.bullet")
+							Image(systemName: "waveform")
 								.font(.title2)
 						}
 					}

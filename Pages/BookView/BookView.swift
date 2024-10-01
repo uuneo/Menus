@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Defaults
 
 struct BookView: View {
 	/// Task Manager Properties
@@ -15,21 +16,29 @@ struct BookView: View {
 	@State private var createWeek: Bool = false
 	@State private var tasks: [TaskData] = sampleTasks.sorted(by: { $1.creationDate > $0.creationDate })
 	@State private var createNewTask: Bool = false
+	@Default(.books) var tasks1
 	/// Animation Namespace
+	var tasks2:[TaskData]{
+		let currentDatas = tasks1.filter({$0.creationDate.formattedDate() == currentDate.formattedDate()})
+			.sorted(by: {$1.creationDate > $0.creationDate})
+		return tasks1.count == 0 ? tasks : currentDatas
+	}
 	@Namespace private var animation
+	
+	
 	var body: some View {
 		VStack(alignment: .leading, spacing: 0, content: {
 			HeaderView()
 			
 			ScrollView(.vertical) {
 				VStack {
-					/// Tasks View
 					TasksView()
 				}
 				.hSpacing(.center)
 				.vSpacing(.center)
 			}
 			.scrollIndicators(.hidden)
+
 		})
 		.vSpacing(.top)
 		.overlay(alignment: .bottomTrailing, content: {
@@ -187,17 +196,28 @@ struct BookView: View {
 	@ViewBuilder
 	func TasksView() -> some View {
 		VStack(alignment: .leading, spacing: 35) {
-			ForEach($tasks) { $task in
-				TaskRowView(taskData: $task)
-					.background(alignment: .leading) {
-						if tasks.last?.id != task.id {
-							Rectangle()
-								.frame(width: 1)
-								.offset(x: 8)
-								.padding(.bottom, -35)
-						}
+			ForEach(tasks2) { task in
+				TaskRowView(taskData: Binding(get: {
+					task
+				}, set: { value in
+					if let index = tasks1.firstIndex(where: {$0.id == value.id}){
+						tasks1[index] = value
 					}
+				}))
+				
+				.background(alignment: .leading) {
+					if tasks.last?.id != task.id {
+						Rectangle()
+							.frame(width: 1)
+							.offset(x: 8)
+							.padding(.bottom, -35)
+					}
+				}
+				
+				
 			}
+			
+			
 		}
 		.padding([.vertical, .leading], 15)
 		.padding(.top, 15)

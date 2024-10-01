@@ -189,10 +189,8 @@ extension TotalData:Transferable{
 }
 
 
-
-
 extension UTType{
-	static var trnExportType = UTType(exportedAs: "com.twown.PeacockMenus.trn")
+	static var trnExportType = UTType(exportedAs: "com.twown.PeacockMenus.menus")
 }
 
 extension SymmetricKey{

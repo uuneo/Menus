@@ -5,7 +5,7 @@
 //  Created by He Cho on 2024/9/30.
 
 import SwiftUI
-
+import Defaults
 
 struct NewTaskView: View {
 	/// View Properties
@@ -13,6 +13,7 @@ struct NewTaskView: View {
 	@State private var taskTitle: String = ""
 	@State private var taskDate: Date = .init()
 	@State private var taskColor: Color = .taskColor1
+	@Default(.books) var books
 	var body: some View {
 		VStack(alignment: .leading, spacing: 15, content: {
 			Button(action: {
@@ -32,6 +33,7 @@ struct NewTaskView: View {
 				TextField("Go for a Walk!", text: $taskTitle)
 					.padding(.vertical, 12)
 					.padding(.horizontal, 15)
+					.foregroundStyle(.black)
 					.background(.white.shadow(.drop(color: .black.opacity(0.25), radius: 2)), in: .rect(cornerRadius: 10))
 			})
 			.padding(.top, 5)
@@ -82,7 +84,10 @@ struct NewTaskView: View {
 			
 			Spacer(minLength: 0)
 			
-			Button(action: {}, label: {
+			Button(action: {
+				books.append(.init(taskTitle: taskTitle,creationDate: taskDate, tint: taskColor))
+				self.dismiss()
+			}, label: {
 				Text("Create Task")
 					.font(.title3)
 					.fontWeight(.semibold)

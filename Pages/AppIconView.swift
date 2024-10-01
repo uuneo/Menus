@@ -62,33 +62,8 @@ struct AppIconView: View {
 						.listRowBackground(Color.clear)
 						.onTapGesture {
 							
-							let manager = UIApplication.shared
+							changeIcon(item)
 							
-							
-							
-							if item.rawValue == manager.alternateIconName{
-								dismiss()
-								return
-							}
-							
-							if UIApplication.shared.supportsAlternateIcons {
-								Task{
-									do {
-										try await manager.setAlternateIconName(item.rawValue)
-										
-										DispatchQueue.main.async{
-											self.setting_active_app_icon = item
-											dismiss()
-										}
-									}catch{
-										
-										debugPrint("\(item.rawValue)",error)
-										
-									}
-								
-								}
-								
-							}
 						}
 					
 					
@@ -111,6 +86,29 @@ struct AppIconView: View {
 				
 			}
 		}
+		
+	}
+	
+	func changeIcon(_ item: appIcon){
+		let manager = UIApplication.shared
+		
+		if item.rawValue == manager.alternateIconName{
+			dismiss()
+			return
+		}
+		
+		guard manager.supportsAlternateIcons  else { return  }
+		
+		self.setting_active_app_icon = item
+		
+		manager.setAlternateIconName(item.rawValue){ err in
+			if let err  {
+				debugPrint("\(item.rawValue):\(err.localizedDescription)")
+			}else{
+				dismiss()
+			}
+		}
+		
 		
 	}
 }

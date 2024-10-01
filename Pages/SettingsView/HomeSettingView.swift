@@ -40,8 +40,12 @@ struct HomeSettingView: View {
 		.blur(radius: disabled ? 10 : 0)
 		.onAppear{
 			withAnimation {
-				disabled = settingPassword  != ""
-				self.showPopup = true
+				if settingPassword.count < 1 {
+					disabled = false
+				}else{
+					self.showPopup = true
+				}
+				
 			}
 			
 		}

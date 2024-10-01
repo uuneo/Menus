@@ -16,6 +16,7 @@
 		1977686E2C984E3300F40521 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1977686D2C984E3300F40521 /* AppDelegate.swift */; };
 		1977689B2C987CFE00F40521 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 1977689A2C987CFE00F40521 /* Pow */; };
 		197768A82C99C9FB00F40521 /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197768A72C99C9FB00F40521 /* AppIconView.swift */; };
+		197DAB702CAC28BF006AF76C /* BookModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197DAB6F2CAC28B6006AF76C /* BookModal.swift */; };
 		19818B722C8DCFAF001A2964 /* ExportDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19818B712C8DCFAF001A2964 /* ExportDataView.swift */; };
 		1985A7AD2C9FDCE9003D255B /* JDStatusBarNotification in Frameworks */ = {isa = PBXBuildFile; productRef = 1985A7AC2C9FDCE9003D255B /* JDStatusBarNotification */; };
 		1985A7AF2C9FEF46003D255B /* OtherViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1985A7AE2C9FEF41003D255B /* OtherViews.swift */; };
@@ -69,9 +70,8 @@
 		19E5B8BF2C8DC04500EC77F7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E5B8BE2C8DC04500EC77F7 /* SettingsView.swift */; };
 		19F835B62C8F0A000083A66D /* VipCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F835B52C8F0A000083A66D /* VipCardView.swift */; };
 		19FB9E2E2CA973C9007014E2 /* ExpandedBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FB9E2D2CA973C6007014E2 /* ExpandedBottom.swift */; };
-		19FB9E302CA97FDB007014E2 /* test.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 19FB9E2F2CA97FDB007014E2 /* test.mp3 */; };
+		19FB9E302CA97FDB007014E2 /* test5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 19FB9E2F2CA97FDB007014E2 /* test5.mp3 */; };
 		19FB9E322CA982A9007014E2 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FB9E312CA982A3007014E2 /* AudioManager.swift */; };
-		19FB9E352CA98327007014E2 /* RingTongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FB9E342CA98322007014E2 /* RingTongView.swift */; };
 		19FB9E512CAA44D7007014E2 /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FB9E502CAA44D1007014E2 /* TaskRowView.swift */; };
 		19FB9E532CAA4501007014E2 /* ModalTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FB9E522CAA44F8007014E2 /* ModalTask.swift */; };
 		19FB9E552CAA4FE3007014E2 /* NewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FB9E542CAA4FD9007014E2 /* NewTaskView.swift */; };
@@ -104,6 +104,7 @@
 		1977686D2C984E3300F40521 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		197768882C9863F000F40521 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
 		197768A72C99C9FB00F40521 /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
+		197DAB6F2CAC28B6006AF76C /* BookModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModal.swift; sourceTree = "<group>"; };
 		19818B712C8DCFAF001A2964 /* ExportDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportDataView.swift; sourceTree = "<group>"; };
 		1985A7AE2C9FEF41003D255B /* OtherViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViews.swift; sourceTree = "<group>"; };
 		1985A7B02CA00E94003D255B /* HomeSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSettingView.swift; sourceTree = "<group>"; };
@@ -153,9 +154,8 @@
 		19E5B8BE2C8DC04500EC77F7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		19F835B52C8F0A000083A66D /* VipCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VipCardView.swift; sourceTree = "<group>"; };
 		19FB9E2D2CA973C6007014E2 /* ExpandedBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedBottom.swift; sourceTree = "<group>"; };
-		19FB9E2F2CA97FDB007014E2 /* test.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test.mp3; sourceTree = "<group>"; };
+		19FB9E2F2CA97FDB007014E2 /* test5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test5.mp3; sourceTree = "<group>"; };
 		19FB9E312CA982A3007014E2 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
-		19FB9E342CA98322007014E2 /* RingTongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingTongView.swift; sourceTree = "<group>"; };
 		19FB9E502CAA44D1007014E2 /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
 		19FB9E522CAA44F8007014E2 /* ModalTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTask.swift; sourceTree = "<group>"; };
 		19FB9E542CAA4FD9007014E2 /* NewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskView.swift; sourceTree = "<group>"; };
@@ -308,6 +308,7 @@
 		1990759A2C87F19100E23FD7 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				197DAB6F2CAC28B6006AF76C /* BookModal.swift */,
 				19CD68A32C97DC7900AF6CF8 /* Mock.swift */,
 				19E40CCB2C9AF6360077F71F /* DataModal.swift */,
 			);
@@ -348,7 +349,6 @@
 		19AF99F82CA94B850093206C /* MusicView */ = {
 			isa = PBXGroup;
 			children = (
-				19FB9E342CA98322007014E2 /* RingTongView.swift */,
 				19FB9E2D2CA973C6007014E2 /* ExpandedBottom.swift */,
 				19AF99FB2CA94CA20093206C /* MusicView.swift */,
 			);
@@ -407,9 +407,9 @@
 		19FB9E362CA984DE007014E2 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				19FB9E2F2CA97FDB007014E2 /* test5.mp3 */,
 				19FB9E582CAA6FDE007014E2 /* test3.mp3 */,
 				19FB9E562CAA6EF9007014E2 /* test2.mp3 */,
-				19FB9E2F2CA97FDB007014E2 /* test.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -497,7 +497,7 @@
 				196C575D2CA2FC0F00A2436F /* Launch Screen.storyboard in Resources */,
 				19FB9E592CAA6FDE007014E2 /* test3.mp3 in Resources */,
 				19AF99ED2CA93D8A0093206C /* album.json in Resources */,
-				19FB9E302CA97FDB007014E2 /* test.mp3 in Resources */,
+				19FB9E302CA97FDB007014E2 /* test5.mp3 in Resources */,
 				19AF99EF2CA93F8F0093206C /* music.json in Resources */,
 				199075832C86100300E23FD7 /* Preview Assets.xcassets in Resources */,
 				190E395A2C9FD16D001061ED /* Localizable.xcstrings in Resources */,
@@ -550,7 +550,7 @@
 				196C576F2CA3F1F000A2436F /* SettingTipView.swift in Sources */,
 				1985A7AF2C9FEF46003D255B /* OtherViews.swift in Sources */,
 				19DDEC272C96CAFD00C86EC5 /* ProjectSettingView.swift in Sources */,
-				19FB9E352CA98327007014E2 /* RingTongView.swift in Sources */,
+				197DAB702CAC28BF006AF76C /* BookModal.swift in Sources */,
 				198706F52C941F5400F59CE9 /* HomeVipCards.swift in Sources */,
 				198707042C956D3500F59CE9 /* itemView.swift in Sources */,
 				19F835B62C8F0A000083A66D /* VipCardView.swift in Sources */,

@@ -7,13 +7,13 @@
 import SwiftUI
 
 
-struct TaskData: Identifiable {
-	var id: UUID = .init()
-	var taskTitle: String
-	var creationDate: Date = .init()
-	var isCompleted: Bool = false
-	var tint: Color
-}
+//struct TaskData: Identifiable {
+//	var id: UUID = .init()
+//	var taskTitle: String
+//	var creationDate: Date = .init()
+//	var isCompleted: Bool = false
+//	var tint: Color
+//}
 
 var sampleTasks: [TaskData] = [
 	.init(taskTitle: "Record Video", creationDate: .updateHour(-1), isCompleted: true, tint: .taskColor1),
