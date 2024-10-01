@@ -8,7 +8,6 @@
 import SwiftUI
 
 
-
 struct AsyncImageView: View {
 	
 	var imageUrl:String?
@@ -22,9 +21,11 @@ struct AsyncImageView: View {
 	var body: some View {
 		
 		VStack{
-			if let imageUrl = imageUrl, isValidURL(imageUrl), success{
+			if let imageUrl = imageUrl, isValidURL(imageUrl){
 				if let image = image {
 					// 如果已经加载了图片，则显示图片
+					
+				
 					
 					Image(uiImage: image)
 						.resizable()
@@ -63,7 +64,6 @@ struct AsyncImageView: View {
 		self.image = nil
 		
 		guard let icon = icon, isValidURL(icon) else {
-			self.success = false
 			return
 		}
 		
@@ -71,10 +71,6 @@ struct AsyncImageView: View {
 			if let imagePath = await ImageManager.downloadImage(icon) {
 				DispatchQueue.main.async {
 					self.image = UIImage(contentsOfFile: imagePath)
-				}
-			} else {
-				DispatchQueue.main.async {
-					self.success = false
 				}
 			}
 		}
