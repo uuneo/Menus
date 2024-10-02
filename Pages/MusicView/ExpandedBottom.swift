@@ -42,7 +42,7 @@ struct ExpandedBottomSheet: View {
 	@State private var animateContent: Bool = false
 	@State private var offsetY: CGFloat = 0
 	
-	@ObservedObject var audioManager:AvManager = AvManager.shared
+	@EnvironmentObject var audioManager:AvManager
 	
 	var body: some View {
 		GeometryReader {
@@ -108,6 +108,22 @@ struct ExpandedBottomSheet: View {
 			}
 			.contentShape(Rectangle())
 			.offset(y: offsetY)
+			.gesture(
+				DragGesture()
+					.onChanged({ value in
+						let translationY = value.translation.height
+						offsetY = (translationY > 0 ? translationY : 0)
+					}).onEnded({ value in
+						withAnimation(.easeInOut(duration: 0.3)) {
+							if (offsetY + (value.velocity.height * 0.3)) > size.height * 0.4 {
+								expandSheet = false
+								animateContent = false
+							} else {
+								offsetY = .zero
+							}
+						}
+					})
+			)
 
 			.ignoresSafeArea(.container, edges: .all)
 		}
@@ -273,7 +289,9 @@ struct ExpandedBottomSheet: View {
 struct MusicInfo: View {
 	@Binding var expandSheet: Bool
 	var animation: Namespace.ID
+	@EnvironmentObject var avmanager:AvManager
 	var body: some View {
+		
 		HStack(spacing: 0) {
 			/// Adding Matched Geometry Effect (Hero Animation)
 			ZStack {
@@ -281,7 +299,7 @@ struct MusicInfo: View {
 					GeometryReader {
 						let size = $0.size
 						
-						Image("Artwork")
+						Image(uiImage: avmanager.albumArtwork)
 							.resizable()
 							.aspectRatio(contentMode: .fill)
 							.frame(width: size.width, height: size.height)
@@ -292,7 +310,7 @@ struct MusicInfo: View {
 			}
 			.frame(width: 45, height: 45)
 			
-			Text("Look What You Made Me do")
+			Text(avmanager.songTitle)
 				.fontWeight(.semibold)
 				.lineLimit(1)
 				.padding(.horizontal, 15)
@@ -300,16 +318,16 @@ struct MusicInfo: View {
 			Spacer(minLength: 0)
 			
 			Button {
-				
+				_ = avmanager.play(url: avmanager.currentlyPlayingURL)
 			} label: {
-				Image(systemName: "pause.fill")
+				Image(systemName: avmanager.icon)
 					.font(.title2)
 			}
 			
 			Button {
-				
+				_ = avmanager.next()
 			} label: {
-				Image(systemName: "forward.fill")
+				Image(systemName: "forward")
 					.font(.title2)
 			}
 			.padding(.leading, 25)
@@ -331,4 +349,5 @@ struct MusicInfo: View {
 
 #Preview{
 	MusicView()
+		.environmentObject(AvManager.shared)
 }

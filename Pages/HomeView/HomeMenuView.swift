@@ -12,58 +12,75 @@ import Lottie
 struct HomeMenuView: View {
 	@EnvironmentObject var manager:peacock
 	
-	@State var animationMode:LottieLoopMode = .repeat(2)
+	@State var animationMode:LottieLoopMode = ISPAD ? .repeat(2) : .loop
 	var body: some View {
+		Group{
+			if ISPAD{
+				privateIpadView()
+			}else{
+				privateIphoneView()
+			}
+		}
+	}
+	
+	@ViewBuilder
+	func privateIphoneView()-> some View{
+		VStack{
+			Spacer()
+			FlipClockTextEffectMock()
+				.padding(30)
+				.scaleEffect(0.8)
+			ScrollView(.horizontal) {
+				LazyHStack(spacing: 50) {
+					privateBookHomeView()
+						
+					privatePhotoHomeView()
+						
+					
+					privateMusicHomeView()
+						
+					privateMenuHomeView()
+				}
+				.scrollTargetLayout()
+				
+			}
+			.scrollTargetBehavior(.viewAligned)
+			.contentMargins(.horizontal, 50)
+			.overlay(alignment: .topLeading ) {
+				VStack(alignment: .leading){
+				   
+					Text("功能列表")
+						.font(.title)
+					   .fontWeight(.heavy)
+			  
+					   
+					 Text("Function list")
+						.foregroundColor(.gray)
+				}.padding(.leading, 30)
+			}
+			.frame(height: 450)
+			
+		}
+		.frame(width: UIScreen.main.bounds.width,height: UIScreen.main.bounds.height)
+	}
+	
+	@ViewBuilder
+	func privateIpadView()-> some View{
 		Grid( horizontalSpacing: 50, verticalSpacing: 50){
 			GridRow{
 				
-				Button{
-					withAnimation {
-						manager.page = .book
-					}
-					
-				}label: {
-					
-					ZStack(alignment: .top){
-						LottieView(animation: .named("contact"))
-							
-							.playing(loopMode: animationMode)
-							.animationDidFinish{ proxy in
-								debugPrint(proxy)
-							}
-							
-							.aspectRatio(contentMode: .fill)
-							.scaleEffect(1.3)
-							.offset(x: 30,y: 70)
-						VStack{
-							Text("预约服务")
-								.font(.system(size: 45))
-							
-							Text("Make a reservation")
-								.foregroundStyle(.quaternary)
-							Spacer()
-						}
-						.shadow(radius: 5)
-						
-					}
+				privateBookHomeView()
 					.accentColor(.black)
 					.padding()
 					.frame(width: 300, height: 300)
 					.background( .ultraThinMaterial )
 					.containerShape(RoundedRectangle(cornerRadius: 20))
-				
-						
-				}
-				
-				
-				
+
 				
 				FlipClockTextEffectMock()
 					.padding(30)
 					.frame(width: 500, height: 300)
-					.background(
-						.ultraThinMaterial
-					)
+					.background( .ultraThinMaterial)
 					.clipShape(RoundedRectangle(cornerRadius: 20))
 					.background(content: {
 						Color.clear
@@ -79,147 +96,27 @@ struct HomeMenuView: View {
 			GridRow{
 				
 				
-				Button{
-					withAnimation {
-						manager.page = .photo
-					}
-					
-				}label: {
-					
-					ZStack(alignment: .top){
-						LottieView(animation: .named("album"))
-							.playing(loopMode: animationMode)
-							.aspectRatio(contentMode: .fill)
-							.offset(x: 20)
-						
-						VStack{
-							
-							
-							Spacer()
-							
-							HStack{
-								
-								
-								VStack{
-									Text("图库")
-										.font(.system(size: 35))
-									
-									Text("Photo Album")
-										.foregroundStyle(.quaternary)
-								}
-								.shadow(radius: 5)
-								Spacer()
-							}
-							
-							
-							
-						}
-						
-						
-					}
+				privatePhotoHomeView()
 					.accentColor(.black)
 					.padding()
 					.frame(width: 300, height: 300)
 					.background( .ultraThinMaterial )
 					.containerShape(RoundedRectangle(cornerRadius: 20))
 				
-						
-				}
-				
-				
-				Button{
-					withAnimation {
-						manager.page = .music
-					}
-				}label: {
-					
-					ZStack(alignment: .top){
-						LottieView(animation: .named("music"))
-							.playing(loopMode: animationMode)
-							.aspectRatio(contentMode: .fill)
-							.offset( y: -50)
-						
-						VStack{
-							
-							
-							Spacer()
-							
-							HStack{
-								
-								
-								VStack{
-									Text("背景音乐")
-										.font(.system(size: 35))
-									
-									Text("Music")
-										.foregroundStyle(.quaternary)
-								}
-								.shadow(radius: 5)
-								Spacer()
-							}
-							
-							
-							
-						}
-						
-						
-					}
+				privateMusicHomeView()
 					.accentColor(.black)
 					.padding()
 					.frame(width: 300, height: 300)
 					.background( .ultraThinMaterial )
 					.containerShape(RoundedRectangle(cornerRadius: 20))
 				
-						
-				}
-				
-				Button{
-					withAnimation {
-						manager.page = .menu
-					}
-				
-				}label: {
-					
-					ZStack(alignment: .top){
-						LottieView(animation: .named("menus"))
-							.playing(loopMode: .loop)
-							.aspectRatio(contentMode: .fill)
-							.offset( y: -50)
-						
-						VStack{
-							
-							
-							Spacer()
-							
-							HStack{
-								
-								
-								VStack{
-									Text("价目表")
-										.font(.system(size: 35))
-									
-									Text("Menu Price")
-										.foregroundStyle(.quaternary)
-								}
-								.shadow(radius: 5)
-								Spacer()
-							}
-							
-							
-							
-						}
-						
-						
-					}
+				privateMenuHomeView()
 					.accentColor(.black)
 					.padding()
 					.frame(width: 300, height: 300)
 					.background( .ultraThinMaterial )
 					.containerShape(RoundedRectangle(cornerRadius: 20))
 					.shadow(color: .black.opacity(0.3), radius: 10, x: 10, y: 10)
-				
-						
-				}
 				
 				
 			}
@@ -229,6 +126,195 @@ struct HomeMenuView: View {
 		.frame(width: UIScreen.main.bounds.width)
 		
 	}
+	
+	
+	@ViewBuilder
+	func privateBookHomeView() -> some View{
+		Button{
+			withAnimation {
+				manager.page = .book
+			}
+			
+		}label: {
+			
+			ZStack(alignment: .top){
+				LottieView(animation: .named("contact"))
+					
+					.playing(loopMode: animationMode)
+					.animationDidFinish{ proxy in
+						debugPrint(proxy)
+					}
+					
+					.aspectRatio(contentMode: .fill)
+					.scaleEffect(1.3)
+					.offset(x: 30,y: 70)
+				VStack{
+					Text("预约服务")
+						.font(.system(size: 45))
+					
+					Text("Make a reservation")
+						.foregroundStyle(.quaternary)
+					Spacer()
+				}
+				.shadow(radius: 5)
+				
+			}
+			.accentColor(.black)
+			.padding()
+			.frame(width: 300, height: 300)
+			.background( .ultraThinMaterial )
+			.containerShape(RoundedRectangle(cornerRadius: 20))
+			.shadow(color: .black.opacity(0.3), radius: 10, x: 10, y: 10)
+		
+				
+		}
+	}
+
+	@ViewBuilder
+	func privatePhotoHomeView() -> some View{
+		Button{
+			withAnimation {
+				manager.page = .photo
+			}
+			
+		}label: {
+			
+			ZStack(alignment: .top){
+				LottieView(animation: .named("album"))
+					.playing(loopMode: animationMode)
+					.aspectRatio(contentMode: .fill)
+					.offset(x: 20)
+				
+				VStack{
+					
+					
+					Spacer()
+					
+					HStack{
+						
+						
+						VStack{
+							Text("图库")
+								.font(.system(size: 35))
+							
+							Text("Photo Album")
+								.foregroundStyle(.quaternary)
+						}
+						.shadow(radius: 5)
+						Spacer()
+					}
+					
+					
+					
+				}
+				
+				
+			}
+			.accentColor(.black)
+			.padding()
+			.frame(width: 300, height: 300)
+			.background( .ultraThinMaterial )
+			.containerShape(RoundedRectangle(cornerRadius: 20))
+			.shadow(color: .black.opacity(0.3), radius: 10, x: 10, y: 10)
+		
+				
+		}
+	}
+	@ViewBuilder
+	func privateMusicHomeView() -> some View{
+		Button{
+			withAnimation {
+				manager.page = .music
+			}
+		}label: {
+			
+			ZStack(alignment: .top){
+				LottieView(animation: .named("music"))
+					.playing(loopMode: animationMode)
+					.aspectRatio(contentMode: .fill)
+					.offset( y: -50)
+				
+				VStack{
+					
+					
+					Spacer()
+					
+					HStack{
+						
+						
+						VStack{
+							Text("背景音乐")
+								.font(.system(size: 35))
+							
+							Text("Music")
+								.foregroundStyle(.quaternary)
+						}
+						.shadow(radius: 5)
+						Spacer()
+					}
+					
+					
+					
+				}}
+			.accentColor(.black)
+			.padding()
+			.frame(width: 300, height: 300)
+			.background( .ultraThinMaterial )
+			.containerShape(RoundedRectangle(cornerRadius: 20))
+			.shadow(color: .black.opacity(0.3), radius: 10, x: 10, y: 10)
+			
+			
+		}
+	}
+	@ViewBuilder
+	func privateMenuHomeView() -> some View{
+		Button{
+			withAnimation {
+				manager.page = .menu
+			}
+		
+		}label: {
+			
+			ZStack(alignment: .top){
+				LottieView(animation: .named("menus"))
+					.playing(loopMode: .loop)
+					.aspectRatio(contentMode: .fill)
+					.offset( y: -50)
+				
+				VStack{
+					
+					
+					Spacer()
+					
+					HStack{
+						
+						
+						VStack{
+							Text("价目表")
+								.font(.system(size: 35))
+							
+							Text("Menu Price")
+								.foregroundStyle(.quaternary)
+						}
+						.shadow(radius: 5)
+						Spacer()
+					}
+					
+					
+					
+				}
+				
+				
+			}.accentColor(.black)
+			.padding()
+			.frame(width: 300, height: 300)
+			.background( .ultraThinMaterial )
+			.containerShape(RoundedRectangle(cornerRadius: 20))
+			.shadow(color: .black.opacity(0.3), radius: 10, x: 10, y: 10)
+				
+		}
+	}
+	
 }
 
 

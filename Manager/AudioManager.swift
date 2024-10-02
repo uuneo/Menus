@@ -27,6 +27,7 @@ final class AvManager: ObservableObject{
 	}
 	
 	@Published var musics: [URL] = []
+	@Published var examples:[URL] = []
 	@Published var currentlyPlayingURL: URL?
 	@Published var isPlaying:Bool = false
 	@Published var currentTime: TimeInterval = 0.0
@@ -296,7 +297,7 @@ final class AvManager: ObservableObject{
 			}
 		}
 		
-
+		
 		
 		
 		
@@ -311,7 +312,7 @@ final class AvManager: ObservableObject{
 		
 		func _abc(_ next:Bool) -> URL?{
 			guard !self.musics.isEmpty,
-				   let currentIndex = musics.firstIndex(where: { $0 == self.currentlyPlayingURL }) else {
+				  let currentIndex = musics.firstIndex(where: { $0 == self.currentlyPlayingURL }) else {
 				return nil
 			}
 			if next {
@@ -359,20 +360,21 @@ final class AvManager: ObservableObject{
 		return self.play(url:  audioUrl)
 	}
 	
-	func listFilesInDirectory() -> [URL]{
-		let urls:[URL] = {
-			var temurl = Bundle.main.urls(forResourcesWithExtension: "mp3", subdirectory: nil) ?? []
-			temurl.sort { u1, u2 -> Bool in
-				u1.lastPathComponent.localizedStandardCompare(u2.lastPathComponent) == ComparisonResult.orderedAscending
-			}
-			return temurl
-		}()
-		
-		let customSounds: [URL] = {
+	func listFilesInDirectory(_ auto:Int = 0) -> [URL]{
+		switch auto{
+		case 0:
+			let urls = getExampleList()
+			let customSounds = getCustomList()
+			return  customSounds.count > 0 ? customSounds : urls
+		case 1:
+			return getExampleList()
+		case 2:
+			return getCustomList()
+		default:
+			return getExampleList() + getCustomList()
+		}
+		func getCustomList()-> [URL]{
 			guard let soundsDirectoryUrl = getSoundsDirectory() else{
-#if DEBUG
-				print("铃声获取失败")
-#endif
 				return []
 			}
 			
@@ -382,11 +384,18 @@ final class AvManager: ObservableObject{
 			}
 			
 			return urlemp
-		}()
+		}
 		
-	
-		return  customSounds.count > 0 ? customSounds : urls
+		func getExampleList() -> [URL]{
+			var temurl = Bundle.main.urls(forResourcesWithExtension: "mp3", subdirectory: nil) ?? []
+			temurl.sort { u1, u2 -> Bool in
+				u1.lastPathComponent.localizedStandardCompare(u2.lastPathComponent) == ComparisonResult.orderedAscending
+			}
+			return temurl
+		}
 	}
+	
+	
 	
 	/// 返回指定文件夹，指定后缀的文件列表数组
 	func getFilesInDirectory(directory: String, suffix: String) -> [URL] {
@@ -407,7 +416,7 @@ final class AvManager: ObservableObject{
 	func getAudioFilesInDirectory(directory: String) -> [URL] {
 		let fileManager = FileManager.default
 		let audioExtensions = ["mp3", "wav", "m4a", "flac", "aac", "ogg"] // 音频文件的扩展名列表
-
+		
 		do {
 			let files = try fileManager.contentsOfDirectory(atPath: directory)
 			return files.compactMap { file -> URL? in
@@ -505,6 +514,7 @@ extension AvManager{
 	
 	func updateMusics(){
 		self.musics = self.listFilesInDirectory()
+		self.examples = self.listFilesInDirectory(1)
 	}
 	
 	
@@ -512,7 +522,7 @@ extension AvManager{
 		do {
 			try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
 			try AVAudioSession.sharedInstance().setActive(true)
-
+			
 			// 监听音频中断的通知
 			NotificationCenter.default.addObserver(self,
 												   selector: #selector(handleInterruption),
@@ -522,14 +532,14 @@ extension AvManager{
 			print("音频会话配置失败: \(error.localizedDescription)")
 		}
 	}
-
+	
 	@objc func handleInterruption(notification: Notification) {
 		guard let userInfo = notification.userInfo,
 			  let typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
 			  let type = AVAudioSession.InterruptionType(rawValue: typeValue) else {
 			return
 		}
-
+		
 		if type == .began {
 			// 音频中断开始（例如来电）
 			print("音频中断123")
