@@ -13,7 +13,7 @@ import CryptoKit
 
 
 extension Defaults.Keys{
-	static let menusName = Key<String>("MenusName",default: String(localized: "价目表"))
+	static let menusName = Key<String>("MenusName",default: String(localized: "美丽宫略"))
 	static let menusSubName = Key<String>("MenusSubName",default: String(localized: "Peacock-Menus"))
 	static let menusFooter = Key<String>("MenusFooter",default: String(localized: "一次相遇，终身美好"))
 	static let menusImage = Key<String>("MenusImage",default: String(localized: "other"))

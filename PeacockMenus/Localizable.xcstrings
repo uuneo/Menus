@@ -253,6 +253,9 @@
         }
       }
     },
+    "Function list" : {
+
+    },
     "Go for a Walk!" : {
 
     },
@@ -327,9 +330,6 @@
       }
     },
     "Locked File" : {
-
-    },
-    "Look What You Made Me do" : {
 
     },
     "Make a reservation" : {
@@ -766,6 +766,9 @@
           }
         }
       }
+    },
+    "功能列表" : {
+
     },
     "卡名称" : {
       "localizations" : {
@@ -1286,6 +1289,9 @@
           }
         }
       }
+    },
+    "美丽宫略" : {
+
     },
     "美容" : {
       "localizations" : {
