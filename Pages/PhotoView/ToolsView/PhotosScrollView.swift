@@ -98,6 +98,10 @@ struct PhotosScrollView: View {
 						.aspectRatio(contentMode: .fit)
 						.frame(height: size.width / CGFloat(column))
 						.clipped()
+						.onTapGesture {
+							sharedData.image = "https://picsum.photos/200?t=\(index)"
+							sharedData.showDetail = true
+						}
 					
 					
 				}
@@ -132,6 +136,10 @@ struct PhotosScrollView: View {
 				.aspectRatio(contentMode: .fit)
 				.frame(width: size.width, height: size.height + (minY > 0 ? minY : 0))
 				.offset(y: (minY > 0 ? -minY : 0))
+				.onTapGesture {
+					sharedData.image = "https://picsum.photos/\(width)/\(height)?t=\(index * 30)"
+					sharedData.showDetail = true
+				}
 		}
 		.frame(width: size.width)
 	}

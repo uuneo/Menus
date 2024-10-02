@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OtherContents: View {
+	@EnvironmentObject var shardData:SharedData
 	var body: some View {
 		VStack(spacing: 10) {
 			DummyView("示例1", .yellow)
@@ -42,6 +43,11 @@ struct OtherContents: View {
 					ForEach(1...10, id: \.self) {index in
 						AsyncImageView(imageUrl: "https://picsum.photos/350/200?t=\(color)\(index * 10)")
 							.frame(width: 300, height: 200)
+							.onTapGesture {
+								shardData.image = "https://picsum.photos/350/200?t=\(color)\(index * 10)"
+								shardData.showDetail = true
+							}
+						
 					}
 				}
 				.padding(.vertical, 10)

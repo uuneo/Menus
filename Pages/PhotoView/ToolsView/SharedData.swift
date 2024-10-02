@@ -27,4 +27,7 @@ class SharedData: ObservableObject {
 	@Published var canPullUp: Bool = false
 	@Published var canPullDown: Bool = false
 	@Published var progress: CGFloat = 0
+	
+	@Published var showDetail:Bool = false
+	@Published var image:String = ""
 }

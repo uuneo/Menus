@@ -15,8 +15,14 @@ struct PhotosView: View {
 	var body: some View {
 		GeometryReader {
 			HomePhotoView(size: $0.size, safeArea: $0.safeAreaInsets)
+				.overlay{
+					if sharedData.showDetail{
+						PhotoPreView(image: sharedData.image, show: $sharedData.showDetail)
+					}
+				}
 				.ignoresSafeArea(.all, edges: .top)
 				.environmentObject(sharedData)
+				
 			
 		}
 		
