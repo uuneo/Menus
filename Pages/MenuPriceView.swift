@@ -54,7 +54,6 @@ struct MenuPriceView: View {
 				
 			}
 			.background( Color.background)
-			
 		}
 		
 		

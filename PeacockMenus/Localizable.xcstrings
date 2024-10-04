@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "zh-Hans",
   "strings" : {
-    "" : {
-
-    },
     "\t修改数据后将实时保存在本地\n\t不需要任何保存动作" : {
       "localizations" : {
         "en" : {
@@ -210,9 +207,6 @@
     "Cancel" : {
 
     },
-    "Create Task" : {
-
-    },
     "Diamond" : {
       "localizations" : {
         "en" : {
@@ -252,12 +246,6 @@
           }
         }
       }
-    },
-    "Function list" : {
-
-    },
-    "Go for a Walk!" : {
-
     },
     "Gold Card" : {
       "localizations" : {
@@ -330,15 +318,6 @@
       }
     },
     "Locked File" : {
-
-    },
-    "Make a reservation" : {
-
-    },
-    "Menu Price" : {
-
-    },
-    "Music" : {
 
     },
     "NewItem" : {
@@ -424,9 +403,6 @@
         }
       }
     },
-    "Photo Album" : {
-
-    },
     "Please enter the correct password to unclock the file." : {
 
     },
@@ -459,15 +435,6 @@
           }
         }
       }
-    },
-    "Task Color" : {
-
-    },
-    "Task Date" : {
-
-    },
-    "Task Title" : {
-
     },
     "This file has been locked by the user, please enter the password to continue." : {
 
@@ -562,6 +529,7 @@
       }
     },
     "价目表" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -734,9 +702,6 @@
         }
       }
     },
-    "删除" : {
-
-    },
     "前缀" : {
       "localizations" : {
         "en" : {
@@ -766,9 +731,6 @@
           }
         }
       }
-    },
-    "功能列表" : {
-
     },
     "卡名称" : {
       "localizations" : {
@@ -819,9 +781,6 @@
           }
         }
       }
-    },
-    "图库" : {
-
     },
     "图片" : {
       "localizations" : {
@@ -1063,9 +1022,6 @@
         }
       }
     },
-    "播放列表" : {
-
-    },
     "数据初始化" : {
       "localizations" : {
         "en" : {
@@ -1246,9 +1202,6 @@
         }
       }
     },
-    "确认删除？" : {
-
-    },
     "示例项目" : {
       "localizations" : {
         "en" : {
@@ -1312,9 +1265,6 @@
           }
         }
       }
-    },
-    "背景音乐" : {
-
     },
     "背景颜色" : {
       "localizations" : {
@@ -1708,9 +1658,6 @@
           }
         }
       }
-    },
-    "预约服务" : {
-
     },
     "首席" : {
       "localizations" : {

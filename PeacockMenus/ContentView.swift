@@ -20,26 +20,14 @@ struct ContentView: View {
 		
 		ZStack(alignment: .top){
 			Group{
-				switch manager.page {
+				switch manager.page{
 				case .home:
-					HomeView()
-						
+					MenuPriceView()
 				case .setting:
 					HomeSettingView()
-						
-				case .photo:
-					PhotosView()
-						
-				case .menu:
-					MenuPriceView()
-						
-				case .music:
-					MusicView()
-						
-				case .book:
-					BookView()
-						
 				}
+				
+				
 			}
 			.transition(AnyTransition.opacity.combined(with: .slide))
 			
@@ -76,10 +64,6 @@ struct ContentView: View {
 			
 			
 		}
-		.onAppear{
-			ImageManager.clearCache()
-		}
-		
 	}
 	
 }

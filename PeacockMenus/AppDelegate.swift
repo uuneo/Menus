@@ -18,10 +18,5 @@ class AppDelegate: UIResponder,  UIApplicationDelegate{
 		// 读取文件或进行其他操作
 		return true
 	}
-	
-	func application(_ application: UIApplication,
-					 didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		AvManager.shared.setupAudioSession()
-		return true
-	}
+
 }
