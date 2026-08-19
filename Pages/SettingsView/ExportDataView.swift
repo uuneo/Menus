@@ -12,51 +12,39 @@ struct ExportDataView: View {
 
     @State private var exportData: String = "没有数据"
     @State private var fileURL: URL?
-    @State private var isEditing: Bool = false
 
     var body: some View {
         List {
-//            编辑
+
             Section {
                 TextEditor(text: $exportData)
                     .frame(maxHeight: 500)
-                    .truncationMode(.tail)
-                    .disabled(!isEditing)
             } header: {
                 Text("全部数据")
             }
 
-        }.toolbar {
+        }
+        .scrollDismissesKeyboard(.interactively)
+        .toolbar {
             if let fileurl = fileURL {
-                ToolbarItem(placement: .topBarLeading) {
+                ToolbarItem(placement: .topBarTrailing) {
                     ShareLink(
                         item: fileurl,
                         preview: SharePreview(String("menus.json"), icon: "square.and.arrow.up")
                     )
                 }
             }
-
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    self.isEditing.toggle()
-                } label: {
-                    Label(
-                        isEditing ? "完成" : "编辑",
-                        systemImage: isEditing ? "checkmark.circle" : "square.and.pencil.circle"
-                    )
-                }
-            }
         }
         .task {
-            DispatchQueue.global(qos: .background).async {
+            Task {
                 let data = peacock.shared.exportTotalData()
                 let file = peacock.shared.saveJSONToTempFile(
                     object: data,
                     fileName: "PeacockMenus-\(Date().yyyyMMddhhmmss())"
                 )
-                DispatchQueue.main.async {
-                    self.fileURL = file
-                    self.exportData = peacock.shared.exportData()
+                self.fileURL = file
+                if let data = peacock.shared.exportData() {
+                    self.exportData = data
                 }
             }
         }

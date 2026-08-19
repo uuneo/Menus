@@ -44,6 +44,7 @@ struct vipCardSettingView: View {
             }
             .onDelete(perform: $cards.remove)
         }
+        .scrollDismissesKeyboard(.interactively)
         .listStyle(.insetGrouped)
         .toolbar {
             ToolbarItem {

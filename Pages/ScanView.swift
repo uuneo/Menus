@@ -57,10 +57,14 @@ struct ScanView: View {
                     if status != .authorized {
                         manager.toast("没有相机权限", mode: .error)
                     }
-                    self.dismiss()
+                    Task{@MainActor in 
+                        self.dismiss()    
+                    }
                 default:
                     manager.toast("扫码失败", mode: .error)
-                    self.dismiss()
+                    Task{@MainActor in 
+                        self.dismiss()
+                    }
                 }
             }
             .actionSheet(isPresented: $showActive) {

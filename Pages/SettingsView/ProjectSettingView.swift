@@ -61,6 +61,7 @@ struct ProjectSettingView: View {
                         .swipeActions(edge: .leading, allowsFullSwipe: true) {
                             Button {
                                 let data = item.copyID()
+                                data.sort += 1
                                 $items.append(data)
                                 self.scalID = data.id
                                 self.selectItem = data
@@ -76,6 +77,7 @@ struct ProjectSettingView: View {
 
                 .onDelete(perform: $items.remove)
             }
+            .scrollDismissesKeyboard(.interactively)
             .searchable(text: $searchText, prompt: "搜索数据")
             .toolbar {
                 ToolbarItem {
@@ -125,16 +127,6 @@ struct ChangeSubCategoryView: View {
         )
     ) var categoryItems
 
-    var priceFormatter: NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency // 使用货币格式
-        formatter.locale = Locale.current // 使用当前区域的货币符号
-        formatter.maximumFractionDigits = 1
-        formatter.nilSymbol = "0"
-        formatter.alwaysShowsDecimalSeparator = true
-        return formatter
-    }
-
     var body: some View {
         Form {
             Section {
@@ -176,9 +168,13 @@ struct ChangeSubCategoryView: View {
             }
 
             Section {
-                TextField("项目排序", value: $item.sort, formatter: NumberFormatter())
-                    .customField(icon: "pencil", data: $item.sort)
-                    .keyboardType(.numberPad)
+                HStack{
+                    TextField("项目排序", value: $item.sort, format: .number)
+                        .customField(icon: "pencil", data: $item.sort)
+                        .keyboardType(.numberPad)
+                    Spacer(minLength: 0)
+                    Stepper(value: $item.sort, label: {})
+                }
             } header: {
                 Text("排序")
             }
@@ -208,9 +204,10 @@ struct ChangeSubCategoryView: View {
             ForEach($item.prices, id: \.id) { $price in
                 Section {
                     VStack {
-                        TextField("价格", value: $price.money, formatter: priceFormatter)
+                        TextField("价格", value: $price.money, format: .number)
                             .customField(icon: "pencil", title: "价格", data: $price.money)
-
+                            .keyboardType(.numberPad)
+                        
                         TextField("前缀", text: $price.prefix)
                             .customField(icon: "pencil", title: "前缀", data: $price.prefix)
 

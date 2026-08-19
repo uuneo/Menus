@@ -10,6 +10,7 @@ struct ContentView: View {
     @Default(.defaultHome) var defaultHome
     @Default(.remoteUpdateURL) var remoteUpdateURL
     @Default(.settingLocalPassword) var localpassword
+    @Default(.settingPassword) var cloudPassword
     @Default(.showMenus) var showMenus
 
     var body: some View {
@@ -45,6 +46,14 @@ struct ContentView: View {
                 }
             }
             .transition(AnyTransition.opacity.combined(with: .slide))
+            .popView(isPresented: $manager.showPassView) { 
+                self.manager.showPassView = false
+            } content: { 
+                CustomAlertWithTextField(password: $localpassword, cloudPassword: cloudPassword) { 
+                    self.manager.showPassView = false
+                }
+            }
+
         }
         .fullScreenCover(isPresented: $manager.fullPage) {
             ScanView { code in

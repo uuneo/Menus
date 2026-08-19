@@ -43,10 +43,11 @@ struct SettingsView: View {
                 sidbarMenu
             } content: {
                 BasicSettingsView(columnVisibility: $columnVisibility)
-
+                    .scrollDismissesKeyboard(.interactively)
             } detail: {
                 AppSettings()
                     .navigationTitle("App设置")
+                    .scrollDismissesKeyboard(.interactively)
             }
             .onChange(of: selectedTab) { _, _ in
                 self.columnVisibility = .doubleColumn
@@ -56,8 +57,10 @@ struct SettingsView: View {
             
             NavigationSplitView {
                 BasicSettingsView(columnVisibility: $columnVisibility)
+                    .scrollDismissesKeyboard(.interactively)
             } detail: {
                 AppSettings()
+                    .scrollDismissesKeyboard(.interactively)
                     .navigationTitle("App设置")
             }
             

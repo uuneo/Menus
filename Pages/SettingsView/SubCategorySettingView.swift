@@ -50,6 +50,7 @@ struct SubCategorySettingView: View {
                         .swipeActions(edge: .leading, allowsFullSwipe: true) {
                             Button {
                                 let data = item.copyID()
+                                data.sort += 1
                                 $items.append(data)
                                 self.selectedItem = data
                                 self.scalID = data.id
@@ -80,6 +81,7 @@ struct SubCategorySettingView: View {
                     }
                 }
             }
+            .scrollDismissesKeyboard(.interactively)
             .toolbar {
                 ToolbarItem {
                     Button {

@@ -138,8 +138,10 @@ private struct PopViewHelper<ViewContent: View>: ViewModifier {
 
 struct CustomAlertWithTextField: View {
     @Binding var password: String
+    var cloudPassword: String
     var onUnlock: () -> Void
 
+    @FocusState var showKeyboard: Bool
     /// View Properties
     var body: some View {
         VStack(spacing: 8) {
@@ -173,7 +175,16 @@ struct CustomAlertWithTextField: View {
                     RoundedRectangle(cornerRadius: 12)
                         .fill(.bar)
                 }
+                .focused($showKeyboard)
                 .padding(.vertical, 10)
+                .onChange(of: password) { _, newValue in
+                    if password == cloudPassword{
+                        onUnlock()
+                    }
+                }
+                .onAppear{
+                    self.showKeyboard = true
+                }
 
             HStack(spacing: 10) {
                 Button {

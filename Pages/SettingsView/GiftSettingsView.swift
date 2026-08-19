@@ -52,6 +52,7 @@ struct GiftSettingsView: View {
                     Text(value.cardLevel)
                     Spacer()
                     Text(value.createDate.yymm)
+                    
                 }
                 .minimumScaleFactor(0.5)
                 .padding()
@@ -59,6 +60,7 @@ struct GiftSettingsView: View {
             }
             .onDelete(perform: $vipGiftlist.remove)
         }
+        .scrollDismissesKeyboard(.interactively)
         .toolbar {
             if vipGiftlist.count > 0 {
                 ToolbarItem {

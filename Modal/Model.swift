@@ -11,7 +11,7 @@ import UniformTypeIdentifiers
 
 class CategoryRealmData: Object, ObjectKeyIdentifiable, Codable {
     @Persisted(primaryKey: true) var id: String = UUID().uuidString
-    @Persisted var title: String = String(localized: "新项目")
+    @Persisted var title: String = .init(localized: "新项目")
     @Persisted var subTitle: String = ""
     @Persisted var image: String = "haircut"
     @Persisted var color: String = "background11"
@@ -45,14 +45,39 @@ class CategoryRealmData: Object, ObjectKeyIdentifiable, Codable {
         newData.sort = sort
         return newData
     }
+
+    enum CodingKeys: String, CodingKey {
+        case id, title, subTitle, image, color, sort
+    }
+
+    required convenience init(from decoder: Decoder) throws {
+        self.init()
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        id = try c.decode(String.self, forKey: .id)
+        title = try c.decodeIfPresent(String.self, forKey: .title) ?? ""
+        subTitle = try c.decodeIfPresent(String.self, forKey: .subTitle) ?? ""
+        image = try c.decodeIfPresent(String.self, forKey: .image) ?? "haircut"
+        color = try c.decodeIfPresent(String.self, forKey: .color) ?? "background11"
+        sort = try c.decodeIfPresent(Int.self, forKey: .sort) ?? 0
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var c = encoder.container(keyedBy: CodingKeys.self)
+        try c.encode(id, forKey: .id)
+        try c.encode(title, forKey: .title)
+        try c.encode(subTitle, forKey: .subTitle)
+        try c.encode(image, forKey: .image)
+        try c.encode(color, forKey: .color)
+        try c.encode(sort, forKey: .sort)
+    }
 }
 
 class MemberCardRealmData: Object, ObjectKeyIdentifiable, Codable {
     @Persisted(primaryKey: true) var id: String = UUID().uuidString
-    @Persisted var title: String = String(localized: "新卡")
+    @Persisted var title: String = .init(localized: "新卡")
     @Persisted var subTitle: String = ""
     @Persisted var money: Int = 0
-    @Persisted var name: String = String(localized: "原价")
+    @Persisted var name: String = .init(localized: "原价")
     @Persisted var discount: Double = 1
     @Persisted var discount2: Double = 1
     @Persisted var image: String = "peacock4"
@@ -107,12 +132,63 @@ class MemberCardRealmData: Object, ObjectKeyIdentifiable, Codable {
         data.sort = sort
         return data
     }
+    
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case subTitle
+        case money
+        case name
+        case discount
+        case discount2
+        case image
+        case footer
+        case sort
+    }
+
+    required convenience init(from decoder: Decoder) throws {
+        self.init()
+
+        let container = try decoder.container(
+            keyedBy: CodingKeys.self
+        )
+
+        id = try container.decode(String.self, forKey: .id)
+        title = try container.decode(String.self, forKey: .title)
+        subTitle = try container.decodeIfPresent(String.self, forKey: .subTitle) ?? ""
+        money = try container.decodeIfPresent(Int.self, forKey: .money) ?? 0
+        name = try container.decodeIfPresent(String.self, forKey: .name) ?? "原价"
+        discount = try container.decodeIfPresent(Double.self, forKey: .discount) ?? 1
+        discount2 = try container.decodeIfPresent(Double.self, forKey: .discount2) ?? 1
+        image = try container.decodeIfPresent(String.self, forKey: .image) ?? "peacock4"
+        footer = try container.decodeIfPresent(String.self, forKey: .footer) ?? ""
+        sort = try container.decodeIfPresent(Int.self, forKey: .sort) ?? 0
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(
+            keyedBy: CodingKeys.self
+        )
+
+        try container.encode(id, forKey: .id)
+        try container.encode(title, forKey: .title)
+        try container.encode(subTitle, forKey: .subTitle)
+        try container.encode(money, forKey: .money)
+        try container.encode(name, forKey: .name)
+        try container.encode(discount, forKey: .discount)
+        try container.encode(discount2, forKey: .discount2)
+        try container.encode(image, forKey: .image)
+        try container.encode(footer, forKey: .footer)
+        try container.encode(sort, forKey: .sort)
+    }
+    
 }
 
 class SubCategoryRealmData: Object, ObjectKeyIdentifiable, Codable {
     @Persisted(primaryKey: true) var id: String = UUID().uuidString
     @Persisted var categoryID: String = ""
-    @Persisted var title: String = String(localized: "新项目")
+    @Persisted var title: String = .init(localized: "新项目")
     @Persisted var subTitle: String = ""
     @Persisted var footer: String = ""
     @Persisted var sort: Int = 0
@@ -145,6 +221,31 @@ class SubCategoryRealmData: Object, ObjectKeyIdentifiable, Codable {
         data.sort = sort
         return data
     }
+
+    enum CodingKeys: String, CodingKey {
+        case id, categoryID, title, subTitle, footer, sort
+    }
+
+    required convenience init(from decoder: Decoder) throws {
+        self.init()
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        id = try c.decode(String.self, forKey: .id)
+        categoryID = try c.decodeIfPresent(String.self, forKey: .categoryID) ?? ""
+        title = try c.decodeIfPresent(String.self, forKey: .title) ?? ""
+        subTitle = try c.decodeIfPresent(String.self, forKey: .subTitle) ?? ""
+        footer = try c.decodeIfPresent(String.self, forKey: .footer) ?? ""
+        sort = try c.decodeIfPresent(Int.self, forKey: .sort) ?? 0
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var c = encoder.container(keyedBy: CodingKeys.self)
+        try c.encode(id, forKey: .id)
+        try c.encode(categoryID, forKey: .categoryID)
+        try c.encode(title, forKey: .title)
+        try c.encode(subTitle, forKey: .subTitle)
+        try c.encode(footer, forKey: .footer)
+        try c.encode(sort, forKey: .sort)
+    }
 }
 
 class ItemRealmData: Object, ObjectKeyIdentifiable, Codable {
@@ -156,7 +257,6 @@ class ItemRealmData: Object, ObjectKeyIdentifiable, Codable {
     @Persisted var header: String = ""
     @Persisted var prices = List<PriceRealmData>()
     @Persisted var sort: Int = 0
-
 
     func copyID() -> ItemRealmData {
         let data = ItemRealmData()
@@ -207,6 +307,36 @@ class ItemRealmData: Object, ObjectKeyIdentifiable, Codable {
     func show(_ modes: PriceTypeEnum...) -> Bool {
         prices.contains { modes.contains($0.mode) }
     }
+
+    enum CodingKeys: String, CodingKey {
+        case id, categoryID, subcategoryID, title, subTitle, header, prices, sort
+    }
+
+    required convenience init(from decoder: Decoder) throws {
+        self.init()
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        id = try c.decode(String.self, forKey: .id)
+        categoryID = try c.decodeIfPresent(String.self, forKey: .categoryID) ?? ""
+        subcategoryID = try c.decodeIfPresent(String.self, forKey: .subcategoryID) ?? ""
+        title = try c.decodeIfPresent(String.self, forKey: .title) ?? ""
+        subTitle = try c.decodeIfPresent(String.self, forKey: .subTitle) ?? ""
+        header = try c.decodeIfPresent(String.self, forKey: .header) ?? ""
+        sort = try c.decodeIfPresent(Int.self, forKey: .sort) ?? 0
+        let decoded = try c.decodeIfPresent([PriceRealmData].self, forKey: .prices) ?? []
+        prices.append(objectsIn: decoded)
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var c = encoder.container(keyedBy: CodingKeys.self)
+        try c.encode(id, forKey: .id)
+        try c.encode(categoryID, forKey: .categoryID)
+        try c.encode(subcategoryID, forKey: .subcategoryID)
+        try c.encode(title, forKey: .title)
+        try c.encode(subTitle, forKey: .subTitle)
+        try c.encode(header, forKey: .header)
+        try c.encode(Array(prices), forKey: .prices)
+        try c.encode(sort, forKey: .sort)
+    }
 }
 
 class PriceRealmData: Object, ObjectKeyIdentifiable, Codable {
@@ -252,6 +382,31 @@ class PriceRealmData: Object, ObjectKeyIdentifiable, Codable {
         price.suffix = String(localized: "元/\(number)次")
         price.discount = false
         return price
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case id, prefix, money, suffix, discount, mode
+    }
+
+    required convenience init(from decoder: Decoder) throws {
+        self.init()
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        id = try c.decode(String.self, forKey: .id)
+        prefix = try c.decodeIfPresent(String.self, forKey: .prefix) ?? "¥"
+        money = try c.decodeIfPresent(Int.self, forKey: .money) ?? 0
+        suffix = try c.decodeIfPresent(String.self, forKey: .suffix) ?? "元/次"
+        discount = try c.decodeIfPresent(Bool.self, forKey: .discount) ?? false
+        mode = try c.decodeIfPresent(PriceTypeEnum.self, forKey: .mode) ?? .A
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var c = encoder.container(keyedBy: CodingKeys.self)
+        try c.encode(id, forKey: .id)
+        try c.encode(prefix, forKey: .prefix)
+        try c.encode(money, forKey: .money)
+        try c.encode(suffix, forKey: .suffix)
+        try c.encode(discount, forKey: .discount)
+        try c.encode(mode, forKey: .mode)
     }
 }
 
@@ -352,11 +507,9 @@ class VipInfoRealmMode: Object, ObjectKeyIdentifiable, Codable {
     }
 }
 
-
-class MenusHomeInfo:  Object, ObjectKeyIdentifiable, Codable {
-    
+class MenusHomeInfo: Object, ObjectKeyIdentifiable, Codable {
     @Persisted(primaryKey: true) var id: String = UUID().uuidString
-    @Persisted var menusName = String(localized: "美丽宫略") 
+    @Persisted var menusName = String(localized: "美丽宫略")
     @Persisted var menusSubName = String(localized: "Peacock-Menus")
     @Persisted var menusFooter = String(localized: "一次相遇，终身美好")
     @Persisted var menusImage = String(localized: "other")
@@ -364,5 +517,4 @@ class MenusHomeInfo:  Object, ObjectKeyIdentifiable, Codable {
     @Persisted var homeCardSubTitle = String(localized: "Peacock-Cards")
     @Persisted var homeItemsTitle = String(localized: "项目分类")
     @Persisted var homeItemsSubTitle = String(localized: "Peacock-Items")
-    
 }

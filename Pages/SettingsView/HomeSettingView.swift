@@ -18,8 +18,9 @@ struct HomeSettingView: View {
             } else {
                 SettingsIphoneView()
             }
-        }.environmentObject(peacock.shared)
-      
+        }
+        .environmentObject(peacock.shared)
+        .scrollDismissesKeyboard(.interactively)
     }
 }
 

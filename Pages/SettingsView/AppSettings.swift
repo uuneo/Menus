@@ -44,28 +44,33 @@ struct AppSettings: View {
                 TextField("自动同步地址", text: $remoteUpdateURL)
                     .customField(icon: "link", data: $remoteUpdateURL)
                     .disabled(settingPassword != settingLocalPassword)
+                    .onChange(of: remoteUpdateURL) { _, newValue in
+                        if let url = URL(string: newValue) {
+                            manager
+                                .updateItem(url: url.absoluteString, toast: true) { success in
+                                    if success {
+                                        Defaults[.defaultHome] = .home
+                                        Defaults[.showMenus] = true
+                                        Task{@MainActor in
+                                            manager.page = .home
+                                        }
+                                    }
+                                }
+                        }
+                    }
+
 
             } header: {
                 Label("自动同步地址", systemImage: "link")
             } footer: {
                 Text("服务器必须实现GET和POST方法，GET方法返回JSON数据，POST方法接收JSON文件")
             }
-            .onChange(of: remoteUpdateURL) { _, newValue in
-                if let url = URL(string: newValue) {
-                    manager
-                        .updateItem(url: url.absoluteString, toast: true) { success in
-                            if success {
-                                Defaults[.defaultHome] = .home
-                                Defaults[.showMenus] = true
-                                manager.page = .home
-                            }
-                        }
-                }
-            }
-
+            
             Section {
-                SecureField("输入密码", text: $settingLocalPassword)
-                    .customField(icon: "lock", data: $settingLocalPassword)
+                SecureField("输入密码", text: $settingPassword)
+                    .disabled(settingPassword != settingLocalPassword)
+                    .customField(icon: "lock",data: $settingPassword)
+                    
 
             } header: {
                 Label("校验密码", systemImage: "lock")
@@ -75,6 +80,7 @@ struct AppSettings: View {
                 MenuHomeItemsSettingsView(homeInfo: homeInfo)
             }
         }
+        .scrollDismissesKeyboard(.interactively)
         .toolbar {
             ToolbarItem {
                 Button {
@@ -83,6 +89,25 @@ struct AppSettings: View {
                     Image(systemName: "qrcode.viewfinder")
                 }
             }
+            if !settingPassword.isEmpty{
+                ToolbarItem(placement: .topBarTrailing) { 
+                    if settingPassword == settingLocalPassword{
+                        Image(systemName: "lock.open.display")
+                    }else{
+                        Button { 
+                            manager.showPassView = true
+                        } label: { 
+                            Label { 
+                                Text("校验密码")
+                            } icon: { 
+                                Image(systemName: "person.badge.key")
+                            }
+
+                        }
+                    }
+                }
+            }
+            
         }
     }
 }

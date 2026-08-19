@@ -62,6 +62,7 @@ struct CategorySettingView: View {
             }
         }
         .listStyle(.insetGrouped)
+        .scrollDismissesKeyboard(.interactively)
         .toolbar {
             ToolbarItem {
                 Button {
@@ -135,7 +136,7 @@ struct ChangeCategoryView: View {
                 Text("背景颜色")
             }
         }
-
+        .scrollDismissesKeyboard(.interactively)
         .navigationTitle("修改数据")
     }
 }

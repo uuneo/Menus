@@ -56,9 +56,9 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
         configurationForConnecting connectingSceneSession: UISceneSession,
         options: UIScene.ConnectionOptions
     ) -> UISceneConfiguration {
-        if let selectAction = options.shortcutItem {
-//            QuickAction.selectAction = selectAction
-        }
+//        if let selectAction = options.shortcutItem {
+////            QuickAction.selectAction = selectAction
+//        }
         let sceneonfiguration = UISceneConfiguration(
             name: "Quick Action Scene",
             sessionRole: connectingSceneSession.role

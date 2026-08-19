@@ -51,6 +51,7 @@ final class peacock: ObservableObject {
     @Published var page: Page = .deepseek
 
     @Published var fullPage: Bool = false
+    @Published var showPassView = false
 
     var selectCardData: MemberCardRealmData {
         if let realm = try? Realm(),
@@ -156,7 +157,8 @@ extension peacock {
                 switch response.result {
                 case .success(let data):
                     completion(data)
-                case .failure:
+                case .failure(let error):
+                    debugPrint(error)
                     completion(nil)
                 }
             }
@@ -188,12 +190,17 @@ extension peacock {
         )
     }
 
-    func exportData() -> String {
+    func exportData() -> String? {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
 
-        let data = try! encoder.encode(exportTotalData())
-        return String(data: data, encoding: .utf8)!
+        do {
+            let data = try encoder.encode(exportTotalData())
+            return String(data: data, encoding: .utf8)!
+        } catch {
+            debugPrint(error)
+        }
+        return nil
     }
 
     func saveJSONToTempFile<T: Encodable>(object: T, fileName: String) -> URL? {
@@ -232,6 +239,7 @@ extension peacock {
             importData(totaldata: totalData)
             return true
         } catch {
+            debugPrint(error.localizedDescription)
             return false
         }
     }
@@ -286,7 +294,7 @@ extension peacock {
             if let subName = totaldata.menusSubName {
                 homeInfo.menusSubName = subName
             }
-            
+
             realm.add(homeInfo, update: .all)
         }
 

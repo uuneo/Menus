@@ -111,6 +111,7 @@ struct BasicSettingsView: View {
                         secondaryButton: .cancel()
                     )
                 }
+                .scrollDismissesKeyboard(.interactively)
                 .toolbar {
                     if defaultHome != .home || settingPassword != settingLocalPassword {
                         ToolbarItem {

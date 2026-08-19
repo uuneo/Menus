@@ -2216,6 +2216,7 @@
 
     },
     "只能导入.json文件" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2525,6 +2526,7 @@
       }
     },
     "完成" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3997,6 +3999,7 @@
       }
     },
     "编辑" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -4671,6 +4674,7 @@
       }
     },
     "选择文件" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
