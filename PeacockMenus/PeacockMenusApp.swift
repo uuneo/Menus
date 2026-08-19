@@ -10,7 +10,7 @@ struct PeacockMenusApp: SwiftUI.App {
     @Default(.firstStart) var firstStart
     @Default(.defaultHome) var defaultHome
     @Environment(\.scenePhase) var scenePhase
-    @StateObject var manager = peacock.shared
+    @State var manager = peacock.shared
 
     @State private var seconds = 0
     @State private var timer: Timer?
@@ -23,7 +23,7 @@ struct PeacockMenusApp: SwiftUI.App {
                         manager.updateItem(url: remoteUpdateURL, toast: true)
                     }
                 }
-                .environmentObject(manager)
+                
                 .task {
 
                     DispatchQueue.main.async {

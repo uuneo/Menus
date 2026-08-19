@@ -2,7 +2,7 @@ import Defaults
 import SwiftUI
 
 struct MenuPriceView: View {
-    @EnvironmentObject var manager: peacock
+    @State private var manager = peacock.shared
     @Default(.giftShow) var showGift
     @Default(.remoteUpdateURL) var remoteUpdateURL
     var body: some View {
@@ -31,16 +31,6 @@ struct MenuPriceView: View {
                     }
                 }
 
-                ToolbarItem {
-                    Button {
-                        withAnimation {
-                            manager.page = .calculator
-                        }
-                    } label: {
-                        Label("计算器", systemImage: "123.rectangle")
-                    }
-                }
-
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {
                         Section {
@@ -51,16 +41,6 @@ struct MenuPriceView: View {
 
                             } label: {
                                 Label("设置", systemImage: "gear")
-                            }
-                        }
-
-                        Section {
-                            Button {
-                                withAnimation {
-                                    manager.page = .deepseek
-                                }
-                            } label: {
-                                Label("智能助手", systemImage: Page.deepseek.rawValue)
                             }
                         }
 
@@ -85,8 +65,26 @@ struct MenuPriceView: View {
                             }
                         }
 
+                        Section {
+                            Button {
+                                withAnimation {
+                                    manager.page = .deepseek
+                                }
+                            } label: {
+                                Label("智能助手", systemImage: Page.deepseek.rawValue)
+                            }
+                        }
+
+                        Button {
+                            withAnimation {
+                                manager.page = .calculator
+                            }
+                        } label: {
+                            Label("计算器", systemImage: "123.rectangle")
+                        }
+
                     } label: {
-                        Image(systemName: "menubar.arrow.down.rectangle")
+                        Image(systemName: "filemenu.and.selection")
                     }
                 }
             }
@@ -97,7 +95,6 @@ struct MenuPriceView: View {
 
 #Preview {
     ContentView()
-        .environmentObject(peacock.shared)
 }
 
 extension View {

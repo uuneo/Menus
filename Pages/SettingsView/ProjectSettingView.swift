@@ -11,7 +11,7 @@ import SwiftUI
 import TipKit
 
 struct ProjectSettingView: View {
-    @EnvironmentObject var manager: peacock
+   @State private var manager = peacock.shared
 
     @ObservedResults(
         ItemRealmData.self,
@@ -253,5 +253,5 @@ struct ChangeSubCategoryView: View {
 
 #Preview {
     ProjectSettingView(columnVisibility: .constant(.all))
-        .environmentObject(peacock.shared)
+        
 }

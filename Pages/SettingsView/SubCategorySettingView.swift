@@ -11,7 +11,7 @@ import SwiftUI
 import TipKit
 
 struct SubCategorySettingView: View {
-    @EnvironmentObject var manager: peacock
+   @State private var manager = peacock.shared
     
     @ObservedResults(
         CategoryRealmData.self,
@@ -165,5 +165,5 @@ struct ChangeSubcategoryView: View {
 
 #Preview {
     SubCategorySettingView(columnVisibility: .constant(.all))
-        .environmentObject(peacock.shared)
+        
 }

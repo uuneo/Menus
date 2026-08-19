@@ -19,7 +19,7 @@ struct HomeCategoryPage: View {
     
     @ObservedResults(MenusHomeInfo.self) var homeInfos
 
-    @EnvironmentObject var manager: peacock
+   @State private var manager = peacock.shared
 
     @Namespace private var itemSpace
 
@@ -104,7 +104,7 @@ struct HomeCategoryPage: View {
 struct categoryCardView: View {
     @ObservedRealmObject var item: CategoryRealmData
     //	@Binding var item: CategoryData
-    @EnvironmentObject var manager: peacock
+   @State private var manager = peacock.shared
     var body: some View {
         ZStack {
             Color(from: item.color)
@@ -145,5 +145,5 @@ struct categoryCardView: View {
 #Preview {
     @Previewable @State var showDetail = false
     HomeCategoryPage()
-        .environmentObject(peacock.shared)
+        
 }

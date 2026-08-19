@@ -4,7 +4,7 @@ import SwiftUI
 import UIKit
 
 struct ContentView: View {
-    @EnvironmentObject var manager: peacock
+    @State private var manager = peacock.shared
     
     @Default(.firstStart) var firstStart
     @Default(.defaultHome) var defaultHome
@@ -150,5 +150,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .environmentObject(peacock.shared)
+        
 }

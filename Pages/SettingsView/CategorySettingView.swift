@@ -11,7 +11,7 @@ import SwiftUI
 import TipKit
 
 struct CategorySettingView: View {
-    @EnvironmentObject var manager: peacock
+   @State private var manager = peacock.shared
     
 
     @ObservedResults(
@@ -144,6 +144,6 @@ struct ChangeCategoryView: View {
 #Preview {
     NavigationStack {
         CategorySettingView(columnVisibility: .constant(.all))
-            .environmentObject(peacock.shared)
+            
     }
 }

@@ -39,19 +39,17 @@ enum Page: String, Identifiable, CaseIterable, Defaults.Serializable, Equatable 
     static let backs: [Self] = [.home, .deepseek, .calculator, .setting]
 }
 
-final class peacock: ObservableObject {
+@Observable
+final class peacock{
     static let shared = peacock()
 
     private init() {}
 
-    @Published var selectCard = MemberCardRealmData.nonmember.id
-
-    @Published var selectVip: MemberCardRealmData?
-
-    @Published var page: Page = .deepseek
-
-    @Published var fullPage: Bool = false
-    @Published var showPassView = false
+    var selectCard = MemberCardRealmData.nonmember.id
+    var selectVip: MemberCardRealmData?
+    var page: Page = .deepseek
+    var fullPage: Bool = false
+    var showPassView = false
 
     var selectCardData: MemberCardRealmData {
         if let realm = try? Realm(),

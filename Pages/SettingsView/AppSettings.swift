@@ -14,7 +14,7 @@ struct AppSettings: View {
     @ObservedResults(MenusHomeInfo.self) var homeInfos
     @Default(.showMenus) var showMenus
     
-    @EnvironmentObject var manager: peacock
+   @State private var manager = peacock.shared
 
     @State private var passwd: String = ""
     let editTip = EditChangeTipView()
@@ -90,9 +90,10 @@ struct AppSettings: View {
                 }
             }
             if !settingPassword.isEmpty{
-                ToolbarItem(placement: .topBarTrailing) { 
+                ToolbarItem(placement: .topBarLeading) { 
                     if settingPassword == settingLocalPassword{
                         Image(systemName: "lock.open.display")
+                            .foregroundStyle(.green)
                     }else{
                         Button { 
                             manager.showPassView = true
@@ -176,5 +177,5 @@ struct MenuHomeItemsSettingsView: View {
 
 #Preview {
     AppSettings()
-        .environmentObject(peacock.shared)
+        
 }

@@ -19,12 +19,12 @@ struct HomeSettingView: View {
                 SettingsIphoneView()
             }
         }
-        .environmentObject(peacock.shared)
+        
         .scrollDismissesKeyboard(.interactively)
     }
 }
 
 #Preview {
     HomeSettingView()
-        .environmentObject(peacock.shared)
+        
 }

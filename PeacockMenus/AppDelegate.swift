@@ -51,38 +51,12 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
         return true
     }
 
-    func application(
-        _: UIApplication,
-        configurationForConnecting connectingSceneSession: UISceneSession,
-        options: UIScene.ConnectionOptions
-    ) -> UISceneConfiguration {
-//        if let selectAction = options.shortcutItem {
-////            QuickAction.selectAction = selectAction
-//        }
-        let sceneonfiguration = UISceneConfiguration(
-            name: "Quick Action Scene",
-            sessionRole: connectingSceneSession.role
-        )
-        sceneonfiguration.delegateClass = QuickActionSceneDelegate.self
-        return sceneonfiguration
-    }
-
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
         let content = response.notification.request.content
-//        Log.debug(content)
-//
-//        AppManager.shared.page = .message
-//        AppManager.shared.router = []
-//        DispatchQueue.main.async{
-//            AppManager.shared.selectID =
-//            response.notification.request.content.targetContentIdentifier
-//            AppManager.shared.selectGroup = content.threadIdentifier
-//        }
-//
         notificatonHandler(userInfo: content.userInfo)
 
         // 清除通知中心的显示
@@ -107,24 +81,10 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
         notificatonHandler(userInfo: notification.request.content.userInfo)
     }
 
-    func notificatonHandler(userInfo _: [AnyHashable: Any]) {
-//        if let urlStr = userInfo[Params.url.name] as? String, let url = URL(string: urlStr) {
-//            AppManager.openUrl(url: url)
-//        }
-    }
+    func notificatonHandler(userInfo _: [AnyHashable: Any]) {}
 
     func userNotificationCenter(_: UNUserNotificationCenter, openSettingsFor _: UNNotification?) {
 //        AppManager.shared.page = .setting
 //        AppManager.shared.router = [.more]
-    }
-}
-
-class QuickActionSceneDelegate: UIResponder, UIWindowSceneDelegate {
-    func windowScene(
-        _: UIWindowScene,
-        performActionFor _: UIApplicationShortcutItem,
-        completionHandler _: @escaping (Bool) -> Void
-    ) {
-//        QuickAction.selectAction = shortcutItem
     }
 }

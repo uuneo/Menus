@@ -1,5 +1,5 @@
 {
-  "originHash" : "ad6e29f8153c3c3666814a330b8d467323f0deae0a9efccf15bb7da90550540e",
+  "originHash" : "5009a479a5e6474005765c12039af2bd51030a0a5a421084f3a1c49f784ed1da",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -101,15 +101,6 @@
       }
     },
     {
-      "identity" : "scalingheaderscrollview",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/exyte/ScalingHeaderScrollView.git",
-      "state" : {
-        "revision" : "e2a8d470fb70d46d782cf9d48eafe7d2d67be29e",
-        "version" : "2.0.1"
-      }
-    },
-    {
       "identity" : "swift-cmark",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/swiftlang/swift-cmark",
@@ -152,15 +143,6 @@
       "state" : {
         "revision" : "4799286537280063c85a32f09884cfbca301b1a1",
         "version" : "602.0.0"
-      }
-    },
-    {
-      "identity" : "swiftui-introspect",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/siteline/swiftui-introspect",
-      "state" : {
-        "revision" : "9bedf1e79c7b7c34b35b74bef126f56d2400ef7f",
-        "version" : "1.4.0-beta.4"
       }
     },
     {

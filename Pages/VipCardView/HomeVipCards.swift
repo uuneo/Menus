@@ -16,7 +16,7 @@ struct HomeVipCards: View {
     )) var cards
     @ObservedResults(MenusHomeInfo.self) var homeInfos
 
-    @EnvironmentObject var manager: peacock
+   @State private var manager = peacock.shared
 
     @Namespace private var homeSpace
     var body: some View {

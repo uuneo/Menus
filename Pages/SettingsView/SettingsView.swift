@@ -8,7 +8,7 @@ enum ActiveAlert {
 }
 
 struct SettingsView: View {
-    @EnvironmentObject var manager: peacock
+    @State private var manager = peacock.shared
     
     @Default(.settingPassword) var settingPassword
     @Default(.settingLocalPassword) var settingLocalPassword
@@ -200,7 +200,7 @@ struct SettingsView: View {
 }
 
 struct SettingsIphoneView: View {
-    @EnvironmentObject var manager: peacock
+    @State private var manager = peacock.shared
     @State private var selectedTab: Int? = 0
     @State private var columnVisibility: NavigationSplitViewVisibility = .automatic
     @State private var showIconPicker: Bool = false
@@ -369,5 +369,5 @@ struct SettingsIphoneView: View {
 
 #Preview {
     SettingsView()
-        .environmentObject(peacock.shared)
+        
 }

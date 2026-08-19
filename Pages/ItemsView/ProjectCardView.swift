@@ -8,7 +8,7 @@ import RealmSwift
 import SwiftUI
 
 struct ProjectCardView: View {
-    @EnvironmentObject var manager: peacock
+   @State private var manager = peacock.shared
 
     @ObservedRealmObject var data: ItemRealmData
 
@@ -232,5 +232,5 @@ struct ProjectCardView: View {
         data: ItemRealmData(),
         show: $show
     )
-    .environmentObject(peacock.shared)
+    
 }

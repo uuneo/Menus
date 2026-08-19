@@ -7,12 +7,11 @@
 
 import Defaults
 import RealmSwift
-import ScalingHeaderScrollView
 import SwiftUI
 import TipKit
 
 struct CategoryDetailPage: View {
-    @EnvironmentObject var manager: peacock
+   @State private var manager = peacock.shared
     var selectedItem: CategoryRealmData
     @State private var progress: CGFloat = 1
     @State private var isScrolling: Bool = false
@@ -36,10 +35,9 @@ struct CategoryDetailPage: View {
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
-        ScalingHeaderScrollView {
+        VStack(spacing: 0) {
             ZStack {
                 Color(from: selectedItem.color)
-                    .edgesIgnoringSafeArea(.all)
 
                 if ISPAD {
                     ipadHeader()
@@ -47,8 +45,10 @@ struct CategoryDetailPage: View {
                     iphoneHeader()
                 }
             }
-        } content: {
-            ZStack {
+            .frame(height: 100)
+            .ignoresSafeArea(edges: .top)
+
+            ScrollView {
                 LazyVStack {
                     ForEach(selectItems, id: \.id) { item in
                         if items.filter({ $0.subcategoryID == item.id }).count > 0 {
@@ -62,16 +62,7 @@ struct CategoryDetailPage: View {
                 }
             }
         }
-        .initialSnapPosition(initialSnapPosition: 1)
-        .allowsHeaderGrowth()
-        .height(min: 100.0, max: 100)
-        .collapseProgress(.constant(1))
-        .setHeaderSnapMode(.immediately)
-        .hideScrollIndicators()
-        .scrollToTop(resetScroll: .constant(true))
-        .background(
-            Color.background
-        )
+        .background(Color.background)
     }
 
     private func ipadHeader() -> some View {
@@ -275,7 +266,7 @@ struct CategoryDetailPage: View {
 }
 
 struct PickerOfCardView: View {
-    @EnvironmentObject var manager: peacock
+   @State private var manager = peacock.shared
     @ObservedResults(MemberCardRealmData.self, sortDescriptor: SortDescriptor(
         keyPath: \MemberCardRealmData.sort, ascending: true
     )) var cards
@@ -300,5 +291,5 @@ struct PickerOfCardView: View {
 
 #Preview {
     CategoryDetailPage(selectedItem: CategoryRealmData())
-        .environmentObject(peacock.shared)
+        
 }

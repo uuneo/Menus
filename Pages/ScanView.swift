@@ -16,7 +16,7 @@ struct ScanView: View {
     @State private var restart = false
     @State private var showActive = false
     @State private var isScanning = true
-    @StateObject private var manager = peacock.shared
+    @State private var manager = peacock.shared
 
     var response: (String) async -> Bool
 

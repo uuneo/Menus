@@ -22,7 +22,6 @@
 		198706EB2C94114800F59CE9 /* extension+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198706EA2C94114800F59CE9 /* extension+.swift */; };
 		198706F32C941E5000F59CE9 /* HomeCategoryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198706F22C941E5000F59CE9 /* HomeCategoryPage.swift */; };
 		198706F52C941F5400F59CE9 /* HomeVipCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198706F42C941F5400F59CE9 /* HomeVipCards.swift */; };
-		198706FC2C943C8100F59CE9 /* ScalingHeaderScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 198706FB2C943C8100F59CE9 /* ScalingHeaderScrollView */; };
 		198707042C956D3500F59CE9 /* SubCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198707032C956D3500F59CE9 /* SubCategoryView.swift */; };
 		1989BF022CA84B2600D5B8DE /* FlipClockText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1989BF012CA8496500D5B8DE /* FlipClockText.swift */; };
 		1989BF112CA85D8D00D5B8DE /* PopPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1989BF102CA85D8D00D5B8DE /* PopPasswordView.swift */; };
@@ -259,7 +258,6 @@
 				BAB704F52EEBD4D600CD30A5 /* Assistant in Frameworks */,
 				B5DF4F052E144D3800599A8D /* QRScanner in Frameworks */,
 				BAE626EC2ED60437009DABA1 /* RealmSwift in Frameworks */,
-				198706FC2C943C8100F59CE9 /* ScalingHeaderScrollView in Frameworks */,
 				B58484732E81089E00DA8020 /* Expression in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,7 +523,6 @@
 			);
 			name = PeacockMenus;
 			packageProductDependencies = (
-				198706FB2C943C8100F59CE9 /* ScalingHeaderScrollView */,
 				1985A7AC2C9FDCE9003D255B /* JDStatusBarNotification */,
 				19C13A982CCA45E400A2F1A8 /* SwiftyJSON */,
 				B5DF4F042E144D3800599A8D /* QRScanner */,
@@ -596,7 +593,6 @@
 			);
 			mainGroup = 1990756F2C86100100E23FD7;
 			packageReferences = (
-				198706FA2C943C8000F59CE9 /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */,
 				1985A7AB2C9FDCE9003D255B /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */,
 				19C13A972CCA45E400A2F1A8 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				B5DF4F032E144D3800599A8D /* XCRemoteSwiftPackageReference "QRScanner" */,
@@ -1097,14 +1093,6 @@
 				minimumVersion = 2.2.4;
 			};
 		};
-		198706FA2C943C8000F59CE9 /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/exyte/ScalingHeaderScrollView.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.1;
-			};
-		};
 		19C13A972CCA45E400A2F1A8 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
@@ -1176,11 +1164,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1985A7AB2C9FDCE9003D255B /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */;
 			productName = JDStatusBarNotification;
-		};
-		198706FB2C943C8100F59CE9 /* ScalingHeaderScrollView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 198706FA2C943C8000F59CE9 /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */;
-			productName = ScalingHeaderScrollView;
 		};
 		19C13A982CCA45E400A2F1A8 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;

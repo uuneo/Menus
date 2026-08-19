@@ -12,7 +12,7 @@ import SwiftUI
 struct VipDetailView: View {
     @ObservedRealmObject var item: MemberCardRealmData
     @State private var select: MemberCardRealmData
-    @EnvironmentObject var manager: peacock
+   @State private var manager = peacock.shared
 
     @ObservedResults(MemberCardRealmData.self, sortDescriptor: SortDescriptor(
         keyPath: \MemberCardRealmData.sort, ascending: true
