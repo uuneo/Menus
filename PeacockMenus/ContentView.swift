@@ -5,13 +5,11 @@ import UIKit
 
 struct ContentView: View {
     @State private var manager = peacock.shared
-    
+
     @Default(.firstStart) var firstStart
     @Default(.defaultHome) var defaultHome
-    @Default(.remoteUpdateURL) var remoteUpdateURL
-    @Default(.settingLocalPassword) var localpassword
-    @Default(.settingPassword) var cloudPassword
     @Default(.showMenus) var showMenus
+    @State private var auth = MemberAuth.shared
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -19,18 +17,11 @@ struct ContentView: View {
                 switch manager.page {
                 case .home:
                     MenuPriceView()
-                        .onAppear {
-                            localpassword = ""
-                        }
                 case .setting:
                     HomeSettingView()
                         .onDisappear {
-                            localpassword = ""
-                            if !remoteUpdateURL.isEmpty {
-                                manager.updateItem(
-                                    url: remoteUpdateURL,
-                                    toast: false
-                                )
+                            if MemberAuth.shared.isLoggedIn {
+                                manager.syncMenusFromMemberServer()
                             }
                         }
                 case .deepseek:
@@ -46,38 +37,42 @@ struct ContentView: View {
                 }
             }
             .transition(AnyTransition.opacity.combined(with: .slide))
-            .popView(isPresented: $manager.showPassView) { 
-                self.manager.showPassView = false
-            } content: { 
-                CustomAlertWithTextField(password: $localpassword, cloudPassword: cloudPassword) { 
-                    self.manager.showPassView = false
-                }
-            }
-
         }
         .fullScreenCover(isPresented: $manager.fullPage) {
             ScanView { code in
                 if let url = URL(string: code),
                    url.scheme == "http" || url.scheme == "https"
                 {
-                    manager.updateItem(url: code, toast: true) { success in
-                        if success {
-                            DispatchQueue.main.async {
-                                Defaults[.remoteUpdateURL] = code
-                                Defaults[.defaultHome] = .home
-                                Defaults[.showMenus] = true
-                                manager.page = .home
+                    let scanned = code
+                    Task {
+                        let ok = await MemberAuth.shared.checkServer(scanned)
+                        if !ok {
+                            await MainActor.run {
+                                manager.toast("不是有效的接口地址", mode: .error)
                             }
-
-                        } else {
-                            DispatchQueue.main.async {
-                                manager.page = .deepseek
-                                manager.toast("Restore App Success !!!")
-                            }
+                            return
+                        }
+                        await MainActor.run {
+                            Defaults[.memberServerURL] = scanned
+                            // 更新到会员服务器地址, 后续登录/同步都用它
+                            MemberAuth.shared.serverURL = scanned
+                            Defaults[.defaultHome] = .home
+                            Defaults[.showMenus] = true
+                            manager.page = .home
+                            manager.toast("接口连接成功", mode: .success)
                         }
                     }
                 }
                 return true
+            }
+        }
+        .fullScreenCover(isPresented: $manager.showVipHairCourse) {
+            NavigationStack {
+                if auth.isLoggedIn {
+                    MemberSearchView()
+                } else {
+                    MemberLoginView()
+                }
             }
         }
     }

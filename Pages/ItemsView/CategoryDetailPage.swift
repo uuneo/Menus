@@ -13,6 +13,7 @@ import TipKit
 struct CategoryDetailPage: View {
    @State private var manager = peacock.shared
     var selectedItem: CategoryRealmData
+    var namespace: Namespace.ID
     @State private var progress: CGFloat = 1
     @State private var isScrolling: Bool = false
 
@@ -36,18 +37,22 @@ struct CategoryDetailPage: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            ZStack {
-                Color(from: selectedItem.color)
+            // 顶部彩色 header
+            headerContent
+                .padding(.horizontal, 12)
+                .frame(height: 110)
+                .frame(maxWidth: .infinity)
+                .background(
+                    LinearGradient(
+                        colors: [categoryColor, categoryColor.opacity(0.85)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
+                .ignoresSafeArea(edges: .top)
+                .matchedTransitionSource(id: selectedItem.id, in: namespace)
 
-                if ISPAD {
-                    ipadHeader()
-                } else {
-                    iphoneHeader()
-                }
-            }
-            .frame(height: 100)
-            .ignoresSafeArea(edges: .top)
-
+            // 下方渐变圆角面板承载列表
             ScrollView {
                 LazyVStack {
                     ForEach(selectItems, id: \.id) { item in
@@ -60,9 +65,38 @@ struct CategoryDetailPage: View {
                         Spacer(minLength: 200)
                     }
                 }
+                .padding(.top, 16)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(
+                UnevenRoundedRectangle(
+                    cornerRadii: .init(topLeading: 28, topTrailing: 28)
+                )
+                .fill(.ultraThinMaterial)
+                .ignoresSafeArea(edges: .bottom)
+            )
         }
-        .background(Color.background)
+        .background(
+            LinearGradient(
+                colors: [categoryColor, categoryColor.opacity(0.55)],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .ignoresSafeArea()
+        )
+    }
+
+    private var categoryColor: Color {
+        Color(from: selectedItem.color)
+    }
+
+    @ViewBuilder
+    private var headerContent: some View {
+        if ISPAD {
+            ipadHeader()
+        } else {
+            iphoneHeader()
+        }
     }
 
     private func ipadHeader() -> some View {
@@ -93,11 +127,18 @@ struct CategoryDetailPage: View {
                     Text(selectedItem.title)
                         .font(.largeTitle)
                         .bold()
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.6)
 
                     Text(selectedItem.subTitle)
+                        .font(.title3)
+                        .foregroundColor(.white.opacity(0.9))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.6)
                 }
                 .foregroundColor(.white)
                 .frame(minWidth: 200)
+                .layoutPriority(1)
                 .padding(.vertical)
                 Spacer()
 
@@ -250,12 +291,14 @@ struct CategoryDetailPage: View {
                         Text(selectedItem.subTitle)
                             .lineLimit(1)
                             .font(.subheadline)
-                            .foregroundColor(.white)
+                            .foregroundColor(.white.opacity(0.9))
                             .minimumScaleFactor(0.5)
                     }
+                    .layoutPriority(1)
                     Spacer()
 
                     PickerOfCardView()
+                        .layoutPriority(-1)
 
                 }.padding(.horizontal, 10)
             }
@@ -290,6 +333,7 @@ struct PickerOfCardView: View {
 }
 
 #Preview {
-    CategoryDetailPage(selectedItem: CategoryRealmData())
-        
+    @Previewable @Namespace var ns
+    CategoryDetailPage(selectedItem: CategoryRealmData(), namespace: ns)
+
 }

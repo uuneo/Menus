@@ -24,11 +24,12 @@ struct ScanView: View {
         .init(
             focusImage: nil,
             focusImagePadding: nil,
-            animationDuration: nil,
-            scanningAreaLimit: true,
             metadataObjectTypes: [.qr, .aztec, .microQR, .dataMatrix]
         )
     }
+
+    @State private var scale: Double = 2.0
+    @GestureState private var gestureScale: CGFloat = 1.0
 
     var body: some View {
         ZStack {
@@ -41,32 +42,34 @@ struct ScanView: View {
                 configuration: config,
                 isScanning: $isScanning,
                 torchActive: $torchIsOn,
-                shouldRescan: $restart
-            ) { code in
-                Task {
-                    if await response(code) {
-                        self.dismiss()
-                    } else {
-                        self.showActive.toggle()
+                videoZoomFactor: scale * gestureScale,
+                onSuccess: { code in
+                    Task {
+                        if await response(code) {
+                            self.dismiss()
+                        } else {
+                            self.showActive.toggle()
+                        }
                     }
-                }
 
-            } onFailure: { error in
-                switch error {
-                case .unauthorized(let status):
-                    if status != .authorized {
-                        manager.toast("没有相机权限", mode: .error)
-                    }
-                    Task{@MainActor in 
-                        self.dismiss()    
-                    }
-                default:
-                    manager.toast("扫码失败", mode: .error)
-                    Task{@MainActor in 
-                        self.dismiss()
+                },
+                onFailure: { error in
+                    switch error {
+                    case .unauthorized(let status):
+                        if status != .authorized {
+                            manager.toast("没有相机权限", mode: .error)
+                        }
+                        Task { @MainActor in
+                            self.dismiss()
+                        }
+                    default:
+                        manager.toast("扫码失败", mode: .error)
+                        Task { @MainActor in
+                            self.dismiss()
+                        }
                     }
                 }
-            }
+            )
             .actionSheet(isPresented: $showActive) {
                 ActionSheet(title: Text("扫码成功"), buttons: [
                     .default(Text("重新扫码"), action: {

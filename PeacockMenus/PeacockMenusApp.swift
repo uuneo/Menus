@@ -6,7 +6,6 @@ import TipKit
 @main
 struct PeacockMenusApp: SwiftUI.App {
     @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
-    @Default(.remoteUpdateURL) var remoteUpdateURL
     @Default(.firstStart) var firstStart
     @Default(.defaultHome) var defaultHome
     @Environment(\.scenePhase) var scenePhase
@@ -19,8 +18,9 @@ struct PeacockMenusApp: SwiftUI.App {
         WindowGroup {
             ContentView()
                 .onChange(of: scenePhase) { _, _ in
-                    if defaultHome == .home || !remoteUpdateURL.isEmpty {
-                        manager.updateItem(url: remoteUpdateURL, toast: true)
+                    // 已登录则通过会员服务器认证接口同步价目表
+                    if MemberAuth.shared.isLoggedIn {
+                        manager.syncMenusFromMemberServer()
                     }
                 }
                 

@@ -29,16 +29,16 @@ struct HomeCategoryPage: View {
        
         VStack {
             HStack {
-                if let homeInfo = homeInfos.first{
+                
                     VStack(alignment: .leading) {
-                        Text(homeInfo.homeItemsTitle)
+                        Text(homeInfos.first?.homeItemsTitle ?? "项目分类")
                             .font(.title)
                             .fontWeight(.heavy)
 
-                        Text(homeInfo.homeItemsSubTitle)
+                        Text(homeInfos.first?.homeItemsSubTitle ?? "Peacock-Class")
                             .foregroundColor(.gray)
                     }
-                }
+                
                 
                 Spacer()
             }
@@ -91,9 +91,8 @@ struct HomeCategoryPage: View {
             }
         }
         .fullScreenCover(item: $selectedItem) { item in
-            CategoryDetailPage(selectedItem: item)
+            CategoryDetailPage(selectedItem: item, namespace: itemSpace)
                 .ignoresSafeArea()
-                .background(.ultraThinMaterial)
                 .navigationTransition(
                     .zoom(sourceID: item.id, in: itemSpace)
                 )
@@ -139,6 +138,7 @@ struct categoryCardView: View {
         .shadow(color: Color(from: item.color), radius: 3, x: 3, y: 3)
         .padding()
         .frame(width: 260)
+        
     }
 }
 

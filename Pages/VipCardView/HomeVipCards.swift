@@ -22,16 +22,14 @@ struct HomeVipCards: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                if let homeInfo = homeInfos.first{
-                    VStack(alignment: .leading) {
-                        Text(homeInfo.homeCardTitle)
-                            .font(.title)
-                            .fontWeight(.heavy)
+                VStack(alignment: .leading) {
+                    Text(homeInfos.first?.homeCardTitle ?? "会员卡")
+                        .font(.title)
+                        .fontWeight(.heavy)
 
-                        Text(homeInfo.homeCardSubTitle)
-                            .foregroundColor(.gray)
-                    }.padding(.leading, 30)
-                }
+                    Text(homeInfos.first?.homeCardSubTitle ?? "Peacock-Cards")
+                        .foregroundColor(.gray)
+                }.padding(.leading, 30)
                 
                 Spacer()
             }

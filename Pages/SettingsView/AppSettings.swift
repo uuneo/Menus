@@ -5,15 +5,11 @@ import TipKit
 
 struct AppSettings: View {
 
-    @Default(.settingPassword) var settingPassword
-    @Default(.settingLocalPassword) var settingLocalPassword
-    @Default(.remoteUpdateURL) var remoteUpdateURL
-
     @Default(.defaultHome) var defaultHome
 
     @ObservedResults(MenusHomeInfo.self) var homeInfos
     @Default(.showMenus) var showMenus
-    
+
    @State private var manager = peacock.shared
 
     @State private var passwd: String = ""
@@ -40,42 +36,6 @@ struct AppSettings: View {
                 Label("切换默认首页", systemImage: "house.circle")
             }
 
-            Section {
-                TextField("自动同步地址", text: $remoteUpdateURL)
-                    .customField(icon: "link", data: $remoteUpdateURL)
-                    .disabled(settingPassword != settingLocalPassword)
-                    .onChange(of: remoteUpdateURL) { _, newValue in
-                        if let url = URL(string: newValue) {
-                            manager
-                                .updateItem(url: url.absoluteString, toast: true) { success in
-                                    if success {
-                                        Defaults[.defaultHome] = .home
-                                        Defaults[.showMenus] = true
-                                        Task{@MainActor in
-                                            manager.page = .home
-                                        }
-                                    }
-                                }
-                        }
-                    }
-
-
-            } header: {
-                Label("自动同步地址", systemImage: "link")
-            } footer: {
-                Text("服务器必须实现GET和POST方法，GET方法返回JSON数据，POST方法接收JSON文件")
-            }
-            
-            Section {
-                SecureField("输入密码", text: $settingPassword)
-                    .disabled(settingPassword != settingLocalPassword)
-                    .customField(icon: "lock",data: $settingPassword)
-                    
-
-            } header: {
-                Label("校验密码", systemImage: "lock")
-            }
-
             if defaultHome == .home, let homeInfo = homeInfos.first {
                 MenuHomeItemsSettingsView(homeInfo: homeInfo)
             }
@@ -89,26 +49,6 @@ struct AppSettings: View {
                     Image(systemName: "qrcode.viewfinder")
                 }
             }
-            if !settingPassword.isEmpty{
-                ToolbarItem(placement: .topBarLeading) { 
-                    if settingPassword == settingLocalPassword{
-                        Image(systemName: "lock.open.display")
-                            .foregroundStyle(.green)
-                    }else{
-                        Button { 
-                            manager.showPassView = true
-                        } label: { 
-                            Label { 
-                                Text("校验密码")
-                            } icon: { 
-                                Image(systemName: "person.badge.key")
-                            }
-
-                        }
-                    }
-                }
-            }
-            
         }
     }
 }

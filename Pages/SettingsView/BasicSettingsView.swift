@@ -6,14 +6,12 @@ struct BasicSettingsView: View {
     @State private var selectedTab: Int? = 1
     @Binding var columnVisibility: NavigationSplitViewVisibility
     @State private var showAlert: Bool = false
+    @State private var memberAuth = MemberAuth.shared
     @State private var showIconPicker: Bool = false
 
     @Default(.defaultHome) var defaultHome
     @Default(.results) var results
     @Default(.showMenus) var showMenus
-    @Default(.remoteUpdateURL) var remoteUpdateURL
-    @Default(.settingPassword) var settingPassword
-    @Default(.settingLocalPassword) var settingLocalPassword
 
     let initTip = InitializeDataView()
 
@@ -43,10 +41,7 @@ struct BasicSettingsView: View {
                         Label("智能助手", systemImage: "gear")
                     }.tag(3)
 
-                    if defaultHome == .home && (
-                        remoteUpdateURL.isEmpty || settingPassword
-                            == settingLocalPassword)
-                    {
+                    if defaultHome == .home {
                         NavigationLink {
                             ExportDataView()
                                 .navigationTitle("导出信息")
@@ -54,12 +49,15 @@ struct BasicSettingsView: View {
                             Label("导出信息", systemImage: "square.and.arrow.up")
                         }.tag(4)
 
-                        NavigationLink {
-                            ImportDataView()
-                                .navigationTitle("导入信息")
-                        } label: {
-                            Label("导入信息", systemImage: "square.and.arrow.down")
-                        }.tag(5)
+                        // 导入(修改价目表)仅会员系统管理员可用
+                        if memberAuth.isAdmin {
+                            NavigationLink {
+                                ImportDataView()
+                                    .navigationTitle("导入信息")
+                            } label: {
+                                Label("导入信息", systemImage: "square.and.arrow.down")
+                            }.tag(5)
+                        }
                     }
 
                     Button {
@@ -88,6 +86,26 @@ struct BasicSettingsView: View {
                     Text(verbatim: "")
                 }
 
+                // 会员系统账号
+                if MemberAuth.shared.isLoggedIn {
+                    Section {
+                        HStack {
+                            Label("登录账号", systemImage: "person.crop.circle.fill")
+                            Spacer()
+                            Text(MemberAuth.shared.userName)
+                                .foregroundStyle(.secondary)
+                        }
+                        Button(role: .destructive) {
+                            MemberAuth.shared.logout()
+                            Task.detached { MemberUserCache.clearAll() }
+                        } label: {
+                            Label("退出登录", systemImage: "rectangle.portrait.and.arrow.right")
+                        }
+                    } header: {
+                        Text("会员系统")
+                    }
+                }
+
             }.navigationTitle("通用设置")
                 .onChange(of: selectedTab) { _, _ in
                     self.columnVisibility = .doubleColumn
@@ -113,7 +131,7 @@ struct BasicSettingsView: View {
                 }
                 .scrollDismissesKeyboard(.interactively)
                 .toolbar {
-                    if defaultHome != .home || settingPassword != settingLocalPassword {
+                    if defaultHome != .home {
                         ToolbarItem {
                             Button {
                                 withAnimation {

@@ -89,6 +89,16 @@
         }
       }
     },
+    "%@ %lld" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$lld"
+          }
+        }
+      }
+    },
     "%@-%@" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -173,6 +183,15 @@
           }
         }
       }
+    },
+    "%lld 条" : {
+
+    },
+    "%lld 条记录" : {
+
+    },
+    "×%lld" : {
+
     },
     "¥" : {
       "localizations" : {
@@ -399,6 +418,7 @@
       }
     },
     "API" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -878,6 +898,7 @@
       }
     },
     "key" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1616,7 +1637,11 @@
         }
       }
     },
+    "会员姓名" : {
+
+    },
     "会员姓名:" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1643,6 +1668,12 @@
           }
         }
       }
+    },
+    "会员第 %lld 周" : {
+
+    },
+    "会员系统" : {
+
     },
     "修改完成后点击按钮可以上传信息到服务器" : {
       "localizations" : {
@@ -1842,6 +1873,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "全部数据"
+          }
+        }
+      }
+    },
+    "全部消费记录" : {
+
+    },
+    "全部课程消费记录" : {
+
+    },
+    "共 %lld 次 · 已用 %lld" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "共 %1$lld 次 · 已用 %2$lld"
           }
         }
       }
@@ -2072,6 +2119,9 @@
         }
       }
     },
+    "剩余" : {
+
+    },
     "千分位" : {
       "localizations" : {
         "en" : {
@@ -2128,7 +2178,11 @@
         }
       }
     },
+    "卡号" : {
+
+    },
     "卡号:" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2300,6 +2354,9 @@
         }
       }
     },
+    "员工登录" : {
+
+    },
     "图片" : {
       "localizations" : {
         "en" : {
@@ -2468,6 +2525,9 @@
           }
         }
       }
+    },
+    "姓名 / 手机号 / 卡号" : {
+
     },
     "威娜" : {
       "localizations" : {
@@ -2667,6 +2727,7 @@
       }
     },
     "已领:%@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2693,6 +2754,9 @@
           }
         }
       }
+    },
+    "已领取" : {
+
     },
     "平均值" : {
       "localizations" : {
@@ -3059,6 +3123,12 @@
         }
       }
     },
+    "换个分类看看" : {
+
+    },
+    "换个姓名、手机号或卡号试试" : {
+
+    },
     "排序" : {
 
     },
@@ -3290,6 +3360,7 @@
       }
     },
     "显示课程" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3373,6 +3444,9 @@
         }
       }
     },
+    "暂无消费记录" : {
+
+    },
     "更换图标" : {
       "localizations" : {
         "en" : {
@@ -3429,7 +3503,14 @@
         }
       }
     },
+    "有效期至 %@" : {
+
+    },
+    "服务器地址" : {
+
+    },
     "服务器必须实现GET和POST方法，GET方法返回JSON数据，POST方法接收JSON文件" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3484,6 +3565,9 @@
           }
         }
       }
+    },
+    "条记录" : {
+
     },
     "染发" : {
       "extractionState" : "stale",
@@ -3626,7 +3710,10 @@
         }
       }
     },
-    "校验密码" : {
+    "次" : {
+
+    },
+    "正在查询…" : {
 
     },
     "求和" : {
@@ -3657,6 +3744,12 @@
         }
       }
     },
+    "没有%@的课程" : {
+
+    },
+    "没有找到会员" : {
+
+    },
     "没有结果" : {
       "localizations" : {
         "en" : {
@@ -3684,6 +3777,9 @@
           }
         }
       }
+    },
+    "消费记录" : {
+
     },
     "添加价格" : {
 
@@ -3829,6 +3925,15 @@
         }
       }
     },
+    "登 录" : {
+
+    },
+    "登录中…" : {
+
+    },
+    "登录账号" : {
+
+    },
     "确定" : {
       "localizations" : {
         "en" : {
@@ -3942,6 +4047,9 @@
         }
       }
     },
+    "礼物开关仅管理员可修改" : {
+
+    },
     "礼物领取" : {
       "localizations" : {
         "en" : {
@@ -3997,6 +4105,9 @@
           }
         }
       }
+    },
+    "简约" : {
+
     },
     "编辑" : {
       "extractionState" : "stale",
@@ -4082,6 +4193,9 @@
           }
         }
       }
+    },
+    "美发课程系统" : {
+
     },
     "美容" : {
       "extractionState" : "stale",
@@ -4169,6 +4283,7 @@
       }
     },
     "自动同步地址" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -4449,6 +4564,12 @@
         }
       }
     },
+    "该会员当前没有可用课程" : {
+
+    },
+    "详细" : {
+
+    },
     "请将数据粘贴到这里" : {
       "localizations" : {
         "en" : {
@@ -4476,6 +4597,15 @@
           }
         }
       }
+    },
+    "课程" : {
+
+    },
+    "课程分类" : {
+
+    },
+    "课程查询" : {
+
     },
     "身体" : {
       "localizations" : {
@@ -4534,6 +4664,7 @@
       }
     },
     "输入密码" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -4588,6 +4719,9 @@
           }
         }
       }
+    },
+    "退出登录" : {
+
     },
     "选择" : {
       "localizations" : {

@@ -4,7 +4,6 @@ import SwiftUI
 struct MenuPriceView: View {
     @State private var manager = peacock.shared
     @Default(.giftShow) var showGift
-    @Default(.remoteUpdateURL) var remoteUpdateURL
     var body: some View {
         NavigationStack {
             VStack {
@@ -30,6 +29,18 @@ struct MenuPriceView: View {
                         }
                     }
                 }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        peacock.shared.showVipHairCourse = true
+                    } label: {
+                        Image(
+                            systemName: MemberAuth.shared.isLoggedIn
+                                ? "person.text.rectangle"
+                                : "person.badge.key.fill"
+                        )
+                    }
+                }
 
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {
@@ -52,10 +63,15 @@ struct MenuPriceView: View {
                             }
                         }
 
-                        if let url = URL(string: remoteUpdateURL) {
+                        if MemberAuth.shared.isLoggedIn {
                             Section {
                                 Button {
-                                    manager.updateItem(url: url.absoluteString, toast: true)
+                                    manager.syncMenusFromMemberServer { success in
+                                        manager.toast(
+                                            success ? "更新成功" : "更新失败",
+                                            mode: success ? .success : .matrix
+                                        )
+                                    }
                                 } label: {
                                     Label(
                                         "更新价目表",

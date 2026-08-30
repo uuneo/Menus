@@ -1,5 +1,5 @@
 {
-  "originHash" : "5009a479a5e6474005765c12039af2bd51030a0a5a421084f3a1c49f784ed1da",
+  "originHash" : "647483f27f105e1118732ffdb60f569f9fe5c5aca49960d3e6e8e513532fdad8",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -78,8 +78,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sunvc/QRScanner.git",
       "state" : {
-        "revision" : "312a691b8162e62797e4eae46437aae0ba60fb40",
-        "version" : "0.3.1"
+        "revision" : "75c8f60025a61fc1636fae0233a746163f815b7f",
+        "version" : "1.2.3"
       }
     },
     {
@@ -87,8 +87,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-core.git",
       "state" : {
-        "revision" : "15493076ad9fef22c16cc64cbfbf9e5b65c385f9",
-        "version" : "20.1.0"
+        "revision" : "b4192c46305570577c4d08df790fddec5ab3aa04",
+        "version" : "20.1.5"
       }
     },
     {
@@ -96,8 +96,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-swift.git",
       "state" : {
-        "revision" : "6260534683132eb981338c7c39fd5e69205876e6",
-        "version" : "20.0.3"
+        "revision" : "ca03df491ec5e4bb8af0bca1e9957d08c10ec2da",
+        "version" : "20.0.5"
       }
     },
     {

@@ -13,8 +13,8 @@ let CONTAINER = FileManager.default
 
 let kRealmDefaultConfiguration = Realm.Configuration(
     fileURL: CONTAINER?.appendingPathComponent("peacock"),
-    schemaVersion: 1,
+    schemaVersion: 4,
     migrationBlock: { _, oldSchemaVersion in
-        if oldSchemaVersion < 1 {}
+        if oldSchemaVersion < 4 {}
     }
 )

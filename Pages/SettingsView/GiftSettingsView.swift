@@ -7,39 +7,21 @@ struct GiftSettingsView: View {
     @ObservedResults(VipInfoRealmMode.self, sortDescriptor: SortDescriptor(
         keyPath: \VipInfoRealmMode.createDate, ascending: false
     )) var vipGiftlist
-    @Default(.searchApi) var searchApi
-    @Default(.searchAuth) var searchAuth
     @Default(.giftShow) var giftShow
-    @Default(.settingPassword) var settingPassword
-    @Default(.settingLocalPassword) var settingLocalPassword
-    @Default(.remoteUpdateURL) var remoteUpdateURL
     @State private var showDelete = false
 
-    @FocusState private var searchFocus
-    @FocusState private var searchPassword
     var body: some View {
         List {
             Section {
+                // 礼物开关仅管理员可设置
                 Defaults.Toggle("礼物领取开关", systemImage: "app.gift.fill", key: .giftShow)
-                    .onChange(of: giftShow) { _, newValue in
-                        if newValue && !searchApi.hasPrefix("http") {
-                            self.giftShow = false
-                        }
-                    }
-
-                if !giftShow {
-                    TextField("API", text: $searchApi)
-                        .focused($searchFocus)
-                        .customField(focus: searchFocus, icon: "link", data: $searchApi)
-
-                    SecureField("key", text: $searchAuth)
-                        .focused($searchPassword)
-                        .customField(focus: searchPassword, icon: "key", data: $searchAuth)
+                    .disabled(!MemberAuth.shared.isAdmin)
+                    .opacity(MemberAuth.shared.isAdmin ? 1 : 0.5)
+            } footer: {
+                if !MemberAuth.shared.isAdmin {
+                    Text("礼物开关仅管理员可修改")
                 }
-
-            }.disabled(
-                !remoteUpdateURL.isEmpty && settingPassword != settingLocalPassword
-            )
+            }
 
             ForEach(vipGiftlist, id: \.id) { value in
                 HStack {

@@ -15,86 +15,65 @@ struct SubCategoryView: View {
     @ObservedResults(ItemRealmData.self, sortDescriptor: SortDescriptor(
         keyPath: \ItemRealmData.sort, ascending: true
     )) var items
-    @State private var showCardDetail: Bool = false
 
+    var projectItems: [ItemRealmData] {
+        items.filter { $0.subcategoryID == subcategory.id }
+    }
+
+    // 瀑布流: 卡片最小宽度约 300, 宽屏自动多列
     var body: some View {
-        ZStack {
-            VStack(alignment: .leading) {
-                HStack {
-                    ZStack(alignment: .bottomTrailing) {
-                        VStack(alignment: .leading) {
-                            Text(subcategory.title)
-                                .font(ISPAD ?.title : .title2)
-                                .bold()
-                                .padding(.top)
-                                .lineLimit(1)
-                                .layoutPriority(1)
-                                .fixedSize(horizontal: true, vertical: false)
+        VStack(alignment: .leading, spacing: 16) {
+            // MARK: 分类标题 + 副标题
+            VStack(alignment: .leading, spacing: 3) {
+                HStack(spacing: 10) {
+                    Text(subcategory.title)
+                        .font(.title2.bold())
+                        .foregroundStyle(.primary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.6)
 
-                            Text(subcategory.subTitle)
-                                .font(.title3)
-                                .foregroundStyle(Color.gray)
-                                .minimumScaleFactor(0.8)
-                                .lineLimit(1)
-                                .fixedSize(horizontal: true, vertical: false)
-
-                            if !ISPAD {
-                                Text(subcategory.footer)
-                                    .minimumScaleFactor(0.3)
-                                    .lineLimit(1)
-                            }
-                        }
-
-                        Text("\(items.filter { $0.subcategoryID == subcategory.id }.count)")
-                            .padding(5)
-                            .foregroundStyle(.gray)
-                            .offset(x: 20)
-                    }
-
-                    .padding(.leading, ISPAD ? 50 : 30)
-
-                    if ISPAD {
+                    if !subcategory.footer.isEmpty {
                         Text(subcategory.footer)
-                            .padding(.leading, 10)
-                            .minimumScaleFactor(0.3)
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
                             .lineLimit(1)
-                            .padding(.leading)
                     }
 
-                    Spacer()
-
-                    HStack {
-                        Toggle(isOn: $showCardDetail) {
-                            if ISPAD {
-                                Label("显示课程", systemImage: "list.bullet.rectangle")
-                                    .minimumScaleFactor(0.3)
-                            }
-                        }
-
-                        Spacer()
-                    }
-                    .frame(maxWidth: ISPAD ? 200 : 40)
-                    .padding(.trailing, 10)
+                    Spacer(minLength: 0)
                 }
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(
-                            items.filter { $0.subcategoryID == subcategory.id },
-                            id: \.id
-                        ) { item in
-                            ProjectCardView(data: item, show: $showCardDetail)
-                                .padding()
-                                .padding(.bottom)
-                        }
-                    }.padding(.horizontal, 30)
+
+                if !subcategory.subTitle.isEmpty {
+                    Text(subcategory.subTitle)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
                 }
             }
-        }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.showCardDetail = true
+            .padding(.horizontal, ISPAD ? 40 : 20)
+
+            // 标题下细分隔线
+            Rectangle()
+                .fill(Color.primary.opacity(0.08))
+                .frame(height: 1)
+                .padding(.horizontal, ISPAD ? 40 : 20)
+
+            // MARK: 瀑布流卡片
+            MasonryLayout(minimum: 300, spacing: 14) {
+                ForEach(projectItems, id: \.id) { item in
+                    ProjectCardView(data: item, show: .constant(true))
+                        .scrollTransition { content, phase in
+                            content
+                                .opacity(phase.isIdentity ? 1 : 0)
+                                .scaleEffect(phase.isIdentity ? 1 : 0.92)
+                                .blur(radius: phase.isIdentity ? 0 : 6)
+                        }
+                }
             }
+            .padding(.horizontal, ISPAD ? 40 : 20)
+            .padding(.bottom, 24)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 

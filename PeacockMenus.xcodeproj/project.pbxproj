@@ -87,17 +87,18 @@
 		B5EC96C12E17B602004C652D /* CalculatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC96C02E17B5F5004C652D /* CalculatorModel.swift */; };
 		B5EC96D42E17C2F9004C652D /* KeyboardNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC96D32E17C2F8004C652D /* KeyboardNumberView.swift */; };
 		BA6F51FA2EBFB159008ACEBA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BA6F51F92EBFB159008ACEBA /* Alamofire */; };
+		BAADCF063045A5880073AFC0 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BAADCF053045A5880073AFC0 /* RealmSwift */; };
+		BAADCF073045A5AF0073AFC0 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = BAADCF053045A5880073AFC0 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		BAB20EA82EC5C9990003F7A3 /* Assistant in Frameworks */ = {isa = PBXBuildFile; productRef = B531C8B52E16A0FB00CFCA07 /* Assistant */; };
 		BAB2ED632EBFA2C60094FB51 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BAB2ED622EBFA2C60094FB51 /* Kingfisher */; };
 		BAB703692EEB193A00CD30A5 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = BAB703682EEB193A00CD30A5 /* Defaults */; };
 		BAB704F52EEBD4D600CD30A5 /* Assistant in Frameworks */ = {isa = PBXBuildFile; productRef = BAB704F42EEBD4D600CD30A5 /* Assistant */; };
-		BAE626EC2ED60437009DABA1 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BAE626EB2ED60437009DABA1 /* RealmSwift */; };
 		BAE626EE2ED604E6009DABA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE626ED2ED604DE009DABA1 /* AppDelegate.swift */; };
 		BAE626F12ED605DB009DABA1 /* RealmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE626F02ED60542009DABA1 /* RealmConfig.swift */; };
 		BAE626F32ED606D2009DABA1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE626F22ED606CF009DABA1 /* Model.swift */; };
-		BAE626F42ED61243009DABA1 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = BAE626EB2ED60437009DABA1 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		BAE627012ED687ED009DABA1 /* NotificationService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BAE626FA2ED687EC009DABA1 /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BAE628A82ED7621C009DABA1 /* ProjectCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE628A72ED7621A009DABA1 /* ProjectCardView.swift */; };
+		F00DCAFE00000000000000A1 /* MemberCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00DCAFE00000000000000A2 /* MemberCourseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,7 +129,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BAE626F42ED61243009DABA1 /* RealmSwift in Embed Frameworks */,
+				BAADCF073045A5AF0073AFC0 /* RealmSwift in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,6 +229,7 @@
 		BAE626F22ED606CF009DABA1 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		BAE626FA2ED687EC009DABA1 /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAE628A72ED7621A009DABA1 /* ProjectCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCardView.swift; sourceTree = "<group>"; };
+		F00DCAFE00000000000000A2 /* MemberCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCourseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -256,8 +258,8 @@
 				BAB2ED632EBFA2C60094FB51 /* Kingfisher in Frameworks */,
 				BA6F51FA2EBFB159008ACEBA /* Alamofire in Frameworks */,
 				BAB704F52EEBD4D600CD30A5 /* Assistant in Frameworks */,
+				BAADCF063045A5880073AFC0 /* RealmSwift in Frameworks */,
 				B5DF4F052E144D3800599A8D /* QRScanner in Frameworks */,
-				BAE626EC2ED60437009DABA1 /* RealmSwift in Frameworks */,
 				B58484732E81089E00DA8020 /* Expression in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +417,7 @@
 			children = (
 				B5DF4F062E144D9500599A8D /* ScanView.swift */,
 				194546F22CCA223700CEB67B /* GiftViews */,
+				F00DCAFE00000000000000A3 /* MemberViews */,
 				1989BF002CA8495C00D5B8DE /* ToolsView */,
 				196C576B2CA3F10000A2436F /* TipsView */,
 				19E5B8C02C8DC7A600EC77F7 /* SettingsView */,
@@ -503,6 +506,14 @@
 			path = ci_scripts;
 			sourceTree = "<group>";
 		};
+		F00DCAFE00000000000000A3 /* MemberViews */ = {
+			isa = PBXGroup;
+			children = (
+				F00DCAFE00000000000000A2 /* MemberCourseView.swift */,
+			);
+			path = MemberViews;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -531,8 +542,8 @@
 				B58484722E81089E00DA8020 /* Expression */,
 				BAB2ED622EBFA2C60094FB51 /* Kingfisher */,
 				BA6F51F92EBFB159008ACEBA /* Alamofire */,
-				BAE626EB2ED60437009DABA1 /* RealmSwift */,
 				BAB704F42EEBD4D600CD30A5 /* Assistant */,
+				BAADCF053045A5880073AFC0 /* RealmSwift */,
 			);
 			productName = PeacockMenus;
 			productReference = 199075782C86100100E23FD7 /* PeacockMenus.app */;
@@ -599,9 +610,9 @@
 				B58484712E81089E00DA8020 /* XCRemoteSwiftPackageReference "Expression" */,
 				BAB2ED612EBFA2C60094FB51 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				BA6F51F82EBFB159008ACEBA /* XCRemoteSwiftPackageReference "Alamofire" */,
-				BAE626EA2ED60437009DABA1 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				BAB703672EEB193A00CD30A5 /* XCRemoteSwiftPackageReference "Defaults" */,
 				BAB704F32EEBD4D600CD30A5 /* XCRemoteSwiftPackageReference "Assistant" */,
+				BAADCF023045A5880073AFC0 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 199075792C86100100E23FD7 /* Products */;
 			projectDirPath = "";
@@ -686,6 +697,7 @@
 				1990758E2C87E9DF00E23FD7 /* ImageManager.swift in Sources */,
 				19DDEC232C96CAC200C86EC5 /* CategorySettingView.swift in Sources */,
 				194546F42CCA225100CEB67B /* GiftHomeView.swift in Sources */,
+				F00DCAFE00000000000000A1 /* MemberCourseView.swift in Sources */,
 				198706F32C941E5000F59CE9 /* HomeCategoryPage.swift in Sources */,
 				BAE626EE2ED604E6009DABA1 /* AppDelegate.swift in Sources */,
 				198706EB2C94114800F59CE9 /* extension+.swift in Sources */,
@@ -1114,7 +1126,7 @@
 			repositoryURL = "https://github.com/sunvc/QRScanner.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.1;
+				minimumVersion = 1.0.0;
 			};
 		};
 		BA6F51F82EBFB159008ACEBA /* XCRemoteSwiftPackageReference "Alamofire" */ = {
@@ -1123,6 +1135,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.10.2;
+			};
+		};
+		BAADCF023045A5880073AFC0 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 20.0.5;
 			};
 		};
 		BAB2ED612EBFA2C60094FB51 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
@@ -1147,14 +1167,6 @@
 			requirement = {
 				kind = upToNextMinorVersion;
 				minimumVersion = 1.0.0;
-			};
-		};
-		BAE626EA2ED60437009DABA1 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 20.0.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1193,6 +1205,11 @@
 			package = BA6F51F82EBFB159008ACEBA /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
+		BAADCF053045A5880073AFC0 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BAADCF023045A5880073AFC0 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		BAB2ED622EBFA2C60094FB51 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BAB2ED612EBFA2C60094FB51 /* XCRemoteSwiftPackageReference "Kingfisher" */;
@@ -1207,11 +1224,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BAB704F32EEBD4D600CD30A5 /* XCRemoteSwiftPackageReference "Assistant" */;
 			productName = Assistant;
-		};
-		BAE626EB2ED60437009DABA1 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BAE626EA2ED60437009DABA1 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

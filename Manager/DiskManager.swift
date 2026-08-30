@@ -12,6 +12,10 @@ import JDStatusBarNotification
 import RealmSwift
 import SwiftUI
 
+struct MemberUploadResult: Decodable {
+    let code: Int
+}
+
 enum Page: String, Identifiable, CaseIterable, Defaults.Serializable, Equatable {
     case home = "house.circle"
     case setting = "gear.circle"
@@ -49,7 +53,7 @@ final class peacock{
     var selectVip: MemberCardRealmData?
     var page: Page = .deepseek
     var fullPage: Bool = false
-    var showPassView = false
+    var showVipHairCourse = false
 
     var selectCardData: MemberCardRealmData {
         if let realm = try? Realm(),
@@ -61,107 +65,75 @@ final class peacock{
         }
         return MemberCardRealmData.nonmember
     }
-
-    func Admin() -> Bool {
-        if Defaults[.remoteUpdateURL].isEmpty {
-            return true
-        } else {
-            return Defaults[.settingPassword] == Defaults[.settingLocalPassword]
-        }
-    }
 }
 
 extension peacock {
-    func updateItem(url: String, toast _: Bool, completion: ((Bool) -> Void)? = nil) {
-        if !url.hasHttpPrefix {
-            Task {
-                await self.toast("地址不正确", mode: .light)
-            }
-
+    /// 登录会员系统后, 通过认证接口拉取价目表并导入(空数据不覆盖)
+    func syncMenusFromMemberServer(token: String? = nil, completion: ((Bool) -> Void)? = nil) {
+        let authToken = token ?? MemberAuth.shared.token
+        guard MemberAuth.shared.isLoggedIn else {
             completion?(false)
             return
         }
-
-        Task {
-            getData(url: url) { (result: TotalRealmData?) in
-                Task {
-                    if let data = result {
-                        await self.importData(totaldata: data)
-                        await self.toast("更新成功", mode: .success)
+        let headers: HTTPHeaders = ["Authorization": "Bearer \(authToken)"]
+        var request = URLRequest(url: URL(string: MemberAuth.shared.baseURL + "/ios/menus")!)
+        request.method = .get
+        request.headers = headers
+        request.cachePolicy = .reloadIgnoringLocalCacheData
+        request.timeoutInterval = 15
+        AF.request(request)
+        .validate(statusCode: 200..<300)
+        .responseData { response in
+            switch response.result {
+            case .success(let data):
+                do {
+                    let total = try JSONDecoder().decode(TotalRealmData.self, from: data)
+                    guard !(total.Cards.isEmpty && total.Items.isEmpty) else {
+                        debugPrint("价目表数据为空")
+                        completion?(false)
+                        return
+                    }
+                    Task {
+                        await self.importData(totaldata: total)
                         completion?(true)
-                    } else {
-                        await self.toast("更新失败", mode: .matrix)
-                        completion?(false)
                     }
+                } catch {
+                    debugPrint("价目表解码失败:", error)
+                    completion?(false)
                 }
+            case .failure(let error):
+                debugPrint("价目表请求失败:", error)
+                completion?(false)
             }
         }
     }
 
-    func uploadItem(url: String, completion: ((Bool) -> Void)? = nil) {
-        if !url.hasHttpPrefix {
-            Task {
-                await self.toast("地址不正确", mode: .light)
-            }
+    /// 管理员上传价目表到会员服务器 /ios/menus
+    func uploadMenusToMemberServer(token: String, completion: ((Bool) -> Void)? = nil) {
+        guard let fileURL = saveJSONToTempFile(object: exportTotalData(), fileName: "menus"),
+              MemberAuth.shared.isAdmin
+        else {
             completion?(false)
+            return
         }
-
-        uploadFile(url: url, completion: completion)
-    }
-
-    func uploadFile(url: String, completion: ((Bool) -> Void)?) {
-        if let fileURL = saveJSONToTempFile(object: exportTotalData(), fileName: "menus"),
-           let requestURL = URL(string: url)
-        {
-            var request = URLRequest(url: requestURL)
-            request.httpMethod = HTTPMethod.post.rawValue
-            request.cachePolicy = .reloadIgnoringLocalCacheData // 禁用缓存
-            request.addValue(Defaults[.searchAuth], forHTTPHeaderField: "Authorization")
-
-            AF.upload(multipartFormData: { multipartFormData in
-                // 添加文件数据
-                multipartFormData.append(
-                    fileURL,
-                    withName: "file",
-                    fileName: fileURL.lastPathComponent,
-                    mimeType: "application/json"
-                )
-            }, with: request)
-                .responseDecodable(of: [String: Bool].self) { response in
-                    switch response.result {
-                    case .success(let data):
-                        debugPrint(data)
-                        completion?(data["status"] ?? false)
-                    case .failure(let err):
-                        debugPrint(err)
-                        completion?(false)
-                    }
-                }
-
-        } else {
-            completion?(false)
-        }
-    }
-
-    func getData<T: Codable>(url: String, completion: @escaping (T?) -> Void) {
-        if let requestURL = URL(string: url) {
-            var request = URLRequest(url: requestURL)
-            request.httpMethod = HTTPMethod.get.rawValue
-            request.cachePolicy = .reloadIgnoringLocalCacheData
-            request.setValue(Defaults[.id], forHTTPHeaderField: "X-User-ID")
-            request.setValue(Defaults[.deviceToken], forHTTPHeaderField: "X-Device-Token")
-
-            AF.request(request).responseDecodable(of: T.self) { response in
-                switch response.result {
-                case .success(let data):
-                    completion(data)
-                case .failure(let error):
-                    debugPrint(error)
-                    completion(nil)
-                }
+        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
+        AF.upload(
+            multipartFormData: { $0.append(
+                fileURL,
+                withName: "file",
+                fileName: fileURL.lastPathComponent,
+                mimeType: "application/json"
+            ) },
+            to: MemberAuth.shared.baseURL + "/ios/menus",
+            headers: headers
+        )
+        .responseDecodable(of: MemberUploadResult.self) { response in
+            switch response.result {
+            case .success(let result):
+                completion?(result.code == 200)
+            case .failure:
+                completion?(false)
             }
-        } else {
-            completion(nil)
         }
     }
 
@@ -181,10 +153,7 @@ extension peacock {
             homeCardTitle: homeInfo?.homeCardTitle,
             homeCardSubTitle: homeInfo?.homeCardSubTitle,
             homeItemsTitle: homeInfo?.homeItemsTitle,
-            homeItemsSubTitle: homeInfo?.homeItemsSubTitle,
-            settingPassword: Defaults[.settingPassword],
-            remoteUpdateURL: Defaults[.remoteUpdateURL],
-            searchApi: Defaults[.searchApi], searchAuth: Defaults[.searchAuth]
+            homeItemsSubTitle: homeInfo?.homeItemsSubTitle
         )
     }
 
@@ -296,14 +265,6 @@ extension peacock {
             realm.add(homeInfo, update: .all)
         }
 
-        if let remoteUpdateURL = totaldata.remoteUpdateURL {
-            Defaults[.remoteUpdateURL] = remoteUpdateURL
-        }
-
-        if let password = totaldata.settingPassword {
-            Defaults[.settingPassword] = password
-        }
-
         if !cards.isEmpty {
             try? realm.write {
                 realm.delete(realm.objects(MemberCardRealmData.self))
@@ -347,6 +308,21 @@ extension peacock {
         mode: IncludedStatusBarNotificationStyle = .defaultStyle,
         duration: Double = 1.6
     ) {
+        // 状态栏通知必须在主线程调用
+        if Thread.isMainThread {
+            showToast(message, mode: mode, duration: duration)
+        } else {
+            DispatchQueue.main.async {
+                self.showToast(message, mode: mode, duration: duration)
+            }
+        }
+    }
+
+    private func showToast(
+        _ message: String,
+        mode: IncludedStatusBarNotificationStyle,
+        duration: Double
+    ) {
         NotificationPresenter.shared
             .present(message, includedStyle: mode, duration: duration) { presenter in
                 presenter.animateProgressBar(to: 1.0, duration: 0.75) { presenter in
@@ -356,10 +332,4 @@ extension peacock {
     }
 }
 
-extension String {
-    var hasHttpPrefix: Bool {
-        let pattern = "^(http|https)://.*"
-        let test = NSPredicate(format: "SELF MATCHES %@", pattern)
-        return test.evaluate(with: self)
-    }
-}
+

@@ -21,7 +21,7 @@ class NotificationService: UNNotificationServiceExtension {
 
         if let bestAttemptContent = bestAttemptContent {
             if let link = bestAttemptContent.userInfo["autoLink"] as? String,
-               let link = URL(string: link)
+               let _ = URL(string: link)
             {
 //                Defaults[]
             }

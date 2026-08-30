@@ -341,6 +341,7 @@ class ItemRealmData: Object, ObjectKeyIdentifiable, Codable {
 
 class PriceRealmData: Object, ObjectKeyIdentifiable, Codable {
     @Persisted(primaryKey: true) var id: String = UUID().uuidString
+    @Persisted var name: String = ""
     @Persisted var prefix: String = "¥"
     @Persisted var money: Int = 0
     @Persisted var suffix: String = "元/次"
@@ -349,6 +350,7 @@ class PriceRealmData: Object, ObjectKeyIdentifiable, Codable {
 
     func copyID() -> PriceRealmData {
         let data = PriceRealmData()
+        data.name = name
         data.prefix = prefix
         data.money = money
         data.suffix = suffix
@@ -359,6 +361,7 @@ class PriceRealmData: Object, ObjectKeyIdentifiable, Codable {
 
     static func create(
         id: String = UUID().uuidString,
+        name: String = "",
         prefix: String = "¥",
         money: Int = 0,
         suffix: String = "元/次",
@@ -367,6 +370,7 @@ class PriceRealmData: Object, ObjectKeyIdentifiable, Codable {
     ) -> PriceRealmData {
         let data = PriceRealmData()
         data.id = id
+        data.name = name
         data.prefix = prefix
         data.money = money
         data.suffix = suffix
@@ -385,13 +389,14 @@ class PriceRealmData: Object, ObjectKeyIdentifiable, Codable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case id, prefix, money, suffix, discount, mode
+        case id, name, prefix, money, suffix, discount, mode
     }
 
     required convenience init(from decoder: Decoder) throws {
         self.init()
         let c = try decoder.container(keyedBy: CodingKeys.self)
         id = try c.decode(String.self, forKey: .id)
+        name = try c.decodeIfPresent(String.self, forKey: .name) ?? ""
         prefix = try c.decodeIfPresent(String.self, forKey: .prefix) ?? "¥"
         money = try c.decodeIfPresent(Int.self, forKey: .money) ?? 0
         suffix = try c.decodeIfPresent(String.self, forKey: .suffix) ?? "元/次"
@@ -402,6 +407,7 @@ class PriceRealmData: Object, ObjectKeyIdentifiable, Codable {
     func encode(to encoder: Encoder) throws {
         var c = encoder.container(keyedBy: CodingKeys.self)
         try c.encode(id, forKey: .id)
+        try c.encode(name, forKey: .name)
         try c.encode(prefix, forKey: .prefix)
         try c.encode(money, forKey: .money)
         try c.encode(suffix, forKey: .suffix)

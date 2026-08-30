@@ -14,6 +14,7 @@ final class KeychainHelper {
 
     private let service = Bundle.main.bundleIdentifier ?? "com.uuneo.menus"
     private let account = "MENUSDEVICEID"
+    private let memberTokenAccount = "MEMBERTOKEN"
 
     // 读取设备唯一ID，如果不存在则创建并保存一个新的 UUID
     func getDeviceID(_ newData: Bool = false) -> String {
@@ -30,13 +31,14 @@ final class KeychainHelper {
         return newID
     }
 
-    private func save(_ id: String) {
+    private func save(_ id: String, account: String? = nil) {
         guard let data = id.data(using: .utf8) else { return }
+        let acc = account ?? self.account
         // 先删除旧数据，防止重复
         let queryDelete: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,
-            kSecAttrAccount as String: account,
+            kSecAttrAccount as String: acc,
         ]
         SecItemDelete(queryDelete as CFDictionary)
 
@@ -44,17 +46,18 @@ final class KeychainHelper {
         let queryAdd: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,
-            kSecAttrAccount as String: account,
+            kSecAttrAccount as String: acc,
             kSecValueData as String: data,
         ]
         SecItemAdd(queryAdd as CFDictionary, nil)
     }
 
-    private func read() -> String? {
+    private func read(account: String? = nil) -> String? {
+        let acc = account ?? self.account
         let queryRead: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,
-            kSecAttrAccount as String: account,
+            kSecAttrAccount as String: acc,
             kSecReturnData as String: true,
             kSecMatchLimit as String: kSecMatchLimitOne,
         ]
@@ -66,6 +69,25 @@ final class KeychainHelper {
             return id
         }
         return nil
+    }
+
+    // MARK: - 会员系统 token
+
+    func saveMemberToken(_ token: String) {
+        save(token, account: memberTokenAccount)
+    }
+
+    func memberToken() -> String? {
+        read(account: memberTokenAccount)
+    }
+
+    func clearMemberToken() {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: service,
+            kSecAttrAccount as String: memberTokenAccount,
+        ]
+        SecItemDelete(query as CFDictionary)
     }
 
     private func replaceFoursWithRandomLetters(in uuid: String) -> String {

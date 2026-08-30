@@ -9,10 +9,7 @@ enum ActiveAlert {
 
 struct SettingsView: View {
     @State private var manager = peacock.shared
-    
-    @Default(.settingPassword) var settingPassword
-    @Default(.settingLocalPassword) var settingLocalPassword
-    @Default(.remoteUpdateURL) var remoteUpdateURL
+
     @Default(.firstStart) var firstStart
     @Default(.defaultHome) var defaultHome
 
@@ -34,7 +31,7 @@ struct SettingsView: View {
     let uploadTip = UploadTipView()
 
     var body: some View {
-        if defaultHome == .home &&  settingPassword == settingLocalPassword  {
+        if defaultHome == .home {
             
             NavigationSplitView(
                 columnVisibility: $columnVisibility,
@@ -127,7 +124,7 @@ struct SettingsView: View {
                     message: Text("本地数据将覆盖服务器数据"),
                     primaryButton: .destructive(Text("确定"), action: {
                         uploadProgress = true
-                        manager.uploadItem(url: remoteUpdateURL) { success in
+                        manager.uploadMenusToMemberServer(token: MemberAuth.shared.token) { success in
                             uploadProgress = false
                             manager.toast(
                                 success ? String(localized: "项目同步成功") : String(localized: "项目同步失败"),
@@ -163,7 +160,7 @@ struct SettingsView: View {
                 }
         )
         .toolbar {
-            if defaultHome == .home && !remoteUpdateURL.isEmpty && settingPassword == settingLocalPassword {
+            if defaultHome == .home && MemberAuth.shared.isAdmin {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
                         if UploadTipView.startTipHasDisplayed {
@@ -201,14 +198,12 @@ struct SettingsView: View {
 
 struct SettingsIphoneView: View {
     @State private var manager = peacock.shared
+    @State private var memberAuth = MemberAuth.shared
     @State private var selectedTab: Int? = 0
     @State private var columnVisibility: NavigationSplitViewVisibility = .automatic
     @State private var showIconPicker: Bool = false
     @State private var uploadProgress: Bool = false
-    @Default(.remoteUpdateURL) var remoteUpdateURL
     @Default(.defaultHome) var defaultHome
-    @Default(.settingPassword) var settingPassword
-    @Default(.settingLocalPassword) var settingLocalPassword
 
     @State private var showAlert: Bool = false
 
@@ -249,7 +244,7 @@ struct SettingsIphoneView: View {
                     } label: {
                         Label("智能助手", systemImage: "gear")
                     }.tag(2)
-                    if !remoteUpdateURL.isEmpty || settingPassword == settingLocalPassword {
+                    if true {
                         NavigationLink {
                             ExportDataView()
                                 .navigationTitle("导出信息")
@@ -259,14 +254,37 @@ struct SettingsIphoneView: View {
 
                         .tag(3)
 
-                        NavigationLink {
-                            ImportDataView()
-                                .navigationTitle("导入信息")
-                        } label: {
-                            Label("导入信息", systemImage: "square.and.arrow.down")
-                        }
+                        // 导入(修改价目表)仅会员系统管理员
+                        if memberAuth.isAdmin {
+                            NavigationLink {
+                                ImportDataView()
+                                    .navigationTitle("导入信息")
+                            } label: {
+                                Label("导入信息", systemImage: "square.and.arrow.down")
+                            }
 
-                        .tag(4)
+                            .tag(4)
+                        }
+                    }
+                }
+
+                // 会员系统账号
+                if memberAuth.isLoggedIn {
+                    Section {
+                        HStack {
+                            Label("登录账号", systemImage: "person.crop.circle.fill")
+                            Spacer()
+                            Text(memberAuth.userName)
+                                .foregroundStyle(.secondary)
+                        }
+                        Button(role: .destructive) {
+                            memberAuth.logout()
+                            Task.detached { MemberUserCache.clearAll() }
+                        } label: {
+                            Label("退出登录", systemImage: "rectangle.portrait.and.arrow.right")
+                        }
+                    } header: {
+                        Text("会员系统")
                     }
                 }
 
@@ -323,7 +341,7 @@ struct SettingsIphoneView: View {
                     message: Text("本地数据将覆盖服务器数据"),
                     primaryButton: .destructive(Text("确定"), action: {
                         uploadProgress = true
-                        manager.uploadItem(url: remoteUpdateURL) { success in
+                        manager.uploadMenusToMemberServer(token: MemberAuth.shared.token) { success in
                             uploadProgress = false
                             manager.toast(
                                 success ? String(localized: "项目同步成功") : String(localized: "项目同步失败"),
@@ -335,7 +353,7 @@ struct SettingsIphoneView: View {
                 )
             }
             .toolbar {
-                if !remoteUpdateURL.isEmpty && settingPassword == settingLocalPassword {
+                if MemberAuth.shared.isAdmin {
                     ToolbarItem(placement: .topBarLeading) {
                         Button {
                             self.showAlert.toggle()
@@ -349,7 +367,7 @@ struct SettingsIphoneView: View {
                                         .popoverTip(uploadIphoneTip)
                                 }
                             }
-                        }.disabled(!remoteUpdateURL.hasHttpPrefix)
+                        }.disabled(!MemberAuth.shared.isLoggedIn)
                     }
                 }
 
